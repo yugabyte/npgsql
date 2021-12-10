@@ -1123,9 +1123,11 @@ namespace Npgsql.Internal
 
                         // Now wait until that command's reader is disposed.
                         var readerResult = new ValueTask(ReaderCompleted, ReaderCompleted.Version);
-                        if (!readerResult.IsCompleted)
-                            await Task.Yield();
+                        var isCompletedSync = readerResult.IsCompleted;
                         await readerResult;
+                        if (!isCompletedSync)
+                            await Task.Yield();
+                        
                         ReaderCompleted.Reset();
                         
                         Interlocked.Decrement(ref CommandsInFlightCount);
