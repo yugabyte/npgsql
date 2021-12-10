@@ -1092,7 +1092,7 @@ namespace Npgsql.Internal
         internal volatile int CommandsInFlightCount;
 
         internal ManualResetValueTaskSource<object?> ReaderCompleted { get; } =
-            new() { RunContinuationsAsynchronously = true };
+            new() { RunContinuationsAsynchronously = false };
 
         async Task MultiplexingReadLoop()
         {
@@ -1122,7 +1122,10 @@ namespace Npgsql.Internal
                         command.ExecutionCompletion.SetResult(this);
 
                         // Now wait until that command's reader is disposed.
-                        await new ValueTask(ReaderCompleted, ReaderCompleted.Version);
+                        var readerResult = new ValueTask(ReaderCompleted, ReaderCompleted.Version);
+                        if (!readerResult.IsCompleted)
+                            await Task.Yield();
+                        await readerResult;
                         ReaderCompleted.Reset();
                         
                         Interlocked.Decrement(ref CommandsInFlightCount);
@@ -1133,18 +1136,18 @@ namespace Npgsql.Internal
                     // Note that this is racing with over-capacity writing, which can select any connector at any
                     // time (see MultiplexingWriteLoop), and we must make absolutely sure that if a connector is
                     // returned to the pool, it is *never* written to unless properly dequeued from the Idle channel.
-                    if (CommandsInFlightCount == 0)
-                    {
-                        // There's a race condition where the continuation of an asynchronous multiplexing write may not
-                        // have executed yet, and the flush may still be in progress. We know all I/O has already
-                        // been sent - because the reader has already consumed the entire resultset. So we wait until
-                        // the connector's write lock has been released (long waiting will never occur here).
-                        bool SpinCondition() => MultiplexAsyncWritingLock == 0 || IsBroken;
-                        if (!SpinCondition()) SpinWait.SpinUntil(() => SpinCondition());
-
-                        ResetReadBuffer();
-                        _connectorSource.Return(this);
-                    }
+                    // if (CommandsInFlightCount == 0)
+                    // {
+                    //     // There's a race condition where the continuation of an asynchronous multiplexing write may not
+                    //     // have executed yet, and the flush may still be in progress. We know all I/O has already
+                    //     // been sent - because the reader has already consumed the entire resultset. So we wait until
+                    //     // the connector's write lock has been released (long waiting will never occur here).
+                    //     bool SpinCondition() => MultiplexAsyncWritingLock == 0 || IsBroken;
+                    //     if (!SpinCondition()) SpinWait.SpinUntil(() => SpinCondition());
+                    //
+                    //     ResetReadBuffer();
+                    //     _connectorSource.Return(this);
+                    // }
                 }
 
                 Log.Trace("Exiting multiplexing read loop", Id);

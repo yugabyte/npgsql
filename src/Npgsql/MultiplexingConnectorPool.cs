@@ -200,7 +200,7 @@ namespace Npgsql
                         var minInFlight = int.MaxValue;
                         foreach (var c in Connectors)
                         {
-                            if (c?.MultiplexAsyncWritingLock == 0 && c.CommandsInFlightCount > 0 && c.CommandsInFlightCount < minInFlight)
+                            if (c?.MultiplexAsyncWritingLock == 0 && c.CommandsInFlightCount < minInFlight)
                             {
                                 minInFlight = c.CommandsInFlightCount;
                                 connector = c;
@@ -225,14 +225,14 @@ namespace Npgsql
                         // the connector to the Idle channel (because it has completed all commands).
                         // Increment the in-flight count to make sure the connector isn't returned as idle.
                         var newInFlight = Interlocked.Increment(ref connector.CommandsInFlightCount);
-                        if (newInFlight == 1)
-                        {
-                            // The connector's in-flight was 0, so it was idle - abort over-capacity read
-                            // and retry the normal flow.
-                            Interlocked.Decrement(ref connector.CommandsInFlightCount);
-                            spinwait.SpinOnce();
-                            continue;
-                        }
+                        // if (newInFlight == 1)
+                        // {
+                        //     // The connector's in-flight was 0, so it was idle - abort over-capacity read
+                        //     // and retry the normal flow.
+                        //     Interlocked.Decrement(ref connector.CommandsInFlightCount);
+                        //     spinwait.SpinOnce();
+                        //     continue;
+                        // }
 
                         break;
                     }
