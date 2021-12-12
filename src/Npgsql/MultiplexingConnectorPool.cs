@@ -119,9 +119,11 @@ namespace Npgsql
                         ThreadPool.GetMaxThreads(out var maxT, out var a);
                         
                         if (anySome) 
-                            Console.WriteLine($"ThreadPool: {ThreadPool.ThreadCount} of {maxT} Multiplexer pending: {_multiplexCommandReader.Count}, was spinning: {DidSpin}");
+                            Console.WriteLine($"ThreadPool: {ThreadPool.ThreadCount} of {maxT} Multiplexer pending: {_multiplexCommandReader.Count}, was spinning: {DidSpin}, had async write: {AsyncWrite}, had async flush: {AsyncFlush}");
                         
                         DidSpin = false;
+                        AsyncWrite = false;
+                        AsyncFlush = false;
 
                         Thread.Sleep(1000);
                     }
@@ -145,6 +147,9 @@ namespace Npgsql
                 _bootstrapSemaphore!.Release();
             }
         }
+
+        public bool AsyncFlush { get; set; }
+        public bool AsyncWrite { get; set; }
 
         async Task MultiplexingWriteLoop()
         {
@@ -327,6 +332,7 @@ namespace Npgsql
                     // copy of the stats for the async writing that will continue in parallel with this loop.
                     var clonedStats = stats.Clone();
 
+                    AsyncWrite = true;
                     // ReSharper disable once MethodSupportsCancellation
                     task.ContinueWith((t, o) =>
                     {
@@ -380,7 +386,7 @@ namespace Npgsql
                     // Create a copy of the statistics and purposefully box it via the closure. We need a separate
                     // copy of the stats for the async writing that will continue in parallel with this loop.
                     var clonedStats = stats.Clone();
-
+                    AsyncFlush = true;
                     task.ContinueWith((t, o) =>
                     {
                         var conn = (NpgsqlConnector)o!;
