@@ -29,6 +29,8 @@ namespace Npgsql
     [System.ComponentModel.DesignerCategory("")]
     public sealed class NpgsqlCommand : DbCommand, ICloneable, IComponent
     {
+        internal readonly bool IndependentCommands;
+
         #region Fields
 
         NpgsqlConnection? _connection;
@@ -139,8 +141,9 @@ namespace Npgsql
         /// <summary>
         /// Used when this <see cref="NpgsqlCommand"/> instance is wrapped inside an <see cref="NpgsqlBatch"/>.
         /// </summary>
-        internal NpgsqlCommand(List<NpgsqlBatchCommand> batchCommands)
+        internal NpgsqlCommand(List<NpgsqlBatchCommand> batchCommands, bool independentCommands)
         {
+            IndependentCommands = independentCommands;
             GC.SuppressFinalize(this);
             InternalBatchCommands = batchCommands;
             CommandType = CommandType.Text;
@@ -157,8 +160,8 @@ namespace Npgsql
         /// <summary>
         /// Used when this <see cref="NpgsqlCommand"/> instance is wrapped inside an <see cref="NpgsqlBatch"/>.
         /// </summary>
-        internal NpgsqlCommand(NpgsqlConnector connector, List<NpgsqlBatchCommand> batchCommands)
-            : this(batchCommands)
+        internal NpgsqlCommand(NpgsqlConnector connector, List<NpgsqlBatchCommand> batchCommands, bool independentCommands)
+            : this(batchCommands, independentCommands)
             => _connector = connector;
 
         internal static NpgsqlCommand CreateCachedCommand(NpgsqlConnection connection)
@@ -998,11 +1001,15 @@ GROUP BY pg_proc.proargnames, pg_proc.proargtypes, pg_proc.proallargtypes, pg_pr
 
                     await connector.WriteExecute(0, async, cancellationToken);
 
+                    if (IndependentCommands)
+                        await connector.WriteSync(async, cancellationToken);
+                    
                     if (pStatement != null)
                         pStatement.LastUsed = DateTime.UtcNow;
                 }
 
-                await connector.WriteSync(async, cancellationToken);
+                if (!IndependentCommands)
+                    await connector.WriteSync(async, cancellationToken);
 
                 if (flush)
                     await connector.Flush(async, cancellationToken);

@@ -358,6 +358,7 @@ namespace Npgsql
                 case ReaderState.BeforeResult:
                 case ReaderState.InResult:
                     await ConsumeRow(async);
+                    var wasRFQ = !Command.IndependentCommands;
                     while (true)
                     {
                         var completedMsg = await Connector.ReadMessage(async, DataRowLoadingMode.Skip);
@@ -367,11 +368,16 @@ namespace Npgsql
                         case BackendMessageCode.EmptyQueryResponse:
                             ProcessMessage(completedMsg);
                             break;
+                        case BackendMessageCode.ReadyForQuery:
+                            ProcessMessage(completedMsg);
+                            wasRFQ = true;
+                            break;
                         default:
                             continue;
                         }
-
-                        break;
+                        
+                        if (StatementIndex == _statements.Count - 1 || wasRFQ)
+                            break;
                     }
 
                     break;
@@ -486,7 +492,10 @@ namespace Npgsql
                     switch (msg.Code)
                     {
                     case BackendMessageCode.DataRow:
+                        break;
                     case BackendMessageCode.CommandComplete:
+                        if (Command.IndependentCommands)
+                            ProcessMessage(Expect<ReadyForQueryMessage>(await Connector.ReadMessage(async), Connector));
                         break;
                     default:
                         throw Connector.UnexpectedMessageReceived(msg.Code);
@@ -695,7 +704,8 @@ namespace Npgsql
                 return;
 
             case BackendMessageCode.ReadyForQuery:
-                State = ReaderState.Consumed;
+                if (!Command.IndependentCommands || StatementIndex == _statements.Count)
+                    State = ReaderState.Consumed;
                 return;
 
             default:

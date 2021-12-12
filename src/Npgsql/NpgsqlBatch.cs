@@ -72,7 +72,7 @@ namespace Npgsql
         public NpgsqlBatch(NpgsqlConnection? connection = null, NpgsqlTransaction? transaction = null)
         {
             var batchCommands = new List<NpgsqlBatchCommand>(5);
-            _command = new(batchCommands);
+            _command = new(batchCommands, IndependentCommands);
             BatchCommands = new NpgsqlBatchCommandCollection(batchCommands);
 
             Connection = connection;
@@ -82,10 +82,12 @@ namespace Npgsql
         internal NpgsqlBatch(NpgsqlConnector connector)
         {
             var batchCommands = new List<NpgsqlBatchCommand>(5);
-            _command = new(connector, batchCommands);
+            _command = new(connector, batchCommands, IndependentCommands);
             BatchCommands = new NpgsqlBatchCommandCollection(batchCommands);
         }
 
+        public bool IndependentCommands { get; set; } = true;
+        
         /// <inheritdoc />
         protected override DbBatchCommand CreateDbBatchCommand()
             => new NpgsqlBatchCommand();
