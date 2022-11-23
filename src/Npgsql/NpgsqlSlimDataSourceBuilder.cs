@@ -568,6 +568,16 @@ public sealed class NpgsqlSlimDataSourceBuilder : INpgsqlTypeMapper
         var config = PrepareConfiguration();
         var connectionStringBuilder = ConnectionStringBuilder.Clone();
 
+        // if (ConnectionStringBuilder.TopologyKeys != null)
+        // {
+        //     new TopologyAwareDataSource(ConnectionStringBuilder, config);
+        // }
+
+        if (ConnectionStringBuilder.LoadBalanceHosts)
+        {
+            return new ClusterAwareDataSource(ConnectionStringBuilder, config);
+        }
+
         if (ConnectionStringBuilder.Host!.Contains(","))
         {
             ValidateMultiHost();
