@@ -345,7 +345,10 @@ namespace Npgsql;
 public class ClusterAwareDataSource: NpgsqlDataSource
 {
     private static ClusterAwareDataSource? instance;
-    List<NpgsqlDataSource> _pools = new List<NpgsqlDataSource>();
+    /// <summary>
+    /// Todo
+    /// </summary>
+    protected List<NpgsqlDataSource> _pools = new List<NpgsqlDataSource>();
     internal List<NpgsqlDataSource> Pools => _pools;
     /// <summary>
     /// list of yb_server hosts
@@ -361,26 +364,32 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     protected bool? UseHostColumn = null;
 
     Dictionary<string, int> _hostToNumConnMap = new Dictionary<string, int>();
-    NpgsqlConnectionStringBuilder settings;
+    /// <summary>
+    /// Todo
+    /// </summary>
+    protected NpgsqlConnectionStringBuilder settings;
     internal NpgsqlDataSourceConfiguration dataSourceConfig;
 
-    internal ClusterAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig)
+    internal ClusterAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig, bool useClusterAwareDataSource)
         : base(settings, dataSourceConfig)
     {
         this.settings = settings;
         this.dataSourceConfig = dataSourceConfig;
-        instance = this;
-        try
+        if(useClusterAwareDataSource)
         {
-            NpgsqlDataSource control = new UnpooledDataSource(settings, dataSourceConfig);
-            NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
-            controlConnection.Open();
-            CreatePool(controlConnection);
-            controlConnection.Close();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
+            instance = this;
+            try
+            {
+                NpgsqlDataSource control = new UnpooledDataSource(settings, dataSourceConfig);
+                NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
+                controlConnection.Open();
+                CreatePool(controlConnection);
+                controlConnection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
     }
@@ -577,6 +586,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     
     int GetRoundRobinIndex()
     {
+        if (_pools.Count == 0)
+            throw new NpgsqlException("No suitable host was found.");
         while (true)
         {
             var index = Interlocked.Increment(ref _roundRobinIndex);

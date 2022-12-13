@@ -340,14 +340,14 @@ public class NpgsqlDataSourceBuilder : INpgsqlTypeMapper
     {
         var config = PrepareConfiguration();
 
-        // if (ConnectionStringBuilder.TopologyKeys != null)
-        // {
-        //     new TopologyAwareDataSource(ConnectionStringBuilder, config);
-        // }
+        if (ConnectionStringBuilder.TopologyKeys != null)
+        {
+            return new TopologyAwareDataSource(ConnectionStringBuilder, config);
+        }
 
         if (ConnectionStringBuilder.LoadBalanceHosts)
         {
-            return new ClusterAwareDataSource(ConnectionStringBuilder, config);
+            return new ClusterAwareDataSource(ConnectionStringBuilder, config, true);
         }
 
         if (ConnectionStringBuilder.Host!.Contains(","))
