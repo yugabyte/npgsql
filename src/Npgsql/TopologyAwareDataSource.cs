@@ -1,12 +1,11 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Util;
+using System.Linq;
 
 namespace Npgsql;
 
@@ -15,11 +14,22 @@ namespace Npgsql;
 /// </summary>
 public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 {
-    HashSet<CloudPlacement> allowedPlacements;
+    Dictionary<int, HashSet<CloudPlacement>?> allowedPlacements;
+    ConcurrentDictionary<int, List<string>> fallbackPrivateIPs;
+    ConcurrentDictionary<int, List<string>> fallbackPublicIPs;
+    readonly int PRIMARY_PLACEMENTS = 1;
+    readonly int FIRST_FALLBACK = 2;
+    readonly int REST_OF_CLUSTER = -1;
+    readonly int MAX_PREFERENCE_VALUE = 10;
+    List<string> currentPublicIps = new List<string>();
+
     internal TopologyAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig) : base(settings,dataSourceConfig,false)
     {
-        allowedPlacements = new HashSet<CloudPlacement>();
-        PopulatePlacementMap();
+        allowedPlacements = new Dictionary<int, HashSet<CloudPlacement>?>();
+        fallbackPrivateIPs = new ConcurrentDictionary<int, List<string>>();
+        fallbackPublicIPs = new ConcurrentDictionary<int, List<string>>();
+
+        ParseGeoLocations();
         Console.WriteLine("Inside TopologyAwareDatasource");
         try
         {
@@ -35,30 +45,79 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         }
     }
 
-    void PopulatePlacementMap()
+    void ParseGeoLocations()
     {
-        var placementstrings = settings.TopologyKeys?.Split(',');
-        Debug.Assert(placementstrings != null, nameof(placementstrings) + " != null");
-        foreach (var pl in placementstrings)
+        var values = settings.TopologyKeys?.Split(',');
+        Debug.Assert(values != null, nameof(values) + " != null");
+        foreach (var value in values)
         {
-            var placementParts = pl.Split('.');
-            if (placementParts.Length != 3)
+            var v = value.Split(':');
+            if (v.Length > 2 || value.EndsWith(":"))
             {
-                Console.WriteLine("Ignoring malformed Topology-Key Property");
-                continue;
+                throw new InvalidExpressionException("Invalid value part for property" + settings.TopologyKeys + ":" + value);
             }
 
-            var cp = GetPlacementMap(placementParts[0], placementParts[1], placementParts[2]);
-            allowedPlacements.Add(cp);
+            if (v.Length == 1 )
+            {
+                HashSet<CloudPlacement>? primary;
+                if (!allowedPlacements.TryGetValue(PRIMARY_PLACEMENTS, out primary))
+                {
+                    primary = new HashSet<CloudPlacement>();
+                    allowedPlacements[PRIMARY_PLACEMENTS] = primary;
+                }
+                PopulatePlacementSet(v[0], primary, PRIMARY_PLACEMENTS);
+            }
+            else
+            {
+                var pref = Convert.ToInt32(v[1]);
+                if (pref == 1)
+                {
+                    HashSet<CloudPlacement>? primary;
+                    if (!allowedPlacements.TryGetValue(PRIMARY_PLACEMENTS, out primary))
+                    {
+                        primary = new HashSet<CloudPlacement>();
+                        allowedPlacements[PRIMARY_PLACEMENTS] = primary;
+                    }
+                    PopulatePlacementSet(v[0], primary, PRIMARY_PLACEMENTS);
+                }
+                else if (pref > 1 && pref <= MAX_PREFERENCE_VALUE)
+                {
+                    HashSet<CloudPlacement>? fallbackPlacements;
+                    if (!allowedPlacements.TryGetValue(PRIMARY_PLACEMENTS, out fallbackPlacements))
+                    {
+                        fallbackPlacements = new HashSet<CloudPlacement>();
+                        allowedPlacements[pref] = fallbackPlacements;
+                    }
+                    PopulatePlacementSet(v[0], fallbackPlacements, pref);
+                }
+                else
+                {
+                    throw new InvalidExpressionException("Invalid value part for property" + settings.TopologyKeys + ":" + value);
+                }
+            }
         }
-        
     }
 
-    CloudPlacement GetPlacementMap(string cloud, string region, string zone)
+    void PopulatePlacementSet(string placements, HashSet<CloudPlacement>? allowedPlacements, int preference)
     {
-        var cp = new CloudPlacement(cloud, region, zone);
-        return cp;
+        var pStrings = placements.Split(',');
+        foreach (var pl in pStrings)
+        {
+            var placementParts = pl.Split('.');
+            if (placementParts.Length != 3 || placementParts[0].Equals("*") || placementParts[1].Equals("*"))
+            {
+                throw new InvalidExpressionException("Malformed " + settings.TopologyKeys + " property value:" + pl);
+            }
+
+            CloudPlacement cp = new CloudPlacement(placementParts[0], placementParts[1], placementParts[2]);
+
+            allowedPlacements?.Add(cp);
+
+            this.allowedPlacements[preference] = allowedPlacements;
+
+        }
     }
+    
 
     /// <summary>
     /// Create a new pool
@@ -82,7 +141,6 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         NpgsqlCommand QUERY_SERVER = new NpgsqlCommand("Select * from yb_servers()",conn);
         NpgsqlDataReader reader = QUERY_SERVER.ExecuteReader();
         List<string> currentPrivateIps = new List<string>();
-        List<string> currentPublicIps = new List<string>();
         var hostConnectedTo = conn.Host;
         
         Debug.Assert(hostConnectedTo != null, nameof(hostConnectedTo) + " != null");
@@ -94,7 +152,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             var region = reader.GetString(5);
             var zone = reader.GetString(6);
 
-            var cp = GetPlacementMap(cloud, region, zone);
+            UpdateCurrentHostList(currentPrivateIps, host, publicHost, cloud, region, zone);
             
             if (hostConnectedTo.Equals(host))
             {
@@ -102,17 +160,65 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             } else if (hostConnectedTo.Equals(publicHost)) {
                 UseHostColumn = false;
             }
-
-            foreach (var allowedPlacement in allowedPlacements)
-            {
-                if (allowedPlacement.EqualPlacements(cp))
-                {
-                    currentPrivateIps.Add(host);
-                    currentPublicIps.Add(publicHost);
-                }
-            }
+            
         }
         return GetPrivateOrPublicServers(currentPrivateIps, currentPublicIps);
+    }
+
+    new List<string> GetPrivateOrPublicServers(List<string> privateHosts, List<string> publicHosts)
+    {
+        List<string> servers = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
+        if (servers != null && !servers.Any())
+        {
+            return servers;
+        }
+
+        for (var i = FIRST_FALLBACK; i <= MAX_PREFERENCE_VALUE; i++)
+        {
+            if (fallbackPrivateIPs[i] != null && !fallbackPrivateIPs[i].Any())
+            {
+                return base.GetPrivateOrPublicServers(fallbackPrivateIPs[i], fallbackPublicIPs[i]);
+            }
+        }
+
+        return base.GetPrivateOrPublicServers(fallbackPrivateIPs[REST_OF_CLUSTER], fallbackPublicIPs[REST_OF_CLUSTER]);
+    }
+
+    void UpdateCurrentHostList(List<string> currentPrivateIPs, string host, string publicIP, string cloud, string region, string zone)
+    {
+        CloudPlacement cp = new CloudPlacement(cloud, region, zone);
+        if (cp.IsContainedIn(allowedPlacements[PRIMARY_PLACEMENTS]))
+        {
+            currentPrivateIPs.Add(host);
+            if (!string.IsNullOrEmpty(publicIP.Trim()))
+            {
+                currentPublicIps.Add(publicIP);
+            }
+        }
+        else
+        {
+            foreach (var allowedCPs in allowedPlacements)
+            {
+                if (cp.IsContainedIn(allowedCPs.Value))
+                {
+                    List<string> hosts = fallbackPrivateIPs.GetOrAdd(allowedCPs.Key, k => new List<string>());
+                    hosts.Add(host);
+                    
+                    if (!string.IsNullOrEmpty(publicIP.Trim()))
+                    {
+                        List<string> publicIPs = fallbackPublicIPs.GetOrAdd(allowedCPs.Key, k => new List<string>());
+                        publicIPs.Add(publicIP);
+                    }
+
+                    return;
+                }
+            }
+
+            List<string> remainingHosts = fallbackPrivateIPs.GetOrAdd(REST_OF_CLUSTER, k => new List<string>());
+            remainingHosts.Add(host);
+            List<string> remainingPublicIPs = fallbackPublicIPs.GetOrAdd(REST_OF_CLUSTER, k => new List<string>());
+            remainingPublicIPs.Add(publicIP);
+        }
     }
     
     class CloudPlacement
@@ -136,5 +242,9 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             return equal;
         }
 
+        public bool IsContainedIn(HashSet<CloudPlacement>? allowedPlacement)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
