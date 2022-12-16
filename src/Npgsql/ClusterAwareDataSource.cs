@@ -356,7 +356,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     protected List<string>? _hosts = null;
     volatile int _roundRobinIndex = -1;
     DateTime _lastServerFetchTime = new DateTime(0);
-    readonly double REFRESH_LIST_SECONDS = 300;
+    readonly double REFRESH_LIST_SECONDS;
+    readonly int MAX_REFRESH_INTERVAL = 600;
     List<string> unreachableHosts = new List<string>();
     /// <summary>
     /// Todo
@@ -375,6 +376,9 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         this.settings = settings;
         this.dataSourceConfig = dataSourceConfig;
+        REFRESH_LIST_SECONDS = settings.YBServersRefreshInterval > 0 && settings.YBServersRefreshInterval < MAX_REFRESH_INTERVAL
+            ? this.settings.YBServersRefreshInterval
+            : 300; 
         if(useClusterAwareDataSource)
         {
             instance = this;

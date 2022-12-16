@@ -957,6 +957,27 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         }
     }
     string? _topologyKeys;
+    
+    /// <summary>
+    /// Sets the refresh interval for the yb_servers()
+    /// </summary>
+    [Category("Failover and load balancing")]
+    [Description("Sets the refresh interval for the yb_servers()")]
+    [DisplayName("YB Servers Refresh Interval")]
+    [DefaultValue(300)]
+    [NpgsqlConnectionStringProperty]
+    public int YBServersRefreshInterval
+    {
+        get => _ybServersRefreshInterval;
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException($"{HostRecheckSeconds} cannot be negative", nameof(HostRecheckSeconds));
+            _ybServersRefreshInterval = value;
+            SetValue(nameof(HostRecheckSeconds), value);
+        }
+    }
+    int _ybServersRefreshInterval;
 
     /// <summary>
     /// Controls for how long the host's cached state will be considered as valid.
