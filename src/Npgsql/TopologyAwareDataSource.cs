@@ -14,7 +14,7 @@ namespace Npgsql;
 /// </summary>
 public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 {
-    Dictionary<int, HashSet<CloudPlacement>?> allowedPlacements;
+    ConcurrentDictionary<int, HashSet<CloudPlacement>?> allowedPlacements;
     ConcurrentDictionary<int, List<string>> fallbackPrivateIPs;
     ConcurrentDictionary<int, List<string>> fallbackPublicIPs;
     readonly int PRIMARY_PLACEMENTS = 1;
@@ -25,7 +25,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 
     internal TopologyAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig) : base(settings,dataSourceConfig,false)
     {
-        allowedPlacements = new Dictionary<int, HashSet<CloudPlacement>?>();
+        allowedPlacements = new ConcurrentDictionary<int, HashSet<CloudPlacement>?>();
         fallbackPrivateIPs = new ConcurrentDictionary<int, List<string>>();
         fallbackPublicIPs = new ConcurrentDictionary<int, List<string>>();
 
@@ -52,20 +52,15 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         foreach (var value in values)
         {
             var v = value.Split(':');
-            if (v.Length > 2 || value.EndsWith(":"))
+            if (v.Length > 2 || value.EndsWith(":", StringComparison.Ordinal))
             {
                 throw new InvalidExpressionException("Invalid value part for property" + settings.TopologyKeys + ":" + value);
             }
 
             if (v.Length == 1 )
             {
-                HashSet<CloudPlacement>? primary;
-                if (!allowedPlacements.TryGetValue(PRIMARY_PLACEMENTS, out primary))
-                {
-                    primary = new HashSet<CloudPlacement>();
-                    allowedPlacements[PRIMARY_PLACEMENTS] = primary;
-                }
-                PopulatePlacementSet(v[0], primary, PRIMARY_PLACEMENTS);
+                HashSet<CloudPlacement>? primary = allowedPlacements.GetOrAdd(PRIMARY_PLACEMENTS, k => new HashSet<CloudPlacement>());
+                PopulatePlacementSet(v[0], primary);
             }
             else
             {
@@ -78,17 +73,17 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                         primary = new HashSet<CloudPlacement>();
                         allowedPlacements[PRIMARY_PLACEMENTS] = primary;
                     }
-                    PopulatePlacementSet(v[0], primary, PRIMARY_PLACEMENTS);
+                    PopulatePlacementSet(v[0], primary);
                 }
                 else if (pref > 1 && pref <= MAX_PREFERENCE_VALUE)
                 {
                     HashSet<CloudPlacement>? fallbackPlacements;
-                    if (!allowedPlacements.TryGetValue(PRIMARY_PLACEMENTS, out fallbackPlacements))
+                    if (!allowedPlacements.TryGetValue(pref, out fallbackPlacements))
                     {
                         fallbackPlacements = new HashSet<CloudPlacement>();
                         allowedPlacements[pref] = fallbackPlacements;
                     }
-                    PopulatePlacementSet(v[0], fallbackPlacements, pref);
+                    PopulatePlacementSet(v[0], fallbackPlacements);
                 }
                 else
                 {
@@ -98,7 +93,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         }
     }
 
-    void PopulatePlacementSet(string placements, HashSet<CloudPlacement>? allowedPlacements, int preference)
+    void PopulatePlacementSet(string placements, HashSet<CloudPlacement>? allowedPlacements)
     {
         var pStrings = placements.Split(',');
         foreach (var pl in pStrings)
@@ -112,8 +107,6 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             CloudPlacement cp = new CloudPlacement(placementParts[0], placementParts[1], placementParts[2]);
 
             allowedPlacements?.Add(cp);
-
-            this.allowedPlacements[preference] = allowedPlacements;
 
         }
     }
@@ -168,7 +161,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     new List<string> GetPrivateOrPublicServers(List<string> privateHosts, List<string> publicHosts)
     {
         List<string> servers = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
-        if (servers != null && !servers.Any())
+        if (servers != null && servers.Any())
         {
             return servers;
         }
@@ -242,9 +235,55 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             return equal;
         }
 
-        public bool IsContainedIn(HashSet<CloudPlacement>? allowedPlacement)
+        public bool IsContainedIn(HashSet<CloudPlacement>? set)
         {
-            throw new NotImplementedException();
+            Debug.Assert(set != null, nameof(set) + " != null");
+            // if (zone.Equals("*"))
+            // {
+            //     foreach (var cp in set)
+            //     {
+            //         if (cp.cloud.Equals(cloud, StringComparison.OrdinalIgnoreCase) &&
+            //             cp.region.Equals(region, StringComparison.OrdinalIgnoreCase))
+            //         {
+            //             return true;
+            //         }
+            //     }
+            // }
+            // else
+            // {
+            //     foreach (var cp in set)
+            //     {
+            //         if (cp.cloud.Equals(cloud, StringComparison.OrdinalIgnoreCase) &&
+            //             cp.region.Equals(region, StringComparison.OrdinalIgnoreCase) &&
+            //             cp.zone.Equals(zone, StringComparison.OrdinalIgnoreCase))
+            //         {
+            //             return true;
+            //         }
+            //     }
+            // }
+
+            foreach (var cp in set)
+            {
+               if (cp.zone.Equals("*"))
+               {
+                   if (cp.cloud.Equals(cloud, StringComparison.OrdinalIgnoreCase) &&
+                       cp.region.Equals(region, StringComparison.OrdinalIgnoreCase))
+                   {
+                       return true;
+                   }
+               }
+               else
+               {
+                   if (cp.cloud.Equals(cloud, StringComparison.OrdinalIgnoreCase) &&
+                       cp.region.Equals(region, StringComparison.OrdinalIgnoreCase) &&
+                       cp.zone.Equals(zone, StringComparison.OrdinalIgnoreCase))
+                   {
+                       return true;
+                   }
+               }
+            }
+
+            return false;
         }
     }
 }
