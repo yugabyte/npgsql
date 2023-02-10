@@ -2,4 +2,6 @@
 Npgsql.ClusterAwareDataSource
 Npgsql.NpgsqlConnectionStringBuilder.TopologyKeys.get -> string?
 Npgsql.NpgsqlConnectionStringBuilder.TopologyKeys.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.get -> double
+Npgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.set -> void
 Npgsql.TopologyAwareDataSource

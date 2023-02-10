@@ -9,7 +9,7 @@ public class LoadBalancerTests
     [Test]
     public void TestLoadBalance()
         {
-            var connStringBuilder = "host=127.0.0.3;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=c1.r1.z1";
+            var connStringBuilder = "host=127.0.0.2,127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
             List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
 
             try
