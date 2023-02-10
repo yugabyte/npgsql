@@ -981,8 +981,6 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         get => _ybServersRefreshInterval;
         set
         {
-            if (value < 0)
-                throw new ArgumentException($"{YBServersRefreshInterval} cannot be negative", nameof(YBServersRefreshInterval));
             _ybServersRefreshInterval = value;
             SetValue(nameof(HostRecheckSeconds), value);
         }

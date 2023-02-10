@@ -340,7 +340,7 @@ public class NpgsqlDataSourceBuilder : INpgsqlTypeMapper
     {
         var config = PrepareConfiguration();
 
-        if (ConnectionStringBuilder.TopologyKeys != null)
+        if (ConnectionStringBuilder.LoadBalanceHosts && ConnectionStringBuilder.TopologyKeys != null)
         {
             return new TopologyAwareDataSource(ConnectionStringBuilder, config);
         }

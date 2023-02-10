@@ -10,18 +10,40 @@ namespace Npgsql.Tests;
 public class YBFallbackTopolgyTests
 {
     static int mlock = 0;
+    string connStringBuilder = "host=127.0.0.3;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
+
     [Test]
-    public async Task TestFallback()
+    public async Task TestFallback1()
     {
-        var connStringBuilder = "host=127.0.0.3;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
         var conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-2a,aws.us-west.us-west-2c", 6, 0, 6);
         CloseConnections(conns);
-        conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 6, 6, 0);
+    }
+    [Test]
+    public async Task TestFallback2()
+    {
+        var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 6, 6, 0);
         CloseConnections(conns);
-        // await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 12, 0, 0);
-        // await CreateConnections(connStringBuilder + "aws.us-west.*,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 4, 4, 4);
-        // await CreateConnections(connStringBuilder + "aws.us-west.*:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 4, 4, 4);
+    }
 
+    [Test]
+    public async Task TestFallback3()
+    {
+        var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 12, 0, 0);
+        CloseConnections(conns);
+    }
+
+    [Test]
+    public async Task TestFallback4()
+    {
+        var conns = await CreateConnections(connStringBuilder + "aws.us-west.*,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 4, 4, 4);
+        CloseConnections(conns);
+    }
+
+    [Test]
+    public async Task TestFallback5()
+    {
+        var conns =await CreateConnections(connStringBuilder + "aws.us-west.*:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 4, 4, 4);
+        CloseConnections(conns);
     }
 
     static async Task<List<NpgsqlConnection>> CreateConnections(string connString, int cnt1, int cnt2, int cnt3)
@@ -39,7 +61,7 @@ public class YBFallbackTopolgyTests
                     conns.Add(conn);
                 }
 
-                Console.WriteLine("Here");
+                Console.WriteLine("Connections Created");
 
                 await VerifyOn("127.0.0.1", cnt1);
                 await VerifyOn("127.0.0.2", cnt2);
