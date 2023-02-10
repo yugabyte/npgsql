@@ -134,6 +134,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             index++;
 
         }
+        unreachableHostsIndices.Clear();
     }
 
     /// <summary>
@@ -144,6 +145,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         NpgsqlCommand QUERY_SERVER = new NpgsqlCommand("Select * from yb_servers()",conn);
         NpgsqlDataReader reader = QUERY_SERVER.ExecuteReader();
+        _lastServerFetchTime = DateTime.Now;
         List<string> currentPrivateIps = new List<string>();
         List<string> currentPublicIps = new List<string>();
         var hostConnectedTo = conn.Host;
@@ -187,19 +189,6 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         var currentHosts = (bool)UseHostColumn ? privateHosts : publicHosts;
         return currentHosts;
     }
-
-    internal override bool Refresh(NpgsqlConnection conn)
-    {
-        if (!NeedsRefresh())
-            return true;
-        DateTime currTime = DateTime.Now;
-        CreatePool(conn);
-        if (_hosts == null) return false;
-        _lastServerFetchTime = currTime;
-        unreachableHostsIndices.Clear();
-        return true;
-    }
-
     void UpdateConnectionMap(int poolIndex, int incDec)
     {
         int currentCount;
@@ -315,7 +304,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     internal override bool NeedsRefresh()
     {
         var currentTime = DateTime.Now;
-        var diff = (currentTime - _lastServerFetchTime).TotalMilliseconds;
+        var diff = (currentTime - _lastServerFetchTime).TotalSeconds;
         return (diff > REFRESH_LIST_SECONDS);
     }
     
