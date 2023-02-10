@@ -195,7 +195,7 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
         // Note that we remove TargetSessionAttributes to make all connection strings that are otherwise identical point to the same pool.
         var canonical = settings.ConnectionStringForMultipleHosts;
 
-        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource))
+        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && !_dataSource.NeedsRefresh())
         {
             // If this is a multi-host data source and the user specified a TargetSessionAttributes, create a wrapper in front of the
             // MultiHostDataSource with that TargetSessionAttributes.

@@ -34,9 +34,7 @@ sealed class MultiHostDataSourceWrapper : NpgsqlDataSource
     {
         return false;
     }
-
-    internal override bool Refresh(NpgsqlConnection conn) => throw new System.NotImplementedException();
-
+    
     internal override ValueTask<NpgsqlConnector> Get(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)
         => _wrappedSource.Get(conn, timeout, async, cancellationToken);
     internal override bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
