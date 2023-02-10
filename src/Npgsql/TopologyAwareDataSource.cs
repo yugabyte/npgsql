@@ -22,6 +22,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     readonly int REST_OF_CLUSTER = -1;
     readonly int MAX_PREFERENCE_VALUE = 10;
     List<string> currentPublicIps = new List<string>();
+    static int index = 0; 
 
     internal TopologyAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig) : base(settings,dataSourceConfig,false)
     {
@@ -31,17 +32,26 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 
         ParseGeoLocations();
         Console.WriteLine("Inside TopologyAwareDatasource");
-        try
+        Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
+        foreach (var host in initialHosts.ToList())
         {
-            NpgsqlDataSource control = new UnpooledDataSource(settings, dataSourceConfig);
-            NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
-            controlConnection.Open();
-            CreatePool(controlConnection);
-            controlConnection.Close();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
+            try
+            {
+                var controlSettings = settings;
+                controlSettings.Host = host.ToString();
+                NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
+                NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
+                controlConnection.Open();
+                CreatePool(controlConnection);
+                controlConnection.Close();
+            }
+            catch (Exception)
+            {
+                if (initialHosts.Count == 0)
+                    throw;
+                initialHosts.Remove(host);
+            }
+                
         }
     }
 
@@ -120,12 +130,28 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         _hosts = GetCurrentServers(conn);
         foreach(var host in _hosts)
         {
+            var flag = 0;
+            foreach (var pool in _pools)
+            {
+                if (host.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+
+            if (flag == 1)
+                continue;
             var poolSettings = settings.Clone();
             poolSettings.Host = host.ToString();
 
             _pools.Add(settings.Pooling
                 ? new PoolingDataSource(poolSettings, dataSourceConfig)
                 : new UnpooledDataSource(poolSettings, dataSourceConfig));
+
+            poolToNumConnMap[index] = 0;
+            index++;
+
         }
     }
 
@@ -238,30 +264,6 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         public bool IsContainedIn(HashSet<CloudPlacement>? set)
         {
             Debug.Assert(set != null, nameof(set) + " != null");
-            // if (zone.Equals("*"))
-            // {
-            //     foreach (var cp in set)
-            //     {
-            //         if (cp.cloud.Equals(cloud, StringComparison.OrdinalIgnoreCase) &&
-            //             cp.region.Equals(region, StringComparison.OrdinalIgnoreCase))
-            //         {
-            //             return true;
-            //         }
-            //     }
-            // }
-            // else
-            // {
-            //     foreach (var cp in set)
-            //     {
-            //         if (cp.cloud.Equals(cloud, StringComparison.OrdinalIgnoreCase) &&
-            //             cp.region.Equals(region, StringComparison.OrdinalIgnoreCase) &&
-            //             cp.zone.Equals(zone, StringComparison.OrdinalIgnoreCase))
-            //         {
-            //             return true;
-            //         }
-            //     }
-            // }
-
             foreach (var cp in set)
             {
                if (cp.zone.Equals("*"))
