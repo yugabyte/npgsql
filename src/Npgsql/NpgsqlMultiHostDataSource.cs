@@ -293,6 +293,7 @@ public sealed class NpgsqlMultiHostDataSource : NpgsqlDataSource
     {
         return false;
     }
+    internal override bool Refresh() => throw new NotImplementedException();
 
     internal override async ValueTask<NpgsqlConnector> Get(
         NpgsqlConnection conn,
