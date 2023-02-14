@@ -121,6 +121,8 @@ class PoolingDataSource : NpgsqlDataSource
         return false;
     }
 
+    internal override bool Refresh() => throw new NotImplementedException();
+
     internal sealed override ValueTask<NpgsqlConnector> Get(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)
     {

@@ -184,6 +184,15 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
             Settings = _dataSource.Settings;  // Great, we already have a pool
             return;
         }
+        
+        // A pool already corresponds to this version of string but also needs Refresh
+        
+        if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource) && _dataSource.NeedsRefresh())
+        {
+            _dataSource.Refresh();
+            Settings = _dataSource.Settings;  // Great, we already have a pool
+            return;
+        }
 
         // Connection string hasn't been seen before. Check for empty and parse (slow one-time path).
         if (_connectionString == string.Empty)
@@ -210,6 +219,15 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
             if (_dataSource is NpgsqlMultiHostDataSource multiHostDataSource && settings.TargetSessionAttributesParsed.HasValue)
                 _dataSource = multiHostDataSource.WithTargetSession(settings.TargetSessionAttributesParsed.Value);
 
+            // The pool was found, but only under the canonical key - we're using a different version
+            // for the first time. Map it via our own key for next time.
+            _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
+            return;
+        }
+        
+        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && _dataSource.NeedsRefresh())
+        {
+            _dataSource.Refresh();
             // The pool was found, but only under the canonical key - we're using a different version
             // for the first time. Map it via our own key for next time.
             _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);

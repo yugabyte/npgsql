@@ -80,12 +80,13 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     controlConnection.Open();
                     CreatePool(controlConnection);
                     controlConnection.Close();
+                    break;
                 }
                 catch (Exception)
                 {
+                    initialHosts.Remove(host);
                     if (initialHosts.Count == 0)
                         throw;
-                    initialHosts.Remove(host);
                 }
                 
             }
@@ -157,8 +158,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         }
         while (reader.Read())
         {
-            var host = reader.GetString(0);
-            var publicHost = reader.GetString(7);
+            var host = reader.GetString(reader.GetOrdinal("host"));
+            var publicHost = reader.GetString(reader.GetOrdinal("public_ip"));
             currentPrivateIps.Add(host);
             currentPublicIps.Add(publicHost);
             if (hostConnectedTo.Equals(host))
@@ -206,6 +207,40 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     }
 
     internal override (int Total, int Idle, int Busy) Statistics { get; }
+
+    internal override bool Refresh()
+    {
+        Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
+        if (_hosts != null && _hosts.Count != 0)
+        {
+            initialHosts.AddRange(_hosts);
+        }
+
+        initialHosts = initialHosts.Distinct().ToList();
+        foreach (var host in initialHosts.ToList())
+        {
+            try
+            {
+                var controlSettings = settings;
+                controlSettings.Host = host.ToString();
+                NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
+                NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
+                controlConnection.Open();
+                CreatePool(controlConnection);
+                controlConnection.Close();
+                break;
+            }
+            catch (Exception)
+            {
+                initialHosts.Remove(host);
+                if (initialHosts.Count == 0)
+                    throw;
+            }
+                
+        }
+
+        return true;
+    }
 
     internal override async ValueTask<NpgsqlConnector> Get(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async,
         CancellationToken cancellationToken)
