@@ -165,11 +165,11 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         Debug.Assert(hostConnectedTo != null, nameof(hostConnectedTo) + " != null");
         while (reader.Read())
         {
-            var host = reader.GetString(0);
-            var publicHost = reader.GetString(7);
-            var cloud = reader.GetString(4);
-            var region = reader.GetString(5);
-            var zone = reader.GetString(6);
+            var host = reader.GetString(reader.GetOrdinal("host"));
+            var publicHost = reader.GetString(reader.GetOrdinal("public_ip"));
+            var cloud = reader.GetString(reader.GetOrdinal("cloud"));
+            var region = reader.GetString(reader.GetOrdinal("region"));
+            var zone = reader.GetString(reader.GetOrdinal("zone"));
 
             UpdateCurrentHostList(currentPrivateIps, host, publicHost, cloud, region, zone);
             
