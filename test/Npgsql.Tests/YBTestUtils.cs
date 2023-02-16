@@ -11,7 +11,8 @@ public class YBTestUtils
 {
     public void ExecuteShellCommand(string argument, ref string? _outputMessage, ref string? _errorMessage)
 {
-    var path = Environment.GetEnvironmentVariable("YBDB_PATH");
+    // var path = Environment.GetEnvironmentVariable("YBDB_PATH");
+    var path = "/Users/ssarah/code/yugabyte-db";
     var arguments = path + argument;
     // Set process variable
     // Provides access to local and remote processes and enables you to start and stop local system processes.
@@ -55,7 +56,7 @@ public class YBTestUtils
     }
 }
 
-    protected static async Task VerifyOn(string server, int ExpectedCount, int delta)
+    protected static async Task VerifyOn(string server, int ExpectedCount)
     {
         var url = string.Format("http://{0}:{1}/rpcz", server, 13000);
         var client = new HttpClient();
@@ -63,6 +64,7 @@ public class YBTestUtils
         response.EnsureSuccessStatusCode();
         var responseBody = await response.Content.ReadAsStringAsync();
         var count = responseBody.Split("client backend");
-        Assert.AreEqual(ExpectedCount, count.Length - 1, delta);
+        Console.WriteLine(server + ":" + (count.Length - 1));
+        Assert.AreEqual(ExpectedCount, count.Length - 1);
     }
 }

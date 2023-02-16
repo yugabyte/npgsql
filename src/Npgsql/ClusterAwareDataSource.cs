@@ -208,12 +208,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             int currentCount;
             if (!poolToNumConnMap.TryGetValue(poolIndex, out currentCount))
             {
-                if (incDec < 0)
-                    return;
-                else
-                {
-                    poolToNumConnMap.Add(poolIndex, incDec);
-                }
+                return;
             }
 
             poolToNumConnMap[poolIndex] =  currentCount + incDec;
@@ -287,6 +282,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
             unreachableHostsIndices.Add(poolIndex);
             poolToNumConnMap.Remove(poolIndex);
+            UpdateConnectionMap(poolIndex, -1);
         }
         
         return connector ?? throw NoSuitableHostsException(exceptions);
@@ -361,15 +357,21 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     int GetRoundRobinIndex()
     {
         // Randomize when two indexes have the same number of connections
-        for (var i = 0; i < poolToNumConnMap.Count; i++)
+        lock(lockObject)
         {
-            var PoolIndex = poolToNumConnMap.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;
-            if (!unreachableHostsIndices.Contains(PoolIndex))
-                return PoolIndex;
+            for (var i = 0; i < poolToNumConnMap.Count; i++)
+            {
+                var PoolIndex = poolToNumConnMap.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;
+                if (!unreachableHostsIndices.Contains(PoolIndex))
+                {
+                    UpdateConnectionMap(PoolIndex, 1);
+                    return PoolIndex;
+                }
 
+            }
+
+            return -1;
         }
-
-        return -1;
     }
     
     static TargetSessionAttributes GetTargetSessionAttributes(NpgsqlConnection connection)
@@ -405,7 +407,6 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                         return null;
                     }
                 }
-                UpdateConnectionMap(poolIndex, 1);
                 return connector;
             }
             else
@@ -426,7 +427,6 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                             return null;
                         }
                     }
-                    UpdateConnectionMap(poolIndex, 1);
                     return connector;
                 }
             }
