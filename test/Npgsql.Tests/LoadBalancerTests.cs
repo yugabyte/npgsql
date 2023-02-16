@@ -17,7 +17,7 @@ public class LoadBalancerTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        createCluster();
+        CreateCluster();
 
         try
         {
@@ -47,7 +47,7 @@ public class LoadBalancerTests : YBTestUtils
             var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;YB Servers Refresh Interval=30;Timeout=0";
             List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
 
-            createCluster();
+            CreateCluster();
             try
             {
                 var conn1 = CreateConnections(connStringBuilder, numConns);
@@ -91,23 +91,27 @@ public class LoadBalancerTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        createCluster();
+        CreateCluster();
         try
         {
             List<Thread> threads = new List<Thread>();
+            List<NpgsqlConnection> conn = new List<NpgsqlConnection>();
             var numThreads = 15;
             for (var i = 0; i < numThreads; i++)
             {
-                List<NpgsqlConnection> conn = new List<NpgsqlConnection>();
                 Thread thread = new Thread(() => { conn = CreateConnections(connStringBuilder, numConns); });
                 threads.Add(thread);
+            }
+
+            foreach (var thread in threads)
+            {
                 thread.Start();
-                conns.AddRange(conn);
             }
 
             foreach (var thread in threads)
             {
                 thread.Join();
+                conns.AddRange(conn);
             }
             await VerifyOn("127.0.0.1", numThreads * numConns/3);
             await VerifyOn("127.0.0.2", numThreads * numConns/3);
@@ -128,7 +132,7 @@ public class LoadBalancerTests : YBTestUtils
         }
     }
 
-    void createCluster()
+    void CreateCluster()
     {
         string? _Output = null;
         string? _Error = null;

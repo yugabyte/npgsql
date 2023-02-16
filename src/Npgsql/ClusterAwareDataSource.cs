@@ -295,7 +295,20 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken) => throw new NotImplementedException();
 
-    internal override void Return(NpgsqlConnector connector) => throw new NotImplementedException();
+    internal override void Return(NpgsqlConnector connector)
+    {
+        var host = connector.Host;
+        var poolIndex = -1;
+        for (var i = 0; i < _pools.Count; i++)
+        {
+            if (host.Equals(_pools[i].Settings.Host, StringComparison.OrdinalIgnoreCase))
+            {
+                poolIndex = i;
+                break;
+            }
+        }
+        UpdateConnectionMap(poolIndex, -1);
+    }
 
     internal override void Clear()
     {
