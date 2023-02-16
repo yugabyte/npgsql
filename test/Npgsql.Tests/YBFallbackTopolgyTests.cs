@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Npgsql.Tests;
 
-public class YBFallbackTopolgyTests
+public class YBFallbackTopolgyTests : YBTestUtils
 {
     static int mlock = 0;
     string connStringBuilder = "host=127.0.0.3;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
@@ -15,35 +15,45 @@ public class YBFallbackTopolgyTests
     [Test]
     public async Task TestFallback1()
     {
+        createCluster();
         var conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-2a,aws.us-west.us-west-2c", 6, 0, 6);
         CloseConnections(conns);
+        DestroyCluster();
     }
     [Test]
     public async Task TestFallback2()
     {
+        createCluster();
         var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 6, 6, 0);
         CloseConnections(conns);
+        DestroyCluster();
     }
 
     [Test]
     public async Task TestFallback3()
     {
+        createCluster();
         var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 12, 0, 0);
         CloseConnections(conns);
+        DestroyCluster();
     }
 
     [Test]
     public async Task TestFallback4()
     {
+        createCluster();
         var conns = await CreateConnections(connStringBuilder + "aws.us-west.*,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 4, 4, 4);
         CloseConnections(conns);
+        DestroyCluster();
     }
 
     [Test]
     public async Task TestFallback5()
     {
+        createCluster();
         var conns =await CreateConnections(connStringBuilder + "aws.us-west.*:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 4, 4, 4);
         CloseConnections(conns);
+        DestroyCluster();
     }
 
     static async Task<List<NpgsqlConnection>> CreateConnections(string connString, int cnt1, int cnt2, int cnt3)
@@ -91,6 +101,24 @@ public class YBFallbackTopolgyTests
             }
         }
     }
+
+    void createCluster()
+    {
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl start --rf 3 --placement_info \"aws.us-west.us-west-2a,aws.us-west.us-west-2b,aws.us-west.us-west-2c\"";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+    }
+
+    void DestroyCluster()
+    {
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl destroy";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+    }
+
 
     static async Task VerifyOn(string server, int ExpectedCount)
     {

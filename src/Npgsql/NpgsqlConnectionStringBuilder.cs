@@ -974,7 +974,6 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     [Category("Failover and load balancing")]
     [Description("Sets the refresh interval for the yb_servers()")]
     [DisplayName("YB Servers Refresh Interval")]
-    [DefaultValue(300)]
     [NpgsqlConnectionStringProperty]
     public double YBServersRefreshInterval
     {
@@ -982,7 +981,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         set
         {
             _ybServersRefreshInterval = value;
-            SetValue(nameof(HostRecheckSeconds), value);
+            SetValue(nameof(YBServersRefreshInterval), value);
         }
     }
     double _ybServersRefreshInterval;

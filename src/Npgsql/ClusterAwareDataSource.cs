@@ -20,7 +20,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// <summary>
     /// Contains the connection pool
     /// </summary>
-    protected List<NpgsqlDataSource> _pools = new List<NpgsqlDataSource>();
+    protected static List<NpgsqlDataSource> _pools = new List<NpgsqlDataSource>();
     internal List<NpgsqlDataSource> Pools => _pools;
     /// <summary>
     /// list of yb_server hosts
@@ -30,7 +30,10 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     DateTime _lastServerFetchTime = new DateTime(0);
     readonly double REFRESH_LIST_SECONDS;
     readonly int MAX_REFRESH_INTERVAL = 600;
-    List<int> unreachableHostsIndices = new List<int>();
+    /// <summary>
+    /// List of unreachable hosts
+    /// </summary>
+    protected List<int> unreachableHostsIndices = new List<int>();
     /// <summary>
     /// Stores a boolean value for which IP Address is to be used - Public or Private
     /// True = Private IPs
@@ -44,7 +47,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// Key = Pool Index
     /// Value = Number of Connections to that pool
     /// </summary>
-    protected Dictionary<int, int> poolToNumConnMap = new Dictionary<int, int>();
+    protected static Dictionary<int, int> poolToNumConnMap = new Dictionary<int, int>();
     /// <summary>
     /// Connection settings
     /// </summary>
@@ -55,6 +58,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// List of initial hosts for control connections
     /// </summary>
     protected List<string>? initialHosts;
+
+    /// <summary>
+    /// Lock object
+    /// </summary>
+    protected static readonly object lockObject = new object();
 
     internal ClusterAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig, bool useClusterAwareDataSource)
         : base(settings, dataSourceConfig)
@@ -109,33 +117,36 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// </summary>
     internal void CreatePool(NpgsqlConnection conn)
     {
-        _hosts = GetCurrentServers(conn);
-        foreach(var host in _hosts)
+        lock (lockObject)
         {
-            var flag = 0;
-            foreach (var pool in _pools)
+            _hosts = GetCurrentServers(conn);
+            foreach(var host in _hosts)
             {
-                if (host.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
+                var flag = 0;
+                foreach (var pool in _pools)
                 {
-                    flag = 1;
-                    break;
+                    if (host.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
+                    {
+                        flag = 1;
+                        break;
+                    }
                 }
+
+                if (flag == 1)
+                    continue;
+                var poolSettings = settings.Clone();
+                poolSettings.Host = host.ToString();
+
+                _pools.Add(settings.Pooling
+                    ? new PoolingDataSource(poolSettings, dataSourceConfig)
+                    : new UnpooledDataSource(poolSettings, dataSourceConfig));
+            
+                poolToNumConnMap[index] = 0;
+                index++;
+
             }
-
-            if (flag == 1)
-                continue;
-            var poolSettings = settings.Clone();
-            poolSettings.Host = host.ToString();
-
-            _pools.Add(settings.Pooling
-                ? new PoolingDataSource(poolSettings, dataSourceConfig)
-                : new UnpooledDataSource(poolSettings, dataSourceConfig));
-
-            poolToNumConnMap[index] = 0;
-            index++;
-
+            unreachableHostsIndices.Clear();
         }
-        unreachableHostsIndices.Clear();
     }
 
     /// <summary>
@@ -192,18 +203,22 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     }
     void UpdateConnectionMap(int poolIndex, int incDec)
     {
-        int currentCount;
-        if (!poolToNumConnMap.TryGetValue(poolIndex, out currentCount))
+        lock (lockObject)
         {
-            if (incDec < 0)
-                return;
-            else
+            int currentCount;
+            if (!poolToNumConnMap.TryGetValue(poolIndex, out currentCount))
             {
-                poolToNumConnMap.Add(poolIndex, incDec);
+                if (incDec < 0)
+                    return;
+                else
+                {
+                    poolToNumConnMap.Add(poolIndex, incDec);
+                }
             }
-        }
 
-        poolToNumConnMap[poolIndex] =  currentCount + incDec;
+            poolToNumConnMap[poolIndex] =  currentCount + incDec;
+            
+        }
     }
 
     internal override (int Total, int Idle, int Busy) Statistics { get; }
