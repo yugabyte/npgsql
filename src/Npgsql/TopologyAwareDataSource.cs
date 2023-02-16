@@ -44,6 +44,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 controlConnection.Open();
                 CreatePool(controlConnection);
                 controlConnection.Close();
+                break;
             }
             catch (Exception)
             {
@@ -127,31 +128,35 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     /// </summary>
     internal new void CreatePool(NpgsqlConnection conn)
     {
-        _hosts = GetCurrentServers(conn);
-        foreach(var host in _hosts)
+        lock (lockObject)
         {
-            var flag = 0;
-            foreach (var pool in _pools)
+            _hosts = GetCurrentServers(conn);
+            foreach(var host in _hosts)
             {
-                if (host.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
+                var flag = 0;
+                foreach (var pool in _pools)
                 {
-                    flag = 1;
-                    break;
+                    if (host.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
+                    {
+                        flag = 1;
+                        break;
+                    }
                 }
+
+                if (flag == 1)
+                    continue;
+                var poolSettings = settings.Clone();
+                poolSettings.Host = host.ToString();
+
+                _pools.Add(settings.Pooling
+                    ? new PoolingDataSource(poolSettings, dataSourceConfig)
+                    : new UnpooledDataSource(poolSettings, dataSourceConfig));
+            
+                poolToNumConnMap[index] = 0;
+                index++;
+
             }
-
-            if (flag == 1)
-                continue;
-            var poolSettings = settings.Clone();
-            poolSettings.Host = host.ToString();
-
-            _pools.Add(settings.Pooling
-                ? new PoolingDataSource(poolSettings, dataSourceConfig)
-                : new UnpooledDataSource(poolSettings, dataSourceConfig));
-
-            poolToNumConnMap[index] = 0;
-            index++;
-
+            unreachableHostsIndices.Clear();
         }
     }
 
