@@ -15,7 +15,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     [Test]
     public async Task TestFallback1()
     {
-        createCluster();
+        CreateCluster();
         var conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-2a,aws.us-west.us-west-2c", 6, 0, 6);
         CloseConnections(conns);
         DestroyCluster();
@@ -23,7 +23,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     [Test]
     public async Task TestFallback2()
     {
-        createCluster();
+        CreateCluster();
         var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 6, 6, 0);
         CloseConnections(conns);
         DestroyCluster();
@@ -32,7 +32,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     [Test]
     public async Task TestFallback3()
     {
-        createCluster();
+        CreateCluster();
         var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 12, 0, 0);
         CloseConnections(conns);
         DestroyCluster();
@@ -41,7 +41,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     [Test]
     public async Task TestFallback4()
     {
-        createCluster();
+        CreateCluster();
         var conns = await CreateConnections(connStringBuilder + "aws.us-west.*,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 4, 4, 4);
         CloseConnections(conns);
         DestroyCluster();
@@ -50,7 +50,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     [Test]
     public async Task TestFallback5()
     {
-        createCluster();
+        CreateCluster();
         var conns =await CreateConnections(connStringBuilder + "aws.us-west.*:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 4, 4, 4);
         CloseConnections(conns);
         DestroyCluster();
@@ -102,7 +102,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         }
     }
 
-    void createCluster()
+    void CreateCluster()
     {
         string? _Output = null;
         string? _Error = null;
@@ -119,15 +119,4 @@ public class YBFallbackTopolgyTests : YBTestUtils
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
     }
 
-
-    static async Task VerifyOn(string server, int ExpectedCount)
-    {
-        var url = string.Format("http://{0}:{1}/rpcz", server, 13000);
-        var client = new HttpClient();
-        var response = await client.GetAsync(url);
-        response.EnsureSuccessStatusCode();
-        var responseBody = await response.Content.ReadAsStringAsync();
-        var count = responseBody.Split("client backend");
-        Assert.AreEqual(ExpectedCount, count.Length - 1);
-    }
 }
