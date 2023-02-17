@@ -6,7 +6,7 @@
     <TrimMode>link</TrimMode>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/Npgsql/Npgsql.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql/YBNpgsql.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Remove="GitHubActionsTestLogger" />

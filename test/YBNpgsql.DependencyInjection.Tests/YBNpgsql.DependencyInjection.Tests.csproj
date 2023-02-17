@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/Npgsql.DependencyInjection/Npgsql.DependencyInjection.csproj" />
-    <ProjectReference Include="../Npgsql.Tests/Npgsql.Tests.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.DependencyInjection/YBNpgsql.DependencyInjection.csproj" />
+    <ProjectReference Include="../YBNpgsql.Tests/YBNpgsql.Tests.csproj" />
   </ItemGroup>
 
 </Project>

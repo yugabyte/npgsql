@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <DebugType>portable</DebugType>
-    <AssemblyName>Npgsql.Benchmarks</AssemblyName>
+    <AssemblyName>YBNpgsql.Benchmarks</AssemblyName>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/Npgsql/Npgsql.csproj" />
-    <ProjectReference Include="../../src/Npgsql.NodaTime/Npgsql.NodaTime.csproj" />
-    <ProjectReference Include="../../src/Npgsql.NetTopologySuite/Npgsql.NetTopologySuite.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql/YBNpgsql.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.NodaTime/YBNpgsql.NodaTime.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.NetTopologySuite/YBNpgsql.NetTopologySuite.csproj" />
   </ItemGroup>
 
 </Project>

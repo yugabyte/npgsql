@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Npgsql.SourceGenerators/Npgsql.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../YBNpgsql.SourceGenerators/YBNpgsql.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
@@ -43,14 +43,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\NpgsqlStrings.resx">
+    <EmbeddedResource Update="Properties\YBNpgsqlStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NpgsqlStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\NpgsqlStrings.Designer.cs">
+    <Compile Update="Properties\YBNpgsqlStrings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>NpgsqlStrings.resx</DependentUpon>

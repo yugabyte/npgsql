@@ -6,8 +6,8 @@
     <PackageReference Include="NUnit3TestAdapter" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/Npgsql/Npgsql.csproj" />
-    <ProjectReference Include="../../src/Npgsql.NodaTime/Npgsql.NodaTime.csproj" />
-    <ProjectReference Include="../Npgsql.Tests/Npgsql.Tests.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql/YBNpgsql.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.NodaTime/YBNpgsql.NodaTime.csproj" />
+    <ProjectReference Include="../YBNpgsql.Tests/YBNpgsql.Tests.csproj" />
   </ItemGroup>
 </Project>

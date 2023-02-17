@@ -5,10 +5,10 @@
     <PackageReference Include="NUnit3TestAdapter" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/Npgsql/Npgsql.csproj" />
-    <ProjectReference Include="../../src/Npgsql.Json.NET/Npgsql.Json.NET.csproj" />
-    <ProjectReference Include="../Npgsql.Tests/Npgsql.Tests.csproj" />
-    <ProjectReference Include="../../src/Npgsql.NetTopologySuite/Npgsql.NetTopologySuite.csproj" />
-    <ProjectReference Include="../../src/Npgsql.GeoJSON/Npgsql.GeoJSON.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql/YBNpgsql.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.Json.NET/YBNpgsql.Json.NET.csproj" />
+    <ProjectReference Include="../YBNpgsql.Tests/YBNpgsql.Tests.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.NetTopologySuite/YBNpgsql.NetTopologySuite.csproj" />
+    <ProjectReference Include="../../src/YBNpgsql.GeoJSON/YBNpgsql.GeoJSON.csproj" />
   </ItemGroup>
 </Project>

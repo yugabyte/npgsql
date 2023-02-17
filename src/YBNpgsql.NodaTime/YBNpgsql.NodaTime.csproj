@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Npgsql\Npgsql.csproj" />
-    <ProjectReference Include="../Npgsql.SourceGenerators/Npgsql.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\YBNpgsql\YBNpgsql.csproj" />
+    <ProjectReference Include="../YBNpgsql.SourceGenerators/YBNpgsql.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,14 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\NpgsqlNodaTimeStrings.resx">
+    <EmbeddedResource Update="Properties\YBNpgsqlNodaTimeStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NpgsqlNodaTimeStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\NpgsqlNodaTimeStrings.Designer.cs">
+    <Compile Update="Properties\YBNpgsqlNodaTimeStrings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>NpgsqlNodaTimeStrings.resx</DependentUpon>

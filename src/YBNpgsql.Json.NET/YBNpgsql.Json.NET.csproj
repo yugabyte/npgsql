@@ -13,6 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Npgsql\Npgsql.csproj" />
+    <ProjectReference Include="..\YBNpgsql\YBNpgsql.csproj" />
   </ItemGroup>
 </Project>
