@@ -1,0 +1,8 @@
+﻿#nullable enable
+YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.BoundingBox = 1 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.LongCRS = 4 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.None = 0 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.ShortCRS = 2 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.NpgsqlGeoJSONExtensions
+static YBNpgsql.NpgsqlGeoJSONExtensions.UseGeoJson(this YBNpgsql.TypeMapping.INpgsqlTypeMapper! mapper, YBNpgsql.GeoJSONOptions options = YBNpgsql.GeoJSONOptions.None, bool geographyAsDefault = false) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!

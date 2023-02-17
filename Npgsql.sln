@@ -7,23 +7,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8537E50E-CF7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{ED612DB1-AB32-4603-95E7-891BACA71C39}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql", "src\Npgsql\Npgsql.csproj", "{9D13B739-62B1-4190-B386-7A9547304EB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql", "src\YBNpgsql\YBNpgsql.csproj", "{9D13B739-62B1-4190-B386-7A9547304EB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.Tests", "test\Npgsql.Tests\Npgsql.Tests.csproj", "{E9C258D7-0D8E-4E6A-9857-5C6438591755}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.Tests", "test\YBNpgsql.Tests\YBNpgsql.Tests.csproj", "{E9C258D7-0D8E-4E6A-9857-5C6438591755}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.Benchmarks", "test\Npgsql.Benchmarks\Npgsql.Benchmarks.csproj", "{8B4AE9B6-CDAC-44DD-A5CD-28A470D363B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.Benchmarks", "test\YBNpgsql.Benchmarks\YBNpgsql.Benchmarks.csproj", "{8B4AE9B6-CDAC-44DD-A5CD-28A470D363B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.Json.NET", "src\Npgsql.Json.NET\Npgsql.Json.NET.csproj", "{9CBE603F-6746-411D-A5FD-CB2C948CD7D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.Json.NET", "src\YBNpgsql.Json.NET\YBNpgsql.Json.NET.csproj", "{9CBE603F-6746-411D-A5FD-CB2C948CD7D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.NodaTime", "src\Npgsql.NodaTime\Npgsql.NodaTime.csproj", "{D8DF12D6-FA70-4653-BD8F-C188944836DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.NodaTime", "src\YBNpgsql.NodaTime\YBNpgsql.NodaTime.csproj", "{D8DF12D6-FA70-4653-BD8F-C188944836DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.PluginTests", "test\Npgsql.PluginTests\Npgsql.PluginTests.csproj", "{9BD7FC3D-6956-42A8-A586-2558C499EBA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.PluginTests", "test\YBNpgsql.PluginTests\YBNpgsql.PluginTests.csproj", "{9BD7FC3D-6956-42A8-A586-2558C499EBA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.NetTopologySuite", "src\Npgsql.NetTopologySuite\Npgsql.NetTopologySuite.csproj", "{6CB12050-DC9B-4155-BADD-BFDD54CDD70F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.NetTopologySuite", "src\YBNpgsql.NetTopologySuite\YBNpgsql.NetTopologySuite.csproj", "{6CB12050-DC9B-4155-BADD-BFDD54CDD70F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.GeoJSON", "src\Npgsql.GeoJSON\Npgsql.GeoJSON.csproj", "{F7C53EBD-0075-474F-A083-419257D04080}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.GeoJSON", "src\YBNpgsql.GeoJSON\YBNpgsql.GeoJSON.csproj", "{F7C53EBD-0075-474F-A083-419257D04080}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Npgsql.Specification.Tests", "test\Npgsql.Specification.Tests\Npgsql.Specification.Tests.csproj", "{A77E5FAF-D775-4AB4-8846-8965C2104E60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YBNpgsql.Specification.Tests", "test\YBNpgsql.Specification.Tests\YBNpgsql.Specification.Tests.csproj", "{A77E5FAF-D775-4AB4-8846-8965C2104E60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{004A2E0F-D34A-44D4-8DF0-D2BC63B57073}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,11 +34,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Npgsql.SourceGenerators", "src\Npgsql.SourceGenerators\Npgsql.SourceGenerators.csproj", "{63026A19-60B8-4906-81CB-216F30E8094B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YBNpgsql.SourceGenerators", "src\YBNpgsql.SourceGenerators\YBNpgsql.SourceGenerators.csproj", "{63026A19-60B8-4906-81CB-216F30E8094B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Npgsql.NodaTime.Tests", "test\Npgsql.NodaTime.Tests\Npgsql.NodaTime.Tests.csproj", "{C00D2EB1-5719-4372-9E1C-5ED05DC23A00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YBNpgsql.NodaTime.Tests", "test\YBNpgsql.NodaTime.Tests\YBNpgsql.NodaTime.Tests.csproj", "{C00D2EB1-5719-4372-9E1C-5ED05DC23A00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Npgsql.OpenTelemetry", "src\Npgsql.OpenTelemetry\Npgsql.OpenTelemetry.csproj", "{DA29F063-1828-47D8-B051-800AF7C9A0BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YBNpgsql.OpenTelemetry", "src\YBNpgsql.OpenTelemetry\YBNpgsql.OpenTelemetry.csproj", "{DA29F063-1828-47D8-B051-800AF7C9A0BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{BA7B6F53-D24D-45AC-927A-266857EA8D1E}"
 	ProjectSection(SolutionItems) = preProject
@@ -48,9 +48,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{BA7B6F
 		.github\workflows\rich-code-nav.yml = .github\workflows\rich-code-nav.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Npgsql.DependencyInjection", "src\Npgsql.DependencyInjection\Npgsql.DependencyInjection.csproj", "{B58E12EB-E43D-4D77-894E-5157D2269836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YBNpgsql.DependencyInjection", "src\YBNpgsql.DependencyInjection\YBNpgsql.DependencyInjection.csproj", "{B58E12EB-E43D-4D77-894E-5157D2269836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Npgsql.DependencyInjection.Tests", "test\Npgsql.DependencyInjection.Tests\Npgsql.DependencyInjection.Tests.csproj", "{EB2530FC-69F7-4DCB-A8B3-3671A157ED32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YBNpgsql.DependencyInjection.Tests", "test\YBNpgsql.DependencyInjection.Tests\YBNpgsql.DependencyInjection.Tests.csproj", "{EB2530FC-69F7-4DCB-A8B3-3671A157ED32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -197,6 +197,6 @@ Global
 		SolutionGuid = {C90AEECD-DB4C-4BE6-B506-16A449852FB8}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Npgsql.csproj
+		StartupItem = YBNpgsql.csproj
 	EndGlobalSection
 EndGlobal

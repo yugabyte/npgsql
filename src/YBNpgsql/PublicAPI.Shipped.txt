@@ -1,0 +1,1915 @@
+﻿#nullable enable
+abstract YBNpgsql.Replication.PgOutput.Messages.UpdateMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+abstract NpgsqlTypes.NpgsqlTsQuery.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+const YBNpgsql.NpgsqlConnection.DefaultPort = 5432 -> int
+const YBNpgsql.PostgresErrorCodes.ActiveSqlTransaction = "25001" -> string!
+const YBNpgsql.PostgresErrorCodes.AdminShutdown = "57P01" -> string!
+const YBNpgsql.PostgresErrorCodes.AmbiguousAlias = "42P09" -> string!
+const YBNpgsql.PostgresErrorCodes.AmbiguousColumn = "42702" -> string!
+const YBNpgsql.PostgresErrorCodes.AmbiguousFunction = "42725" -> string!
+const YBNpgsql.PostgresErrorCodes.AmbiguousParameter = "42P08" -> string!
+const YBNpgsql.PostgresErrorCodes.ArraySubscriptError = "2202E" -> string!
+const YBNpgsql.PostgresErrorCodes.AssertFailure = "P0004" -> string!
+const YBNpgsql.PostgresErrorCodes.BadCopyFileFormat = "22P04" -> string!
+const YBNpgsql.PostgresErrorCodes.BranchTransactionAlreadyActive = "25002" -> string!
+const YBNpgsql.PostgresErrorCodes.CannotCoerce = "42846" -> string!
+const YBNpgsql.PostgresErrorCodes.CannotConnectNow = "57P03" -> string!
+const YBNpgsql.PostgresErrorCodes.CantChangeRuntimeParam = "55P02" -> string!
+const YBNpgsql.PostgresErrorCodes.CardinalityViolation = "21000" -> string!
+const YBNpgsql.PostgresErrorCodes.CaseNotFound = "20000" -> string!
+const YBNpgsql.PostgresErrorCodes.CharacterNotInRepertoire = "22021" -> string!
+const YBNpgsql.PostgresErrorCodes.CheckViolation = "23514" -> string!
+const YBNpgsql.PostgresErrorCodes.CollationMismatch = "42P21" -> string!
+const YBNpgsql.PostgresErrorCodes.ConfigFileError = "F0000" -> string!
+const YBNpgsql.PostgresErrorCodes.ConfigurationLimitExceeded = "53400" -> string!
+const YBNpgsql.PostgresErrorCodes.ConnectionDoesNotExist = "08003" -> string!
+const YBNpgsql.PostgresErrorCodes.ConnectionException = "08000" -> string!
+const YBNpgsql.PostgresErrorCodes.ConnectionFailure = "08006" -> string!
+const YBNpgsql.PostgresErrorCodes.ContainingSqlNotPermittedExternalRoutineException = "38001" -> string!
+const YBNpgsql.PostgresErrorCodes.CrashShutdown = "57P02" -> string!
+const YBNpgsql.PostgresErrorCodes.DatabaseDropped = "57P04" -> string!
+const YBNpgsql.PostgresErrorCodes.DataCorrupted = "XX001" -> string!
+const YBNpgsql.PostgresErrorCodes.DataException = "22000" -> string!
+const YBNpgsql.PostgresErrorCodes.DatatypeMismatch = "42804" -> string!
+const YBNpgsql.PostgresErrorCodes.DatetimeFieldOverflow = "22008" -> string!
+const YBNpgsql.PostgresErrorCodes.DeadlockDetected = "40P01" -> string!
+const YBNpgsql.PostgresErrorCodes.DependentObjectsStillExist = "2BP01" -> string!
+const YBNpgsql.PostgresErrorCodes.DependentPrivilegeDescriptorsStillExist = "2B000" -> string!
+const YBNpgsql.PostgresErrorCodes.DeprecatedFeatureWarning = "01P01" -> string!
+const YBNpgsql.PostgresErrorCodes.DiagnosticsException = "0Z000" -> string!
+const YBNpgsql.PostgresErrorCodes.DiskFull = "53100" -> string!
+const YBNpgsql.PostgresErrorCodes.DivisionByZero = "22012" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateAlias = "42712" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateColumn = "42701" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateCursor = "42P03" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateDatabase = "42P04" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateFile = "58P02" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateFunction = "42723" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateObject = "42710" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicatePreparedStatement = "42P05" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateSchema = "42P06" -> string!
+const YBNpgsql.PostgresErrorCodes.DuplicateTable = "42P07" -> string!
+const YBNpgsql.PostgresErrorCodes.DynamicResultSetsReturnedWarning = "0100C" -> string!
+const YBNpgsql.PostgresErrorCodes.ErrorInAssignment = "22005" -> string!
+const YBNpgsql.PostgresErrorCodes.EscapeCharacterConflict = "2200B" -> string!
+const YBNpgsql.PostgresErrorCodes.EventTriggerProtocolViolatedExternalRoutineInvocationException = "39P03" -> string!
+const YBNpgsql.PostgresErrorCodes.ExclusionViolation = "23P01" -> string!
+const YBNpgsql.PostgresErrorCodes.ExternalRoutineException = "38000" -> string!
+const YBNpgsql.PostgresErrorCodes.ExternalRoutineInvocationException = "39000" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwColumnNameNotFound = "HV005" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwDynamicParameterValueNeeded = "HV002" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwError = "HV000" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwFunctionSequenceError = "HV010" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInconsistentDescriptorInformation = "HV021" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidAttributeValue = "HV024" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidColumnName = "HV007" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidColumnNumber = "HV008" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidDataType = "HV004" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidDataTypeDescriptors = "HV006" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidDescriptorFieldIdentifier = "HV091" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidHandle = "HV00B" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidOptionIndex = "HV00C" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidOptionName = "HV00D" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidStringFormat = "HV00A" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidStringLengthOrBufferLength = "HV090" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwInvalidUseOfNullPointer = "HV009" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwNoSchemas = "HV00P" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwOptionNameNotFound = "HV00J" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwOutOfMemory = "HV001" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwReplyHandle = "HV00K" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwSchemaNotFound = "HV00Q" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwTableNotFound = "HV00R" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwTooManyHandles = "HV014" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwUnableToCreateExecution = "HV00L" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwUnableToCreateReply = "HV00M" -> string!
+const YBNpgsql.PostgresErrorCodes.FdwUnableToEstablishConnection = "HV00N" -> string!
+const YBNpgsql.PostgresErrorCodes.FeatureNotSupported = "0A000" -> string!
+const YBNpgsql.PostgresErrorCodes.FloatingPointException = "22P01" -> string!
+const YBNpgsql.PostgresErrorCodes.ForeignKeyViolation = "23503" -> string!
+const YBNpgsql.PostgresErrorCodes.FunctionExecutedNoReturnStatementSqlRoutineException = "2F005" -> string!
+const YBNpgsql.PostgresErrorCodes.GroupingError = "42803" -> string!
+const YBNpgsql.PostgresErrorCodes.HeldCursorRequiresSameIsolationLevel = "25008" -> string!
+const YBNpgsql.PostgresErrorCodes.ImplicitZeroBitPaddingWarning = "01008" -> string!
+const YBNpgsql.PostgresErrorCodes.InappropriateAccessModeForBranchTransaction = "25003" -> string!
+const YBNpgsql.PostgresErrorCodes.InappropriateIsolationLevelForBranchTransaction = "25004" -> string!
+const YBNpgsql.PostgresErrorCodes.IndeterminateCollation = "42P22" -> string!
+const YBNpgsql.PostgresErrorCodes.IndeterminateDatatype = "42P18" -> string!
+const YBNpgsql.PostgresErrorCodes.IndexCorrupted = "XX002" -> string!
+const YBNpgsql.PostgresErrorCodes.IndicatorOverflow = "22022" -> string!
+const YBNpgsql.PostgresErrorCodes.InFailedSqlTransaction = "25P02" -> string!
+const YBNpgsql.PostgresErrorCodes.InsufficientPrivilege = "42501" -> string!
+const YBNpgsql.PostgresErrorCodes.InsufficientResources = "53000" -> string!
+const YBNpgsql.PostgresErrorCodes.IntegrityConstraintViolation = "23000" -> string!
+const YBNpgsql.PostgresErrorCodes.InternalError = "XX000" -> string!
+const YBNpgsql.PostgresErrorCodes.IntervalFieldOverflow = "22015" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidArgumentForLogarithm = "2201E" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidArgumentForNthValueFunction = "22016" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidArgumentForNtileFunction = "22014" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidArgumentForPowerFunction = "2201F" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidArgumentForWidthBucketFunction = "2201G" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidAuthorizationSpecification = "28000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidBinaryRepresentation = "22P03" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidCatalogName = "3D000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidCharacterValueForCast = "22018" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidColumnDefinition = "42611" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidColumnReference = "42P10" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidCursorDefinition = "42P11" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidCursorName = "34000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidCursorState = "24000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidDatabaseDefinition = "42P12" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidDatetimeFormat = "22007" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidEscapeCharacter = "22019" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidEscapeOctet = "2200D" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidEscapeSequence = "22025" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidForeignKey = "42830" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidFunctionDefinition = "42P13" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidGrantOperation = "0LP01" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidGrantor = "0L000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidIndicatorParameterValue = "22010" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidLocatorSpecification = "0F001" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidName = "42602" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidObjectDefinition = "42P17" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidParameterValue = "22023" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidPassword = "28P01" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidPreparedStatementDefinition = "42P14" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidRecursion = "42P19" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidRegularExpression = "2201B" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidRoleSpecification = "0P000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidRowCountInLimitClause = "2201W" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidRowCountInResultOffsetClause = "2201X" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidSavepointSpecification = "3B001" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidSchemaDefinition = "42P15" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidSchemaName = "3F000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidSqlStatementName = "26000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidSqlstateReturnedExternalRoutineInvocationException = "39001" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTableDefinition = "42P16" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTablesampleArgument = "2202H" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTablesampleRepeat = "2202G" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTextRepresentation = "22P02" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTimeZoneDisplacementValue = "22009" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTransactionInitiation = "0B000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTransactionState = "25000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidTransactionTermination = "2D000" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidUseOfEscapeCharacter = "2200C" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidXmlComment = "2200S" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidXmlContent = "2200N" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidXmlDocument = "2200M" -> string!
+const YBNpgsql.PostgresErrorCodes.InvalidXmlProcessingInstruction = "2200T" -> string!
+const YBNpgsql.PostgresErrorCodes.IoError = "58030" -> string!
+const YBNpgsql.PostgresErrorCodes.LocatorException = "0F000" -> string!
+const YBNpgsql.PostgresErrorCodes.LockFileExists = "F0001" -> string!
+const YBNpgsql.PostgresErrorCodes.LockNotAvailable = "55P03" -> string!
+const YBNpgsql.PostgresErrorCodes.ModifyingSqlDataNotPermittedExternalRoutineException = "38002" -> string!
+const YBNpgsql.PostgresErrorCodes.ModifyingSqlDataNotPermittedSqlRoutineException = "2F002" -> string!
+const YBNpgsql.PostgresErrorCodes.MostSpecificTypeMismatch = "2200G" -> string!
+const YBNpgsql.PostgresErrorCodes.NameTooLong = "42622" -> string!
+const YBNpgsql.PostgresErrorCodes.NoActiveSqlTransaction = "25P01" -> string!
+const YBNpgsql.PostgresErrorCodes.NoActiveSqlTransactionForBranchTransaction = "25005" -> string!
+const YBNpgsql.PostgresErrorCodes.NoAdditionalDynamicResultSetsReturned = "02001" -> string!
+const YBNpgsql.PostgresErrorCodes.NoData = "02000" -> string!
+const YBNpgsql.PostgresErrorCodes.NoDataFound = "P0002" -> string!
+const YBNpgsql.PostgresErrorCodes.NonstandardUseOfEscapeCharacter = "22P06" -> string!
+const YBNpgsql.PostgresErrorCodes.NotAnXmlDocument = "2200L" -> string!
+const YBNpgsql.PostgresErrorCodes.NotNullViolation = "23502" -> string!
+const YBNpgsql.PostgresErrorCodes.NullValueEliminatedInSetFunctionWarning = "01003" -> string!
+const YBNpgsql.PostgresErrorCodes.NullValueNoIndicatorParameter = "22002" -> string!
+const YBNpgsql.PostgresErrorCodes.NullValueNotAllowed = "22004" -> string!
+const YBNpgsql.PostgresErrorCodes.NullValueNotAllowedExternalRoutineInvocationException = "39004" -> string!
+const YBNpgsql.PostgresErrorCodes.NumericValueOutOfRange = "22003" -> string!
+const YBNpgsql.PostgresErrorCodes.ObjectInUse = "55006" -> string!
+const YBNpgsql.PostgresErrorCodes.ObjectNotInPrerequisiteState = "55000" -> string!
+const YBNpgsql.PostgresErrorCodes.OperatorIntervention = "57000" -> string!
+const YBNpgsql.PostgresErrorCodes.OutOfMemory = "53200" -> string!
+const YBNpgsql.PostgresErrorCodes.PlpgsqlError = "P0000" -> string!
+const YBNpgsql.PostgresErrorCodes.PrivilegeNotGrantedWarning = "01007" -> string!
+const YBNpgsql.PostgresErrorCodes.PrivilegeNotRevokedWarning = "01006" -> string!
+const YBNpgsql.PostgresErrorCodes.ProgramLimitExceeded = "54000" -> string!
+const YBNpgsql.PostgresErrorCodes.ProhibitedSqlStatementAttemptedExternalRoutineException = "38003" -> string!
+const YBNpgsql.PostgresErrorCodes.ProhibitedSqlStatementAttemptedSqlRoutineException = "2F003" -> string!
+const YBNpgsql.PostgresErrorCodes.ProtocolViolation = "08P01" -> string!
+const YBNpgsql.PostgresErrorCodes.QueryCanceled = "57014" -> string!
+const YBNpgsql.PostgresErrorCodes.RaiseException = "P0001" -> string!
+const YBNpgsql.PostgresErrorCodes.ReadingSqlDataNotPermittedExternalRoutineException = "38004" -> string!
+const YBNpgsql.PostgresErrorCodes.ReadingSqlDataNotPermittedSqlRoutineException = "2F004" -> string!
+const YBNpgsql.PostgresErrorCodes.ReadOnlySqlTransaction = "25006" -> string!
+const YBNpgsql.PostgresErrorCodes.ReservedName = "42939" -> string!
+const YBNpgsql.PostgresErrorCodes.RestrictViolation = "23001" -> string!
+const YBNpgsql.PostgresErrorCodes.SavepointException = "3B000" -> string!
+const YBNpgsql.PostgresErrorCodes.SchemaAndDataStatementMixingNotSupported = "25007" -> string!
+const YBNpgsql.PostgresErrorCodes.SerializationFailure = "40001" -> string!
+const YBNpgsql.PostgresErrorCodes.SnapshotFailure = "72000" -> string!
+const YBNpgsql.PostgresErrorCodes.SqlClientUnableToEstablishSqlConnection = "08001" -> string!
+const YBNpgsql.PostgresErrorCodes.SqlRoutineException = "2F000" -> string!
+const YBNpgsql.PostgresErrorCodes.SqlServerRejectedEstablishmentOfSqlConnection = "08004" -> string!
+const YBNpgsql.PostgresErrorCodes.SqlStatementNotYetComplete = "03000" -> string!
+const YBNpgsql.PostgresErrorCodes.SrfProtocolViolatedExternalRoutineInvocationException = "39P02" -> string!
+const YBNpgsql.PostgresErrorCodes.StackedDiagnosticsAccessedWithoutActiveHandler = "0Z002" -> string!
+const YBNpgsql.PostgresErrorCodes.StatementCompletionUnknown = "40003" -> string!
+const YBNpgsql.PostgresErrorCodes.StatementTooComplex = "54001" -> string!
+const YBNpgsql.PostgresErrorCodes.StringDataLengthMismatch = "22026" -> string!
+const YBNpgsql.PostgresErrorCodes.StringDataRightTruncation = "22001" -> string!
+const YBNpgsql.PostgresErrorCodes.StringDataRightTruncationWarning = "01004" -> string!
+const YBNpgsql.PostgresErrorCodes.SubstringError = "22011" -> string!
+const YBNpgsql.PostgresErrorCodes.SuccessfulCompletion = "00000" -> string!
+const YBNpgsql.PostgresErrorCodes.SyntaxError = "42601" -> string!
+const YBNpgsql.PostgresErrorCodes.SyntaxErrorOrAccessRuleViolation = "42000" -> string!
+const YBNpgsql.PostgresErrorCodes.SystemError = "58000" -> string!
+const YBNpgsql.PostgresErrorCodes.TooManyArguments = "54023" -> string!
+const YBNpgsql.PostgresErrorCodes.TooManyColumns = "54011" -> string!
+const YBNpgsql.PostgresErrorCodes.TooManyConnections = "53300" -> string!
+const YBNpgsql.PostgresErrorCodes.TooManyRows = "P0003" -> string!
+const YBNpgsql.PostgresErrorCodes.TransactionIntegrityConstraintViolation = "40002" -> string!
+const YBNpgsql.PostgresErrorCodes.TransactionResolutionUnknown = "08007" -> string!
+const YBNpgsql.PostgresErrorCodes.TransactionRollback = "40000" -> string!
+const YBNpgsql.PostgresErrorCodes.TriggeredActionException = "09000" -> string!
+const YBNpgsql.PostgresErrorCodes.TriggeredDataChangeViolation = "27000" -> string!
+const YBNpgsql.PostgresErrorCodes.TriggerProtocolViolatedExternalRoutineInvocationException = "39P01" -> string!
+const YBNpgsql.PostgresErrorCodes.TrimError = "22027" -> string!
+const YBNpgsql.PostgresErrorCodes.UndefinedColumn = "42703" -> string!
+const YBNpgsql.PostgresErrorCodes.UndefinedFile = "58P01" -> string!
+const YBNpgsql.PostgresErrorCodes.UndefinedFunction = "42883" -> string!
+const YBNpgsql.PostgresErrorCodes.UndefinedObject = "42704" -> string!
+const YBNpgsql.PostgresErrorCodes.UndefinedParameter = "42P02" -> string!
+const YBNpgsql.PostgresErrorCodes.UndefinedTable = "42P01" -> string!
+const YBNpgsql.PostgresErrorCodes.UniqueViolation = "23505" -> string!
+const YBNpgsql.PostgresErrorCodes.UnterminatedCString = "22024" -> string!
+const YBNpgsql.PostgresErrorCodes.UntranslatableCharacter = "22P05" -> string!
+const YBNpgsql.PostgresErrorCodes.Warning = "01000" -> string!
+const YBNpgsql.PostgresErrorCodes.WindowingError = "42P20" -> string!
+const YBNpgsql.PostgresErrorCodes.WithCheckOptionViolation = "44000" -> string!
+const YBNpgsql.PostgresErrorCodes.WrongObjectType = "42809" -> string!
+const YBNpgsql.PostgresErrorCodes.ZeroLengthCharacterString = "2200F" -> string!
+YBNpgsql.ArrayNullabilityMode
+YBNpgsql.ArrayNullabilityMode.Always = 1 -> YBNpgsql.ArrayNullabilityMode
+YBNpgsql.ArrayNullabilityMode.Never = 0 -> YBNpgsql.ArrayNullabilityMode
+YBNpgsql.ArrayNullabilityMode.PerInstance = 2 -> YBNpgsql.ArrayNullabilityMode
+YBNpgsql.BackendMessages.FieldDescription
+YBNpgsql.BackendMessages.FieldDescription.TypeModifier.get -> int
+YBNpgsql.BackendMessages.FieldDescription.TypeModifier.set -> void
+YBNpgsql.BackendMessages.FieldDescription.TypeSize.get -> short
+YBNpgsql.BackendMessages.FieldDescription.TypeSize.set -> void
+YBNpgsql.INpgsqlNameTranslator
+YBNpgsql.INpgsqlNameTranslator.TranslateMemberName(string! clrName) -> string!
+YBNpgsql.INpgsqlNameTranslator.TranslateTypeName(string! clrName) -> string!
+YBNpgsql.NameTranslation.NpgsqlNullNameTranslator
+YBNpgsql.NameTranslation.NpgsqlNullNameTranslator.NpgsqlNullNameTranslator() -> void
+YBNpgsql.NameTranslation.NpgsqlNullNameTranslator.TranslateMemberName(string! clrName) -> string!
+YBNpgsql.NameTranslation.NpgsqlNullNameTranslator.TranslateTypeName(string! clrName) -> string!
+YBNpgsql.NameTranslation.NpgsqlSnakeCaseNameTranslator
+YBNpgsql.NameTranslation.NpgsqlSnakeCaseNameTranslator.NpgsqlSnakeCaseNameTranslator() -> void
+YBNpgsql.NameTranslation.NpgsqlSnakeCaseNameTranslator.NpgsqlSnakeCaseNameTranslator(bool legacyMode) -> void
+YBNpgsql.NameTranslation.NpgsqlSnakeCaseNameTranslator.TranslateMemberName(string! clrName) -> string!
+YBNpgsql.NameTranslation.NpgsqlSnakeCaseNameTranslator.TranslateTypeName(string! clrName) -> string!
+YBNpgsql.NoticeEventHandler
+YBNpgsql.NotificationEventHandler
+YBNpgsql.NpgsqlBatch
+YBNpgsql.NpgsqlBatch.BatchCommands.get -> YBNpgsql.NpgsqlBatchCommandCollection!
+YBNpgsql.NpgsqlBatch.Connection.get -> YBNpgsql.NpgsqlConnection?
+YBNpgsql.NpgsqlBatch.Connection.set -> void
+YBNpgsql.NpgsqlBatch.EnableErrorBarriers.get -> bool
+YBNpgsql.NpgsqlBatch.EnableErrorBarriers.set -> void
+YBNpgsql.NpgsqlBatch.ExecuteReader(System.Data.CommandBehavior behavior = System.Data.CommandBehavior.Default) -> YBNpgsql.NpgsqlDataReader!
+YBNpgsql.NpgsqlBatch.ExecuteReaderAsync(System.Data.CommandBehavior behavior, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlDataReader!>!
+YBNpgsql.NpgsqlBatch.ExecuteReaderAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlDataReader!>!
+YBNpgsql.NpgsqlBatch.NpgsqlBatch(YBNpgsql.NpgsqlConnection? connection = null, YBNpgsql.NpgsqlTransaction? transaction = null) -> void
+YBNpgsql.NpgsqlBatch.Transaction.get -> YBNpgsql.NpgsqlTransaction?
+YBNpgsql.NpgsqlBatch.Transaction.set -> void
+YBNpgsql.NpgsqlBatchCommand
+YBNpgsql.NpgsqlBatchCommand.AppendErrorBarrier.get -> bool?
+YBNpgsql.NpgsqlBatchCommand.AppendErrorBarrier.set -> void
+YBNpgsql.NpgsqlBatchCommand.NpgsqlBatchCommand() -> void
+YBNpgsql.NpgsqlBatchCommand.NpgsqlBatchCommand(string! commandText) -> void
+YBNpgsql.NpgsqlBatchCommand.OID.get -> uint
+YBNpgsql.NpgsqlBatchCommand.Parameters.get -> YBNpgsql.NpgsqlParameterCollection!
+YBNpgsql.NpgsqlBatchCommand.Rows.get -> ulong
+YBNpgsql.NpgsqlBatchCommand.StatementType.get -> YBNpgsql.StatementType
+YBNpgsql.NpgsqlBatchCommandCollection
+YBNpgsql.NpgsqlBatchCommandCollection.Add(YBNpgsql.NpgsqlBatchCommand! item) -> void
+YBNpgsql.NpgsqlBatchCommandCollection.Contains(YBNpgsql.NpgsqlBatchCommand! item) -> bool
+YBNpgsql.NpgsqlBatchCommandCollection.CopyTo(YBNpgsql.NpgsqlBatchCommand![]! array, int arrayIndex) -> void
+YBNpgsql.NpgsqlBatchCommandCollection.IndexOf(YBNpgsql.NpgsqlBatchCommand! item) -> int
+YBNpgsql.NpgsqlBatchCommandCollection.Insert(int index, YBNpgsql.NpgsqlBatchCommand! item) -> void
+YBNpgsql.NpgsqlBatchCommandCollection.Remove(YBNpgsql.NpgsqlBatchCommand! item) -> bool
+YBNpgsql.NpgsqlBatchCommandCollection.this[int index].get -> YBNpgsql.NpgsqlBatchCommand!
+YBNpgsql.NpgsqlBatchCommandCollection.this[int index].set -> void
+YBNpgsql.NpgsqlBinaryExporter
+YBNpgsql.NpgsqlBinaryExporter.Cancel() -> void
+YBNpgsql.NpgsqlBinaryExporter.CancelAsync() -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryExporter.Dispose() -> void
+YBNpgsql.NpgsqlBinaryExporter.DisposeAsync() -> System.Threading.Tasks.ValueTask
+YBNpgsql.NpgsqlBinaryExporter.IsNull.get -> bool
+YBNpgsql.NpgsqlBinaryExporter.Read<T>() -> T
+YBNpgsql.NpgsqlBinaryExporter.Read<T>(NpgsqlTypes.NpgsqlDbType type) -> T
+YBNpgsql.NpgsqlBinaryExporter.ReadAsync<T>(NpgsqlTypes.NpgsqlDbType type, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<T>
+YBNpgsql.NpgsqlBinaryExporter.ReadAsync<T>(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<T>
+YBNpgsql.NpgsqlBinaryExporter.Skip() -> void
+YBNpgsql.NpgsqlBinaryExporter.SkipAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryExporter.StartRow() -> int
+YBNpgsql.NpgsqlBinaryExporter.StartRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<int>
+YBNpgsql.NpgsqlBinaryExporter.Timeout.set -> void
+YBNpgsql.NpgsqlBinaryImporter
+YBNpgsql.NpgsqlBinaryImporter.Close() -> void
+YBNpgsql.NpgsqlBinaryImporter.CloseAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+YBNpgsql.NpgsqlBinaryImporter.Complete() -> ulong
+YBNpgsql.NpgsqlBinaryImporter.CompleteAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<ulong>
+YBNpgsql.NpgsqlBinaryImporter.Dispose() -> void
+YBNpgsql.NpgsqlBinaryImporter.DisposeAsync() -> System.Threading.Tasks.ValueTask
+YBNpgsql.NpgsqlBinaryImporter.StartRow() -> void
+YBNpgsql.NpgsqlBinaryImporter.StartRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.Timeout.set -> void
+YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value) -> void
+YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value, NpgsqlTypes.NpgsqlDbType npgsqlDbType) -> void
+YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value, string! dataTypeName) -> void
+YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, NpgsqlTypes.NpgsqlDbType npgsqlDbType, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, string! dataTypeName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.WriteNull() -> void
+YBNpgsql.NpgsqlBinaryImporter.WriteNullAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.WriteRow(params object![]! values) -> void
+YBNpgsql.NpgsqlBinaryImporter.WriteRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), params object![]! values) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlCommand
+YBNpgsql.NpgsqlCommand.AllResultTypesAreUnknown.get -> bool
+YBNpgsql.NpgsqlCommand.AllResultTypesAreUnknown.set -> void
+YBNpgsql.NpgsqlCommand.Connection.get -> YBNpgsql.NpgsqlConnection?
+YBNpgsql.NpgsqlCommand.Connection.set -> void
+YBNpgsql.NpgsqlCommand.CreateParameter() -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlCommand.Disposed -> System.EventHandler?
+YBNpgsql.NpgsqlCommand.ExecuteReader(System.Data.CommandBehavior behavior = System.Data.CommandBehavior.Default) -> YBNpgsql.NpgsqlDataReader!
+YBNpgsql.NpgsqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior behavior, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlDataReader!>!
+YBNpgsql.NpgsqlCommand.ExecuteReaderAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlDataReader!>!
+YBNpgsql.NpgsqlCommand.IsPrepared.get -> bool
+YBNpgsql.NpgsqlCommand.NpgsqlCommand() -> void
+YBNpgsql.NpgsqlCommand.NpgsqlCommand(string? cmdText) -> void
+YBNpgsql.NpgsqlCommand.NpgsqlCommand(string? cmdText, YBNpgsql.NpgsqlConnection? connection) -> void
+YBNpgsql.NpgsqlCommand.NpgsqlCommand(string? cmdText, YBNpgsql.NpgsqlConnection? connection, YBNpgsql.NpgsqlTransaction? transaction) -> void
+YBNpgsql.NpgsqlCommand.Parameters.get -> YBNpgsql.NpgsqlParameterCollection!
+YBNpgsql.NpgsqlCommand.Statements.get -> System.Collections.Generic.IReadOnlyList<YBNpgsql.NpgsqlBatchCommand!>!
+YBNpgsql.NpgsqlCommand.Transaction.get -> YBNpgsql.NpgsqlTransaction?
+YBNpgsql.NpgsqlCommand.Transaction.set -> void
+YBNpgsql.NpgsqlCommand.UnknownResultTypeList.get -> bool[]?
+YBNpgsql.NpgsqlCommand.UnknownResultTypeList.set -> void
+YBNpgsql.NpgsqlCommand.Unprepare() -> void
+YBNpgsql.NpgsqlCommand.UnprepareAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlCommandBuilder
+YBNpgsql.NpgsqlCommandBuilder.GetDeleteCommand() -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlCommandBuilder.GetDeleteCommand(bool useColumnsForParameterNames) -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlCommandBuilder.GetInsertCommand() -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlCommandBuilder.GetInsertCommand(bool useColumnsForParameterNames) -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlCommandBuilder.GetUpdateCommand() -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlCommandBuilder.GetUpdateCommand(bool useColumnsForParameterNames) -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlCommandBuilder.NpgsqlCommandBuilder() -> void
+YBNpgsql.NpgsqlCommandBuilder.NpgsqlCommandBuilder(YBNpgsql.NpgsqlDataAdapter? adapter) -> void
+YBNpgsql.NpgsqlConnection
+YBNpgsql.NpgsqlConnection.BeginBinaryExport(string! copyToCommand) -> YBNpgsql.NpgsqlBinaryExporter!
+YBNpgsql.NpgsqlConnection.BeginBinaryExportAsync(string! copyToCommand, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlBinaryExporter!>!
+YBNpgsql.NpgsqlConnection.BeginBinaryImport(string! copyFromCommand) -> YBNpgsql.NpgsqlBinaryImporter!
+YBNpgsql.NpgsqlConnection.BeginBinaryImportAsync(string! copyFromCommand, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlBinaryImporter!>!
+YBNpgsql.NpgsqlConnection.BeginRawBinaryCopy(string! copyCommand) -> YBNpgsql.NpgsqlRawCopyStream!
+YBNpgsql.NpgsqlConnection.BeginRawBinaryCopyAsync(string! copyCommand, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlRawCopyStream!>!
+YBNpgsql.NpgsqlConnection.BeginTextExport(string! copyToCommand) -> System.IO.TextReader!
+YBNpgsql.NpgsqlConnection.BeginTextExportAsync(string! copyToCommand, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.IO.TextReader!>!
+YBNpgsql.NpgsqlConnection.BeginTextImport(string! copyFromCommand) -> System.IO.TextWriter!
+YBNpgsql.NpgsqlConnection.BeginTextImportAsync(string! copyFromCommand, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.IO.TextWriter!>!
+YBNpgsql.NpgsqlConnection.BeginTransaction() -> YBNpgsql.NpgsqlTransaction!
+YBNpgsql.NpgsqlConnection.BeginTransaction(System.Data.IsolationLevel level) -> YBNpgsql.NpgsqlTransaction!
+YBNpgsql.NpgsqlConnection.BeginTransactionAsync(System.Data.IsolationLevel level, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<YBNpgsql.NpgsqlTransaction!>
+YBNpgsql.NpgsqlConnection.BeginTransactionAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<YBNpgsql.NpgsqlTransaction!>
+YBNpgsql.NpgsqlConnection.CloneWith(string! connectionString) -> YBNpgsql.NpgsqlConnection!
+YBNpgsql.NpgsqlConnection.CommandTimeout.get -> int
+YBNpgsql.NpgsqlConnection.CreateBatch() -> YBNpgsql.NpgsqlBatch!
+YBNpgsql.NpgsqlConnection.CreateCommand() -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlConnection.Disposed -> System.EventHandler?
+YBNpgsql.NpgsqlConnection.FullState.get -> System.Data.ConnectionState
+YBNpgsql.NpgsqlConnection.HasIntegerDateTimes.get -> bool
+YBNpgsql.NpgsqlConnection.Host.get -> string?
+YBNpgsql.NpgsqlConnection.IntegratedSecurity.get -> bool
+YBNpgsql.NpgsqlConnection.Notice -> YBNpgsql.NoticeEventHandler?
+YBNpgsql.NpgsqlConnection.Notification -> YBNpgsql.NotificationEventHandler?
+YBNpgsql.NpgsqlConnection.NpgsqlConnection() -> void
+YBNpgsql.NpgsqlConnection.NpgsqlConnection(string? connectionString) -> void
+YBNpgsql.NpgsqlConnection.Port.get -> int
+YBNpgsql.NpgsqlConnection.PostgresParameters.get -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+YBNpgsql.NpgsqlConnection.PostgreSqlVersion.get -> System.Version!
+YBNpgsql.NpgsqlConnection.ProcessID.get -> int
+YBNpgsql.NpgsqlConnection.ProvideClientCertificatesCallback.get -> YBNpgsql.ProvideClientCertificatesCallback?
+YBNpgsql.NpgsqlConnection.ProvideClientCertificatesCallback.set -> void
+YBNpgsql.NpgsqlConnection.ProvidePasswordCallback.get -> YBNpgsql.ProvidePasswordCallback?
+YBNpgsql.NpgsqlConnection.ProvidePasswordCallback.set -> void
+YBNpgsql.NpgsqlConnection.ReloadTypes() -> void
+YBNpgsql.NpgsqlConnection.ReloadTypesAsync() -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlConnection.Timezone.get -> string!
+YBNpgsql.NpgsqlConnection.TypeMapper.get -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.NpgsqlConnection.UnprepareAll() -> void
+YBNpgsql.NpgsqlConnection.UserCertificateValidationCallback.get -> System.Net.Security.RemoteCertificateValidationCallback?
+YBNpgsql.NpgsqlConnection.UserCertificateValidationCallback.set -> void
+YBNpgsql.NpgsqlConnection.UserName.get -> string?
+YBNpgsql.NpgsqlConnection.Wait() -> void
+YBNpgsql.NpgsqlConnection.Wait(int timeout) -> bool
+YBNpgsql.NpgsqlConnection.Wait(System.TimeSpan timeout) -> bool
+YBNpgsql.NpgsqlConnection.WaitAsync(int timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<bool>!
+YBNpgsql.NpgsqlConnection.WaitAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlConnection.WaitAsync(System.TimeSpan timeout, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<bool>!
+YBNpgsql.NpgsqlConnectionStringBuilder
+YBNpgsql.NpgsqlConnectionStringBuilder.Add(System.Collections.Generic.KeyValuePair<string!, object?> item) -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ApplicationName.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.ApplicationName.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ArrayNullabilityMode.get -> YBNpgsql.ArrayNullabilityMode
+YBNpgsql.NpgsqlConnectionStringBuilder.ArrayNullabilityMode.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.AutoPrepareMinUsages.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.AutoPrepareMinUsages.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.BackendTimeouts.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.BackendTimeouts.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.CancellationTimeout.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.CancellationTimeout.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.CheckCertificateRevocation.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.CheckCertificateRevocation.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ClientCertificate.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.ClientCertificate.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ClientCertificateKey.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.ClientCertificateKey.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ClientEncoding.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.ClientEncoding.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.CommandTimeout.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.CommandTimeout.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ConnectionIdleLifetime.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.ConnectionIdleLifetime.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ConnectionLifetime.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.ConnectionLifetime.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ConnectionPruningInterval.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.ConnectionPruningInterval.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Contains(System.Collections.Generic.KeyValuePair<string!, object?> item) -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.ContinuousProcessing.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.ContinuousProcessing.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ConvertInfinityDateTime.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.ConvertInfinityDateTime.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.CopyTo(System.Collections.Generic.KeyValuePair<string!, object?>[]! array, int arrayIndex) -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Database.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Database.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Encoding.get -> string!
+YBNpgsql.NpgsqlConnectionStringBuilder.Encoding.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Enlist.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.Enlist.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.EntityAdminDatabase.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.EntityAdminDatabase.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.EntityTemplateDatabase.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.EntityTemplateDatabase.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.GetEnumerator() -> System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string!, object?>>!
+YBNpgsql.NpgsqlConnectionStringBuilder.Host.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Host.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.HostRecheckSeconds.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.HostRecheckSeconds.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.IncludeErrorDetail.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.IncludeErrorDetail.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.IncludeErrorDetails.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.IncludeErrorDetails.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.IncludeRealm.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.IncludeRealm.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.IntegratedSecurity.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.IntegratedSecurity.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.InternalCommandTimeout.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.InternalCommandTimeout.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.KeepAlive.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.KeepAlive.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.KerberosServiceName.get -> string!
+YBNpgsql.NpgsqlConnectionStringBuilder.KerberosServiceName.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Keys.get -> System.Collections.Generic.ICollection<string!>!
+YBNpgsql.NpgsqlConnectionStringBuilder.LoadBalanceHosts.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.LoadBalanceHosts.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.LoadTableComposites.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.LoadTableComposites.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.LogParameters.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.LogParameters.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.MaxAutoPrepare.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.MaxAutoPrepare.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.MaxPoolSize.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.MaxPoolSize.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.MinPoolSize.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.MinPoolSize.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Multiplexing.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.Multiplexing.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.NoResetOnClose.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.NoResetOnClose.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.NpgsqlConnectionStringBuilder() -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.NpgsqlConnectionStringBuilder(bool useOdbcRules) -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.NpgsqlConnectionStringBuilder(string? connectionString) -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Options.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Options.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Passfile.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Passfile.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Password.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Password.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.PersistSecurityInfo.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.PersistSecurityInfo.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Pooling.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.Pooling.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Port.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.Port.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.PreloadReader.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.PreloadReader.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ReadBufferSize.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.ReadBufferSize.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Remove(System.Collections.Generic.KeyValuePair<string!, object?> item) -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.RootCertificate.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.RootCertificate.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SearchPath.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.SearchPath.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.ServerCompatibilityMode.get -> YBNpgsql.ServerCompatibilityMode
+YBNpgsql.NpgsqlConnectionStringBuilder.ServerCompatibilityMode.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SocketReceiveBufferSize.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.SocketReceiveBufferSize.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SocketSendBufferSize.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.SocketSendBufferSize.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SslCertificate.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.SslCertificate.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SslKey.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.SslKey.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SslMode.get -> YBNpgsql.SslMode
+YBNpgsql.NpgsqlConnectionStringBuilder.SslMode.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SslPassword.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.SslPassword.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.TargetSessionAttributes.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.TargetSessionAttributes.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.TcpKeepAlive.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.TcpKeepAlive.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.TcpKeepAliveInterval.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.TcpKeepAliveInterval.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.TcpKeepAliveTime.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.TcpKeepAliveTime.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Timeout.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.Timeout.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Timezone.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Timezone.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.TrustServerCertificate.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.TrustServerCertificate.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.UseExtendedTypes.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.UseExtendedTypes.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.UsePerfCounters.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.UsePerfCounters.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Username.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.Username.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.UseSslStream.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.UseSslStream.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.Values.get -> System.Collections.Generic.ICollection<object?>!
+YBNpgsql.NpgsqlConnectionStringBuilder.WriteBufferSize.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.WriteBufferSize.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.WriteCoalescingBufferThresholdBytes.get -> int
+YBNpgsql.NpgsqlConnectionStringBuilder.WriteCoalescingBufferThresholdBytes.set -> void
+YBNpgsql.NpgsqlCopyTextReader
+YBNpgsql.NpgsqlCopyTextReader.Cancel() -> void
+YBNpgsql.NpgsqlCopyTextReader.CancelAsync() -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlCopyTextReader.DisposeAsync() -> System.Threading.Tasks.ValueTask
+YBNpgsql.NpgsqlCopyTextWriter
+YBNpgsql.NpgsqlCopyTextWriter.Cancel() -> void
+YBNpgsql.NpgsqlCopyTextWriter.CancelAsync() -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlDataAdapter
+YBNpgsql.NpgsqlDataAdapter.DeleteCommand.get -> YBNpgsql.NpgsqlCommand?
+YBNpgsql.NpgsqlDataAdapter.DeleteCommand.set -> void
+YBNpgsql.NpgsqlDataAdapter.InsertCommand.get -> YBNpgsql.NpgsqlCommand?
+YBNpgsql.NpgsqlDataAdapter.InsertCommand.set -> void
+YBNpgsql.NpgsqlDataAdapter.NpgsqlDataAdapter() -> void
+YBNpgsql.NpgsqlDataAdapter.NpgsqlDataAdapter(YBNpgsql.NpgsqlCommand! selectCommand) -> void
+YBNpgsql.NpgsqlDataAdapter.NpgsqlDataAdapter(string! selectCommandText, YBNpgsql.NpgsqlConnection! selectConnection) -> void
+YBNpgsql.NpgsqlDataAdapter.NpgsqlDataAdapter(string! selectCommandText, string! selectConnectionString) -> void
+YBNpgsql.NpgsqlDataAdapter.RowUpdated -> YBNpgsql.NpgsqlRowUpdatedEventHandler?
+YBNpgsql.NpgsqlDataAdapter.RowUpdating -> YBNpgsql.NpgsqlRowUpdatingEventHandler?
+YBNpgsql.NpgsqlDataAdapter.SelectCommand.get -> YBNpgsql.NpgsqlCommand?
+YBNpgsql.NpgsqlDataAdapter.SelectCommand.set -> void
+YBNpgsql.NpgsqlDataAdapter.UpdateCommand.get -> YBNpgsql.NpgsqlCommand?
+YBNpgsql.NpgsqlDataAdapter.UpdateCommand.set -> void
+YBNpgsql.NpgsqlDataReader
+YBNpgsql.NpgsqlDataReader.GetColumnSchema() -> System.Collections.ObjectModel.ReadOnlyCollection<YBNpgsql.Schema.NpgsqlDbColumn!>!
+YBNpgsql.NpgsqlDataReader.GetColumnSchemaAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Collections.ObjectModel.ReadOnlyCollection<YBNpgsql.Schema.NpgsqlDbColumn!>!>!
+YBNpgsql.NpgsqlDataReader.GetData(int ordinal) -> YBNpgsql.NpgsqlNestedDataReader!
+YBNpgsql.NpgsqlDataReader.GetDataTypeOID(int ordinal) -> uint
+YBNpgsql.NpgsqlDataReader.GetPostgresType(int ordinal) -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.NpgsqlDataReader.GetStreamAsync(int ordinal, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.IO.Stream!>!
+YBNpgsql.NpgsqlDataReader.GetTextReaderAsync(int ordinal, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.IO.TextReader!>!
+YBNpgsql.NpgsqlDataReader.GetTimeSpan(int ordinal) -> System.TimeSpan
+YBNpgsql.NpgsqlDataReader.IsOnRow.get -> bool
+YBNpgsql.NpgsqlDataReader.ReaderClosed -> System.EventHandler?
+YBNpgsql.NpgsqlDataReader.Rows.get -> ulong
+YBNpgsql.NpgsqlDataReader.Statements.get -> System.Collections.Generic.IReadOnlyList<YBNpgsql.NpgsqlBatchCommand!>!
+YBNpgsql.NpgsqlDataSource
+YBNpgsql.NpgsqlDataSource.CreateBatch() -> YBNpgsql.NpgsqlBatch!
+YBNpgsql.NpgsqlDataSource.CreateCommand(string? commandText = null) -> YBNpgsql.NpgsqlCommand!
+YBNpgsql.NpgsqlDataSource.CreateConnection() -> YBNpgsql.NpgsqlConnection!
+YBNpgsql.NpgsqlDataSource.OpenConnection() -> YBNpgsql.NpgsqlConnection!
+YBNpgsql.NpgsqlDataSource.OpenConnectionAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<YBNpgsql.NpgsqlConnection!>
+YBNpgsql.NpgsqlDataSource.Password.set -> void
+YBNpgsql.NpgsqlDataSourceBuilder
+YBNpgsql.NpgsqlDataSourceBuilder.AddTypeResolverFactory(YBNpgsql.Internal.TypeHandling.TypeHandlerResolverFactory! resolverFactory) -> void
+YBNpgsql.NpgsqlDataSourceBuilder.Build() -> YBNpgsql.NpgsqlDataSource!
+YBNpgsql.NpgsqlDataSourceBuilder.BuildMultiHost() -> YBNpgsql.NpgsqlMultiHostDataSource!
+YBNpgsql.NpgsqlDataSourceBuilder.ConnectionString.get -> string!
+YBNpgsql.NpgsqlDataSourceBuilder.ConnectionStringBuilder.get -> YBNpgsql.NpgsqlConnectionStringBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.DefaultNameTranslator.get -> YBNpgsql.INpgsqlNameTranslator!
+YBNpgsql.NpgsqlDataSourceBuilder.DefaultNameTranslator.set -> void
+YBNpgsql.NpgsqlDataSourceBuilder.EnableParameterLogging(bool parameterLoggingEnabled = true) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.NpgsqlDataSourceBuilder.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.NpgsqlDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.NpgsqlDataSourceBuilder.NpgsqlDataSourceBuilder(string? connectionString = null) -> void
+YBNpgsql.NpgsqlDataSourceBuilder.UnmapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
+YBNpgsql.NpgsqlDataSourceBuilder.UnmapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
+YBNpgsql.NpgsqlDataSourceBuilder.UnmapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
+YBNpgsql.NpgsqlDataSourceBuilder.UseClientCertificate(System.Security.Cryptography.X509Certificates.X509Certificate? clientCertificate) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UseClientCertificates(System.Security.Cryptography.X509Certificates.X509CertificateCollection? clientCertificates) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UseClientCertificatesCallback(System.Action<System.Security.Cryptography.X509Certificates.X509CertificateCollection!>? clientCertificatesCallback) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UseLoggerFactory(Microsoft.Extensions.Logging.ILoggerFactory? loggerFactory) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UsePeriodicPasswordProvider(System.Func<YBNpgsql.NpgsqlConnectionStringBuilder!, System.Threading.CancellationToken, System.Threading.Tasks.ValueTask<string!>>? passwordProvider, System.TimeSpan successRefreshInterval, System.TimeSpan failureRefreshInterval) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UsePhysicalConnectionInitializer(System.Action<YBNpgsql.NpgsqlConnection!>? connectionInitializer, System.Func<YBNpgsql.NpgsqlConnection!, System.Threading.Tasks.Task!>? connectionInitializerAsync) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UseUserCertificateValidationCallback(System.Net.Security.RemoteCertificateValidationCallback! userCertificateValidationCallback) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlException
+YBNpgsql.NpgsqlException.BatchCommand.get -> YBNpgsql.NpgsqlBatchCommand?
+YBNpgsql.NpgsqlException.BatchCommand.set -> void
+YBNpgsql.NpgsqlException.NpgsqlException() -> void
+YBNpgsql.NpgsqlException.NpgsqlException(string? message) -> void
+YBNpgsql.NpgsqlException.NpgsqlException(string? message, System.Exception? innerException) -> void
+YBNpgsql.NpgsqlException.NpgsqlException(System.Runtime.Serialization.SerializationInfo! info, System.Runtime.Serialization.StreamingContext context) -> void
+YBNpgsql.NpgsqlFactory
+YBNpgsql.NpgsqlFactory.GetService(System.Type! serviceType) -> object?
+YBNpgsql.NpgsqlLargeObjectManager
+YBNpgsql.NpgsqlLargeObjectManager.Create(uint preferredOid = 0) -> uint
+YBNpgsql.NpgsqlLargeObjectManager.CreateAsync(uint preferredOid, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<uint>!
+YBNpgsql.NpgsqlLargeObjectManager.ExportRemote(uint oid, string! path) -> void
+YBNpgsql.NpgsqlLargeObjectManager.ExportRemoteAsync(uint oid, string! path, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlLargeObjectManager.Has64BitSupport.get -> bool
+YBNpgsql.NpgsqlLargeObjectManager.ImportRemote(string! path, uint oid = 0) -> void
+YBNpgsql.NpgsqlLargeObjectManager.ImportRemoteAsync(string! path, uint oid, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlLargeObjectManager.MaxTransferBlockSize.get -> int
+YBNpgsql.NpgsqlLargeObjectManager.MaxTransferBlockSize.set -> void
+YBNpgsql.NpgsqlLargeObjectManager.NpgsqlLargeObjectManager(YBNpgsql.NpgsqlConnection! connection) -> void
+YBNpgsql.NpgsqlLargeObjectManager.OpenRead(uint oid) -> YBNpgsql.NpgsqlLargeObjectStream!
+YBNpgsql.NpgsqlLargeObjectManager.OpenReadAsync(uint oid, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlLargeObjectStream!>!
+YBNpgsql.NpgsqlLargeObjectManager.OpenReadWrite(uint oid) -> YBNpgsql.NpgsqlLargeObjectStream!
+YBNpgsql.NpgsqlLargeObjectManager.OpenReadWriteAsync(uint oid, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.NpgsqlLargeObjectStream!>!
+YBNpgsql.NpgsqlLargeObjectManager.Unlink(uint oid) -> void
+YBNpgsql.NpgsqlLargeObjectManager.UnlinkAsync(uint oid, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlLargeObjectStream
+YBNpgsql.NpgsqlLargeObjectStream.GetLengthAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<long>!
+YBNpgsql.NpgsqlLargeObjectStream.Has64BitSupport.get -> bool
+YBNpgsql.NpgsqlLargeObjectStream.SeekAsync(long offset, System.IO.SeekOrigin origin, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<long>!
+YBNpgsql.NpgsqlLargeObjectStream.SetLength(long value, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlLoggingConfiguration
+YBNpgsql.NpgsqlMultiHostDataSource
+YBNpgsql.NpgsqlMultiHostDataSource.ClearDatabaseStates() -> void
+YBNpgsql.NpgsqlMultiHostDataSource.CreateConnection(YBNpgsql.TargetSessionAttributes targetSessionAttributes) -> YBNpgsql.NpgsqlConnection!
+YBNpgsql.NpgsqlMultiHostDataSource.OpenConnection(YBNpgsql.TargetSessionAttributes targetSessionAttributes) -> YBNpgsql.NpgsqlConnection!
+YBNpgsql.NpgsqlMultiHostDataSource.OpenConnectionAsync(YBNpgsql.TargetSessionAttributes targetSessionAttributes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<YBNpgsql.NpgsqlConnection!>
+YBNpgsql.NpgsqlMultiHostDataSource.WithTargetSession(YBNpgsql.TargetSessionAttributes targetSessionAttributes) -> YBNpgsql.NpgsqlDataSource!
+YBNpgsql.NpgsqlNestedDataReader
+YBNpgsql.NpgsqlNestedDataReader.GetData(int ordinal) -> YBNpgsql.NpgsqlNestedDataReader!
+YBNpgsql.NpgsqlNoticeEventArgs
+YBNpgsql.NpgsqlNoticeEventArgs.Notice.get -> YBNpgsql.PostgresNotice!
+YBNpgsql.NpgsqlNotificationEventArgs
+YBNpgsql.NpgsqlNotificationEventArgs.AdditionalInformation.get -> string!
+YBNpgsql.NpgsqlNotificationEventArgs.Channel.get -> string!
+YBNpgsql.NpgsqlNotificationEventArgs.Condition.get -> string!
+YBNpgsql.NpgsqlNotificationEventArgs.Payload.get -> string!
+YBNpgsql.NpgsqlNotificationEventArgs.PID.get -> int
+YBNpgsql.NpgsqlOperationInProgressException
+YBNpgsql.NpgsqlOperationInProgressException.CommandInProgress.get -> YBNpgsql.NpgsqlCommand?
+YBNpgsql.NpgsqlOperationInProgressException.NpgsqlOperationInProgressException(YBNpgsql.NpgsqlCommand! command) -> void
+YBNpgsql.NpgsqlParameter
+YBNpgsql.NpgsqlParameter.Clone() -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameter.Collection.get -> YBNpgsql.NpgsqlParameterCollection?
+YBNpgsql.NpgsqlParameter.Collection.set -> void
+YBNpgsql.NpgsqlParameter.ConvertedValue.get -> object?
+YBNpgsql.NpgsqlParameter.ConvertedValue.set -> void
+YBNpgsql.NpgsqlParameter.DataTypeName.get -> string?
+YBNpgsql.NpgsqlParameter.DataTypeName.set -> void
+YBNpgsql.NpgsqlParameter.NpgsqlDbType.get -> NpgsqlTypes.NpgsqlDbType
+YBNpgsql.NpgsqlParameter.NpgsqlDbType.set -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter() -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, System.Data.DataRowVersion sourceVersion, object! value) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string! parameterName, System.Data.DbType parameterType, int size, string? sourceColumn, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, System.Data.DataRowVersion sourceVersion, object! value) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, NpgsqlTypes.NpgsqlDbType parameterType) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, object? value) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, System.Data.DbType parameterType) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, System.Data.DbType parameterType, int size) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, System.Data.DbType parameterType, int size, string? sourceColumn) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlValue.get -> object?
+YBNpgsql.NpgsqlParameter.NpgsqlValue.set -> void
+YBNpgsql.NpgsqlParameter.PostgresType.get -> YBNpgsql.PostgresTypes.PostgresType?
+YBNpgsql.NpgsqlParameter.Precision.get -> byte
+YBNpgsql.NpgsqlParameter.Precision.set -> void
+YBNpgsql.NpgsqlParameter.Scale.get -> byte
+YBNpgsql.NpgsqlParameter.Scale.set -> void
+YBNpgsql.NpgsqlParameter<T>
+YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter() -> void
+YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, NpgsqlTypes.NpgsqlDbType npgsqlDbType) -> void
+YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, System.Data.DbType dbType) -> void
+YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, T value) -> void
+YBNpgsql.NpgsqlParameter<T>.TypedValue.get -> T?
+YBNpgsql.NpgsqlParameter<T>.TypedValue.set -> void
+YBNpgsql.NpgsqlParameterCollection
+YBNpgsql.NpgsqlParameterCollection.Add(YBNpgsql.NpgsqlParameter! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string! sourceColumn) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(NpgsqlTypes.NpgsqlDbType parameterType, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Contains(YBNpgsql.NpgsqlParameter! item) -> bool
+YBNpgsql.NpgsqlParameterCollection.CopyTo(YBNpgsql.NpgsqlParameter![]! array, int arrayIndex) -> void
+YBNpgsql.NpgsqlParameterCollection.IndexOf(YBNpgsql.NpgsqlParameter! item) -> int
+YBNpgsql.NpgsqlParameterCollection.Insert(int index, YBNpgsql.NpgsqlParameter! item) -> void
+YBNpgsql.NpgsqlParameterCollection.Remove(YBNpgsql.NpgsqlParameter! item) -> bool
+YBNpgsql.NpgsqlParameterCollection.Remove(string! parameterName) -> void
+YBNpgsql.NpgsqlParameterCollection.this[int index].get -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.this[int index].set -> void
+YBNpgsql.NpgsqlParameterCollection.this[string! parameterName].get -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.this[string! parameterName].set -> void
+YBNpgsql.NpgsqlParameterCollection.ToArray() -> YBNpgsql.NpgsqlParameter![]!
+YBNpgsql.NpgsqlParameterCollection.TryGetValue(string! parameterName, out YBNpgsql.NpgsqlParameter? parameter) -> bool
+YBNpgsql.NpgsqlRawCopyStream
+YBNpgsql.NpgsqlRawCopyStream.Cancel() -> void
+YBNpgsql.NpgsqlRawCopyStream.CancelAsync() -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlRowUpdatedEventArgs
+YBNpgsql.NpgsqlRowUpdatedEventArgs.NpgsqlRowUpdatedEventArgs(System.Data.DataRow! dataRow, System.Data.IDbCommand? command, System.Data.StatementType statementType, System.Data.Common.DataTableMapping! tableMapping) -> void
+YBNpgsql.NpgsqlRowUpdatedEventHandler
+YBNpgsql.NpgsqlRowUpdatingEventArgs
+YBNpgsql.NpgsqlRowUpdatingEventArgs.NpgsqlRowUpdatingEventArgs(System.Data.DataRow! dataRow, System.Data.IDbCommand? command, System.Data.StatementType statementType, System.Data.Common.DataTableMapping! tableMapping) -> void
+YBNpgsql.NpgsqlRowUpdatingEventHandler
+YBNpgsql.NpgsqlTracingOptions
+YBNpgsql.NpgsqlTracingOptions.NpgsqlTracingOptions() -> void
+YBNpgsql.NpgsqlTransaction
+YBNpgsql.NpgsqlTransaction.Connection.get -> YBNpgsql.NpgsqlConnection?
+YBNpgsql.PostgresErrorCodes
+YBNpgsql.PostgresException
+YBNpgsql.PostgresException.Code.get -> string!
+YBNpgsql.PostgresException.ColumnName.get -> string?
+YBNpgsql.PostgresException.ConstraintName.get -> string?
+YBNpgsql.PostgresException.DataTypeName.get -> string?
+YBNpgsql.PostgresException.Detail.get -> string?
+YBNpgsql.PostgresException.File.get -> string?
+YBNpgsql.PostgresException.Hint.get -> string?
+YBNpgsql.PostgresException.InternalPosition.get -> int
+YBNpgsql.PostgresException.InternalQuery.get -> string?
+YBNpgsql.PostgresException.InvariantSeverity.get -> string!
+YBNpgsql.PostgresException.Line.get -> string?
+YBNpgsql.PostgresException.MessageText.get -> string!
+YBNpgsql.PostgresException.Position.get -> int
+YBNpgsql.PostgresException.PostgresException(string! messageText, string! severity, string! invariantSeverity, string! sqlState) -> void
+YBNpgsql.PostgresException.PostgresException(string! messageText, string! severity, string! invariantSeverity, string! sqlState, string? detail = null, string? hint = null, int position = 0, int internalPosition = 0, string? internalQuery = null, string? where = null, string? schemaName = null, string? tableName = null, string? columnName = null, string? dataTypeName = null, string? constraintName = null, string? file = null, string? line = null, string? routine = null) -> void
+YBNpgsql.PostgresException.Routine.get -> string?
+YBNpgsql.PostgresException.SchemaName.get -> string?
+YBNpgsql.PostgresException.Severity.get -> string!
+YBNpgsql.PostgresException.TableName.get -> string?
+YBNpgsql.PostgresException.Where.get -> string?
+YBNpgsql.PostgresNotice
+YBNpgsql.PostgresNotice.Code.get -> string!
+YBNpgsql.PostgresNotice.ColumnName.get -> string?
+YBNpgsql.PostgresNotice.ColumnName.set -> void
+YBNpgsql.PostgresNotice.ConstraintName.get -> string?
+YBNpgsql.PostgresNotice.ConstraintName.set -> void
+YBNpgsql.PostgresNotice.DataTypeName.get -> string?
+YBNpgsql.PostgresNotice.DataTypeName.set -> void
+YBNpgsql.PostgresNotice.Detail.get -> string?
+YBNpgsql.PostgresNotice.Detail.set -> void
+YBNpgsql.PostgresNotice.File.get -> string?
+YBNpgsql.PostgresNotice.File.set -> void
+YBNpgsql.PostgresNotice.Hint.get -> string?
+YBNpgsql.PostgresNotice.Hint.set -> void
+YBNpgsql.PostgresNotice.InternalPosition.get -> int
+YBNpgsql.PostgresNotice.InternalPosition.set -> void
+YBNpgsql.PostgresNotice.InternalQuery.get -> string?
+YBNpgsql.PostgresNotice.InternalQuery.set -> void
+YBNpgsql.PostgresNotice.InvariantSeverity.get -> string!
+YBNpgsql.PostgresNotice.Line.get -> string?
+YBNpgsql.PostgresNotice.Line.set -> void
+YBNpgsql.PostgresNotice.MessageText.get -> string!
+YBNpgsql.PostgresNotice.MessageText.set -> void
+YBNpgsql.PostgresNotice.Position.get -> int
+YBNpgsql.PostgresNotice.Position.set -> void
+YBNpgsql.PostgresNotice.PostgresNotice(string! messageText, string! severity, string! invariantSeverity, string! sqlState, string? detail = null, string? hint = null, int position = 0, int internalPosition = 0, string? internalQuery = null, string? where = null, string? schemaName = null, string? tableName = null, string? columnName = null, string? dataTypeName = null, string? constraintName = null, string? file = null, string? line = null, string? routine = null) -> void
+YBNpgsql.PostgresNotice.PostgresNotice(string! severity, string! invariantSeverity, string! sqlState, string! messageText) -> void
+YBNpgsql.PostgresNotice.Routine.get -> string?
+YBNpgsql.PostgresNotice.Routine.set -> void
+YBNpgsql.PostgresNotice.SchemaName.get -> string?
+YBNpgsql.PostgresNotice.SchemaName.set -> void
+YBNpgsql.PostgresNotice.Severity.get -> string!
+YBNpgsql.PostgresNotice.Severity.set -> void
+YBNpgsql.PostgresNotice.SqlState.get -> string!
+YBNpgsql.PostgresNotice.SqlState.set -> void
+YBNpgsql.PostgresNotice.TableName.get -> string?
+YBNpgsql.PostgresNotice.TableName.set -> void
+YBNpgsql.PostgresNotice.Where.get -> string?
+YBNpgsql.PostgresNotice.Where.set -> void
+YBNpgsql.PostgresTypes.PostgresArrayType
+YBNpgsql.PostgresTypes.PostgresArrayType.Element.get -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.PostgresTypes.PostgresArrayType.PostgresArrayType(string! ns, string! internalName, uint oid, YBNpgsql.PostgresTypes.PostgresType! elementPostgresType) -> void
+YBNpgsql.PostgresTypes.PostgresBaseType
+YBNpgsql.PostgresTypes.PostgresBaseType.PostgresBaseType(string! ns, string! internalName, uint oid) -> void
+YBNpgsql.PostgresTypes.PostgresCompositeType
+YBNpgsql.PostgresTypes.PostgresCompositeType.Field
+YBNpgsql.PostgresTypes.PostgresCompositeType.Field.Name.get -> string!
+YBNpgsql.PostgresTypes.PostgresCompositeType.Field.Type.get -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.PostgresTypes.PostgresCompositeType.Fields.get -> System.Collections.Generic.IReadOnlyList<YBNpgsql.PostgresTypes.PostgresCompositeType.Field!>!
+YBNpgsql.PostgresTypes.PostgresDomainType
+YBNpgsql.PostgresTypes.PostgresDomainType.BaseType.get -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.PostgresTypes.PostgresDomainType.NotNull.get -> bool
+YBNpgsql.PostgresTypes.PostgresDomainType.PostgresDomainType(string! ns, string! name, uint oid, YBNpgsql.PostgresTypes.PostgresType! baseType, bool notNull) -> void
+YBNpgsql.PostgresTypes.PostgresEnumType
+YBNpgsql.PostgresTypes.PostgresEnumType.Labels.get -> System.Collections.Generic.IReadOnlyList<string!>!
+YBNpgsql.PostgresTypes.PostgresEnumType.PostgresEnumType(string! ns, string! name, uint oid) -> void
+YBNpgsql.PostgresTypes.PostgresMultirangeType
+YBNpgsql.PostgresTypes.PostgresMultirangeType.PostgresMultirangeType(string! ns, string! name, uint oid, YBNpgsql.PostgresTypes.PostgresRangeType! rangePostgresType) -> void
+YBNpgsql.PostgresTypes.PostgresMultirangeType.Subrange.get -> YBNpgsql.PostgresTypes.PostgresRangeType!
+YBNpgsql.PostgresTypes.PostgresRangeType
+YBNpgsql.PostgresTypes.PostgresRangeType.Multirange.get -> YBNpgsql.PostgresTypes.PostgresMultirangeType?
+YBNpgsql.PostgresTypes.PostgresRangeType.PostgresRangeType(string! ns, string! name, uint oid, YBNpgsql.PostgresTypes.PostgresType! subtypePostgresType) -> void
+YBNpgsql.PostgresTypes.PostgresRangeType.Subtype.get -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.PostgresTypes.PostgresType
+YBNpgsql.PostgresTypes.PostgresType.Array.get -> YBNpgsql.PostgresTypes.PostgresArrayType?
+YBNpgsql.PostgresTypes.PostgresType.DisplayName.get -> string!
+YBNpgsql.PostgresTypes.PostgresType.FullName.get -> string!
+YBNpgsql.PostgresTypes.PostgresType.InternalName.get -> string!
+YBNpgsql.PostgresTypes.PostgresType.Name.get -> string!
+YBNpgsql.PostgresTypes.PostgresType.Namespace.get -> string!
+YBNpgsql.PostgresTypes.PostgresType.OID.get -> uint
+YBNpgsql.PostgresTypes.PostgresType.PostgresType(string! ns, string! name, string! internalName, uint oid) -> void
+YBNpgsql.PostgresTypes.PostgresType.PostgresType(string! ns, string! name, uint oid) -> void
+YBNpgsql.PostgresTypes.PostgresType.Range.get -> YBNpgsql.PostgresTypes.PostgresRangeType?
+YBNpgsql.PostgresTypes.UnknownBackendType
+YBNpgsql.ProvideClientCertificatesCallback
+YBNpgsql.ProvidePasswordCallback
+YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions
+YBNpgsql.Replication.Internal.LogicalReplicationSlot
+YBNpgsql.Replication.Internal.LogicalReplicationSlot.ConsistentPoint.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.Internal.LogicalReplicationSlot.LogicalReplicationSlot(string! outputPlugin, YBNpgsql.Replication.ReplicationSlotOptions replicationSlotOptions) -> void
+YBNpgsql.Replication.Internal.LogicalReplicationSlot.OutputPlugin.get -> string!
+YBNpgsql.Replication.Internal.LogicalReplicationSlot.SnapshotName.get -> string?
+YBNpgsql.Replication.LogicalReplicationConnection
+YBNpgsql.Replication.LogicalReplicationConnection.LogicalReplicationConnection() -> void
+YBNpgsql.Replication.LogicalReplicationConnection.LogicalReplicationConnection(string? connectionString) -> void
+YBNpgsql.Replication.LogicalSlotSnapshotInitMode
+YBNpgsql.Replication.LogicalSlotSnapshotInitMode.Export = 0 -> YBNpgsql.Replication.LogicalSlotSnapshotInitMode
+YBNpgsql.Replication.LogicalSlotSnapshotInitMode.NoExport = 2 -> YBNpgsql.Replication.LogicalSlotSnapshotInitMode
+YBNpgsql.Replication.LogicalSlotSnapshotInitMode.Use = 1 -> YBNpgsql.Replication.LogicalSlotSnapshotInitMode
+YBNpgsql.Replication.PgOutput.Messages.BeginMessage
+YBNpgsql.Replication.PgOutput.Messages.BeginMessage.TransactionCommitTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.BeginMessage.TransactionFinalLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.BeginPrepareMessage
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.TransactionCommitTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.TransactionEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.TransactionCommitTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.DefaultUpdateMessage
+YBNpgsql.Replication.PgOutput.Messages.DeleteMessage
+YBNpgsql.Replication.PgOutput.Messages.DeleteMessage.Relation.get -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage!
+YBNpgsql.Replication.PgOutput.Messages.DeleteMessage.RelationId.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.FullDeleteMessage
+YBNpgsql.Replication.PgOutput.Messages.FullDeleteMessage.OldRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+YBNpgsql.Replication.PgOutput.Messages.FullUpdateMessage
+YBNpgsql.Replication.PgOutput.Messages.FullUpdateMessage.OldRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+YBNpgsql.Replication.PgOutput.Messages.IndexUpdateMessage
+YBNpgsql.Replication.PgOutput.Messages.IndexUpdateMessage.Key.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+YBNpgsql.Replication.PgOutput.Messages.InsertMessage
+YBNpgsql.Replication.PgOutput.Messages.InsertMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+YBNpgsql.Replication.PgOutput.Messages.InsertMessage.Relation.get -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage!
+YBNpgsql.Replication.PgOutput.Messages.InsertMessage.RelationId.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.KeyDeleteMessage
+YBNpgsql.Replication.PgOutput.Messages.KeyDeleteMessage.Key.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage
+YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.Data.get -> System.IO.Stream!
+YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.Flags.get -> byte
+YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.MessageLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.Prefix.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.OriginMessage
+YBNpgsql.Replication.PgOutput.Messages.OriginMessage.OriginCommitLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.OriginMessage.OriginName.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage
+YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage.PgOutputReplicationMessage() -> void
+YBNpgsql.Replication.PgOutput.Messages.PreparedTransactionControlMessage
+YBNpgsql.Replication.PgOutput.Messages.PreparedTransactionControlMessage.TransactionGid.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessage
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.PrepareEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.PrepareLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.TransactionPrepareTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.Column() -> void
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnFlags
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnFlags
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnFlags.PartOfKey = 1 -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnFlags
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnName.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.DataTypeId.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.ColumnFlags
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column.TypeModifier.get -> int
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Columns.get -> System.Collections.Generic.IReadOnlyList<YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column>!
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Namespace.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.RelationId.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.RelationName.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentity.get -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting.AllColumns = 102 -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting.Default = 100 -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting.IndexWithIndIsReplIdent = 105 -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting
+YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting.Nothing = 110 -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting
+YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn
+YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.ColumnName.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.DataTypeId.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.Flags.get -> byte
+YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.RelationMessageColumn() -> void
+YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.TypeModifier.get -> int
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.PreparedTransactionEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.TransactionPrepareTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.TransactionRollbackTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.StreamAbortMessage
+YBNpgsql.Replication.PgOutput.Messages.StreamAbortMessage.SubtransactionXid.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.CommitLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.Flags.get -> byte
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.TransactionCommitTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.TransactionEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage
+YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.StreamPrepareFlags
+YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.StreamPrepareFlags
+YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.StreamPrepareFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.StreamPrepareFlags
+YBNpgsql.Replication.PgOutput.Messages.StreamStartMessage
+YBNpgsql.Replication.PgOutput.Messages.StreamStartMessage.StreamSegmentIndicator.get -> byte
+YBNpgsql.Replication.PgOutput.Messages.StreamStopMessage
+YBNpgsql.Replication.PgOutput.Messages.TransactionalMessage
+YBNpgsql.Replication.PgOutput.Messages.TransactionalMessage.TransactionalMessage() -> void
+YBNpgsql.Replication.PgOutput.Messages.TransactionalMessage.TransactionXid.get -> uint?
+YBNpgsql.Replication.PgOutput.Messages.TransactionControlMessage
+YBNpgsql.Replication.PgOutput.Messages.TransactionControlMessage.TransactionControlMessage() -> void
+YBNpgsql.Replication.PgOutput.Messages.TransactionControlMessage.TransactionXid.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.Options.get -> YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.Relations.get -> System.Collections.Generic.IReadOnlyList<YBNpgsql.Replication.PgOutput.Messages.RelationMessage!>!
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions.Cascade = 1 -> YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions
+YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions.RestartIdentity = 2 -> YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions
+YBNpgsql.Replication.PgOutput.Messages.TypeMessage
+YBNpgsql.Replication.PgOutput.Messages.TypeMessage.Name.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.TypeMessage.Namespace.get -> string!
+YBNpgsql.Replication.PgOutput.Messages.TypeMessage.TypeId.get -> uint
+YBNpgsql.Replication.PgOutput.Messages.UpdateMessage
+YBNpgsql.Replication.PgOutput.Messages.UpdateMessage.Relation.get -> YBNpgsql.Replication.PgOutput.Messages.RelationMessage!
+YBNpgsql.Replication.PgOutput.Messages.UpdateMessage.RelationId.get -> uint
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.Binary.get -> bool?
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.Equals(YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions? other) -> bool
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.Messages.get -> bool?
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.PgOutputReplicationOptions(string! publicationName, ulong protocolVersion, bool? binary = null, bool? streaming = null, bool? messages = null, bool? twoPhase = null) -> void
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.PgOutputReplicationOptions(System.Collections.Generic.IEnumerable<string!>! publicationNames, ulong protocolVersion, bool? binary = null, bool? streaming = null, bool? messages = null, bool? twoPhase = null) -> void
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.ProtocolVersion.get -> ulong
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.PublicationNames.get -> System.Collections.Generic.List<string!>!
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.Streaming.get -> bool?
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.TwoPhase.get -> bool?
+YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot
+YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot.PgOutputReplicationSlot(YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot! slot) -> void
+YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot.PgOutputReplicationSlot(YBNpgsql.Replication.ReplicationSlotOptions options) -> void
+YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot.PgOutputReplicationSlot(string! slotName) -> void
+YBNpgsql.Replication.PgOutput.ReplicationTuple
+YBNpgsql.Replication.PgOutput.ReplicationTuple.NumColumns.get -> ushort
+YBNpgsql.Replication.PgOutput.ReplicationValue
+YBNpgsql.Replication.PgOutput.ReplicationValue.Get(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<object!>
+YBNpgsql.Replication.PgOutput.ReplicationValue.Get<T>(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<T>
+YBNpgsql.Replication.PgOutput.ReplicationValue.GetDataTypeName() -> string!
+YBNpgsql.Replication.PgOutput.ReplicationValue.GetFieldType() -> System.Type!
+YBNpgsql.Replication.PgOutput.ReplicationValue.GetPostgresType() -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.Replication.PgOutput.ReplicationValue.GetStream() -> System.IO.Stream!
+YBNpgsql.Replication.PgOutput.ReplicationValue.GetTextReader() -> System.IO.TextReader!
+YBNpgsql.Replication.PgOutput.ReplicationValue.IsDBNull.get -> bool
+YBNpgsql.Replication.PgOutput.ReplicationValue.IsUnchangedToastedValue.get -> bool
+YBNpgsql.Replication.PgOutput.ReplicationValue.Kind.get -> YBNpgsql.Replication.PgOutput.TupleDataKind
+YBNpgsql.Replication.PgOutput.ReplicationValue.Length.get -> int
+YBNpgsql.Replication.PgOutput.TupleDataKind
+YBNpgsql.Replication.PgOutput.TupleDataKind.BinaryValue = 98 -> YBNpgsql.Replication.PgOutput.TupleDataKind
+YBNpgsql.Replication.PgOutput.TupleDataKind.Null = 110 -> YBNpgsql.Replication.PgOutput.TupleDataKind
+YBNpgsql.Replication.PgOutput.TupleDataKind.TextValue = 116 -> YBNpgsql.Replication.PgOutput.TupleDataKind
+YBNpgsql.Replication.PgOutput.TupleDataKind.UnchangedToastedValue = 117 -> YBNpgsql.Replication.PgOutput.TupleDataKind
+YBNpgsql.Replication.PgOutputConnectionExtensions
+YBNpgsql.Replication.PhysicalReplicationConnection
+YBNpgsql.Replication.PhysicalReplicationConnection.CreateReplicationSlot(string! slotName, bool isTemporary = false, bool reserveWal = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.PhysicalReplicationSlot!>!
+YBNpgsql.Replication.PhysicalReplicationConnection.PhysicalReplicationConnection() -> void
+YBNpgsql.Replication.PhysicalReplicationConnection.PhysicalReplicationConnection(string? connectionString) -> void
+YBNpgsql.Replication.PhysicalReplicationConnection.ReadReplicationSlot(string! slotName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.PhysicalReplicationSlot?>!
+YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(YBNpgsql.Replication.PhysicalReplicationSlot! slot, System.Threading.CancellationToken cancellationToken) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(YBNpgsql.Replication.PhysicalReplicationSlot? slot, NpgsqlTypes.NpgsqlLogSequenceNumber walLocation, System.Threading.CancellationToken cancellationToken, ulong timeline = 0) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(NpgsqlTypes.NpgsqlLogSequenceNumber walLocation, System.Threading.CancellationToken cancellationToken, ulong timeline = 0) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+YBNpgsql.Replication.PhysicalReplicationSlot
+YBNpgsql.Replication.PhysicalReplicationSlot.PhysicalReplicationSlot(string! slotName, NpgsqlTypes.NpgsqlLogSequenceNumber? restartLsn = null, ulong? restartTimeline = null) -> void
+YBNpgsql.Replication.PhysicalReplicationSlot.RestartLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber?
+YBNpgsql.Replication.PhysicalReplicationSlot.RestartTimeline.get -> ulong?
+YBNpgsql.Replication.ReplicationConnection
+YBNpgsql.Replication.ReplicationConnection.CommandTimeout.get -> System.TimeSpan
+YBNpgsql.Replication.ReplicationConnection.CommandTimeout.set -> void
+YBNpgsql.Replication.ReplicationConnection.ConnectionString.get -> string!
+YBNpgsql.Replication.ReplicationConnection.ConnectionString.set -> void
+YBNpgsql.Replication.ReplicationConnection.DisposeAsync() -> System.Threading.Tasks.ValueTask
+YBNpgsql.Replication.ReplicationConnection.DropReplicationSlot(string! slotName, bool wait = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.Replication.ReplicationConnection.Encoding.get -> System.Text.Encoding!
+YBNpgsql.Replication.ReplicationConnection.IdentifySystem(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.ReplicationSystemIdentification!>!
+YBNpgsql.Replication.ReplicationConnection.LastAppliedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationConnection.LastAppliedLsn.set -> void
+YBNpgsql.Replication.ReplicationConnection.LastFlushedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationConnection.LastFlushedLsn.set -> void
+YBNpgsql.Replication.ReplicationConnection.LastReceivedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationConnection.Open(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.Replication.ReplicationConnection.PostgreSqlVersion.get -> System.Version!
+YBNpgsql.Replication.ReplicationConnection.ProcessID.get -> int
+YBNpgsql.Replication.ReplicationConnection.SendStatusUpdate(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.Replication.ReplicationConnection.ServerVersion.get -> string!
+YBNpgsql.Replication.ReplicationConnection.SetReplicationStatus(NpgsqlTypes.NpgsqlLogSequenceNumber lastAppliedAndFlushedLsn) -> void
+YBNpgsql.Replication.ReplicationConnection.Show(string! parameterName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<string!>!
+YBNpgsql.Replication.ReplicationConnection.TimelineHistory(uint tli, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.TimelineHistoryFile>!
+YBNpgsql.Replication.ReplicationConnection.WalReceiverStatusInterval.get -> System.TimeSpan
+YBNpgsql.Replication.ReplicationConnection.WalReceiverStatusInterval.set -> void
+YBNpgsql.Replication.ReplicationConnection.WalReceiverTimeout.get -> System.TimeSpan
+YBNpgsql.Replication.ReplicationConnection.WalReceiverTimeout.set -> void
+YBNpgsql.Replication.ReplicationMessage
+YBNpgsql.Replication.ReplicationMessage.ReplicationMessage() -> void
+YBNpgsql.Replication.ReplicationMessage.ServerClock.get -> System.DateTime
+YBNpgsql.Replication.ReplicationMessage.WalEnd.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationMessage.WalStart.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationSlot
+YBNpgsql.Replication.ReplicationSlot.Name.get -> string!
+YBNpgsql.Replication.ReplicationSlotOptions
+YBNpgsql.Replication.ReplicationSlotOptions.ConsistentPoint.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions() -> void
+YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions(string! slotName, NpgsqlTypes.NpgsqlLogSequenceNumber consistentPoint) -> void
+YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions(string! slotName, string? consistentPoint = null) -> void
+YBNpgsql.Replication.ReplicationSlotOptions.SlotName.get -> string!
+YBNpgsql.Replication.ReplicationSystemIdentification
+YBNpgsql.Replication.ReplicationSystemIdentification.DbName.get -> string?
+YBNpgsql.Replication.ReplicationSystemIdentification.SystemId.get -> string!
+YBNpgsql.Replication.ReplicationSystemIdentification.Timeline.get -> uint
+YBNpgsql.Replication.ReplicationSystemIdentification.XLogPos.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.TestDecoding.TestDecodingData
+YBNpgsql.Replication.TestDecoding.TestDecodingData.Clone() -> YBNpgsql.Replication.TestDecoding.TestDecodingData!
+YBNpgsql.Replication.TestDecoding.TestDecodingData.Data.get -> string!
+YBNpgsql.Replication.TestDecoding.TestDecodingData.TestDecodingData() -> void
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.Equals(YBNpgsql.Replication.TestDecoding.TestDecodingOptions? other) -> bool
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.ForceBinary.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.IncludeRewrites.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.IncludeTimestamp.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.IncludeXids.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.OnlyLocal.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.SkipEmptyXacts.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.StreamChanges.get -> bool?
+YBNpgsql.Replication.TestDecoding.TestDecodingOptions.TestDecodingOptions(bool? includeXids = null, bool? includeTimestamp = null, bool? forceBinary = null, bool? skipEmptyXacts = null, bool? onlyLocal = null, bool? includeRewrites = null, bool? streamChanges = null) -> void
+YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot
+YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot.TestDecodingReplicationSlot(YBNpgsql.Replication.ReplicationSlotOptions options) -> void
+YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot.TestDecodingReplicationSlot(string! slotName) -> void
+YBNpgsql.Replication.TestDecodingConnectionExtensions
+YBNpgsql.Replication.TimelineHistoryFile
+YBNpgsql.Replication.TimelineHistoryFile.Content.get -> byte[]!
+YBNpgsql.Replication.TimelineHistoryFile.FileName.get -> string!
+YBNpgsql.Replication.TimelineHistoryFile.TimelineHistoryFile() -> void
+YBNpgsql.Replication.XLogDataMessage
+YBNpgsql.Replication.XLogDataMessage.Data.get -> System.IO.Stream!
+YBNpgsql.Replication.XLogDataMessage.XLogDataMessage() -> void
+YBNpgsql.Schema.NpgsqlDbColumn
+YBNpgsql.Schema.NpgsqlDbColumn.AllowDBNull.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.AllowDBNull.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.BaseCatalogName.get -> string!
+YBNpgsql.Schema.NpgsqlDbColumn.BaseCatalogName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.BaseColumnName.get -> string?
+YBNpgsql.Schema.NpgsqlDbColumn.BaseColumnName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.BaseSchemaName.get -> string?
+YBNpgsql.Schema.NpgsqlDbColumn.BaseSchemaName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.BaseServerName.get -> string!
+YBNpgsql.Schema.NpgsqlDbColumn.BaseServerName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.BaseTableName.get -> string?
+YBNpgsql.Schema.NpgsqlDbColumn.BaseTableName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnAttributeNumber.get -> short?
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnName.get -> string!
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnOrdinal.get -> int?
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnOrdinal.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnSize.get -> int?
+YBNpgsql.Schema.NpgsqlDbColumn.ColumnSize.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.DataType.get -> System.Type?
+YBNpgsql.Schema.NpgsqlDbColumn.DataType.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.DataTypeName.get -> string!
+YBNpgsql.Schema.NpgsqlDbColumn.DataTypeName.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.DefaultValue.get -> string?
+YBNpgsql.Schema.NpgsqlDbColumn.IsAliased.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsAliased.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.IsAutoIncrement.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsAutoIncrement.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.IsIdentity.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsIdentity.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.IsKey.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsKey.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.IsLong.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsLong.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.IsReadOnly.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsReadOnly.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.IsUnique.get -> bool?
+YBNpgsql.Schema.NpgsqlDbColumn.IsUnique.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.NpgsqlDbColumn() -> void
+YBNpgsql.Schema.NpgsqlDbColumn.NpgsqlDbType.get -> NpgsqlTypes.NpgsqlDbType?
+YBNpgsql.Schema.NpgsqlDbColumn.NumericPrecision.get -> int?
+YBNpgsql.Schema.NpgsqlDbColumn.NumericPrecision.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.NumericScale.get -> int?
+YBNpgsql.Schema.NpgsqlDbColumn.NumericScale.set -> void
+YBNpgsql.Schema.NpgsqlDbColumn.PostgresType.get -> YBNpgsql.PostgresTypes.PostgresType!
+YBNpgsql.Schema.NpgsqlDbColumn.TableOID.get -> uint
+YBNpgsql.Schema.NpgsqlDbColumn.TypeOID.get -> uint
+YBNpgsql.Schema.NpgsqlDbColumn.UdtAssemblyQualifiedName.get -> string?
+YBNpgsql.Schema.NpgsqlDbColumn.UdtAssemblyQualifiedName.set -> void
+YBNpgsql.ServerCompatibilityMode
+YBNpgsql.ServerCompatibilityMode.None = 0 -> YBNpgsql.ServerCompatibilityMode
+YBNpgsql.ServerCompatibilityMode.NoTypeLoading = 2 -> YBNpgsql.ServerCompatibilityMode
+YBNpgsql.ServerCompatibilityMode.Redshift = 1 -> YBNpgsql.ServerCompatibilityMode
+YBNpgsql.SslMode
+YBNpgsql.SslMode.Allow = 1 -> YBNpgsql.SslMode
+YBNpgsql.SslMode.Disable = 0 -> YBNpgsql.SslMode
+YBNpgsql.SslMode.Prefer = 2 -> YBNpgsql.SslMode
+YBNpgsql.SslMode.Require = 3 -> YBNpgsql.SslMode
+YBNpgsql.SslMode.VerifyCA = 4 -> YBNpgsql.SslMode
+YBNpgsql.SslMode.VerifyFull = 5 -> YBNpgsql.SslMode
+YBNpgsql.StatementType
+YBNpgsql.StatementType.Call = 11 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Copy = 8 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.CreateTableAs = 5 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Delete = 3 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Fetch = 7 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Insert = 2 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Merge = 10 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Move = 6 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Other = 9 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Select = 1 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Unknown = 0 -> YBNpgsql.StatementType
+YBNpgsql.StatementType.Update = 4 -> YBNpgsql.StatementType
+YBNpgsql.TypeMapping.INpgsqlTypeMapper
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.AddTypeResolverFactory(YBNpgsql.Internal.TypeHandling.TypeHandlerResolverFactory! resolverFactory) -> void
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.DefaultNameTranslator.get -> YBNpgsql.INpgsqlNameTranslator!
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.DefaultNameTranslator.set -> void
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.MapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.Reset() -> void
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.UnmapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.UnmapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
+YBNpgsql.TypeMapping.INpgsqlTypeMapper.UnmapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
+YBNpgsql.Util.NpgsqlTimeout
+YBNpgsql.Util.NpgsqlTimeout.NpgsqlTimeout() -> void
+NpgsqlTypes.NpgsqlBox
+NpgsqlTypes.NpgsqlBox.Bottom.get -> double
+NpgsqlTypes.NpgsqlBox.Equals(NpgsqlTypes.NpgsqlBox other) -> bool
+NpgsqlTypes.NpgsqlBox.Height.get -> double
+NpgsqlTypes.NpgsqlBox.IsEmpty.get -> bool
+NpgsqlTypes.NpgsqlBox.Left.get -> double
+NpgsqlTypes.NpgsqlBox.LowerLeft.get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlBox.LowerLeft.set -> void
+NpgsqlTypes.NpgsqlBox.NpgsqlBox() -> void
+NpgsqlTypes.NpgsqlBox.NpgsqlBox(double top, double right, double bottom, double left) -> void
+NpgsqlTypes.NpgsqlBox.NpgsqlBox(NpgsqlTypes.NpgsqlPoint upperRight, NpgsqlTypes.NpgsqlPoint lowerLeft) -> void
+NpgsqlTypes.NpgsqlBox.Right.get -> double
+NpgsqlTypes.NpgsqlBox.Top.get -> double
+NpgsqlTypes.NpgsqlBox.UpperRight.get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlBox.UpperRight.set -> void
+NpgsqlTypes.NpgsqlBox.Width.get -> double
+NpgsqlTypes.NpgsqlCircle
+NpgsqlTypes.NpgsqlCircle.Center.get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlCircle.Center.set -> void
+NpgsqlTypes.NpgsqlCircle.Equals(NpgsqlTypes.NpgsqlCircle other) -> bool
+NpgsqlTypes.NpgsqlCircle.NpgsqlCircle() -> void
+NpgsqlTypes.NpgsqlCircle.NpgsqlCircle(double x, double y, double radius) -> void
+NpgsqlTypes.NpgsqlCircle.NpgsqlCircle(NpgsqlTypes.NpgsqlPoint center, double radius) -> void
+NpgsqlTypes.NpgsqlCircle.Radius.get -> double
+NpgsqlTypes.NpgsqlCircle.Radius.set -> void
+NpgsqlTypes.NpgsqlCircle.X.get -> double
+NpgsqlTypes.NpgsqlCircle.X.set -> void
+NpgsqlTypes.NpgsqlCircle.Y.get -> double
+NpgsqlTypes.NpgsqlCircle.Y.set -> void
+NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Abstime = 33 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Array = -2147483648 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Bigint = 1 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.BigIntMultirange = 536870913 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.BigIntRange = 1073741825 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Bit = 25 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Boolean = 2 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Box = 3 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Bytea = 4 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Char = 6 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Cid = 43 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Cidr = 44 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Circle = 5 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Citext = 51 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Date = 7 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.DateMultirange = 536870919 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.DateRange = 1073741831 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Double = 8 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Geography = 55 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Geometry = 50 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Hstore = 37 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Inet = 24 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Int2Vector = 52 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Integer = 9 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.IntegerMultirange = 536870921 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.IntegerRange = 1073741833 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.InternalChar = 38 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Interval = 30 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Json = 35 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Jsonb = 36 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.JsonPath = 57 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Line = 10 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.LQuery = 61 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.LSeg = 11 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.LTree = 60 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.LTxtQuery = 62 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.MacAddr = 34 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.MacAddr8 = 54 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Money = 12 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Multirange = 536870912 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Name = 32 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Numeric = 13 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.NumericMultirange = 536870925 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.NumericRange = 1073741837 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Oid = 41 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Oidvector = 29 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Path = 14 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.PgLsn = 59 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Point = 15 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Polygon = 16 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Range = 1073741824 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Real = 17 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Refcursor = 23 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Regconfig = 56 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Regtype = 49 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Smallint = 18 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Text = 19 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Tid = 53 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Time = 20 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Timestamp = 21 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimestampMultirange = 536870933 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimestampRange = 1073741845 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimestampTZ = 26 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimestampTz = 26 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimestampTzMultirange = 536870938 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimestampTzRange = 1073741850 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimeTZ = 31 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TimeTz = 31 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TsQuery = 46 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.TsVector = 45 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Unknown = 40 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Uuid = 27 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Varbit = 39 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Varchar = 22 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Xid = 42 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Xid8 = 64 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlDbType.Xml = 28 -> NpgsqlTypes.NpgsqlDbType
+NpgsqlTypes.NpgsqlInet
+NpgsqlTypes.NpgsqlInet.Address.get -> System.Net.IPAddress!
+NpgsqlTypes.NpgsqlInet.Address.set -> void
+NpgsqlTypes.NpgsqlInet.Deconstruct(out System.Net.IPAddress! address, out int netmask) -> void
+NpgsqlTypes.NpgsqlInet.Equals(NpgsqlTypes.NpgsqlInet other) -> bool
+NpgsqlTypes.NpgsqlInet.Netmask.get -> int
+NpgsqlTypes.NpgsqlInet.Netmask.set -> void
+NpgsqlTypes.NpgsqlInet.NpgsqlInet() -> void
+NpgsqlTypes.NpgsqlInet.NpgsqlInet(string! addr) -> void
+NpgsqlTypes.NpgsqlInet.NpgsqlInet(System.Net.IPAddress! address) -> void
+NpgsqlTypes.NpgsqlInet.NpgsqlInet(System.Net.IPAddress! address, int netmask) -> void
+NpgsqlTypes.NpgsqlInterval
+NpgsqlTypes.NpgsqlInterval.Days.get -> int
+NpgsqlTypes.NpgsqlInterval.Equals(NpgsqlTypes.NpgsqlInterval other) -> bool
+NpgsqlTypes.NpgsqlInterval.Months.get -> int
+NpgsqlTypes.NpgsqlInterval.NpgsqlInterval() -> void
+NpgsqlTypes.NpgsqlInterval.NpgsqlInterval(int months, int days, long time) -> void
+NpgsqlTypes.NpgsqlInterval.Time.get -> long
+NpgsqlTypes.NpgsqlLine
+NpgsqlTypes.NpgsqlLine.A.get -> double
+NpgsqlTypes.NpgsqlLine.A.set -> void
+NpgsqlTypes.NpgsqlLine.B.get -> double
+NpgsqlTypes.NpgsqlLine.B.set -> void
+NpgsqlTypes.NpgsqlLine.C.get -> double
+NpgsqlTypes.NpgsqlLine.C.set -> void
+NpgsqlTypes.NpgsqlLine.Equals(NpgsqlTypes.NpgsqlLine other) -> bool
+NpgsqlTypes.NpgsqlLine.NpgsqlLine() -> void
+NpgsqlTypes.NpgsqlLine.NpgsqlLine(double a, double b, double c) -> void
+NpgsqlTypes.NpgsqlLogSequenceNumber
+NpgsqlTypes.NpgsqlLogSequenceNumber.CompareTo(NpgsqlTypes.NpgsqlLogSequenceNumber value) -> int
+NpgsqlTypes.NpgsqlLogSequenceNumber.Equals(NpgsqlTypes.NpgsqlLogSequenceNumber other) -> bool
+NpgsqlTypes.NpgsqlLogSequenceNumber.NpgsqlLogSequenceNumber() -> void
+NpgsqlTypes.NpgsqlLogSequenceNumber.NpgsqlLogSequenceNumber(ulong value) -> void
+NpgsqlTypes.NpgsqlLSeg
+NpgsqlTypes.NpgsqlLSeg.End.get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlLSeg.End.set -> void
+NpgsqlTypes.NpgsqlLSeg.Equals(NpgsqlTypes.NpgsqlLSeg other) -> bool
+NpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg() -> void
+NpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg(double startx, double starty, double endx, double endy) -> void
+NpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg(NpgsqlTypes.NpgsqlPoint start, NpgsqlTypes.NpgsqlPoint end) -> void
+NpgsqlTypes.NpgsqlLSeg.Start.get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlLSeg.Start.set -> void
+NpgsqlTypes.NpgsqlPath
+NpgsqlTypes.NpgsqlPath.Add(NpgsqlTypes.NpgsqlPoint item) -> void
+NpgsqlTypes.NpgsqlPath.Capacity.get -> int
+NpgsqlTypes.NpgsqlPath.Clear() -> void
+NpgsqlTypes.NpgsqlPath.Contains(NpgsqlTypes.NpgsqlPoint item) -> bool
+NpgsqlTypes.NpgsqlPath.CopyTo(NpgsqlTypes.NpgsqlPoint[]! array, int arrayIndex) -> void
+NpgsqlTypes.NpgsqlPath.Count.get -> int
+NpgsqlTypes.NpgsqlPath.Equals(NpgsqlTypes.NpgsqlPath other) -> bool
+NpgsqlTypes.NpgsqlPath.GetEnumerator() -> System.Collections.Generic.IEnumerator<NpgsqlTypes.NpgsqlPoint>!
+NpgsqlTypes.NpgsqlPath.IndexOf(NpgsqlTypes.NpgsqlPoint item) -> int
+NpgsqlTypes.NpgsqlPath.Insert(int index, NpgsqlTypes.NpgsqlPoint item) -> void
+NpgsqlTypes.NpgsqlPath.IsReadOnly.get -> bool
+NpgsqlTypes.NpgsqlPath.NpgsqlPath() -> void
+NpgsqlTypes.NpgsqlPath.NpgsqlPath(bool open) -> void
+NpgsqlTypes.NpgsqlPath.NpgsqlPath(int capacity) -> void
+NpgsqlTypes.NpgsqlPath.NpgsqlPath(int capacity, bool open) -> void
+NpgsqlTypes.NpgsqlPath.NpgsqlPath(params NpgsqlTypes.NpgsqlPoint[]! points) -> void
+NpgsqlTypes.NpgsqlPath.NpgsqlPath(System.Collections.Generic.IEnumerable<NpgsqlTypes.NpgsqlPoint>! points) -> void
+NpgsqlTypes.NpgsqlPath.NpgsqlPath(System.Collections.Generic.IEnumerable<NpgsqlTypes.NpgsqlPoint>! points, bool open) -> void
+NpgsqlTypes.NpgsqlPath.Open.get -> bool
+NpgsqlTypes.NpgsqlPath.Open.set -> void
+NpgsqlTypes.NpgsqlPath.Remove(NpgsqlTypes.NpgsqlPoint item) -> bool
+NpgsqlTypes.NpgsqlPath.RemoveAt(int index) -> void
+NpgsqlTypes.NpgsqlPath.this[int index].get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlPath.this[int index].set -> void
+NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlPoint.Equals(NpgsqlTypes.NpgsqlPoint other) -> bool
+NpgsqlTypes.NpgsqlPoint.NpgsqlPoint() -> void
+NpgsqlTypes.NpgsqlPoint.NpgsqlPoint(double x, double y) -> void
+NpgsqlTypes.NpgsqlPoint.X.get -> double
+NpgsqlTypes.NpgsqlPoint.X.set -> void
+NpgsqlTypes.NpgsqlPoint.Y.get -> double
+NpgsqlTypes.NpgsqlPoint.Y.set -> void
+NpgsqlTypes.NpgsqlPolygon
+NpgsqlTypes.NpgsqlPolygon.Add(NpgsqlTypes.NpgsqlPoint item) -> void
+NpgsqlTypes.NpgsqlPolygon.Capacity.get -> int
+NpgsqlTypes.NpgsqlPolygon.Clear() -> void
+NpgsqlTypes.NpgsqlPolygon.Contains(NpgsqlTypes.NpgsqlPoint item) -> bool
+NpgsqlTypes.NpgsqlPolygon.CopyTo(NpgsqlTypes.NpgsqlPoint[]! array, int arrayIndex) -> void
+NpgsqlTypes.NpgsqlPolygon.Count.get -> int
+NpgsqlTypes.NpgsqlPolygon.Equals(NpgsqlTypes.NpgsqlPolygon other) -> bool
+NpgsqlTypes.NpgsqlPolygon.GetEnumerator() -> System.Collections.Generic.IEnumerator<NpgsqlTypes.NpgsqlPoint>!
+NpgsqlTypes.NpgsqlPolygon.IndexOf(NpgsqlTypes.NpgsqlPoint item) -> int
+NpgsqlTypes.NpgsqlPolygon.Insert(int index, NpgsqlTypes.NpgsqlPoint item) -> void
+NpgsqlTypes.NpgsqlPolygon.IsReadOnly.get -> bool
+NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon() -> void
+NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(int capacity) -> void
+NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(params NpgsqlTypes.NpgsqlPoint[]! points) -> void
+NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(System.Collections.Generic.IEnumerable<NpgsqlTypes.NpgsqlPoint>! points) -> void
+NpgsqlTypes.NpgsqlPolygon.Remove(NpgsqlTypes.NpgsqlPoint item) -> bool
+NpgsqlTypes.NpgsqlPolygon.RemoveAt(int index) -> void
+NpgsqlTypes.NpgsqlPolygon.this[int index].get -> NpgsqlTypes.NpgsqlPoint
+NpgsqlTypes.NpgsqlPolygon.this[int index].set -> void
+NpgsqlTypes.NpgsqlRange<T>
+NpgsqlTypes.NpgsqlRange<T>.Equals(NpgsqlTypes.NpgsqlRange<T> other) -> bool
+NpgsqlTypes.NpgsqlRange<T>.IsEmpty.get -> bool
+NpgsqlTypes.NpgsqlRange<T>.LowerBound.get -> T
+NpgsqlTypes.NpgsqlRange<T>.LowerBoundInfinite.get -> bool
+NpgsqlTypes.NpgsqlRange<T>.LowerBoundIsInclusive.get -> bool
+NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange() -> void
+NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, bool lowerBoundIsInclusive, bool lowerBoundInfinite, T upperBound, bool upperBoundIsInclusive, bool upperBoundInfinite) -> void
+NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, bool lowerBoundIsInclusive, T upperBound, bool upperBoundIsInclusive) -> void
+NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, T upperBound) -> void
+NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter
+NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.RangeTypeConverter() -> void
+NpgsqlTypes.NpgsqlRange<T>.UpperBound.get -> T
+NpgsqlTypes.NpgsqlRange<T>.UpperBoundInfinite.get -> bool
+NpgsqlTypes.NpgsqlRange<T>.UpperBoundIsInclusive.get -> bool
+NpgsqlTypes.NpgsqlTid
+NpgsqlTypes.NpgsqlTid.BlockNumber.get -> uint
+NpgsqlTypes.NpgsqlTid.Equals(NpgsqlTypes.NpgsqlTid other) -> bool
+NpgsqlTypes.NpgsqlTid.NpgsqlTid() -> void
+NpgsqlTypes.NpgsqlTid.NpgsqlTid(uint blockNumber, ushort offsetNumber) -> void
+NpgsqlTypes.NpgsqlTid.OffsetNumber.get -> ushort
+NpgsqlTypes.NpgsqlTsQuery
+NpgsqlTypes.NpgsqlTsQuery.Kind.get -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind.And = 2 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind.Empty = -1 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind.Lexeme = 0 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind.Not = 1 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind.Or = 3 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NodeKind.Phrase = 4 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
+NpgsqlTypes.NpgsqlTsQuery.NpgsqlTsQuery(NpgsqlTypes.NpgsqlTsQuery.NodeKind kind) -> void
+NpgsqlTypes.NpgsqlTsQuery.Write(System.Text.StringBuilder! stringBuilder) -> void
+NpgsqlTypes.NpgsqlTsQueryAnd
+NpgsqlTypes.NpgsqlTsQueryAnd.NpgsqlTsQueryAnd(NpgsqlTypes.NpgsqlTsQuery! left, NpgsqlTypes.NpgsqlTsQuery! right) -> void
+NpgsqlTypes.NpgsqlTsQueryBinOp
+NpgsqlTypes.NpgsqlTsQueryBinOp.Left.get -> NpgsqlTypes.NpgsqlTsQuery!
+NpgsqlTypes.NpgsqlTsQueryBinOp.Left.set -> void
+NpgsqlTypes.NpgsqlTsQueryBinOp.NpgsqlTsQueryBinOp(NpgsqlTypes.NpgsqlTsQuery.NodeKind kind, NpgsqlTypes.NpgsqlTsQuery! left, NpgsqlTypes.NpgsqlTsQuery! right) -> void
+NpgsqlTypes.NpgsqlTsQueryBinOp.Right.get -> NpgsqlTypes.NpgsqlTsQuery!
+NpgsqlTypes.NpgsqlTsQueryBinOp.Right.set -> void
+NpgsqlTypes.NpgsqlTsQueryEmpty
+NpgsqlTypes.NpgsqlTsQueryEmpty.NpgsqlTsQueryEmpty() -> void
+NpgsqlTypes.NpgsqlTsQueryFollowedBy
+NpgsqlTypes.NpgsqlTsQueryFollowedBy.Distance.get -> int
+NpgsqlTypes.NpgsqlTsQueryFollowedBy.Distance.set -> void
+NpgsqlTypes.NpgsqlTsQueryFollowedBy.NpgsqlTsQueryFollowedBy(NpgsqlTypes.NpgsqlTsQuery! left, int distance, NpgsqlTypes.NpgsqlTsQuery! right) -> void
+NpgsqlTypes.NpgsqlTsQueryLexeme
+NpgsqlTypes.NpgsqlTsQueryLexeme.IsPrefixSearch.get -> bool
+NpgsqlTypes.NpgsqlTsQueryLexeme.IsPrefixSearch.set -> void
+NpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text) -> void
+NpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text, NpgsqlTypes.NpgsqlTsQueryLexeme.Weight weights) -> void
+NpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text, NpgsqlTypes.NpgsqlTsQueryLexeme.Weight weights, bool isPrefixSearch) -> void
+NpgsqlTypes.NpgsqlTsQueryLexeme.Text.get -> string!
+NpgsqlTypes.NpgsqlTsQueryLexeme.Text.set -> void
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.A = 8 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.B = 4 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.C = 2 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.D = 1 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.None = 0 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weights.get -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+NpgsqlTypes.NpgsqlTsQueryLexeme.Weights.set -> void
+NpgsqlTypes.NpgsqlTsQueryNot
+NpgsqlTypes.NpgsqlTsQueryNot.Child.get -> NpgsqlTypes.NpgsqlTsQuery!
+NpgsqlTypes.NpgsqlTsQueryNot.Child.set -> void
+NpgsqlTypes.NpgsqlTsQueryNot.NpgsqlTsQueryNot(NpgsqlTypes.NpgsqlTsQuery! child) -> void
+NpgsqlTypes.NpgsqlTsQueryOr
+NpgsqlTypes.NpgsqlTsQueryOr.NpgsqlTsQueryOr(NpgsqlTypes.NpgsqlTsQuery! left, NpgsqlTypes.NpgsqlTsQuery! right) -> void
+NpgsqlTypes.NpgsqlTsVector
+NpgsqlTypes.NpgsqlTsVector.Count.get -> int
+NpgsqlTypes.NpgsqlTsVector.Equals(NpgsqlTypes.NpgsqlTsVector? other) -> bool
+NpgsqlTypes.NpgsqlTsVector.GetEnumerator() -> System.Collections.Generic.IEnumerator<NpgsqlTypes.NpgsqlTsVector.Lexeme>!
+NpgsqlTypes.NpgsqlTsVector.Lexeme
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Count.get -> int
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Equals(NpgsqlTypes.NpgsqlTsVector.Lexeme o) -> bool
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme() -> void
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme(string! text) -> void
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme(string! text, System.Collections.Generic.List<NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos>? wordEntryPositions) -> void
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Text.get -> string!
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Text.set -> void
+NpgsqlTypes.NpgsqlTsVector.Lexeme.this[int index].get -> NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.A = 3 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.B = 2 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.C = 1 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.D = 0 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos
+NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Equals(NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos o) -> bool
+NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Pos.get -> int
+NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Weight.get -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.WordEntryPos() -> void
+NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.WordEntryPos(int pos, NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight weight = NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.D) -> void
+NpgsqlTypes.NpgsqlTsVector.this[int index].get -> NpgsqlTypes.NpgsqlTsVector.Lexeme
+NpgsqlTypes.PgNameAttribute
+NpgsqlTypes.PgNameAttribute.PgName.get -> string!
+NpgsqlTypes.PgNameAttribute.PgNameAttribute(string! pgName) -> void
+override YBNpgsql.BackendMessages.FieldDescription.ToString() -> string!
+override YBNpgsql.NpgsqlBatch.Cancel() -> void
+override YBNpgsql.NpgsqlBatch.CreateDbBatchCommand() -> System.Data.Common.DbBatchCommand!
+override YBNpgsql.NpgsqlBatch.DbBatchCommands.get -> System.Data.Common.DbBatchCommandCollection!
+override YBNpgsql.NpgsqlBatch.DbConnection.get -> System.Data.Common.DbConnection?
+override YBNpgsql.NpgsqlBatch.DbConnection.set -> void
+override YBNpgsql.NpgsqlBatch.DbTransaction.get -> System.Data.Common.DbTransaction?
+override YBNpgsql.NpgsqlBatch.DbTransaction.set -> void
+override YBNpgsql.NpgsqlBatch.ExecuteDbDataReader(System.Data.CommandBehavior behavior) -> System.Data.Common.DbDataReader!
+override YBNpgsql.NpgsqlBatch.ExecuteDbDataReaderAsync(System.Data.CommandBehavior behavior, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<System.Data.Common.DbDataReader!>!
+override YBNpgsql.NpgsqlBatch.ExecuteNonQuery() -> int
+override YBNpgsql.NpgsqlBatch.ExecuteNonQueryAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<int>!
+override YBNpgsql.NpgsqlBatch.ExecuteScalar() -> object?
+override YBNpgsql.NpgsqlBatch.ExecuteScalarAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<object?>!
+override YBNpgsql.NpgsqlBatch.Prepare() -> void
+override YBNpgsql.NpgsqlBatch.PrepareAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlBatch.Timeout.get -> int
+override YBNpgsql.NpgsqlBatch.Timeout.set -> void
+override YBNpgsql.NpgsqlBatchCommand.CommandText.get -> string!
+override YBNpgsql.NpgsqlBatchCommand.CommandText.set -> void
+override YBNpgsql.NpgsqlBatchCommand.CommandType.get -> System.Data.CommandType
+override YBNpgsql.NpgsqlBatchCommand.CommandType.set -> void
+override YBNpgsql.NpgsqlBatchCommand.RecordsAffected.get -> int
+override YBNpgsql.NpgsqlBatchCommand.ToString() -> string!
+override YBNpgsql.NpgsqlBatchCommandCollection.Add(System.Data.Common.DbBatchCommand! item) -> void
+override YBNpgsql.NpgsqlBatchCommandCollection.Clear() -> void
+override YBNpgsql.NpgsqlBatchCommandCollection.Contains(System.Data.Common.DbBatchCommand! item) -> bool
+override YBNpgsql.NpgsqlBatchCommandCollection.CopyTo(System.Data.Common.DbBatchCommand![]! array, int arrayIndex) -> void
+override YBNpgsql.NpgsqlBatchCommandCollection.Count.get -> int
+override YBNpgsql.NpgsqlBatchCommandCollection.GetEnumerator() -> System.Collections.Generic.IEnumerator<System.Data.Common.DbBatchCommand!>!
+override YBNpgsql.NpgsqlBatchCommandCollection.IndexOf(System.Data.Common.DbBatchCommand! item) -> int
+override YBNpgsql.NpgsqlBatchCommandCollection.Insert(int index, System.Data.Common.DbBatchCommand! item) -> void
+override YBNpgsql.NpgsqlBatchCommandCollection.IsReadOnly.get -> bool
+override YBNpgsql.NpgsqlBatchCommandCollection.Remove(System.Data.Common.DbBatchCommand! item) -> bool
+override YBNpgsql.NpgsqlBatchCommandCollection.RemoveAt(int index) -> void
+override YBNpgsql.NpgsqlCommand.Cancel() -> void
+override YBNpgsql.NpgsqlCommand.CommandText.get -> string!
+override YBNpgsql.NpgsqlCommand.CommandText.set -> void
+override YBNpgsql.NpgsqlCommand.CommandTimeout.get -> int
+override YBNpgsql.NpgsqlCommand.CommandTimeout.set -> void
+override YBNpgsql.NpgsqlCommand.CommandType.get -> System.Data.CommandType
+override YBNpgsql.NpgsqlCommand.CommandType.set -> void
+override YBNpgsql.NpgsqlCommand.CreateDbParameter() -> System.Data.Common.DbParameter!
+override YBNpgsql.NpgsqlCommand.DbConnection.get -> System.Data.Common.DbConnection?
+override YBNpgsql.NpgsqlCommand.DbConnection.set -> void
+override YBNpgsql.NpgsqlCommand.DbParameterCollection.get -> System.Data.Common.DbParameterCollection!
+override YBNpgsql.NpgsqlCommand.DbTransaction.get -> System.Data.Common.DbTransaction?
+override YBNpgsql.NpgsqlCommand.DbTransaction.set -> void
+override YBNpgsql.NpgsqlCommand.DesignTimeVisible.get -> bool
+override YBNpgsql.NpgsqlCommand.DesignTimeVisible.set -> void
+override YBNpgsql.NpgsqlCommand.Dispose(bool disposing) -> void
+override YBNpgsql.NpgsqlCommand.ExecuteDbDataReader(System.Data.CommandBehavior behavior) -> System.Data.Common.DbDataReader!
+override YBNpgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior behavior, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<System.Data.Common.DbDataReader!>!
+override YBNpgsql.NpgsqlCommand.ExecuteNonQuery() -> int
+override YBNpgsql.NpgsqlCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<int>!
+override YBNpgsql.NpgsqlCommand.ExecuteScalar() -> object?
+override YBNpgsql.NpgsqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<object?>!
+override YBNpgsql.NpgsqlCommand.Prepare() -> void
+override YBNpgsql.NpgsqlCommand.PrepareAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlCommand.UpdatedRowSource.get -> System.Data.UpdateRowSource
+override YBNpgsql.NpgsqlCommand.UpdatedRowSource.set -> void
+override YBNpgsql.NpgsqlCommandBuilder.QuoteIdentifier(string! unquotedIdentifier) -> string!
+override YBNpgsql.NpgsqlCommandBuilder.QuotePrefix.get -> string!
+override YBNpgsql.NpgsqlCommandBuilder.QuotePrefix.set -> void
+override YBNpgsql.NpgsqlCommandBuilder.QuoteSuffix.get -> string!
+override YBNpgsql.NpgsqlCommandBuilder.QuoteSuffix.set -> void
+override YBNpgsql.NpgsqlCommandBuilder.UnquoteIdentifier(string! quotedIdentifier) -> string!
+override YBNpgsql.NpgsqlConnection.CanCreateBatch.get -> bool
+override YBNpgsql.NpgsqlConnection.ChangeDatabase(string! dbName) -> void
+override YBNpgsql.NpgsqlConnection.Close() -> void
+override YBNpgsql.NpgsqlConnection.CloseAsync() -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlConnection.ConnectionString.get -> string!
+override YBNpgsql.NpgsqlConnection.ConnectionString.set -> void
+override YBNpgsql.NpgsqlConnection.ConnectionTimeout.get -> int
+override YBNpgsql.NpgsqlConnection.Database.get -> string!
+override YBNpgsql.NpgsqlConnection.DataSource.get -> string!
+override YBNpgsql.NpgsqlConnection.DisposeAsync() -> System.Threading.Tasks.ValueTask
+override YBNpgsql.NpgsqlConnection.EnlistTransaction(System.Transactions.Transaction? transaction) -> void
+override YBNpgsql.NpgsqlConnection.GetSchema() -> System.Data.DataTable!
+override YBNpgsql.NpgsqlConnection.GetSchema(string? collectionName) -> System.Data.DataTable!
+override YBNpgsql.NpgsqlConnection.GetSchema(string? collectionName, string?[]? restrictions) -> System.Data.DataTable!
+override YBNpgsql.NpgsqlConnection.GetSchemaAsync(string! collectionName, string?[]? restrictions, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Data.DataTable!>!
+override YBNpgsql.NpgsqlConnection.GetSchemaAsync(string! collectionName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Data.DataTable!>!
+override YBNpgsql.NpgsqlConnection.GetSchemaAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Data.DataTable!>!
+override YBNpgsql.NpgsqlConnection.Open() -> void
+override YBNpgsql.NpgsqlConnection.OpenAsync(System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlConnection.ServerVersion.get -> string!
+override YBNpgsql.NpgsqlConnection.State.get -> System.Data.ConnectionState
+override YBNpgsql.NpgsqlConnectionStringBuilder.Clear() -> void
+override YBNpgsql.NpgsqlConnectionStringBuilder.ContainsKey(string! keyword) -> bool
+override YBNpgsql.NpgsqlConnectionStringBuilder.Equals(object? obj) -> bool
+override YBNpgsql.NpgsqlConnectionStringBuilder.GetHashCode() -> int
+override YBNpgsql.NpgsqlConnectionStringBuilder.Remove(string! keyword) -> bool
+override YBNpgsql.NpgsqlConnectionStringBuilder.this[string! keyword].get -> object!
+override YBNpgsql.NpgsqlConnectionStringBuilder.this[string! keyword].set -> void
+override YBNpgsql.NpgsqlConnectionStringBuilder.TryGetValue(string! keyword, out object? value) -> bool
+override YBNpgsql.NpgsqlDataReader.Close() -> void
+override YBNpgsql.NpgsqlDataReader.CloseAsync() -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlDataReader.Depth.get -> int
+override YBNpgsql.NpgsqlDataReader.DisposeAsync() -> System.Threading.Tasks.ValueTask
+override YBNpgsql.NpgsqlDataReader.FieldCount.get -> int
+override YBNpgsql.NpgsqlDataReader.GetBoolean(int ordinal) -> bool
+override YBNpgsql.NpgsqlDataReader.GetByte(int ordinal) -> byte
+override YBNpgsql.NpgsqlDataReader.GetBytes(int ordinal, long dataOffset, byte[]? buffer, int bufferOffset, int length) -> long
+override YBNpgsql.NpgsqlDataReader.GetChar(int ordinal) -> char
+override YBNpgsql.NpgsqlDataReader.GetChars(int ordinal, long dataOffset, char[]? buffer, int bufferOffset, int length) -> long
+override YBNpgsql.NpgsqlDataReader.GetDataTypeName(int ordinal) -> string!
+override YBNpgsql.NpgsqlDataReader.GetDateTime(int ordinal) -> System.DateTime
+override YBNpgsql.NpgsqlDataReader.GetDecimal(int ordinal) -> decimal
+override YBNpgsql.NpgsqlDataReader.GetDouble(int ordinal) -> double
+override YBNpgsql.NpgsqlDataReader.GetEnumerator() -> System.Collections.IEnumerator!
+override YBNpgsql.NpgsqlDataReader.GetFieldType(int ordinal) -> System.Type!
+override YBNpgsql.NpgsqlDataReader.GetFieldValue<T>(int ordinal) -> T
+override YBNpgsql.NpgsqlDataReader.GetFieldValueAsync<T>(int ordinal, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<T>!
+override YBNpgsql.NpgsqlDataReader.GetFloat(int ordinal) -> float
+override YBNpgsql.NpgsqlDataReader.GetGuid(int ordinal) -> System.Guid
+override YBNpgsql.NpgsqlDataReader.GetInt16(int ordinal) -> short
+override YBNpgsql.NpgsqlDataReader.GetInt32(int ordinal) -> int
+override YBNpgsql.NpgsqlDataReader.GetInt64(int ordinal) -> long
+override YBNpgsql.NpgsqlDataReader.GetName(int ordinal) -> string!
+override YBNpgsql.NpgsqlDataReader.GetOrdinal(string! name) -> int
+override YBNpgsql.NpgsqlDataReader.GetProviderSpecificFieldType(int ordinal) -> System.Type!
+override YBNpgsql.NpgsqlDataReader.GetProviderSpecificValue(int ordinal) -> object!
+override YBNpgsql.NpgsqlDataReader.GetProviderSpecificValues(object![]! values) -> int
+override YBNpgsql.NpgsqlDataReader.GetSchemaTable() -> System.Data.DataTable?
+override YBNpgsql.NpgsqlDataReader.GetSchemaTableAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Data.DataTable?>!
+override YBNpgsql.NpgsqlDataReader.GetStream(int ordinal) -> System.IO.Stream!
+override YBNpgsql.NpgsqlDataReader.GetString(int ordinal) -> string!
+override YBNpgsql.NpgsqlDataReader.GetTextReader(int ordinal) -> System.IO.TextReader!
+override YBNpgsql.NpgsqlDataReader.GetValue(int ordinal) -> object!
+override YBNpgsql.NpgsqlDataReader.GetValues(object![]! values) -> int
+override YBNpgsql.NpgsqlDataReader.HasRows.get -> bool
+override YBNpgsql.NpgsqlDataReader.IsClosed.get -> bool
+override YBNpgsql.NpgsqlDataReader.IsDBNull(int ordinal) -> bool
+override YBNpgsql.NpgsqlDataReader.IsDBNullAsync(int ordinal, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
+override YBNpgsql.NpgsqlDataReader.NextResult() -> bool
+override YBNpgsql.NpgsqlDataReader.NextResultAsync(System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
+override YBNpgsql.NpgsqlDataReader.Read() -> bool
+override YBNpgsql.NpgsqlDataReader.ReadAsync(System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<bool>!
+override YBNpgsql.NpgsqlDataReader.RecordsAffected.get -> int
+override YBNpgsql.NpgsqlDataReader.this[int ordinal].get -> object!
+override YBNpgsql.NpgsqlDataReader.this[string! name].get -> object!
+override YBNpgsql.NpgsqlDataSource.ConnectionString.get -> string!
+override YBNpgsql.NpgsqlException.DbBatchCommand.get -> System.Data.Common.DbBatchCommand?
+override YBNpgsql.NpgsqlException.IsTransient.get -> bool
+override YBNpgsql.NpgsqlFactory.CanCreateBatch.get -> bool
+override YBNpgsql.NpgsqlFactory.CanCreateCommandBuilder.get -> bool
+override YBNpgsql.NpgsqlFactory.CanCreateDataAdapter.get -> bool
+override YBNpgsql.NpgsqlFactory.CreateBatch() -> System.Data.Common.DbBatch!
+override YBNpgsql.NpgsqlFactory.CreateBatchCommand() -> System.Data.Common.DbBatchCommand!
+override YBNpgsql.NpgsqlFactory.CreateCommand() -> System.Data.Common.DbCommand!
+override YBNpgsql.NpgsqlFactory.CreateCommandBuilder() -> System.Data.Common.DbCommandBuilder!
+override YBNpgsql.NpgsqlFactory.CreateConnection() -> System.Data.Common.DbConnection!
+override YBNpgsql.NpgsqlFactory.CreateConnectionStringBuilder() -> System.Data.Common.DbConnectionStringBuilder!
+override YBNpgsql.NpgsqlFactory.CreateDataAdapter() -> System.Data.Common.DbDataAdapter!
+override YBNpgsql.NpgsqlFactory.CreateDataSource(string! connectionString) -> System.Data.Common.DbDataSource!
+override YBNpgsql.NpgsqlFactory.CreateParameter() -> System.Data.Common.DbParameter!
+override YBNpgsql.NpgsqlLargeObjectStream.CanRead.get -> bool
+override YBNpgsql.NpgsqlLargeObjectStream.CanSeek.get -> bool
+override YBNpgsql.NpgsqlLargeObjectStream.CanTimeout.get -> bool
+override YBNpgsql.NpgsqlLargeObjectStream.CanWrite.get -> bool
+override YBNpgsql.NpgsqlLargeObjectStream.Close() -> void
+override YBNpgsql.NpgsqlLargeObjectStream.Flush() -> void
+override YBNpgsql.NpgsqlLargeObjectStream.Length.get -> long
+override YBNpgsql.NpgsqlLargeObjectStream.Position.get -> long
+override YBNpgsql.NpgsqlLargeObjectStream.Position.set -> void
+override YBNpgsql.NpgsqlLargeObjectStream.Read(byte[]! buffer, int offset, int count) -> int
+override YBNpgsql.NpgsqlLargeObjectStream.ReadAsync(byte[]! buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<int>!
+override YBNpgsql.NpgsqlLargeObjectStream.Seek(long offset, System.IO.SeekOrigin origin) -> long
+override YBNpgsql.NpgsqlLargeObjectStream.SetLength(long value) -> void
+override YBNpgsql.NpgsqlLargeObjectStream.Write(byte[]! buffer, int offset, int count) -> void
+override YBNpgsql.NpgsqlLargeObjectStream.WriteAsync(byte[]! buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlNestedDataReader.Close() -> void
+override YBNpgsql.NpgsqlNestedDataReader.Depth.get -> int
+override YBNpgsql.NpgsqlNestedDataReader.FieldCount.get -> int
+override YBNpgsql.NpgsqlNestedDataReader.GetBoolean(int ordinal) -> bool
+override YBNpgsql.NpgsqlNestedDataReader.GetByte(int ordinal) -> byte
+override YBNpgsql.NpgsqlNestedDataReader.GetBytes(int ordinal, long dataOffset, byte[]? buffer, int bufferOffset, int length) -> long
+override YBNpgsql.NpgsqlNestedDataReader.GetChar(int ordinal) -> char
+override YBNpgsql.NpgsqlNestedDataReader.GetChars(int ordinal, long dataOffset, char[]? buffer, int bufferOffset, int length) -> long
+override YBNpgsql.NpgsqlNestedDataReader.GetDataTypeName(int ordinal) -> string!
+override YBNpgsql.NpgsqlNestedDataReader.GetDateTime(int ordinal) -> System.DateTime
+override YBNpgsql.NpgsqlNestedDataReader.GetDecimal(int ordinal) -> decimal
+override YBNpgsql.NpgsqlNestedDataReader.GetDouble(int ordinal) -> double
+override YBNpgsql.NpgsqlNestedDataReader.GetEnumerator() -> System.Collections.IEnumerator!
+override YBNpgsql.NpgsqlNestedDataReader.GetFieldType(int ordinal) -> System.Type!
+override YBNpgsql.NpgsqlNestedDataReader.GetFieldValue<T>(int ordinal) -> T
+override YBNpgsql.NpgsqlNestedDataReader.GetFloat(int ordinal) -> float
+override YBNpgsql.NpgsqlNestedDataReader.GetGuid(int ordinal) -> System.Guid
+override YBNpgsql.NpgsqlNestedDataReader.GetInt16(int ordinal) -> short
+override YBNpgsql.NpgsqlNestedDataReader.GetInt32(int ordinal) -> int
+override YBNpgsql.NpgsqlNestedDataReader.GetInt64(int ordinal) -> long
+override YBNpgsql.NpgsqlNestedDataReader.GetName(int ordinal) -> string!
+override YBNpgsql.NpgsqlNestedDataReader.GetOrdinal(string! name) -> int
+override YBNpgsql.NpgsqlNestedDataReader.GetProviderSpecificFieldType(int ordinal) -> System.Type!
+override YBNpgsql.NpgsqlNestedDataReader.GetProviderSpecificValue(int ordinal) -> object!
+override YBNpgsql.NpgsqlNestedDataReader.GetProviderSpecificValues(object![]! values) -> int
+override YBNpgsql.NpgsqlNestedDataReader.GetString(int ordinal) -> string!
+override YBNpgsql.NpgsqlNestedDataReader.GetValue(int ordinal) -> object!
+override YBNpgsql.NpgsqlNestedDataReader.GetValues(object![]! values) -> int
+override YBNpgsql.NpgsqlNestedDataReader.HasRows.get -> bool
+override YBNpgsql.NpgsqlNestedDataReader.IsClosed.get -> bool
+override YBNpgsql.NpgsqlNestedDataReader.IsDBNull(int ordinal) -> bool
+override YBNpgsql.NpgsqlNestedDataReader.NextResult() -> bool
+override YBNpgsql.NpgsqlNestedDataReader.Read() -> bool
+override YBNpgsql.NpgsqlNestedDataReader.RecordsAffected.get -> int
+override YBNpgsql.NpgsqlNestedDataReader.this[int ordinal].get -> object!
+override YBNpgsql.NpgsqlNestedDataReader.this[string! name].get -> object!
+override YBNpgsql.NpgsqlParameter.ResetDbType() -> void
+override YBNpgsql.NpgsqlParameter.Value.get -> object?
+override YBNpgsql.NpgsqlParameter.Value.set -> void
+override YBNpgsql.NpgsqlParameter<T>.Value.get -> object?
+override YBNpgsql.NpgsqlParameter<T>.Value.set -> void
+override YBNpgsql.NpgsqlParameterCollection.Add(object! value) -> int
+override YBNpgsql.NpgsqlParameterCollection.AddRange(System.Array! values) -> void
+override YBNpgsql.NpgsqlParameterCollection.Clear() -> void
+override YBNpgsql.NpgsqlParameterCollection.Contains(object! value) -> bool
+override YBNpgsql.NpgsqlParameterCollection.Contains(string! parameterName) -> bool
+override YBNpgsql.NpgsqlParameterCollection.CopyTo(System.Array! array, int index) -> void
+override YBNpgsql.NpgsqlParameterCollection.Count.get -> int
+override YBNpgsql.NpgsqlParameterCollection.GetEnumerator() -> System.Collections.IEnumerator!
+override YBNpgsql.NpgsqlParameterCollection.IndexOf(object! value) -> int
+override YBNpgsql.NpgsqlParameterCollection.IndexOf(string! parameterName) -> int
+override YBNpgsql.NpgsqlParameterCollection.Insert(int index, object! value) -> void
+override YBNpgsql.NpgsqlParameterCollection.IsFixedSize.get -> bool
+override YBNpgsql.NpgsqlParameterCollection.IsReadOnly.get -> bool
+override YBNpgsql.NpgsqlParameterCollection.IsSynchronized.get -> bool
+override YBNpgsql.NpgsqlParameterCollection.Remove(object! value) -> void
+override YBNpgsql.NpgsqlParameterCollection.RemoveAt(int index) -> void
+override YBNpgsql.NpgsqlParameterCollection.RemoveAt(string! parameterName) -> void
+override YBNpgsql.NpgsqlParameterCollection.SyncRoot.get -> object!
+override YBNpgsql.NpgsqlRawCopyStream.CanRead.get -> bool
+override YBNpgsql.NpgsqlRawCopyStream.CanSeek.get -> bool
+override YBNpgsql.NpgsqlRawCopyStream.CanTimeout.get -> bool
+override YBNpgsql.NpgsqlRawCopyStream.CanWrite.get -> bool
+override YBNpgsql.NpgsqlRawCopyStream.DisposeAsync() -> System.Threading.Tasks.ValueTask
+override YBNpgsql.NpgsqlRawCopyStream.Flush() -> void
+override YBNpgsql.NpgsqlRawCopyStream.FlushAsync(System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlRawCopyStream.Length.get -> long
+override YBNpgsql.NpgsqlRawCopyStream.Position.get -> long
+override YBNpgsql.NpgsqlRawCopyStream.Position.set -> void
+override YBNpgsql.NpgsqlRawCopyStream.Read(byte[]! buffer, int offset, int count) -> int
+override YBNpgsql.NpgsqlRawCopyStream.Read(System.Span<byte> span) -> int
+override YBNpgsql.NpgsqlRawCopyStream.ReadAsync(byte[]! buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task<int>!
+override YBNpgsql.NpgsqlRawCopyStream.ReadAsync(System.Memory<byte> buffer, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.ValueTask<int>
+override YBNpgsql.NpgsqlRawCopyStream.ReadTimeout.get -> int
+override YBNpgsql.NpgsqlRawCopyStream.ReadTimeout.set -> void
+override YBNpgsql.NpgsqlRawCopyStream.Seek(long offset, System.IO.SeekOrigin origin) -> long
+override YBNpgsql.NpgsqlRawCopyStream.SetLength(long value) -> void
+override YBNpgsql.NpgsqlRawCopyStream.Write(byte[]! buffer, int offset, int count) -> void
+override YBNpgsql.NpgsqlRawCopyStream.Write(System.ReadOnlySpan<byte> buffer) -> void
+override YBNpgsql.NpgsqlRawCopyStream.WriteAsync(byte[]! buffer, int offset, int count, System.Threading.CancellationToken cancellationToken) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlRawCopyStream.WriteAsync(System.ReadOnlyMemory<byte> buffer, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask
+override YBNpgsql.NpgsqlRawCopyStream.WriteTimeout.get -> int
+override YBNpgsql.NpgsqlRawCopyStream.WriteTimeout.set -> void
+override YBNpgsql.NpgsqlTransaction.Commit() -> void
+override YBNpgsql.NpgsqlTransaction.CommitAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlTransaction.DisposeAsync() -> System.Threading.Tasks.ValueTask
+override YBNpgsql.NpgsqlTransaction.IsolationLevel.get -> System.Data.IsolationLevel
+override YBNpgsql.NpgsqlTransaction.Release(string! name) -> void
+override YBNpgsql.NpgsqlTransaction.ReleaseAsync(string! name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlTransaction.Rollback() -> void
+override YBNpgsql.NpgsqlTransaction.Rollback(string! name) -> void
+override YBNpgsql.NpgsqlTransaction.RollbackAsync(string! name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlTransaction.RollbackAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.NpgsqlTransaction.Save(string! name) -> void
+override YBNpgsql.NpgsqlTransaction.SaveAsync(string! name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+override YBNpgsql.PostgresException.GetObjectData(System.Runtime.Serialization.SerializationInfo! info, System.Runtime.Serialization.StreamingContext context) -> void
+override YBNpgsql.PostgresException.IsTransient.get -> bool
+override YBNpgsql.PostgresException.SqlState.get -> string!
+override YBNpgsql.PostgresException.ToString() -> string!
+override YBNpgsql.PostgresTypes.PostgresCompositeType.Field.ToString() -> string!
+override YBNpgsql.PostgresTypes.PostgresType.ToString() -> string!
+override YBNpgsql.Replication.PgOutput.Messages.DefaultUpdateMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+override YBNpgsql.Replication.PgOutput.Messages.FullUpdateMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+override YBNpgsql.Replication.PgOutput.Messages.IndexUpdateMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
+override YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage.ToString() -> string!
+override YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.Equals(object? obj) -> bool
+override YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.GetHashCode() -> int
+override YBNpgsql.Replication.TestDecoding.TestDecodingData.ToString() -> string!
+override YBNpgsql.Replication.TestDecoding.TestDecodingOptions.Equals(object? obj) -> bool
+override YBNpgsql.Replication.TestDecoding.TestDecodingOptions.GetHashCode() -> int
+override YBNpgsql.Schema.NpgsqlDbColumn.this[string! propertyName].get -> object?
+override YBNpgsqlTypes.NpgsqlBox.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlBox.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlBox.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlCircle.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlCircle.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlCircle.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlInet.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlInet.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlInet.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlInterval.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlInterval.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlLine.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlLine.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlLine.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlLogSequenceNumber.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlLogSequenceNumber.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlLogSequenceNumber.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlLSeg.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlLSeg.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlLSeg.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlPath.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlPath.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlPath.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlPoint.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlPoint.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlPoint.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlPolygon.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlPolygon.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlPolygon.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlRange<T>.Equals(object? o) -> bool
+override YBNpgsqlTypes.NpgsqlRange<T>.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Type! sourceType) -> bool
+override YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) -> bool
+override YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object! value) -> object?
+override YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type! destinationType) -> object?
+override YBNpgsqlTypes.NpgsqlRange<T>.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlTid.Equals(object? o) -> bool
+override YBNpgsqlTypes.NpgsqlTid.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTid.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlTsQuery.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlTsQuery.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsQuery.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlTsQueryAnd.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryAnd.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsQueryEmpty.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryEmpty.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsQueryLexeme.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryLexeme.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsQueryNot.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryNot.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsQueryOr.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryOr.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsVector.Equals(object? obj) -> bool
+override YBNpgsqlTypes.NpgsqlTsVector.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Equals(object? o) -> bool
+override YBNpgsqlTypes.NpgsqlTsVector.Lexeme.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsVector.Lexeme.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Equals(object? o) -> bool
+override YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.GetHashCode() -> int
+override YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.ToString() -> string!
+override YBNpgsqlTypes.NpgsqlTsVector.ToString() -> string!
+override sealed YBNpgsql.NpgsqlParameter.DbType.get -> System.Data.DbType
+override sealed YBNpgsql.NpgsqlParameter.DbType.set -> void
+override sealed YBNpgsql.NpgsqlParameter.Direction.get -> System.Data.ParameterDirection
+override sealed YBNpgsql.NpgsqlParameter.Direction.set -> void
+override sealed YBNpgsql.NpgsqlParameter.IsNullable.get -> bool
+override sealed YBNpgsql.NpgsqlParameter.IsNullable.set -> void
+override sealed YBNpgsql.NpgsqlParameter.ParameterName.get -> string!
+override sealed YBNpgsql.NpgsqlParameter.ParameterName.set -> void
+override sealed YBNpgsql.NpgsqlParameter.Size.get -> int
+override sealed YBNpgsql.NpgsqlParameter.Size.set -> void
+override sealed YBNpgsql.NpgsqlParameter.SourceColumn.get -> string!
+override sealed YBNpgsql.NpgsqlParameter.SourceColumn.set -> void
+override sealed YBNpgsql.NpgsqlParameter.SourceColumnNullMapping.get -> bool
+override sealed YBNpgsql.NpgsqlParameter.SourceColumnNullMapping.set -> void
+override sealed YBNpgsql.NpgsqlParameter.SourceVersion.get -> System.Data.DataRowVersion
+override sealed YBNpgsql.NpgsqlParameter.SourceVersion.set -> void
+static YBNpgsql.NameTranslation.NpgsqlSnakeCaseNameTranslator.ConvertToSnakeCase(string! name) -> string!
+static YBNpgsql.NpgsqlCommandBuilder.DeriveParameters(YBNpgsql.NpgsqlCommand! command) -> void
+static YBNpgsql.NpgsqlConnection.ClearAllPools() -> void
+static YBNpgsql.NpgsqlConnection.ClearPool(YBNpgsql.NpgsqlConnection! connection) -> void
+static YBNpgsql.NpgsqlConnection.GlobalTypeMapper.get -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+static YBNpgsql.NpgsqlDataSource.Create(YBNpgsql.NpgsqlConnectionStringBuilder! connectionStringBuilder) -> YBNpgsql.NpgsqlDataSource!
+static YBNpgsql.NpgsqlDataSource.Create(string! connectionString) -> YBNpgsql.NpgsqlDataSource!
+static YBNpgsql.NpgsqlLoggingConfiguration.InitializeLogging(Microsoft.Extensions.Logging.ILoggerFactory! loggerFactory, bool parameterLoggingEnabled = false) -> void
+static YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions.CreateLogicalReplicationSlot(this YBNpgsql.Replication.LogicalReplicationConnection! connection, string! slotName, string! outputPlugin, bool isTemporary = false, YBNpgsql.Replication.LogicalSlotSnapshotInitMode? slotSnapshotInitMode = null, bool twoPhase = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.ReplicationSlotOptions>!
+static YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions.StartLogicalReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.Internal.LogicalReplicationSlot! slot, System.Threading.CancellationToken cancellationToken, NpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, string?>>? options = null, bool bypassingStream = false) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+static YBNpgsql.Replication.PgOutputConnectionExtensions.CreatePgOutputReplicationSlot(this YBNpgsql.Replication.LogicalReplicationConnection! connection, string! slotName, bool temporarySlot = false, YBNpgsql.Replication.LogicalSlotSnapshotInitMode? slotSnapshotInitMode = null, bool twoPhase = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot!>!
+static YBNpgsql.Replication.PgOutputConnectionExtensions.StartReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot! slot, YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions! options, System.Threading.CancellationToken cancellationToken, NpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage!>!
+static YBNpgsql.Replication.TestDecodingConnectionExtensions.CreateTestDecodingReplicationSlot(this YBNpgsql.Replication.LogicalReplicationConnection! connection, string! slotName, bool temporarySlot = false, YBNpgsql.Replication.LogicalSlotSnapshotInitMode? slotSnapshotInitMode = null, bool twoPhase = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot!>!
+static YBNpgsql.Replication.TestDecodingConnectionExtensions.StartReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot! slot, System.Threading.CancellationToken cancellationToken, YBNpgsql.Replication.TestDecoding.TestDecodingOptions? options = null, NpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.TestDecoding.TestDecodingData!>!
+static YBNpgsqlTypes.NpgsqlBox.operator !=(NpgsqlTypes.NpgsqlBox x, NpgsqlTypes.NpgsqlBox y) -> bool
+static YBNpgsqlTypes.NpgsqlBox.operator ==(NpgsqlTypes.NpgsqlBox x, NpgsqlTypes.NpgsqlBox y) -> bool
+static YBNpgsqlTypes.NpgsqlBox.Parse(string! s) -> NpgsqlTypes.NpgsqlBox
+static YBNpgsqlTypes.NpgsqlCircle.operator !=(NpgsqlTypes.NpgsqlCircle x, NpgsqlTypes.NpgsqlCircle y) -> bool
+static YBNpgsqlTypes.NpgsqlCircle.operator ==(NpgsqlTypes.NpgsqlCircle x, NpgsqlTypes.NpgsqlCircle y) -> bool
+static YBNpgsqlTypes.NpgsqlCircle.Parse(string! s) -> NpgsqlTypes.NpgsqlCircle
+static YBNpgsqlTypes.NpgsqlInet.explicit operator System.Net.IPAddress!(NpgsqlTypes.NpgsqlInet inet) -> System.Net.IPAddress!
+static YBNpgsqlTypes.NpgsqlInet.implicit operator NpgsqlTypes.NpgsqlInet(System.Net.IPAddress! ip) -> NpgsqlTypes.NpgsqlInet
+static YBNpgsqlTypes.NpgsqlInet.operator !=(NpgsqlTypes.NpgsqlInet x, NpgsqlTypes.NpgsqlInet y) -> bool
+static YBNpgsqlTypes.NpgsqlInet.operator ==(NpgsqlTypes.NpgsqlInet x, NpgsqlTypes.NpgsqlInet y) -> bool
+static YBNpgsqlTypes.NpgsqlInet.ToIPAddress(NpgsqlTypes.NpgsqlInet inet) -> System.Net.IPAddress!
+static YBNpgsqlTypes.NpgsqlInet.ToNpgsqlInet(System.Net.IPAddress? ip) -> NpgsqlTypes.NpgsqlInet
+static YBNpgsqlTypes.NpgsqlLine.operator !=(NpgsqlTypes.NpgsqlLine x, NpgsqlTypes.NpgsqlLine y) -> bool
+static YBNpgsqlTypes.NpgsqlLine.operator ==(NpgsqlTypes.NpgsqlLine x, NpgsqlTypes.NpgsqlLine y) -> bool
+static YBNpgsqlTypes.NpgsqlLine.Parse(string! s) -> NpgsqlTypes.NpgsqlLine
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.explicit operator NpgsqlTypes.NpgsqlLogSequenceNumber(ulong value) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.explicit operator ulong(NpgsqlTypes.NpgsqlLogSequenceNumber value) -> ulong
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Larger(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator !=(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator +(NpgsqlTypes.NpgsqlLogSequenceNumber lsn, double nbytes) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator -(NpgsqlTypes.NpgsqlLogSequenceNumber first, NpgsqlTypes.NpgsqlLogSequenceNumber second) -> ulong
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator -(NpgsqlTypes.NpgsqlLogSequenceNumber lsn, double nbytes) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator <(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator <=(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator ==(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator >(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator >=(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse(string! s) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse(System.ReadOnlySpan<char> s) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Smaller(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.TryParse(string! s, out NpgsqlTypes.NpgsqlLogSequenceNumber result) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.TryParse(System.ReadOnlySpan<char> s, out NpgsqlTypes.NpgsqlLogSequenceNumber result) -> bool
+static YBNpgsqlTypes.NpgsqlLSeg.operator !=(NpgsqlTypes.NpgsqlLSeg x, NpgsqlTypes.NpgsqlLSeg y) -> bool
+static YBNpgsqlTypes.NpgsqlLSeg.operator ==(NpgsqlTypes.NpgsqlLSeg x, NpgsqlTypes.NpgsqlLSeg y) -> bool
+static YBNpgsqlTypes.NpgsqlLSeg.Parse(string! s) -> NpgsqlTypes.NpgsqlLSeg
+static YBNpgsqlTypes.NpgsqlPath.operator !=(NpgsqlTypes.NpgsqlPath x, NpgsqlTypes.NpgsqlPath y) -> bool
+static YBNpgsqlTypes.NpgsqlPath.operator ==(NpgsqlTypes.NpgsqlPath x, NpgsqlTypes.NpgsqlPath y) -> bool
+static YBNpgsqlTypes.NpgsqlPath.Parse(string! s) -> NpgsqlTypes.NpgsqlPath
+static YBNpgsqlTypes.NpgsqlPoint.operator !=(NpgsqlTypes.NpgsqlPoint x, NpgsqlTypes.NpgsqlPoint y) -> bool
+static YBNpgsqlTypes.NpgsqlPoint.operator ==(NpgsqlTypes.NpgsqlPoint x, NpgsqlTypes.NpgsqlPoint y) -> bool
+static YBNpgsqlTypes.NpgsqlPoint.Parse(string! s) -> NpgsqlTypes.NpgsqlPoint
+static YBNpgsqlTypes.NpgsqlPolygon.operator !=(NpgsqlTypes.NpgsqlPolygon x, NpgsqlTypes.NpgsqlPolygon y) -> bool
+static YBNpgsqlTypes.NpgsqlPolygon.operator ==(NpgsqlTypes.NpgsqlPolygon x, NpgsqlTypes.NpgsqlPolygon y) -> bool
+static YBNpgsqlTypes.NpgsqlPolygon.Parse(string! s) -> NpgsqlTypes.NpgsqlPolygon
+static YBNpgsqlTypes.NpgsqlRange<T>.operator !=(NpgsqlTypes.NpgsqlRange<T> x, NpgsqlTypes.NpgsqlRange<T> y) -> bool
+static YBNpgsqlTypes.NpgsqlRange<T>.operator ==(NpgsqlTypes.NpgsqlRange<T> x, NpgsqlTypes.NpgsqlRange<T> y) -> bool
+static YBNpgsqlTypes.NpgsqlRange<T>.Parse(string! value) -> NpgsqlTypes.NpgsqlRange<T>
+static YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.Register() -> void
+static YBNpgsqlTypes.NpgsqlTid.operator !=(NpgsqlTypes.NpgsqlTid left, NpgsqlTypes.NpgsqlTid right) -> bool
+static YBNpgsqlTypes.NpgsqlTid.operator ==(NpgsqlTypes.NpgsqlTid left, NpgsqlTypes.NpgsqlTid right) -> bool
+static YBNpgsqlTypes.NpgsqlTsQuery.operator !=(NpgsqlTypes.NpgsqlTsQuery? left, NpgsqlTypes.NpgsqlTsQuery? right) -> bool
+static YBNpgsqlTypes.NpgsqlTsQuery.operator ==(NpgsqlTypes.NpgsqlTsQuery? left, NpgsqlTypes.NpgsqlTsQuery? right) -> bool
+static YBNpgsqlTypes.NpgsqlTsQuery.Parse(string! value) -> NpgsqlTypes.NpgsqlTsQuery!
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.operator !=(NpgsqlTypes.NpgsqlTsVector.Lexeme left, NpgsqlTypes.NpgsqlTsVector.Lexeme right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.operator ==(NpgsqlTypes.NpgsqlTsVector.Lexeme left, NpgsqlTypes.NpgsqlTsVector.Lexeme right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.operator !=(NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos left, NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.operator ==(NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos left, NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Parse(string! value) -> NpgsqlTypes.NpgsqlTsVector!
+static readonly YBNpgsql.NpgsqlFactory.Instance -> YBNpgsql.NpgsqlFactory!
+static readonly NpgsqlTypes.NpgsqlLogSequenceNumber.Invalid -> NpgsqlTypes.NpgsqlLogSequenceNumber
+static readonly NpgsqlTypes.NpgsqlRange<T>.Empty -> NpgsqlTypes.NpgsqlRange<T>
+virtual YBNpgsql.NpgsqlCommand.Clone() -> YBNpgsql.NpgsqlCommand!
+virtual YBNpgsql.Replication.PgOutput.ReplicationTuple.GetAsyncEnumerator(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerator<YBNpgsql.Replication.PgOutput.ReplicationValue!>!
