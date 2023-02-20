@@ -23,10 +23,10 @@ public class NpgsqlConnectionStringBuilderSourceGenerator : ISourceGenerator
 
     public void Execute(GeneratorExecutionContext context)
     {
-        if (context.Compilation.Assembly.GetTypeByMetadataName("Npgsql.NpgsqlConnectionStringBuilder") is not { } type)
+        if (context.Compilation.Assembly.GetTypeByMetadataName("YBNpgsql.NpgsqlConnectionStringBuilder") is not { } type)
             return;
 
-        if (context.Compilation.Assembly.GetTypeByMetadataName("Npgsql.NpgsqlConnectionStringPropertyAttribute") is not
+        if (context.Compilation.Assembly.GetTypeByMetadataName("YBNpgsql.NpgsqlConnectionStringPropertyAttribute") is not
             { } connectionStringPropertyAttribute)
         {
             context.ReportDiagnostic(Diagnostic.Create(
