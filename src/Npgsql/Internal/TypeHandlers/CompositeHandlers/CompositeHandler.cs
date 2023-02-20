@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
 #region Trimming warning suppressions
 
@@ -38,7 +38,7 @@ using NpgsqlTypes;
 
 #endregion
 
-namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 sealed partial class CompositeHandler<T> : NpgsqlTypeHandler<T>, ICompositeHandler
 {

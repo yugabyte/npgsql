@@ -1,4 +1,4 @@
-﻿namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+﻿namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 static class IsValueType<T>
 {

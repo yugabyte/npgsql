@@ -1,8 +1,8 @@
 using System;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 sealed class BuiltInTypeHandlerResolverFactory : TypeHandlerResolverFactory
 {

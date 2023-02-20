@@ -7,13 +7,13 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.Internal.TypeMapping;
-using Npgsql.Properties;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.Internal.TypeMapping;
+using YBNpgsql.Properties;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides a simple API for configuring and creating an <see cref="NpgsqlDataSource" />, from which database connections can be obtained.

@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <inheritdoc cref="DbBatchCommandCollection"/>
 public class NpgsqlBatchCommandCollection : DbBatchCommandCollection, IList<NpgsqlBatchCommand>

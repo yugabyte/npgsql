@@ -1,6 +1,6 @@
-﻿using Npgsql.Replication.Internal;
+﻿using YBNpgsql.Replication.Internal;
 
-namespace Npgsql.Replication.PgOutput;
+namespace YBNpgsql.Replication.PgOutput;
 
 /// <summary>
 /// Acts as a proxy for a logical replication slot initialized for for the logical streaming replication protocol

@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Text;
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Represents a PostgreSQL range type.

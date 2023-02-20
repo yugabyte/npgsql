@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 // ReSharper disable MethodHasAsyncOverload
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class DataSourceTests : TestBase
 {

@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 sealed class CompositeStructMemberHandler<TComposite, TMember> : CompositeMemberHandler<TComposite>
     where TComposite : struct

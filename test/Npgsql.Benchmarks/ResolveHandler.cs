@@ -1,9 +1,9 @@
 using BenchmarkDotNet.Attributes;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 [MemoryDiagnoser]
 public class ResolveHandler

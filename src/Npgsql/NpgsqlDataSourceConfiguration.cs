@@ -4,10 +4,10 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.Internal.TypeMapping;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.Internal.TypeMapping;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed record NpgsqlDataSourceConfiguration(
     NpgsqlLoggingConfiguration LoggingConfiguration,

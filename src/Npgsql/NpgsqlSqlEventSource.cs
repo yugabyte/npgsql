@@ -1,7 +1,7 @@
 using System.Diagnostics.Tracing;
 using System.Runtime.CompilerServices;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class NpgsqlSqlEventSource : EventSource
 {

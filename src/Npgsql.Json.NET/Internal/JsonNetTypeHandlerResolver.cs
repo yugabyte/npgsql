@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Json.NET.Internal;
+namespace YBNpgsql.Json.NET.Internal;
 
 public class JsonNetTypeHandlerResolver : TypeHandlerResolver
 {

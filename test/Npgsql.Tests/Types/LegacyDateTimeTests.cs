@@ -1,12 +1,12 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Util.Statics;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 // Since this test suite manipulates TimeZone, it is incompatible with multiplexing
 [NonParallelizable]

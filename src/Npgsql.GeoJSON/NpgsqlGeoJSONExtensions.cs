@@ -1,8 +1,8 @@
-﻿using Npgsql.GeoJSON.Internal;
-using Npgsql.TypeMapping;
+﻿using YBNpgsql.GeoJSON.Internal;
+using YBNpgsql.TypeMapping;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Extension allowing adding the GeoJSON plugin to an Npgsql type mapper.

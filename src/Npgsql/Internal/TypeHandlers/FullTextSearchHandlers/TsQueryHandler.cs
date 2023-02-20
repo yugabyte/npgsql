@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
 // TODO: Need to work on the nullability here
 #nullable disable
 #pragma warning disable CS8632
 #pragma warning disable RS0041
 
-namespace Npgsql.Internal.TypeHandlers.FullTextSearchHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.FullTextSearchHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL tsquery data type.

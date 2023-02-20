@@ -6,10 +6,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql.Tests.Support;
+namespace YBNpgsql.Tests.Support;
 
 class PgPostmasterMock : IAsyncDisposable
 {

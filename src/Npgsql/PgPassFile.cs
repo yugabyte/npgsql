@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Represents a .pgpass file, which contains passwords for noninteractive connections

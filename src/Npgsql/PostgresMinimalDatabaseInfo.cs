@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class PostgresMinimalDatabaseInfoFactory : INpgsqlDatabaseInfoFactory
 {

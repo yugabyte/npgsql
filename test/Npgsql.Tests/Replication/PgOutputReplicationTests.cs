@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Replication;
-using Npgsql.Replication.PgOutput;
-using Npgsql.Replication.PgOutput.Messages;
-using TruncateOptions = Npgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions;
-using ReplicaIdentitySetting = Npgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting;
-using static Npgsql.Tests.TestUtil;
+using YBNpgsql.Replication;
+using YBNpgsql.Replication.PgOutput;
+using YBNpgsql.Replication.PgOutput.Messages;
+using TruncateOptions = YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions;
+using ReplicaIdentitySetting = YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests.Replication;
+namespace YBNpgsql.Tests.Replication;
 
 [TestFixture(ProtocolVersion.V1, ReplicationDataMode.DefaultReplicationDataMode, TransactionMode.DefaultTransactionMode)]
 [TestFixture(ProtocolVersion.V1, ReplicationDataMode.BinaryReplicationDataMode, TransactionMode.DefaultTransactionMode)]
@@ -986,13 +986,13 @@ CREATE PUBLICATION {publicationName} FOR TABLE {tableName};
             });
     }
 
-    [NpgsqlTypes.PgName("descriptor")]
+    [YBNpgsqlTypes.PgName("descriptor")]
     public class Descriptor
     {
-        [NpgsqlTypes.PgName("id")]
+        [YBNpgsqlTypes.PgName("id")]
         public long Id { get; set; }
 
-        [NpgsqlTypes.PgName("name")]
+        [YBNpgsqlTypes.PgName("name")]
         public string Name { get; set; } = string.Empty;
     }
 

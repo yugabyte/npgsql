@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using Npgsql.Internal.TypeHandling;
+using YBNpgsql.Internal.TypeHandling;
 
-namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 abstract class CompositeParameterHandler
 {

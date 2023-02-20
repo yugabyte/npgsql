@@ -6,14 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
 
 #nullable disable
 
-namespace Npgsql.Benchmarks.TypeHandlers;
+namespace YBNpgsql.Benchmarks.TypeHandlers;
 
 public abstract class TypeHandlerBenchmarks<T>
 {

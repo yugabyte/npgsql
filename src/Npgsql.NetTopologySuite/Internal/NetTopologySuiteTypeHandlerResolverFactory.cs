@@ -2,11 +2,11 @@ using System;
 using System.Data;
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.TypeMapping;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.TypeMapping;
 
-namespace Npgsql.NetTopologySuite.Internal;
+namespace YBNpgsql.NetTopologySuite.Internal;
 
 public class NetTopologySuiteTypeHandlerResolverFactory : TypeHandlerResolverFactory
 {

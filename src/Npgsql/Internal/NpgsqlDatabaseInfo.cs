@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 /// <summary>
 /// Base class for implementations which provide information about PostgreSQL and PostgreSQL-like databases

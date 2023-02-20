@@ -6,13 +6,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandlers.CompositeHandlers;
-using Npgsql.Util;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
+using YBNpgsql.Util;
 
-namespace Npgsql.Schema;
+namespace YBNpgsql.Schema;
 
 sealed class DbColumnSchemaGenerator
 {

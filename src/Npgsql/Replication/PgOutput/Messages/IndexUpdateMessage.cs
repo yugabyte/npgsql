@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.PgOutput.Messages;
+namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// Logical Replication Protocol update message for tables with REPLICA IDENTITY set to USING INDEX.

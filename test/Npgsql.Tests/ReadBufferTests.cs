@@ -1,12 +1,12 @@
-﻿using Npgsql.Internal;
-using Npgsql.Util;
+﻿using YBNpgsql.Internal;
+using YBNpgsql.Util;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)] // Parallel access to a single buffer
 class ReadBufferTests

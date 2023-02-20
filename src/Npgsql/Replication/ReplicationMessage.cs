@@ -1,7 +1,7 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using System;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// The common base class for all streaming replication messages

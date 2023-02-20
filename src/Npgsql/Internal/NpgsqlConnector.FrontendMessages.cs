@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Util;
+using YBNpgsql.Util;
 // ReSharper disable VariableHidesOuterVariable
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 partial class NpgsqlConnector
 {

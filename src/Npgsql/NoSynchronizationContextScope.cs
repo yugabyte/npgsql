@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// This mechanism is used to temporarily set the current synchronization context to null while

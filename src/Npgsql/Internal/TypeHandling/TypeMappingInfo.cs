@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 public class TypeMappingInfo
 {

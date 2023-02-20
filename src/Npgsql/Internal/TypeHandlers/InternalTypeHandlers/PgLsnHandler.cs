@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandlers.InternalTypeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.InternalTypeHandlers;
 
 sealed partial class PgLsnHandler : NpgsqlSimpleTypeHandler<NpgsqlLogSequenceNumber>
 {

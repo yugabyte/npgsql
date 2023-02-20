@@ -1,12 +1,12 @@
 ﻿using System.Net;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
 #pragma warning disable 618
 
-namespace Npgsql.Internal.TypeHandlers.NetworkHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.NetworkHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL cidr data type.

@@ -7,21 +7,21 @@ using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Numerics;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
-using Npgsql.Internal.TypeHandlers.FullTextSearchHandlers;
-using Npgsql.Internal.TypeHandlers.GeometricHandlers;
-using Npgsql.Internal.TypeHandlers.InternalTypeHandlers;
-using Npgsql.Internal.TypeHandlers.LTreeHandlers;
-using Npgsql.Internal.TypeHandlers.NetworkHandlers;
-using Npgsql.Internal.TypeHandlers.NumericHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandlers.DateTimeHandlers;
+using YBNpgsql.Internal.TypeHandlers.FullTextSearchHandlers;
+using YBNpgsql.Internal.TypeHandlers.GeometricHandlers;
+using YBNpgsql.Internal.TypeHandlers.InternalTypeHandlers;
+using YBNpgsql.Internal.TypeHandlers.LTreeHandlers;
+using YBNpgsql.Internal.TypeHandlers.NetworkHandlers;
+using YBNpgsql.Internal.TypeHandlers.NumericHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 sealed class BuiltInTypeHandlerResolver : TypeHandlerResolver
 {

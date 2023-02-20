@@ -2,11 +2,11 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 /// <summary>
 /// Tests NpgsqlTypes.* independent of a database

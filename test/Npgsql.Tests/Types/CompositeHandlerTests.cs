@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using Npgsql.NameTranslation;
-using NpgsqlTypes;
+using YBNpgsql.NameTranslation;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public partial class CompositeHandlerTests : TestBase
 {

@@ -7,16 +7,16 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.Internal.TypeMapping;
-using Npgsql.PostgresTypes;
-using Npgsql.Properties;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.Internal.TypeMapping;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Properties;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 sealed class TypeMapper
 {

@@ -5,12 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Geometries.Implementation;
-using Npgsql.Tests;
-using NpgsqlTypes;
+using YBNpgsql.Tests;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.PluginTests;
+namespace YBNpgsql.PluginTests;
 
 public class NetTopologySuiteTests : TestBase
 {

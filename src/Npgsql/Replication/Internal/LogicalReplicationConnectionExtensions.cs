@@ -1,4 +1,4 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Replication.Internal;
+namespace YBNpgsql.Replication.Internal;
 
 /// <summary>
 /// This API is for internal use and for implementing logical replication plugins.

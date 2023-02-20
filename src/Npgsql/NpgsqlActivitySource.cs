@@ -1,4 +1,4 @@
-﻿using Npgsql.Internal;
+﻿using YBNpgsql.Internal;
 using System;
 using System.Data;
 using System.Diagnostics;
@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 static class NpgsqlActivitySource
 {

@@ -1,4 +1,4 @@
-﻿namespace Npgsql.GeoJSON.Internal;
+﻿namespace YBNpgsql.GeoJSON.Internal;
 
 readonly partial struct CrsMap
 {

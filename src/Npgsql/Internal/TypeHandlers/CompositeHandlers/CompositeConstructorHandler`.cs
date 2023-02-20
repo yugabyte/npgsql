@@ -3,9 +3,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
-using Npgsql.PostgresTypes;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 sealed class CompositeConstructorHandler<TComposite, T1, T2, T3, T4, T5, T6, T7, T8> : CompositeConstructorHandler<TComposite>
 {

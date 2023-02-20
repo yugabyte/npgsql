@@ -5,7 +5,7 @@ using System.Transactions;
 using NUnit.Framework;
 using static Npgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 // This test suite contains ambient transaction tests, except those involving distributed transactions which are only
 // supported on .NET Framework / Windows. Distributed transaction tests are in DistributedTransactionTests.

@@ -1,14 +1,14 @@
 ﻿using System;
 using NodaTime;
 using NodaTime.TimeZones;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using BclTimestampTzHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler;
-using static Npgsql.NodaTime.Internal.NodaTimeUtils;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using BclTimestampTzHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler;
+using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed partial class LegacyTimestampTzHandler : NpgsqlSimpleTypeHandler<Instant>, INpgsqlSimpleTypeHandler<ZonedDateTime>,
     INpgsqlSimpleTypeHandler<OffsetDateTime>, INpgsqlSimpleTypeHandler<DateTimeOffset>, 

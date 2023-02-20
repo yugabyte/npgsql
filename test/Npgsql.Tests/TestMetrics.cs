@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 /// <summary>
 /// Keep track of metrics related to performance.

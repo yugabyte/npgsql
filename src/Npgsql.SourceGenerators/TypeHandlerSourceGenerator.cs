@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Scriban;
 
-namespace Npgsql.SourceGenerators;
+namespace YBNpgsql.SourceGenerators;
 
 [Generator]
 sealed class TypeHandlerSourceGenerator : ISourceGenerator
@@ -21,8 +21,8 @@ sealed class TypeHandlerSourceGenerator : ISourceGenerator
         var compilation = context.Compilation;
 
         var (simpleTypeHandlerInterfaceSymbol, typeHandlerInterfaceSymbol) = (
-            compilation.GetTypeByMetadataName("Npgsql.Internal.TypeHandling.INpgsqlSimpleTypeHandler`1"),
-            compilation.GetTypeByMetadataName("Npgsql.Internal.TypeHandling.INpgsqlTypeHandler`1"));
+            compilation.GetTypeByMetadataName("YBNpgsql.Internal.TypeHandling.INpgsqlSimpleTypeHandler`1"),
+            compilation.GetTypeByMetadataName("YBNpgsql.Internal.TypeHandling.INpgsqlTypeHandler`1"));
 
         if (simpleTypeHandlerInterfaceSymbol is null || typeHandlerInterfaceSymbol is null)
             throw new Exception("Could not find INpgsqlSimpleTypeHandler or INpgsqlTypeHandler");
@@ -61,7 +61,7 @@ sealed class TypeHandlerSourceGenerator : ISourceGenerator
                     "System",
                     "System.Threading",
                     "System.Threading.Tasks",
-                    "Npgsql.Internal"
+                    "YBNpgsql.Internal"
                 }.Concat(classDeclarationSyntax.SyntaxTree.GetCompilationUnitRoot().Usings
                     .Where(u => u.Alias is null && u.StaticKeyword.IsKind(SyntaxKind.None))
                     .Select(u => u.Name.ToString())));

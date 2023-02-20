@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 interface ICancelable : IDisposable, IAsyncDisposable
 {

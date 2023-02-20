@@ -14,18 +14,18 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.Schema;
-using Npgsql.Util;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Schema;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
 #pragma warning disable CA2222 // Do not decrease inherited member visibility
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Reads a forward-only stream of rows from a data source.

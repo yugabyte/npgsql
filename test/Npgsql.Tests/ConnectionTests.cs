@@ -11,15 +11,15 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.PostgresTypes;
-using Npgsql.Properties;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Properties;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class ConnectionTests : MultiplexingTestBase
 {

@@ -1,7 +1,7 @@
 #pragma warning disable RS0016
 #pragma warning disable 1591
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 /// <summary>
 /// Holds well-known, built-in PostgreSQL type OIDs.

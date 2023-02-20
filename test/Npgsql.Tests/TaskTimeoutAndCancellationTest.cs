@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [NonParallelizable] // To make sure unobserved tasks from other tests do not leak
 public class TaskTimeoutAndCancellationTest : TestBase

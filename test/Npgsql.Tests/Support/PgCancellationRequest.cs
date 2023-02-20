@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.Tests.Support;
+namespace YBNpgsql.Tests.Support;
 
 class PgCancellationRequest
 {

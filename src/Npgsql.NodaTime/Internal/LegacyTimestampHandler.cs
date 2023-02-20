@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using NodaTime;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using BclTimestampHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampHandler;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using BclTimestampHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampHandler;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed partial class LegacyTimestampHandler : NpgsqlSimpleTypeHandler<Instant>,
     INpgsqlSimpleTypeHandler<LocalDateTime>, INpgsqlSimpleTypeHandler<DateTime>, INpgsqlSimpleTypeHandler<long>

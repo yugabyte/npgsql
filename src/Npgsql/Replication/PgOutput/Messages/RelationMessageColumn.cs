@@ -1,4 +1,4 @@
-﻿namespace Npgsql.Replication.PgOutput.Messages;
+﻿namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// Represents a column in a Logical Replication Protocol relation message

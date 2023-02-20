@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 // Since this test suite manipulates TimeZone, it is incompatible with multiplexing
 public class DateTimeTests : TestBase

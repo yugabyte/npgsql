@@ -5,13 +5,13 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Support;
+namespace YBNpgsql.Tests.Support;
 
 class PgServerMock : IDisposable
 {

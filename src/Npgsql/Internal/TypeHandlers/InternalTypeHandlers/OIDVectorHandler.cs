@@ -1,11 +1,11 @@
 ﻿using System;
-using Npgsql.Internal.TypeHandlers.NumericHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal.TypeHandlers.NumericHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandlers.InternalTypeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.InternalTypeHandlers;
 
 /// <summary>
 /// An OIDVector is simply a regular array of uints, with the sole exception that its lower bound must

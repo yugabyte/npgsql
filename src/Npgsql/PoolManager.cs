@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides lookup for a pool based on a connection string.

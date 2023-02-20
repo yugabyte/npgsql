@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 abstract class CopyResponseMessageBase : IBackendMessage
 {

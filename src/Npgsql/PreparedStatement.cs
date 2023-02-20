@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Npgsql.BackendMessages;
+using YBNpgsql.BackendMessages;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Internally represents a statement has been prepared, is in the process of being prepared, or is a

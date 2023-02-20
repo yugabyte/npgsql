@@ -8,18 +8,18 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.Tests.Support;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Tests.Support;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [TestFixture(MultiplexingMode.NonMultiplexing, CommandBehavior.Default)]
 [TestFixture(MultiplexingMode.Multiplexing, CommandBehavior.Default)]
