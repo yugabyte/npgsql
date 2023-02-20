@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -27,20 +28,31 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// </summary>
     protected List<string>? _hosts = null;
     // volatile int _roundRobinIndex = -1;
-    DateTime _lastServerFetchTime = new DateTime(0);
+    /// <summary>
+    /// Stores the last time yb_servers() was called
+    /// </summary>
+    protected DateTime _lastServerFetchTime = new DateTime(0);
     readonly double REFRESH_LIST_SECONDS;
     readonly int MAX_REFRESH_INTERVAL = 600;
     /// <summary>
     /// List of unreachable hosts
     /// </summary>
-    protected List<int> unreachableHostsIndices = new List<int>();
+    protected static List<int> unreachableHostsIndices = new List<int>();
+    
+    /// <summary>
+    /// List of unreachable hosts
+    /// </summary>
+    protected static List<string> unreachableHosts = new List<string>();
     /// <summary>
     /// Stores a boolean value for which IP Address is to be used - Public or Private
     /// True = Private IPs
     /// False = Public IPs
     /// </summary>
     protected bool? UseHostColumn = null;
-    static int index = 0;
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected static int index = 0;
 
     /// <summary>
     /// Stores a map of pool index to number of connections made to the pool
@@ -63,10 +75,42 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// Lock object
     /// </summary>
     protected static readonly object lockObject = new object();
+    
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected readonly int PRIMARY_PLACEMENTS = 1;
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected readonly int FIRST_FALLBACK = 2;
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected readonly int REST_OF_CLUSTER = 11;
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected readonly int MAX_PREFERENCE_VALUE = 10;
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected List<string> currentPublicIps = new List<string>();
+    
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected ConcurrentDictionary<int, List<string>> fallbackPrivateIPs;
+    /// <summary>
+    /// TODO
+    /// </summary>
+    protected ConcurrentDictionary<int, List<string>> fallbackPublicIPs;
 
     internal ClusterAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig, bool useClusterAwareDataSource)
         : base(settings, dataSourceConfig)
     {
+        fallbackPrivateIPs = new ConcurrentDictionary<int, List<string>>();
+        fallbackPublicIPs = new ConcurrentDictionary<int, List<string>>();
         this.settings = settings;
         this.dataSourceConfig = dataSourceConfig;
         REFRESH_LIST_SECONDS = settings.YBServersRefreshInterval > 0 && settings.YBServersRefreshInterval < MAX_REFRESH_INTERVAL
@@ -86,7 +130,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
                     NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
                     controlConnection.Open();
-                    CreatePool(controlConnection);
+                    lock (lockObject)
+                    {
+                        _hosts = GetCurrentServers(controlConnection);
+                    }
+                    CreatePool(_hosts);
                     controlConnection.Close();
                     break;
                 }
@@ -115,11 +163,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// <summary>
     /// Create a new pool
     /// </summary>
-    internal void CreatePool(NpgsqlConnection conn)
+    internal void CreatePool(List<string> hosts)
     {
         lock (lockObject)
         {
-            _hosts = GetCurrentServers(conn);
+            _hosts = hosts;
             foreach(var host in _hosts)
             {
                 var flag = 0;
@@ -145,7 +193,6 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 index++;
 
             }
-            unreachableHostsIndices.Clear();
         }
     }
 
@@ -236,7 +283,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
                 NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
                 controlConnection.Open();
-                CreatePool(controlConnection);
+                _hosts = GetCurrentServers(controlConnection);
+                CreatePool(_hosts);
                 controlConnection.Close();
                 break;
             }
@@ -248,7 +296,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
                 
         }
-
+        unreachableHostsIndices.Clear();
+        unreachableHosts.Clear();
         return true;
     }
 
@@ -257,6 +306,64 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         NpgsqlConnector? connector = null;
         var exceptions = new List<Exception>();
+        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+        
+        if (this is TopologyAwareDataSource)
+        {
+            exceptions.Clear();
+            List<string>? hosts;
+            List<string>? public_ip;
+            if (connector == null)
+            {
+                for (var i = FIRST_FALLBACK; i <= MAX_PREFERENCE_VALUE; i++)
+                {
+                    fallbackPrivateIPs.TryGetValue(i, out hosts);
+                    fallbackPublicIPs.TryGetValue(i, out public_ip);
+                    if (hosts != null)
+                    {
+                        exceptions.Clear();
+                        CreatePool(fallbackPrivateIPs[i]);
+                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                        if (connector != null)
+                            break;
+                    }
+                    else if (public_ip != null)
+                    {
+                        exceptions.Clear();
+                        CreatePool(fallbackPublicIPs[i]);
+                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                        if (connector != null)
+                            break;
+                    }
+                }
+            }
+
+            if (connector == null)
+            {
+                fallbackPrivateIPs.TryGetValue(REST_OF_CLUSTER, out hosts);
+                fallbackPublicIPs.TryGetValue(REST_OF_CLUSTER, out public_ip);
+                if (hosts != null)
+                {
+                    exceptions.Clear();
+                    CreatePool(fallbackPrivateIPs[REST_OF_CLUSTER]);
+                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                }
+                else if (public_ip != null)
+                {
+                    exceptions.Clear();
+                    CreatePool(fallbackPublicIPs[REST_OF_CLUSTER]);
+                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                }
+            }
+        }
+       
+        return connector ?? throw NoSuitableHostsException(exceptions);
+    }
+
+    async Task<NpgsqlConnector?> getConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async,
+        CancellationToken cancellationToken, List<Exception> exceptions)
+    {
+        NpgsqlConnector? connector = null;
         for (var i = 0; i < _pools.Count; i++)
         {
             CheckDisposed();
@@ -269,23 +376,26 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             var checkUnpreferred = preferredType is TargetSessionAttributes.PreferPrimary or TargetSessionAttributes.PreferStandby;
 
             connector = await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken) ??
-                            (checkUnpreferred ?
-                                await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken)
-                                : null) ??
-                            await TryGet(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken) ??
-                            (checkUnpreferred ?
-                                await TryGet(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken)
-                                : null);
+                        (checkUnpreferred ?
+                            await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken)
+                            : null) ??
+                        await TryGet(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken) ??
+                        (checkUnpreferred ?
+                            await TryGet(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken)
+                            : null);
             if (connector != null)
             {
                 break;
             }
             unreachableHostsIndices.Add(poolIndex);
+            var settingsHost = _pools[poolIndex].Settings.Host;
+            if (settingsHost != null) unreachableHosts.Add(settingsHost);
             poolToNumConnMap.Remove(poolIndex);
             UpdateConnectionMap(poolIndex, -1);
         }
-        
-        return connector ?? throw NoSuitableHostsException(exceptions);
+
+        return connector;
+
     }
     
     

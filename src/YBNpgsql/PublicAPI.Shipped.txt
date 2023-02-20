@@ -1913,3 +1913,9 @@ static readonly YBNpgsqlTypes.NpgsqlLogSequenceNumber.Invalid -> YBNpgsqlTypes.N
 static readonly YBNpgsqlTypes.NpgsqlRange<T>.Empty -> YBNpgsqlTypes.NpgsqlRange<T>
 virtual YBNpgsql.NpgsqlCommand.Clone() -> YBNpgsql.NpgsqlCommand!
 virtual YBNpgsql.Replication.PgOutput.ReplicationTuple.GetAsyncEnumerator(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerator<YBNpgsql.Replication.PgOutput.ReplicationValue!>!
+YBNpgsql.ClusterAwareDataSource
+YBNpgsql.NpgsqlConnectionStringBuilder.TopologyKeys.get -> string?
+YBNpgsql.NpgsqlConnectionStringBuilder.TopologyKeys.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.get -> double
+YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.set -> void
+YBNpgsql.TopologyAwareDataSource
