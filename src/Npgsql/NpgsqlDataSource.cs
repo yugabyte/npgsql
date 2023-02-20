@@ -302,6 +302,10 @@ public abstract class NpgsqlDataSource : DbDataSource
 
     #endregion Password management
 
+    internal abstract bool NeedsRefresh();
+
+    internal abstract bool Refresh();
+
     internal abstract ValueTask<NpgsqlConnector> Get(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken);
 
