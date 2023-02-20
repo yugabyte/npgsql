@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using NpgsqlTypes;
-using static NpgsqlTypes.NpgsqlTsQuery.NodeKind;
+using YBNpgsqlTypes;
+using static YBNpgsqlTypes.NpgsqlTsQuery.NodeKind;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class TsQueryConverter<T> : PgStreamingConverter<T>
     where T : NpgsqlTsQuery

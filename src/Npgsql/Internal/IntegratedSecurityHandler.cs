@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Properties;
+using YBNpgsql.Properties;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 class IntegratedSecurityHandler
 {

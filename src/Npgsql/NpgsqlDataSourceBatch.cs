@@ -2,9 +2,9 @@ using System;
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Properties;
+using YBNpgsql.Properties;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class NpgsqlDataSourceBatch : NpgsqlBatch
 {

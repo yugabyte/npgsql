@@ -2,10 +2,10 @@ using System;
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.IO;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.NetTopologySuite.Internal;
+namespace YBNpgsql.NetTopologySuite.Internal;
 
 sealed class NetTopologySuiteTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Launches MIT Kerberos klist and parses out the default principal from it.

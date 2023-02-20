@@ -3,7 +3,7 @@ using System.Data;
 using System.Linq;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 class SqlQueryParserTests
 {

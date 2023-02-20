@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Internally represents a statement has been prepared, is in the process of being prepared, or is a

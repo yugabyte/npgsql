@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 abstract class StringBasedTextConverter<T> : PgStreamingConverter<T>
 {

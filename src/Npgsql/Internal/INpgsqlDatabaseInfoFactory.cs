@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 /// <summary>
 /// A factory which get generate instances of <see cref="NpgsqlDatabaseInfo"/>, which describe a database

@@ -1,4 +1,4 @@
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Options to configure Npgsql's support for OpenTelemetry tracing.

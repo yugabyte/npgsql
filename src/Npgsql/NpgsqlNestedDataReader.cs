@@ -1,5 +1,5 @@
-﻿using Npgsql.Internal;
-using Npgsql.PostgresTypes;
+﻿using YBNpgsql.Internal;
+using YBNpgsql.PostgresTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Reads a forward-only stream of rows from a nested data source.

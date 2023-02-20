@@ -3,7 +3,7 @@ using System.Buffers;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql;
+using YBNpgsql;
 
 // ReSharper disable once CheckNamespace
 namespace System.IO

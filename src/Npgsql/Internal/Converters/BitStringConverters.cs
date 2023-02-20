@@ -6,10 +6,10 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.Postgres;
-using static Npgsql.Internal.Converters.BitStringHelpers;
+using YBNpgsql.Internal.Postgres;
+using static YBNpgsql.Internal.Converters.BitStringHelpers;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 static class BitStringHelpers
 {

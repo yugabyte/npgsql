@@ -6,10 +6,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 
 partial class NpgsqlConnector

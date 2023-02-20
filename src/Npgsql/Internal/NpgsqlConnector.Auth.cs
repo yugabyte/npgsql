@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.BackendMessages;
-using Npgsql.Util;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Util;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 partial class NpgsqlConnector
 {

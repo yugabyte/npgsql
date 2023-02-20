@@ -1,13 +1,17 @@
 using System;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.Tests;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Tests;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.NodaTime.Internal.NodaTimeUtils;
+using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
+<<<<<<< HEAD:test/Npgsql.PluginTests/NodaTimeInfinityTests.cs
 namespace Npgsql.PluginTests;
+=======
+namespace YBNpgsql.NodaTime.Tests;
+>>>>>>> e9e89c19 (Change namespace from Npgsql to YBNpgsql):test/Npgsql.NodaTime.Tests/NodaTimeInfinityTests.cs
 
 [TestFixture(false)]
 #if DEBUG

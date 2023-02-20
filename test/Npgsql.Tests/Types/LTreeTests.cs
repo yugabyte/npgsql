@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Npgsql.Properties;
-using NpgsqlTypes;
+using YBNpgsql.Properties;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class LTreeTests : MultiplexingTestBase
 {

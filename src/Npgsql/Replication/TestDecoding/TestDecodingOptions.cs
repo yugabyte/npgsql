@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Npgsql.Replication.TestDecoding;
+namespace YBNpgsql.Replication.TestDecoding;
 
 /// <summary>
 /// Options to be passed to the test_decoding plugin

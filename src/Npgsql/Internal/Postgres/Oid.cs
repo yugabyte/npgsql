@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql.Internal.Postgres;
+namespace YBNpgsql.Internal.Postgres;
 
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]
 public readonly struct Oid: IEquatable<Oid>

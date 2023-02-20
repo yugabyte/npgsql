@@ -1,8 +1,8 @@
-﻿using Npgsql.NodaTime.Internal;
-using Npgsql.TypeMapping;
+﻿using YBNpgsql.NodaTime.Internal;
+using YBNpgsql.TypeMapping;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Extension adding the NodaTime plugin to an Npgsql type mapper.

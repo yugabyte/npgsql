@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel;
-using Npgsql;
+using YBNpgsql;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

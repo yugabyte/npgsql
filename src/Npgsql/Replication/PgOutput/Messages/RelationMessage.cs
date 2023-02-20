@@ -1,9 +1,9 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using System;
 using System.Collections.Generic;
-using Npgsql.BackendMessages;
+using YBNpgsql.BackendMessages;
 
-namespace Npgsql.Replication.PgOutput.Messages;
+namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// Logical Replication Protocol relation message

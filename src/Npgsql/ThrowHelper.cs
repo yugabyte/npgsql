@@ -1,9 +1,9 @@
-﻿using Npgsql.BackendMessages;
+﻿using YBNpgsql.BackendMessages;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 static class ThrowHelper
 {
@@ -100,6 +100,11 @@ static class ThrowHelper
         => throw new NotSupportedException(message);
 
     [DoesNotReturn]
+<<<<<<< HEAD
     internal static void ThrowNpgsqlExceptionWithInnerTimeoutException(string message)
         => throw new NpgsqlException(message, new TimeoutException());
+=======
+    internal static void ThrowTimeoutException()
+        => throw new TimeoutException();
+>>>>>>> e9e89c19 (Change namespace from Npgsql to YBNpgsql)
 }

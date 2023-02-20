@@ -5,11 +5,12 @@ using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using YBNpgsql.Util;
 
 #pragma warning disable 1591
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Represents a PostgreSQL point type.

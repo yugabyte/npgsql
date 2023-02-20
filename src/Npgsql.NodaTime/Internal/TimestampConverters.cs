@@ -1,9 +1,9 @@
 using System;
 using NodaTime;
-using Npgsql.Internal;
-using static Npgsql.NodaTime.Internal.NodaTimeUtils;
+using YBNpgsql.Internal;
+using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed class InstantConverter : PgBufferedConverter<Instant>
 {

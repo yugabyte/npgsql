@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Transactions;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [NonParallelizable]
 public class DistributedTransactionTests : TestBase

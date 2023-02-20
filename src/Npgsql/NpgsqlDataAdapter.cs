@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Represents the method that handles the <see cref="NpgsqlDataAdapter.RowUpdated"/> events.

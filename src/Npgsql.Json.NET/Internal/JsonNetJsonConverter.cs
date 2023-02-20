@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
-namespace Npgsql.Json.NET.Internal;
+namespace YBNpgsql.Json.NET.Internal;
 
 sealed class JsonNetJsonConverter<T> : PgStreamingConverter<T?>
 {

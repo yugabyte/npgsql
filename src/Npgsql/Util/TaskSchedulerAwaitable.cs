@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 readonly struct TaskSchedulerAwaitable : ICriticalNotifyCompletion
 {

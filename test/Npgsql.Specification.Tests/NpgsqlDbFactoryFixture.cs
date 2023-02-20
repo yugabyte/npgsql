@@ -2,7 +2,7 @@ using System;
 using System.Data.Common;
 using AdoNet.Specification.Tests;
 
-namespace Npgsql.Specification.Tests;
+namespace YBNpgsql.Specification.Tests;
 
 public class NpgsqlDbFactoryFixture : IDbFactoryFixture
 {

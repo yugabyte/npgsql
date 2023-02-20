@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql.Internal.Postgres;
+namespace YBNpgsql.Internal.Postgres;
 
 /// <summary>
 /// A discriminated union of <see cref="Oid" /> and <see cref="DataTypeName" />.

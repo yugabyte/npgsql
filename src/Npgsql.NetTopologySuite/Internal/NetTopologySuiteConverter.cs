@@ -4,9 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.IO;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.NetTopologySuite.Internal;
+namespace YBNpgsql.NetTopologySuite.Internal;
 
 sealed class NetTopologySuiteConverter<T> : PgStreamingConverter<T>
     where T : Geometry

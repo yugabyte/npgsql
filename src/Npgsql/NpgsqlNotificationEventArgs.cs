@@ -1,7 +1,7 @@
 using System;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides information on a PostgreSQL notification. Notifications are sent when your connection has registered for

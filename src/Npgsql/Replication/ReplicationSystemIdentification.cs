@@ -1,6 +1,6 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Contains server identification information returned from <see cref="ReplicationConnection.IdentifySystem"/>.

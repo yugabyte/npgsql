@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides lookup for a pool based on a connection string.

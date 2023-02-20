@@ -1,13 +1,13 @@
 ﻿#nullable enable
-Npgsql.GeoJSON.CrsMap
-Npgsql.GeoJSON.CrsMapExtensions
-Npgsql.GeoJSONOptions
-Npgsql.GeoJSONOptions.BoundingBox = 1 -> Npgsql.GeoJSONOptions
-Npgsql.GeoJSONOptions.LongCRS = 4 -> Npgsql.GeoJSONOptions
-Npgsql.GeoJSONOptions.None = 0 -> Npgsql.GeoJSONOptions
-Npgsql.GeoJSONOptions.ShortCRS = 2 -> Npgsql.GeoJSONOptions
-Npgsql.NpgsqlGeoJSONExtensions
-static Npgsql.GeoJSON.CrsMapExtensions.GetCrsMap(this Npgsql.NpgsqlDataSource! dataSource) -> Npgsql.GeoJSON.CrsMap!
-static Npgsql.GeoJSON.CrsMapExtensions.GetCrsMapAsync(this Npgsql.NpgsqlDataSource! dataSource) -> System.Threading.Tasks.Task<Npgsql.GeoJSON.CrsMap!>!
-static Npgsql.NpgsqlGeoJSONExtensions.UseGeoJson(this Npgsql.TypeMapping.INpgsqlTypeMapper! mapper, Npgsql.GeoJSON.CrsMap! crsMap, Npgsql.GeoJSONOptions options = Npgsql.GeoJSONOptions.None, bool geographyAsDefault = false) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-static Npgsql.NpgsqlGeoJSONExtensions.UseGeoJson(this Npgsql.TypeMapping.INpgsqlTypeMapper! mapper, Npgsql.GeoJSONOptions options = Npgsql.GeoJSONOptions.None, bool geographyAsDefault = false) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.GeoJSON.CrsMap
+YBNpgsql.GeoJSON.CrsMapExtensions
+YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.BoundingBox = 1 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.LongCRS = 4 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.None = 0 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.GeoJSONOptions.ShortCRS = 2 -> YBNpgsql.GeoJSONOptions
+YBNpgsql.NpgsqlGeoJSONExtensions
+static YBNpgsql.GeoJSON.CrsMapExtensions.GetCrsMap(this YBNpgsql.NpgsqlDataSource! dataSource) -> YBNpgsql.GeoJSON.CrsMap!
+static YBNpgsql.GeoJSON.CrsMapExtensions.GetCrsMapAsync(this YBNpgsql.NpgsqlDataSource! dataSource) -> System.Threading.Tasks.Task<YBNpgsql.GeoJSON.CrsMap!>!
+static YBNpgsql.NpgsqlGeoJSONExtensions.UseGeoJson(this YBNpgsql.TypeMapping.INpgsqlTypeMapper! mapper, YBNpgsql.GeoJSON.CrsMap! crsMap, YBNpgsql.GeoJSONOptions options = YBNpgsql.GeoJSONOptions.None, bool geographyAsDefault = false) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+static YBNpgsql.NpgsqlGeoJSONExtensions.UseGeoJson(this YBNpgsql.TypeMapping.INpgsqlTypeMapper! mapper, YBNpgsql.GeoJSONOptions options = YBNpgsql.GeoJSONOptions.None, bool geographyAsDefault = false) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!

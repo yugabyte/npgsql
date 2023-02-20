@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Replication;
+using YBNpgsql.Replication;
 
-namespace Npgsql.Tests.Replication;
+namespace YBNpgsql.Tests.Replication;
 
 public abstract class SafeReplicationTestBase<TConnection> : TestBase
     where TConnection : ReplicationConnection, new()

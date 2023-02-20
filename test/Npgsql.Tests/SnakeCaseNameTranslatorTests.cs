@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Npgsql.NameTranslation;
+using YBNpgsql.NameTranslation;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class SnakeCaseNameTranslatorTests
 {

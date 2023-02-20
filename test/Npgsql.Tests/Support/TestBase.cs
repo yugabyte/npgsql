@@ -7,11 +7,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Tests.Support;
-using NpgsqlTypes;
+using YBNpgsql.Tests.Support;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public abstract class TestBase
 {

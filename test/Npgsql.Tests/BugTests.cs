@@ -1,6 +1,6 @@
-﻿using Npgsql.BackendMessages;
-using Npgsql.Tests.Support;
-using NpgsqlTypes;
+﻿using YBNpgsql.BackendMessages;
+using YBNpgsql.Tests.Support;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 using System;
 using System.Data;
@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
-using Npgsql.Internal.Postgres;
-using static Npgsql.Tests.TestUtil;
+using YBNpgsql.Internal.Postgres;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class BugTests : TestBase
 {

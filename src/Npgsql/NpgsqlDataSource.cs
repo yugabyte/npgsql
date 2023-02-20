@@ -9,12 +9,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Internal.ResolverFactories;
-using Npgsql.Properties;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.ResolverFactories;
+using YBNpgsql.Properties;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <inheritdoc />
 public abstract class NpgsqlDataSource : DbDataSource

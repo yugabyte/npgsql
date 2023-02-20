@@ -1,5 +1,5 @@
 using System;
-using Npgsql;
+using YBNpgsql;
 
 var connectionString = Environment.GetEnvironmentVariable("NPGSQL_TEST_DB")
                        ?? "Server=localhost;Username=npgsql_tests;Password=npgsql_tests;Database=npgsql_tests;Timeout=0;Command Timeout=0";

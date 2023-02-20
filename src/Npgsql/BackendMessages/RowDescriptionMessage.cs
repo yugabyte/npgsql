@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
-using Npgsql.Replication.PgOutput.Messages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Replication.PgOutput.Messages;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 readonly struct ColumnInfo
 {

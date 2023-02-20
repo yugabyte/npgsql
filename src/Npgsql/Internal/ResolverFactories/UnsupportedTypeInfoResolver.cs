@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
-using Npgsql.Properties;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Properties;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed class UnsupportedTypeInfoResolver<TBuilder> : IPgTypeInfoResolver
 {
