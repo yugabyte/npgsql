@@ -10,7 +10,7 @@ namespace Npgsql.Tests;
 public class YBFallbackTopolgyTests : YBTestUtils
 {
     static int mlock = 0;
-    string connStringBuilder = "host=127.0.0.3;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
+    string connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
 
     [Test]
     public async Task TestFallback1()
@@ -51,7 +51,43 @@ public class YBFallbackTopolgyTests : YBTestUtils
     public async Task TestFallback5()
     {
         CreateCluster();
-        var conns =await CreateConnections(connStringBuilder + "aws.us-west.*:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 4, 4, 4);
+        var connString = connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3";
+
+        NpgsqlConnection conn = new NpgsqlConnection(connString);
+        conn.Open();
+
+        await VerifyOn("127.0.0.1", 1);
+
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 1";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
+
+        var conns =await CreateConnections(connString, 0, 12, 0);
+
+        CloseConnections(conns);
+        DestroyCluster();
+    }
+
+    [Test]
+    public async Task TestFallback6()
+    {
+        CreateCluster();
+        var connString = connStringBuilder + "aws.us-west.us-west-2a:1";
+
+        NpgsqlConnection conn = new NpgsqlConnection(connString);
+        conn.Open();
+
+        await VerifyOn("127.0.0.1", 1);
+
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 1";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
+
+        var conns = await CreateConnections(connString, 0, 6, 6);
         CloseConnections(conns);
         DestroyCluster();
     }

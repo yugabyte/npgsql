@@ -1936,3 +1936,9 @@ static readonly NpgsqlTypes.NpgsqlLogSequenceNumber.Invalid -> NpgsqlTypes.Npgsq
 static readonly NpgsqlTypes.NpgsqlRange<T>.Empty -> NpgsqlTypes.NpgsqlRange<T>
 virtual Npgsql.NpgsqlCommand.Clone() -> Npgsql.NpgsqlCommand!
 virtual Npgsql.Replication.PgOutput.ReplicationTuple.GetAsyncEnumerator(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerator<Npgsql.Replication.PgOutput.ReplicationValue!>!
+Npgsql.ClusterAwareDataSource
+Npgsql.NpgsqlConnectionStringBuilder.TopologyKeys.get -> string?
+Npgsql.NpgsqlConnectionStringBuilder.TopologyKeys.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.get -> double
+Npgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.set -> void
+Npgsql.TopologyAwareDataSource
