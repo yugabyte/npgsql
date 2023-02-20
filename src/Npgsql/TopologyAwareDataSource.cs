@@ -15,21 +15,10 @@ namespace Npgsql;
 public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 {
     ConcurrentDictionary<int, HashSet<CloudPlacement>?> allowedPlacements;
-    ConcurrentDictionary<int, List<string>> fallbackPrivateIPs;
-    ConcurrentDictionary<int, List<string>> fallbackPublicIPs;
-    readonly int PRIMARY_PLACEMENTS = 1;
-    readonly int FIRST_FALLBACK = 2;
-    readonly int REST_OF_CLUSTER = -1;
-    readonly int MAX_PREFERENCE_VALUE = 10;
-    List<string> currentPublicIps = new List<string>();
-    static int index = 0; 
 
     internal TopologyAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig) : base(settings,dataSourceConfig,false)
     {
         allowedPlacements = new ConcurrentDictionary<int, HashSet<CloudPlacement>?>();
-        fallbackPrivateIPs = new ConcurrentDictionary<int, List<string>>();
-        fallbackPublicIPs = new ConcurrentDictionary<int, List<string>>();
-
         ParseGeoLocations();
         Console.WriteLine("Inside TopologyAwareDatasource");
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
@@ -42,7 +31,11 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
                 NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
                 controlConnection.Open();
-                CreatePool(controlConnection);
+                lock (lockObject)
+                {
+                    _hosts = GetCurrentServers(controlConnection);
+                }
+                CreatePool(_hosts);
                 controlConnection.Close();
                 break;
             }
@@ -126,11 +119,11 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     /// <summary>
     /// Create a new pool
     /// </summary>
-    internal new void CreatePool(NpgsqlConnection conn)
+    internal new  void CreatePool(List<string> hosts)
     {
         lock (lockObject)
         {
-            _hosts = GetCurrentServers(conn);
+            _hosts = hosts;
             foreach(var host in _hosts)
             {
                 var flag = 0;
@@ -164,6 +157,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     {
         NpgsqlCommand QUERY_SERVER = new NpgsqlCommand("Select * from yb_servers()",conn);
         NpgsqlDataReader reader = QUERY_SERVER.ExecuteReader();
+        _lastServerFetchTime = DateTime.Now;
         List<string> currentPrivateIps = new List<string>();
         var hostConnectedTo = conn.Host;
         
@@ -192,9 +186,21 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     new List<string> GetPrivateOrPublicServers(List<string> privateHosts, List<string> publicHosts)
     {
         List<string> servers = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
+        var flag = 0;
+        
         if (servers != null && servers.Any())
         {
-            return servers;
+            foreach (var server in servers)
+            {
+                if (!unreachableHosts.Contains(server))
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+
+            if (flag == 1)
+                return servers;
         }
 
         for (var i = FIRST_FALLBACK; i <= MAX_PREFERENCE_VALUE; i++)
