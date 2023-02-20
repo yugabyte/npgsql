@@ -1,6 +1,6 @@
 ﻿#nullable enable
 abstract YBNpgsql.Replication.PgOutput.Messages.UpdateMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
-abstract NpgsqlTypes.NpgsqlTsQuery.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+abstract YBNpgsqlTypes.NpgsqlTsQuery.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 const YBNpgsql.NpgsqlConnection.DefaultPort = 5432 -> int
 const YBNpgsql.PostgresErrorCodes.ActiveSqlTransaction = "25001" -> string!
 const YBNpgsql.PostgresErrorCodes.AdminShutdown = "57P01" -> string!
@@ -299,8 +299,8 @@ YBNpgsql.NpgsqlBinaryExporter.Dispose() -> void
 YBNpgsql.NpgsqlBinaryExporter.DisposeAsync() -> System.Threading.Tasks.ValueTask
 YBNpgsql.NpgsqlBinaryExporter.IsNull.get -> bool
 YBNpgsql.NpgsqlBinaryExporter.Read<T>() -> T
-YBNpgsql.NpgsqlBinaryExporter.Read<T>(NpgsqlTypes.NpgsqlDbType type) -> T
-YBNpgsql.NpgsqlBinaryExporter.ReadAsync<T>(NpgsqlTypes.NpgsqlDbType type, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<T>
+YBNpgsql.NpgsqlBinaryExporter.Read<T>(YBNpgsqlTypes.NpgsqlDbType type) -> T
+YBNpgsql.NpgsqlBinaryExporter.ReadAsync<T>(YBNpgsqlTypes.NpgsqlDbType type, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<T>
 YBNpgsql.NpgsqlBinaryExporter.ReadAsync<T>(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<T>
 YBNpgsql.NpgsqlBinaryExporter.Skip() -> void
 YBNpgsql.NpgsqlBinaryExporter.SkipAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
@@ -318,9 +318,9 @@ YBNpgsql.NpgsqlBinaryImporter.StartRow() -> void
 YBNpgsql.NpgsqlBinaryImporter.StartRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.NpgsqlBinaryImporter.Timeout.set -> void
 YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value) -> void
-YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value, NpgsqlTypes.NpgsqlDbType npgsqlDbType) -> void
+YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value, YBNpgsqlTypes.NpgsqlDbType npgsqlDbType) -> void
 YBNpgsql.NpgsqlBinaryImporter.Write<T>(T value, string! dataTypeName) -> void
-YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, NpgsqlTypes.NpgsqlDbType npgsqlDbType, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, YBNpgsqlTypes.NpgsqlDbType npgsqlDbType, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, string! dataTypeName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.NpgsqlBinaryImporter.WriteAsync<T>(T value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.NpgsqlBinaryImporter.WriteNull() -> void
@@ -678,14 +678,14 @@ YBNpgsql.NpgsqlParameter.ConvertedValue.get -> object?
 YBNpgsql.NpgsqlParameter.ConvertedValue.set -> void
 YBNpgsql.NpgsqlParameter.DataTypeName.get -> string?
 YBNpgsql.NpgsqlParameter.DataTypeName.set -> void
-YBNpgsql.NpgsqlParameter.NpgsqlDbType.get -> NpgsqlTypes.NpgsqlDbType
+YBNpgsql.NpgsqlParameter.NpgsqlDbType.get -> YBNpgsqlTypes.NpgsqlDbType
 YBNpgsql.NpgsqlParameter.NpgsqlDbType.set -> void
 YBNpgsql.NpgsqlParameter.NpgsqlParameter() -> void
-YBNpgsql.NpgsqlParameter.NpgsqlParameter(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, System.Data.DataRowVersion sourceVersion, object! value) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, System.Data.DataRowVersion sourceVersion, object! value) -> void
 YBNpgsql.NpgsqlParameter.NpgsqlParameter(string! parameterName, System.Data.DbType parameterType, int size, string? sourceColumn, System.Data.ParameterDirection direction, bool isNullable, byte precision, byte scale, System.Data.DataRowVersion sourceVersion, object! value) -> void
-YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, NpgsqlTypes.NpgsqlDbType parameterType) -> void
-YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size) -> void
-YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size) -> void
+YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn) -> void
 YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, object? value) -> void
 YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, System.Data.DbType parameterType) -> void
 YBNpgsql.NpgsqlParameter.NpgsqlParameter(string? parameterName, System.Data.DbType parameterType, int size) -> void
@@ -699,21 +699,21 @@ YBNpgsql.NpgsqlParameter.Scale.get -> byte
 YBNpgsql.NpgsqlParameter.Scale.set -> void
 YBNpgsql.NpgsqlParameter<T>
 YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter() -> void
-YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, NpgsqlTypes.NpgsqlDbType npgsqlDbType) -> void
+YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, YBNpgsqlTypes.NpgsqlDbType npgsqlDbType) -> void
 YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, System.Data.DbType dbType) -> void
 YBNpgsql.NpgsqlParameter<T>.NpgsqlParameter(string! parameterName, T value) -> void
 YBNpgsql.NpgsqlParameter<T>.TypedValue.get -> T?
 YBNpgsql.NpgsqlParameter<T>.TypedValue.set -> void
 YBNpgsql.NpgsqlParameterCollection
 YBNpgsql.NpgsqlParameterCollection.Add(YBNpgsql.NpgsqlParameter! value) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string! sourceColumn) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.AddWithValue(NpgsqlTypes.NpgsqlDbType parameterType, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.Add(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size, string! sourceColumn) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(YBNpgsqlTypes.NpgsqlDbType parameterType, object! value) -> YBNpgsql.NpgsqlParameter!
 YBNpgsql.NpgsqlParameterCollection.AddWithValue(object! value) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, object! value) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn, object! value) -> YBNpgsql.NpgsqlParameter!
-YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, NpgsqlTypes.NpgsqlDbType parameterType, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, int size, string? sourceColumn, object! value) -> YBNpgsql.NpgsqlParameter!
+YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, YBNpgsqlTypes.NpgsqlDbType parameterType, object! value) -> YBNpgsql.NpgsqlParameter!
 YBNpgsql.NpgsqlParameterCollection.AddWithValue(string! parameterName, object! value) -> YBNpgsql.NpgsqlParameter!
 YBNpgsql.NpgsqlParameterCollection.Contains(YBNpgsql.NpgsqlParameter! item) -> bool
 YBNpgsql.NpgsqlParameterCollection.CopyTo(YBNpgsql.NpgsqlParameter![]! array, int arrayIndex) -> void
@@ -841,7 +841,7 @@ YBNpgsql.ProvideClientCertificatesCallback
 YBNpgsql.ProvidePasswordCallback
 YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions
 YBNpgsql.Replication.Internal.LogicalReplicationSlot
-YBNpgsql.Replication.Internal.LogicalReplicationSlot.ConsistentPoint.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.Internal.LogicalReplicationSlot.ConsistentPoint.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.Internal.LogicalReplicationSlot.LogicalReplicationSlot(string! outputPlugin, YBNpgsql.Replication.ReplicationSlotOptions replicationSlotOptions) -> void
 YBNpgsql.Replication.Internal.LogicalReplicationSlot.OutputPlugin.get -> string!
 YBNpgsql.Replication.Internal.LogicalReplicationSlot.SnapshotName.get -> string?
@@ -854,20 +854,20 @@ YBNpgsql.Replication.LogicalSlotSnapshotInitMode.NoExport = 2 -> YBNpgsql.Replic
 YBNpgsql.Replication.LogicalSlotSnapshotInitMode.Use = 1 -> YBNpgsql.Replication.LogicalSlotSnapshotInitMode
 YBNpgsql.Replication.PgOutput.Messages.BeginMessage
 YBNpgsql.Replication.PgOutput.Messages.BeginMessage.TransactionCommitTimestamp.get -> System.DateTime
-YBNpgsql.Replication.PgOutput.Messages.BeginMessage.TransactionFinalLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.BeginMessage.TransactionFinalLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.BeginPrepareMessage
 YBNpgsql.Replication.PgOutput.Messages.CommitMessage
 YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags
 YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags
-YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.CommitMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.CommitMessage.CommitFlags
 YBNpgsql.Replication.PgOutput.Messages.CommitMessage.TransactionCommitTimestamp.get -> System.DateTime
-YBNpgsql.Replication.PgOutput.Messages.CommitMessage.TransactionEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitMessage.TransactionEndLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage
-YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedEndLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags
 YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags
-YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.CommitPreparedFlags
 YBNpgsql.Replication.PgOutput.Messages.CommitPreparedMessage.TransactionCommitTimestamp.get -> System.DateTime
 YBNpgsql.Replication.PgOutput.Messages.DefaultUpdateMessage
@@ -889,10 +889,10 @@ YBNpgsql.Replication.PgOutput.Messages.KeyDeleteMessage.Key.get -> YBNpgsql.Repl
 YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage
 YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.Data.get -> System.IO.Stream!
 YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.Flags.get -> byte
-YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.MessageLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.MessageLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.LogicalDecodingMessage.Prefix.get -> string!
 YBNpgsql.Replication.PgOutput.Messages.OriginMessage
-YBNpgsql.Replication.PgOutput.Messages.OriginMessage.OriginCommitLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.OriginMessage.OriginCommitLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.OriginMessage.OriginName.get -> string!
 YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage
 YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage.PgOutputReplicationMessage() -> void
@@ -903,8 +903,8 @@ YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.Flags.get -> YBNpgsql.Repl
 YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags
 YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.PrepareMessage.PrepareFlags
 YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase
-YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.PrepareEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
-YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.PrepareLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.PrepareEndLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.PrepareLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.PrepareMessageBase.TransactionPrepareTimestamp.get -> System.DateTime
 YBNpgsql.Replication.PgOutput.Messages.RelationMessage
 YBNpgsql.Replication.PgOutput.Messages.RelationMessage.Column
@@ -934,8 +934,8 @@ YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.RelationMessageColu
 YBNpgsql.Replication.PgOutput.Messages.RelationMessageColumn.TypeModifier.get -> int
 YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage
 YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags
-YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.PreparedTransactionEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
-YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.PreparedTransactionEndLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedEndLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags
 YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags.None = 0 -> YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.RollbackPreparedFlags
 YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.TransactionPrepareTimestamp.get -> System.DateTime
@@ -943,10 +943,10 @@ YBNpgsql.Replication.PgOutput.Messages.RollbackPreparedMessage.TransactionRollba
 YBNpgsql.Replication.PgOutput.Messages.StreamAbortMessage
 YBNpgsql.Replication.PgOutput.Messages.StreamAbortMessage.SubtransactionXid.get -> uint
 YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage
-YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.CommitLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.CommitLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.Flags.get -> byte
 YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.TransactionCommitTimestamp.get -> System.DateTime
-YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.TransactionEndLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.StreamCommitMessage.TransactionEndLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage
 YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.Flags.get -> YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.StreamPrepareFlags
 YBNpgsql.Replication.PgOutput.Messages.StreamPrepareMessage.StreamPrepareFlags
@@ -1014,11 +1014,11 @@ YBNpgsql.Replication.PhysicalReplicationConnection.PhysicalReplicationConnection
 YBNpgsql.Replication.PhysicalReplicationConnection.PhysicalReplicationConnection(string? connectionString) -> void
 YBNpgsql.Replication.PhysicalReplicationConnection.ReadReplicationSlot(string! slotName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.PhysicalReplicationSlot?>!
 YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(YBNpgsql.Replication.PhysicalReplicationSlot! slot, System.Threading.CancellationToken cancellationToken) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
-YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(YBNpgsql.Replication.PhysicalReplicationSlot? slot, NpgsqlTypes.NpgsqlLogSequenceNumber walLocation, System.Threading.CancellationToken cancellationToken, ulong timeline = 0) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
-YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(NpgsqlTypes.NpgsqlLogSequenceNumber walLocation, System.Threading.CancellationToken cancellationToken, ulong timeline = 0) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(YBNpgsql.Replication.PhysicalReplicationSlot? slot, YBNpgsqlTypes.NpgsqlLogSequenceNumber walLocation, System.Threading.CancellationToken cancellationToken, ulong timeline = 0) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+YBNpgsql.Replication.PhysicalReplicationConnection.StartReplication(YBNpgsqlTypes.NpgsqlLogSequenceNumber walLocation, System.Threading.CancellationToken cancellationToken, ulong timeline = 0) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
 YBNpgsql.Replication.PhysicalReplicationSlot
-YBNpgsql.Replication.PhysicalReplicationSlot.PhysicalReplicationSlot(string! slotName, NpgsqlTypes.NpgsqlLogSequenceNumber? restartLsn = null, ulong? restartTimeline = null) -> void
-YBNpgsql.Replication.PhysicalReplicationSlot.RestartLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber?
+YBNpgsql.Replication.PhysicalReplicationSlot.PhysicalReplicationSlot(string! slotName, YBNpgsqlTypes.NpgsqlLogSequenceNumber? restartLsn = null, ulong? restartTimeline = null) -> void
+YBNpgsql.Replication.PhysicalReplicationSlot.RestartLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber?
 YBNpgsql.Replication.PhysicalReplicationSlot.RestartTimeline.get -> ulong?
 YBNpgsql.Replication.ReplicationConnection
 YBNpgsql.Replication.ReplicationConnection.CommandTimeout.get -> System.TimeSpan
@@ -1029,17 +1029,17 @@ YBNpgsql.Replication.ReplicationConnection.DisposeAsync() -> System.Threading.Ta
 YBNpgsql.Replication.ReplicationConnection.DropReplicationSlot(string! slotName, bool wait = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.Replication.ReplicationConnection.Encoding.get -> System.Text.Encoding!
 YBNpgsql.Replication.ReplicationConnection.IdentifySystem(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.ReplicationSystemIdentification!>!
-YBNpgsql.Replication.ReplicationConnection.LastAppliedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationConnection.LastAppliedLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.ReplicationConnection.LastAppliedLsn.set -> void
-YBNpgsql.Replication.ReplicationConnection.LastFlushedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationConnection.LastFlushedLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.ReplicationConnection.LastFlushedLsn.set -> void
-YBNpgsql.Replication.ReplicationConnection.LastReceivedLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationConnection.LastReceivedLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.ReplicationConnection.Open(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.Replication.ReplicationConnection.PostgreSqlVersion.get -> System.Version!
 YBNpgsql.Replication.ReplicationConnection.ProcessID.get -> int
 YBNpgsql.Replication.ReplicationConnection.SendStatusUpdate(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
 YBNpgsql.Replication.ReplicationConnection.ServerVersion.get -> string!
-YBNpgsql.Replication.ReplicationConnection.SetReplicationStatus(NpgsqlTypes.NpgsqlLogSequenceNumber lastAppliedAndFlushedLsn) -> void
+YBNpgsql.Replication.ReplicationConnection.SetReplicationStatus(YBNpgsqlTypes.NpgsqlLogSequenceNumber lastAppliedAndFlushedLsn) -> void
 YBNpgsql.Replication.ReplicationConnection.Show(string! parameterName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<string!>!
 YBNpgsql.Replication.ReplicationConnection.TimelineHistory(uint tli, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.TimelineHistoryFile>!
 YBNpgsql.Replication.ReplicationConnection.WalReceiverStatusInterval.get -> System.TimeSpan
@@ -1049,21 +1049,21 @@ YBNpgsql.Replication.ReplicationConnection.WalReceiverTimeout.set -> void
 YBNpgsql.Replication.ReplicationMessage
 YBNpgsql.Replication.ReplicationMessage.ReplicationMessage() -> void
 YBNpgsql.Replication.ReplicationMessage.ServerClock.get -> System.DateTime
-YBNpgsql.Replication.ReplicationMessage.WalEnd.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
-YBNpgsql.Replication.ReplicationMessage.WalStart.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationMessage.WalEnd.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationMessage.WalStart.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.ReplicationSlot
 YBNpgsql.Replication.ReplicationSlot.Name.get -> string!
 YBNpgsql.Replication.ReplicationSlotOptions
-YBNpgsql.Replication.ReplicationSlotOptions.ConsistentPoint.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationSlotOptions.ConsistentPoint.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions() -> void
-YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions(string! slotName, NpgsqlTypes.NpgsqlLogSequenceNumber consistentPoint) -> void
+YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions(string! slotName, YBNpgsqlTypes.NpgsqlLogSequenceNumber consistentPoint) -> void
 YBNpgsql.Replication.ReplicationSlotOptions.ReplicationSlotOptions(string! slotName, string? consistentPoint = null) -> void
 YBNpgsql.Replication.ReplicationSlotOptions.SlotName.get -> string!
 YBNpgsql.Replication.ReplicationSystemIdentification
 YBNpgsql.Replication.ReplicationSystemIdentification.DbName.get -> string?
 YBNpgsql.Replication.ReplicationSystemIdentification.SystemId.get -> string!
 YBNpgsql.Replication.ReplicationSystemIdentification.Timeline.get -> uint
-YBNpgsql.Replication.ReplicationSystemIdentification.XLogPos.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.ReplicationSystemIdentification.XLogPos.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
 YBNpgsql.Replication.TestDecoding.TestDecodingData
 YBNpgsql.Replication.TestDecoding.TestDecodingData.Clone() -> YBNpgsql.Replication.TestDecoding.TestDecodingData!
 YBNpgsql.Replication.TestDecoding.TestDecodingData.Data.get -> string!
@@ -1129,7 +1129,7 @@ YBNpgsql.Schema.NpgsqlDbColumn.IsReadOnly.set -> void
 YBNpgsql.Schema.NpgsqlDbColumn.IsUnique.get -> bool?
 YBNpgsql.Schema.NpgsqlDbColumn.IsUnique.set -> void
 YBNpgsql.Schema.NpgsqlDbColumn.NpgsqlDbColumn() -> void
-YBNpgsql.Schema.NpgsqlDbColumn.NpgsqlDbType.get -> NpgsqlTypes.NpgsqlDbType?
+YBNpgsql.Schema.NpgsqlDbColumn.NpgsqlDbType.get -> YBNpgsqlTypes.NpgsqlDbType?
 YBNpgsql.Schema.NpgsqlDbColumn.NumericPrecision.get -> int?
 YBNpgsql.Schema.NpgsqlDbColumn.NumericPrecision.set -> void
 YBNpgsql.Schema.NpgsqlDbColumn.NumericScale.get -> int?
@@ -1176,304 +1176,304 @@ YBNpgsql.TypeMapping.INpgsqlTypeMapper.UnmapComposite<T>(string? pgName = null, 
 YBNpgsql.TypeMapping.INpgsqlTypeMapper.UnmapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> bool
 YBNpgsql.Util.NpgsqlTimeout
 YBNpgsql.Util.NpgsqlTimeout.NpgsqlTimeout() -> void
-NpgsqlTypes.NpgsqlBox
-NpgsqlTypes.NpgsqlBox.Bottom.get -> double
-NpgsqlTypes.NpgsqlBox.Equals(NpgsqlTypes.NpgsqlBox other) -> bool
-NpgsqlTypes.NpgsqlBox.Height.get -> double
-NpgsqlTypes.NpgsqlBox.IsEmpty.get -> bool
-NpgsqlTypes.NpgsqlBox.Left.get -> double
-NpgsqlTypes.NpgsqlBox.LowerLeft.get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlBox.LowerLeft.set -> void
-NpgsqlTypes.NpgsqlBox.NpgsqlBox() -> void
-NpgsqlTypes.NpgsqlBox.NpgsqlBox(double top, double right, double bottom, double left) -> void
-NpgsqlTypes.NpgsqlBox.NpgsqlBox(NpgsqlTypes.NpgsqlPoint upperRight, NpgsqlTypes.NpgsqlPoint lowerLeft) -> void
-NpgsqlTypes.NpgsqlBox.Right.get -> double
-NpgsqlTypes.NpgsqlBox.Top.get -> double
-NpgsqlTypes.NpgsqlBox.UpperRight.get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlBox.UpperRight.set -> void
-NpgsqlTypes.NpgsqlBox.Width.get -> double
-NpgsqlTypes.NpgsqlCircle
-NpgsqlTypes.NpgsqlCircle.Center.get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlCircle.Center.set -> void
-NpgsqlTypes.NpgsqlCircle.Equals(NpgsqlTypes.NpgsqlCircle other) -> bool
-NpgsqlTypes.NpgsqlCircle.NpgsqlCircle() -> void
-NpgsqlTypes.NpgsqlCircle.NpgsqlCircle(double x, double y, double radius) -> void
-NpgsqlTypes.NpgsqlCircle.NpgsqlCircle(NpgsqlTypes.NpgsqlPoint center, double radius) -> void
-NpgsqlTypes.NpgsqlCircle.Radius.get -> double
-NpgsqlTypes.NpgsqlCircle.Radius.set -> void
-NpgsqlTypes.NpgsqlCircle.X.get -> double
-NpgsqlTypes.NpgsqlCircle.X.set -> void
-NpgsqlTypes.NpgsqlCircle.Y.get -> double
-NpgsqlTypes.NpgsqlCircle.Y.set -> void
-NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Abstime = 33 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Array = -2147483648 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Bigint = 1 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.BigIntMultirange = 536870913 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.BigIntRange = 1073741825 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Bit = 25 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Boolean = 2 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Box = 3 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Bytea = 4 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Char = 6 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Cid = 43 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Cidr = 44 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Circle = 5 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Citext = 51 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Date = 7 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.DateMultirange = 536870919 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.DateRange = 1073741831 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Double = 8 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Geography = 55 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Geometry = 50 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Hstore = 37 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Inet = 24 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Int2Vector = 52 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Integer = 9 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.IntegerMultirange = 536870921 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.IntegerRange = 1073741833 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.InternalChar = 38 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Interval = 30 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Json = 35 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Jsonb = 36 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.JsonPath = 57 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Line = 10 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.LQuery = 61 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.LSeg = 11 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.LTree = 60 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.LTxtQuery = 62 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.MacAddr = 34 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.MacAddr8 = 54 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Money = 12 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Multirange = 536870912 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Name = 32 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Numeric = 13 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.NumericMultirange = 536870925 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.NumericRange = 1073741837 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Oid = 41 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Oidvector = 29 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Path = 14 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.PgLsn = 59 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Point = 15 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Polygon = 16 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Range = 1073741824 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Real = 17 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Refcursor = 23 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Regconfig = 56 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Regtype = 49 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Smallint = 18 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Text = 19 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Tid = 53 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Time = 20 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Timestamp = 21 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimestampMultirange = 536870933 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimestampRange = 1073741845 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimestampTZ = 26 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimestampTz = 26 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimestampTzMultirange = 536870938 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimestampTzRange = 1073741850 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimeTZ = 31 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TimeTz = 31 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TsQuery = 46 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.TsVector = 45 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Unknown = 40 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Uuid = 27 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Varbit = 39 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Varchar = 22 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Xid = 42 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Xid8 = 64 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlDbType.Xml = 28 -> NpgsqlTypes.NpgsqlDbType
-NpgsqlTypes.NpgsqlInet
-NpgsqlTypes.NpgsqlInet.Address.get -> System.Net.IPAddress!
-NpgsqlTypes.NpgsqlInet.Address.set -> void
-NpgsqlTypes.NpgsqlInet.Deconstruct(out System.Net.IPAddress! address, out int netmask) -> void
-NpgsqlTypes.NpgsqlInet.Equals(NpgsqlTypes.NpgsqlInet other) -> bool
-NpgsqlTypes.NpgsqlInet.Netmask.get -> int
-NpgsqlTypes.NpgsqlInet.Netmask.set -> void
-NpgsqlTypes.NpgsqlInet.NpgsqlInet() -> void
-NpgsqlTypes.NpgsqlInet.NpgsqlInet(string! addr) -> void
-NpgsqlTypes.NpgsqlInet.NpgsqlInet(System.Net.IPAddress! address) -> void
-NpgsqlTypes.NpgsqlInet.NpgsqlInet(System.Net.IPAddress! address, int netmask) -> void
-NpgsqlTypes.NpgsqlInterval
-NpgsqlTypes.NpgsqlInterval.Days.get -> int
-NpgsqlTypes.NpgsqlInterval.Equals(NpgsqlTypes.NpgsqlInterval other) -> bool
-NpgsqlTypes.NpgsqlInterval.Months.get -> int
-NpgsqlTypes.NpgsqlInterval.NpgsqlInterval() -> void
-NpgsqlTypes.NpgsqlInterval.NpgsqlInterval(int months, int days, long time) -> void
-NpgsqlTypes.NpgsqlInterval.Time.get -> long
-NpgsqlTypes.NpgsqlLine
-NpgsqlTypes.NpgsqlLine.A.get -> double
-NpgsqlTypes.NpgsqlLine.A.set -> void
-NpgsqlTypes.NpgsqlLine.B.get -> double
-NpgsqlTypes.NpgsqlLine.B.set -> void
-NpgsqlTypes.NpgsqlLine.C.get -> double
-NpgsqlTypes.NpgsqlLine.C.set -> void
-NpgsqlTypes.NpgsqlLine.Equals(NpgsqlTypes.NpgsqlLine other) -> bool
-NpgsqlTypes.NpgsqlLine.NpgsqlLine() -> void
-NpgsqlTypes.NpgsqlLine.NpgsqlLine(double a, double b, double c) -> void
-NpgsqlTypes.NpgsqlLogSequenceNumber
-NpgsqlTypes.NpgsqlLogSequenceNumber.CompareTo(NpgsqlTypes.NpgsqlLogSequenceNumber value) -> int
-NpgsqlTypes.NpgsqlLogSequenceNumber.Equals(NpgsqlTypes.NpgsqlLogSequenceNumber other) -> bool
-NpgsqlTypes.NpgsqlLogSequenceNumber.NpgsqlLogSequenceNumber() -> void
-NpgsqlTypes.NpgsqlLogSequenceNumber.NpgsqlLogSequenceNumber(ulong value) -> void
-NpgsqlTypes.NpgsqlLSeg
-NpgsqlTypes.NpgsqlLSeg.End.get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlLSeg.End.set -> void
-NpgsqlTypes.NpgsqlLSeg.Equals(NpgsqlTypes.NpgsqlLSeg other) -> bool
-NpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg() -> void
-NpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg(double startx, double starty, double endx, double endy) -> void
-NpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg(NpgsqlTypes.NpgsqlPoint start, NpgsqlTypes.NpgsqlPoint end) -> void
-NpgsqlTypes.NpgsqlLSeg.Start.get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlLSeg.Start.set -> void
-NpgsqlTypes.NpgsqlPath
-NpgsqlTypes.NpgsqlPath.Add(NpgsqlTypes.NpgsqlPoint item) -> void
-NpgsqlTypes.NpgsqlPath.Capacity.get -> int
-NpgsqlTypes.NpgsqlPath.Clear() -> void
-NpgsqlTypes.NpgsqlPath.Contains(NpgsqlTypes.NpgsqlPoint item) -> bool
-NpgsqlTypes.NpgsqlPath.CopyTo(NpgsqlTypes.NpgsqlPoint[]! array, int arrayIndex) -> void
-NpgsqlTypes.NpgsqlPath.Count.get -> int
-NpgsqlTypes.NpgsqlPath.Equals(NpgsqlTypes.NpgsqlPath other) -> bool
-NpgsqlTypes.NpgsqlPath.GetEnumerator() -> System.Collections.Generic.IEnumerator<NpgsqlTypes.NpgsqlPoint>!
-NpgsqlTypes.NpgsqlPath.IndexOf(NpgsqlTypes.NpgsqlPoint item) -> int
-NpgsqlTypes.NpgsqlPath.Insert(int index, NpgsqlTypes.NpgsqlPoint item) -> void
-NpgsqlTypes.NpgsqlPath.IsReadOnly.get -> bool
-NpgsqlTypes.NpgsqlPath.NpgsqlPath() -> void
-NpgsqlTypes.NpgsqlPath.NpgsqlPath(bool open) -> void
-NpgsqlTypes.NpgsqlPath.NpgsqlPath(int capacity) -> void
-NpgsqlTypes.NpgsqlPath.NpgsqlPath(int capacity, bool open) -> void
-NpgsqlTypes.NpgsqlPath.NpgsqlPath(params NpgsqlTypes.NpgsqlPoint[]! points) -> void
-NpgsqlTypes.NpgsqlPath.NpgsqlPath(System.Collections.Generic.IEnumerable<NpgsqlTypes.NpgsqlPoint>! points) -> void
-NpgsqlTypes.NpgsqlPath.NpgsqlPath(System.Collections.Generic.IEnumerable<NpgsqlTypes.NpgsqlPoint>! points, bool open) -> void
-NpgsqlTypes.NpgsqlPath.Open.get -> bool
-NpgsqlTypes.NpgsqlPath.Open.set -> void
-NpgsqlTypes.NpgsqlPath.Remove(NpgsqlTypes.NpgsqlPoint item) -> bool
-NpgsqlTypes.NpgsqlPath.RemoveAt(int index) -> void
-NpgsqlTypes.NpgsqlPath.this[int index].get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlPath.this[int index].set -> void
-NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlPoint.Equals(NpgsqlTypes.NpgsqlPoint other) -> bool
-NpgsqlTypes.NpgsqlPoint.NpgsqlPoint() -> void
-NpgsqlTypes.NpgsqlPoint.NpgsqlPoint(double x, double y) -> void
-NpgsqlTypes.NpgsqlPoint.X.get -> double
-NpgsqlTypes.NpgsqlPoint.X.set -> void
-NpgsqlTypes.NpgsqlPoint.Y.get -> double
-NpgsqlTypes.NpgsqlPoint.Y.set -> void
-NpgsqlTypes.NpgsqlPolygon
-NpgsqlTypes.NpgsqlPolygon.Add(NpgsqlTypes.NpgsqlPoint item) -> void
-NpgsqlTypes.NpgsqlPolygon.Capacity.get -> int
-NpgsqlTypes.NpgsqlPolygon.Clear() -> void
-NpgsqlTypes.NpgsqlPolygon.Contains(NpgsqlTypes.NpgsqlPoint item) -> bool
-NpgsqlTypes.NpgsqlPolygon.CopyTo(NpgsqlTypes.NpgsqlPoint[]! array, int arrayIndex) -> void
-NpgsqlTypes.NpgsqlPolygon.Count.get -> int
-NpgsqlTypes.NpgsqlPolygon.Equals(NpgsqlTypes.NpgsqlPolygon other) -> bool
-NpgsqlTypes.NpgsqlPolygon.GetEnumerator() -> System.Collections.Generic.IEnumerator<NpgsqlTypes.NpgsqlPoint>!
-NpgsqlTypes.NpgsqlPolygon.IndexOf(NpgsqlTypes.NpgsqlPoint item) -> int
-NpgsqlTypes.NpgsqlPolygon.Insert(int index, NpgsqlTypes.NpgsqlPoint item) -> void
-NpgsqlTypes.NpgsqlPolygon.IsReadOnly.get -> bool
-NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon() -> void
-NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(int capacity) -> void
-NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(params NpgsqlTypes.NpgsqlPoint[]! points) -> void
-NpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(System.Collections.Generic.IEnumerable<NpgsqlTypes.NpgsqlPoint>! points) -> void
-NpgsqlTypes.NpgsqlPolygon.Remove(NpgsqlTypes.NpgsqlPoint item) -> bool
-NpgsqlTypes.NpgsqlPolygon.RemoveAt(int index) -> void
-NpgsqlTypes.NpgsqlPolygon.this[int index].get -> NpgsqlTypes.NpgsqlPoint
-NpgsqlTypes.NpgsqlPolygon.this[int index].set -> void
-NpgsqlTypes.NpgsqlRange<T>
-NpgsqlTypes.NpgsqlRange<T>.Equals(NpgsqlTypes.NpgsqlRange<T> other) -> bool
-NpgsqlTypes.NpgsqlRange<T>.IsEmpty.get -> bool
-NpgsqlTypes.NpgsqlRange<T>.LowerBound.get -> T
-NpgsqlTypes.NpgsqlRange<T>.LowerBoundInfinite.get -> bool
-NpgsqlTypes.NpgsqlRange<T>.LowerBoundIsInclusive.get -> bool
-NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange() -> void
-NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, bool lowerBoundIsInclusive, bool lowerBoundInfinite, T upperBound, bool upperBoundIsInclusive, bool upperBoundInfinite) -> void
-NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, bool lowerBoundIsInclusive, T upperBound, bool upperBoundIsInclusive) -> void
-NpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, T upperBound) -> void
-NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter
-NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.RangeTypeConverter() -> void
-NpgsqlTypes.NpgsqlRange<T>.UpperBound.get -> T
-NpgsqlTypes.NpgsqlRange<T>.UpperBoundInfinite.get -> bool
-NpgsqlTypes.NpgsqlRange<T>.UpperBoundIsInclusive.get -> bool
-NpgsqlTypes.NpgsqlTid
-NpgsqlTypes.NpgsqlTid.BlockNumber.get -> uint
-NpgsqlTypes.NpgsqlTid.Equals(NpgsqlTypes.NpgsqlTid other) -> bool
-NpgsqlTypes.NpgsqlTid.NpgsqlTid() -> void
-NpgsqlTypes.NpgsqlTid.NpgsqlTid(uint blockNumber, ushort offsetNumber) -> void
-NpgsqlTypes.NpgsqlTid.OffsetNumber.get -> ushort
-NpgsqlTypes.NpgsqlTsQuery
-NpgsqlTypes.NpgsqlTsQuery.Kind.get -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind.And = 2 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind.Empty = -1 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind.Lexeme = 0 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind.Not = 1 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind.Or = 3 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NodeKind.Phrase = 4 -> NpgsqlTypes.NpgsqlTsQuery.NodeKind
-NpgsqlTypes.NpgsqlTsQuery.NpgsqlTsQuery(NpgsqlTypes.NpgsqlTsQuery.NodeKind kind) -> void
-NpgsqlTypes.NpgsqlTsQuery.Write(System.Text.StringBuilder! stringBuilder) -> void
-NpgsqlTypes.NpgsqlTsQueryAnd
-NpgsqlTypes.NpgsqlTsQueryAnd.NpgsqlTsQueryAnd(NpgsqlTypes.NpgsqlTsQuery! left, NpgsqlTypes.NpgsqlTsQuery! right) -> void
-NpgsqlTypes.NpgsqlTsQueryBinOp
-NpgsqlTypes.NpgsqlTsQueryBinOp.Left.get -> NpgsqlTypes.NpgsqlTsQuery!
-NpgsqlTypes.NpgsqlTsQueryBinOp.Left.set -> void
-NpgsqlTypes.NpgsqlTsQueryBinOp.NpgsqlTsQueryBinOp(NpgsqlTypes.NpgsqlTsQuery.NodeKind kind, NpgsqlTypes.NpgsqlTsQuery! left, NpgsqlTypes.NpgsqlTsQuery! right) -> void
-NpgsqlTypes.NpgsqlTsQueryBinOp.Right.get -> NpgsqlTypes.NpgsqlTsQuery!
-NpgsqlTypes.NpgsqlTsQueryBinOp.Right.set -> void
-NpgsqlTypes.NpgsqlTsQueryEmpty
-NpgsqlTypes.NpgsqlTsQueryEmpty.NpgsqlTsQueryEmpty() -> void
-NpgsqlTypes.NpgsqlTsQueryFollowedBy
-NpgsqlTypes.NpgsqlTsQueryFollowedBy.Distance.get -> int
-NpgsqlTypes.NpgsqlTsQueryFollowedBy.Distance.set -> void
-NpgsqlTypes.NpgsqlTsQueryFollowedBy.NpgsqlTsQueryFollowedBy(NpgsqlTypes.NpgsqlTsQuery! left, int distance, NpgsqlTypes.NpgsqlTsQuery! right) -> void
-NpgsqlTypes.NpgsqlTsQueryLexeme
-NpgsqlTypes.NpgsqlTsQueryLexeme.IsPrefixSearch.get -> bool
-NpgsqlTypes.NpgsqlTsQueryLexeme.IsPrefixSearch.set -> void
-NpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text) -> void
-NpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text, NpgsqlTypes.NpgsqlTsQueryLexeme.Weight weights) -> void
-NpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text, NpgsqlTypes.NpgsqlTsQueryLexeme.Weight weights, bool isPrefixSearch) -> void
-NpgsqlTypes.NpgsqlTsQueryLexeme.Text.get -> string!
-NpgsqlTypes.NpgsqlTsQueryLexeme.Text.set -> void
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.A = 8 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.B = 4 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.C = 2 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.D = 1 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weight.None = 0 -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weights.get -> NpgsqlTypes.NpgsqlTsQueryLexeme.Weight
-NpgsqlTypes.NpgsqlTsQueryLexeme.Weights.set -> void
-NpgsqlTypes.NpgsqlTsQueryNot
-NpgsqlTypes.NpgsqlTsQueryNot.Child.get -> NpgsqlTypes.NpgsqlTsQuery!
-NpgsqlTypes.NpgsqlTsQueryNot.Child.set -> void
-NpgsqlTypes.NpgsqlTsQueryNot.NpgsqlTsQueryNot(NpgsqlTypes.NpgsqlTsQuery! child) -> void
-NpgsqlTypes.NpgsqlTsQueryOr
-NpgsqlTypes.NpgsqlTsQueryOr.NpgsqlTsQueryOr(NpgsqlTypes.NpgsqlTsQuery! left, NpgsqlTypes.NpgsqlTsQuery! right) -> void
-NpgsqlTypes.NpgsqlTsVector
-NpgsqlTypes.NpgsqlTsVector.Count.get -> int
-NpgsqlTypes.NpgsqlTsVector.Equals(NpgsqlTypes.NpgsqlTsVector? other) -> bool
-NpgsqlTypes.NpgsqlTsVector.GetEnumerator() -> System.Collections.Generic.IEnumerator<NpgsqlTypes.NpgsqlTsVector.Lexeme>!
-NpgsqlTypes.NpgsqlTsVector.Lexeme
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Count.get -> int
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Equals(NpgsqlTypes.NpgsqlTsVector.Lexeme o) -> bool
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme() -> void
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme(string! text) -> void
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme(string! text, System.Collections.Generic.List<NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos>? wordEntryPositions) -> void
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Text.get -> string!
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Text.set -> void
-NpgsqlTypes.NpgsqlTsVector.Lexeme.this[int index].get -> NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.A = 3 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.B = 2 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.C = 1 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
-NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.D = 0 -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
-NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos
-NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Equals(NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos o) -> bool
-NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Pos.get -> int
-NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Weight.get -> NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
-NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.WordEntryPos() -> void
-NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.WordEntryPos(int pos, NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight weight = NpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.D) -> void
-NpgsqlTypes.NpgsqlTsVector.this[int index].get -> NpgsqlTypes.NpgsqlTsVector.Lexeme
-NpgsqlTypes.PgNameAttribute
-NpgsqlTypes.PgNameAttribute.PgName.get -> string!
-NpgsqlTypes.PgNameAttribute.PgNameAttribute(string! pgName) -> void
+YBNpgsqlTypes.NpgsqlBox
+YBNpgsqlTypes.NpgsqlBox.Bottom.get -> double
+YBNpgsqlTypes.NpgsqlBox.Equals(YBNpgsqlTypes.NpgsqlBox other) -> bool
+YBNpgsqlTypes.NpgsqlBox.Height.get -> double
+YBNpgsqlTypes.NpgsqlBox.IsEmpty.get -> bool
+YBNpgsqlTypes.NpgsqlBox.Left.get -> double
+YBNpgsqlTypes.NpgsqlBox.LowerLeft.get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlBox.LowerLeft.set -> void
+YBNpgsqlTypes.NpgsqlBox.NpgsqlBox() -> void
+YBNpgsqlTypes.NpgsqlBox.NpgsqlBox(double top, double right, double bottom, double left) -> void
+YBNpgsqlTypes.NpgsqlBox.NpgsqlBox(YBNpgsqlTypes.NpgsqlPoint upperRight, YBNpgsqlTypes.NpgsqlPoint lowerLeft) -> void
+YBNpgsqlTypes.NpgsqlBox.Right.get -> double
+YBNpgsqlTypes.NpgsqlBox.Top.get -> double
+YBNpgsqlTypes.NpgsqlBox.UpperRight.get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlBox.UpperRight.set -> void
+YBNpgsqlTypes.NpgsqlBox.Width.get -> double
+YBNpgsqlTypes.NpgsqlCircle
+YBNpgsqlTypes.NpgsqlCircle.Center.get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlCircle.Center.set -> void
+YBNpgsqlTypes.NpgsqlCircle.Equals(YBNpgsqlTypes.NpgsqlCircle other) -> bool
+YBNpgsqlTypes.NpgsqlCircle.NpgsqlCircle() -> void
+YBNpgsqlTypes.NpgsqlCircle.NpgsqlCircle(double x, double y, double radius) -> void
+YBNpgsqlTypes.NpgsqlCircle.NpgsqlCircle(YBNpgsqlTypes.NpgsqlPoint center, double radius) -> void
+YBNpgsqlTypes.NpgsqlCircle.Radius.get -> double
+YBNpgsqlTypes.NpgsqlCircle.Radius.set -> void
+YBNpgsqlTypes.NpgsqlCircle.X.get -> double
+YBNpgsqlTypes.NpgsqlCircle.X.set -> void
+YBNpgsqlTypes.NpgsqlCircle.Y.get -> double
+YBNpgsqlTypes.NpgsqlCircle.Y.set -> void
+YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Abstime = 33 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Array = -2147483648 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Bigint = 1 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.BigIntMultirange = 536870913 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.BigIntRange = 1073741825 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Bit = 25 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Boolean = 2 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Box = 3 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Bytea = 4 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Char = 6 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Cid = 43 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Cidr = 44 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Circle = 5 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Citext = 51 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Date = 7 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.DateMultirange = 536870919 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.DateRange = 1073741831 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Double = 8 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Geography = 55 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Geometry = 50 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Hstore = 37 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Inet = 24 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Int2Vector = 52 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Integer = 9 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.IntegerMultirange = 536870921 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.IntegerRange = 1073741833 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.InternalChar = 38 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Interval = 30 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Json = 35 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Jsonb = 36 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.JsonPath = 57 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Line = 10 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.LQuery = 61 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.LSeg = 11 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.LTree = 60 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.LTxtQuery = 62 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.MacAddr = 34 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.MacAddr8 = 54 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Money = 12 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Multirange = 536870912 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Name = 32 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Numeric = 13 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.NumericMultirange = 536870925 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.NumericRange = 1073741837 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Oid = 41 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Oidvector = 29 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Path = 14 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.PgLsn = 59 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Point = 15 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Polygon = 16 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Range = 1073741824 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Real = 17 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Refcursor = 23 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Regconfig = 56 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Regtype = 49 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Smallint = 18 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Text = 19 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Tid = 53 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Time = 20 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Timestamp = 21 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimestampMultirange = 536870933 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimestampRange = 1073741845 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimestampTZ = 26 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimestampTz = 26 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimestampTzMultirange = 536870938 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimestampTzRange = 1073741850 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimeTZ = 31 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TimeTz = 31 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TsQuery = 46 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.TsVector = 45 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Unknown = 40 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Uuid = 27 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Varbit = 39 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Varchar = 22 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Xid = 42 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Xid8 = 64 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlDbType.Xml = 28 -> YBNpgsqlTypes.NpgsqlDbType
+YBNpgsqlTypes.NpgsqlInet
+YBNpgsqlTypes.NpgsqlInet.Address.get -> System.Net.IPAddress!
+YBNpgsqlTypes.NpgsqlInet.Address.set -> void
+YBNpgsqlTypes.NpgsqlInet.Deconstruct(out System.Net.IPAddress! address, out int netmask) -> void
+YBNpgsqlTypes.NpgsqlInet.Equals(YBNpgsqlTypes.NpgsqlInet other) -> bool
+YBNpgsqlTypes.NpgsqlInet.Netmask.get -> int
+YBNpgsqlTypes.NpgsqlInet.Netmask.set -> void
+YBNpgsqlTypes.NpgsqlInet.NpgsqlInet() -> void
+YBNpgsqlTypes.NpgsqlInet.NpgsqlInet(string! addr) -> void
+YBNpgsqlTypes.NpgsqlInet.NpgsqlInet(System.Net.IPAddress! address) -> void
+YBNpgsqlTypes.NpgsqlInet.NpgsqlInet(System.Net.IPAddress! address, int netmask) -> void
+YBNpgsqlTypes.NpgsqlInterval
+YBNpgsqlTypes.NpgsqlInterval.Days.get -> int
+YBNpgsqlTypes.NpgsqlInterval.Equals(YBNpgsqlTypes.NpgsqlInterval other) -> bool
+YBNpgsqlTypes.NpgsqlInterval.Months.get -> int
+YBNpgsqlTypes.NpgsqlInterval.NpgsqlInterval() -> void
+YBNpgsqlTypes.NpgsqlInterval.NpgsqlInterval(int months, int days, long time) -> void
+YBNpgsqlTypes.NpgsqlInterval.Time.get -> long
+YBNpgsqlTypes.NpgsqlLine
+YBNpgsqlTypes.NpgsqlLine.A.get -> double
+YBNpgsqlTypes.NpgsqlLine.A.set -> void
+YBNpgsqlTypes.NpgsqlLine.B.get -> double
+YBNpgsqlTypes.NpgsqlLine.B.set -> void
+YBNpgsqlTypes.NpgsqlLine.C.get -> double
+YBNpgsqlTypes.NpgsqlLine.C.set -> void
+YBNpgsqlTypes.NpgsqlLine.Equals(YBNpgsqlTypes.NpgsqlLine other) -> bool
+YBNpgsqlTypes.NpgsqlLine.NpgsqlLine() -> void
+YBNpgsqlTypes.NpgsqlLine.NpgsqlLine(double a, double b, double c) -> void
+YBNpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsqlTypes.NpgsqlLogSequenceNumber.CompareTo(YBNpgsqlTypes.NpgsqlLogSequenceNumber value) -> int
+YBNpgsqlTypes.NpgsqlLogSequenceNumber.Equals(YBNpgsqlTypes.NpgsqlLogSequenceNumber other) -> bool
+YBNpgsqlTypes.NpgsqlLogSequenceNumber.NpgsqlLogSequenceNumber() -> void
+YBNpgsqlTypes.NpgsqlLogSequenceNumber.NpgsqlLogSequenceNumber(ulong value) -> void
+YBNpgsqlTypes.NpgsqlLSeg
+YBNpgsqlTypes.NpgsqlLSeg.End.get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlLSeg.End.set -> void
+YBNpgsqlTypes.NpgsqlLSeg.Equals(YBNpgsqlTypes.NpgsqlLSeg other) -> bool
+YBNpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg() -> void
+YBNpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg(double startx, double starty, double endx, double endy) -> void
+YBNpgsqlTypes.NpgsqlLSeg.NpgsqlLSeg(YBNpgsqlTypes.NpgsqlPoint start, YBNpgsqlTypes.NpgsqlPoint end) -> void
+YBNpgsqlTypes.NpgsqlLSeg.Start.get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlLSeg.Start.set -> void
+YBNpgsqlTypes.NpgsqlPath
+YBNpgsqlTypes.NpgsqlPath.Add(YBNpgsqlTypes.NpgsqlPoint item) -> void
+YBNpgsqlTypes.NpgsqlPath.Capacity.get -> int
+YBNpgsqlTypes.NpgsqlPath.Clear() -> void
+YBNpgsqlTypes.NpgsqlPath.Contains(YBNpgsqlTypes.NpgsqlPoint item) -> bool
+YBNpgsqlTypes.NpgsqlPath.CopyTo(YBNpgsqlTypes.NpgsqlPoint[]! array, int arrayIndex) -> void
+YBNpgsqlTypes.NpgsqlPath.Count.get -> int
+YBNpgsqlTypes.NpgsqlPath.Equals(YBNpgsqlTypes.NpgsqlPath other) -> bool
+YBNpgsqlTypes.NpgsqlPath.GetEnumerator() -> System.Collections.Generic.IEnumerator<YBNpgsqlTypes.NpgsqlPoint>!
+YBNpgsqlTypes.NpgsqlPath.IndexOf(YBNpgsqlTypes.NpgsqlPoint item) -> int
+YBNpgsqlTypes.NpgsqlPath.Insert(int index, YBNpgsqlTypes.NpgsqlPoint item) -> void
+YBNpgsqlTypes.NpgsqlPath.IsReadOnly.get -> bool
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath() -> void
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath(bool open) -> void
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath(int capacity) -> void
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath(int capacity, bool open) -> void
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath(params YBNpgsqlTypes.NpgsqlPoint[]! points) -> void
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath(System.Collections.Generic.IEnumerable<YBNpgsqlTypes.NpgsqlPoint>! points) -> void
+YBNpgsqlTypes.NpgsqlPath.NpgsqlPath(System.Collections.Generic.IEnumerable<YBNpgsqlTypes.NpgsqlPoint>! points, bool open) -> void
+YBNpgsqlTypes.NpgsqlPath.Open.get -> bool
+YBNpgsqlTypes.NpgsqlPath.Open.set -> void
+YBNpgsqlTypes.NpgsqlPath.Remove(YBNpgsqlTypes.NpgsqlPoint item) -> bool
+YBNpgsqlTypes.NpgsqlPath.RemoveAt(int index) -> void
+YBNpgsqlTypes.NpgsqlPath.this[int index].get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlPath.this[int index].set -> void
+YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlPoint.Equals(YBNpgsqlTypes.NpgsqlPoint other) -> bool
+YBNpgsqlTypes.NpgsqlPoint.NpgsqlPoint() -> void
+YBNpgsqlTypes.NpgsqlPoint.NpgsqlPoint(double x, double y) -> void
+YBNpgsqlTypes.NpgsqlPoint.X.get -> double
+YBNpgsqlTypes.NpgsqlPoint.X.set -> void
+YBNpgsqlTypes.NpgsqlPoint.Y.get -> double
+YBNpgsqlTypes.NpgsqlPoint.Y.set -> void
+YBNpgsqlTypes.NpgsqlPolygon
+YBNpgsqlTypes.NpgsqlPolygon.Add(YBNpgsqlTypes.NpgsqlPoint item) -> void
+YBNpgsqlTypes.NpgsqlPolygon.Capacity.get -> int
+YBNpgsqlTypes.NpgsqlPolygon.Clear() -> void
+YBNpgsqlTypes.NpgsqlPolygon.Contains(YBNpgsqlTypes.NpgsqlPoint item) -> bool
+YBNpgsqlTypes.NpgsqlPolygon.CopyTo(YBNpgsqlTypes.NpgsqlPoint[]! array, int arrayIndex) -> void
+YBNpgsqlTypes.NpgsqlPolygon.Count.get -> int
+YBNpgsqlTypes.NpgsqlPolygon.Equals(YBNpgsqlTypes.NpgsqlPolygon other) -> bool
+YBNpgsqlTypes.NpgsqlPolygon.GetEnumerator() -> System.Collections.Generic.IEnumerator<YBNpgsqlTypes.NpgsqlPoint>!
+YBNpgsqlTypes.NpgsqlPolygon.IndexOf(YBNpgsqlTypes.NpgsqlPoint item) -> int
+YBNpgsqlTypes.NpgsqlPolygon.Insert(int index, YBNpgsqlTypes.NpgsqlPoint item) -> void
+YBNpgsqlTypes.NpgsqlPolygon.IsReadOnly.get -> bool
+YBNpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon() -> void
+YBNpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(int capacity) -> void
+YBNpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(params YBNpgsqlTypes.NpgsqlPoint[]! points) -> void
+YBNpgsqlTypes.NpgsqlPolygon.NpgsqlPolygon(System.Collections.Generic.IEnumerable<YBNpgsqlTypes.NpgsqlPoint>! points) -> void
+YBNpgsqlTypes.NpgsqlPolygon.Remove(YBNpgsqlTypes.NpgsqlPoint item) -> bool
+YBNpgsqlTypes.NpgsqlPolygon.RemoveAt(int index) -> void
+YBNpgsqlTypes.NpgsqlPolygon.this[int index].get -> YBNpgsqlTypes.NpgsqlPoint
+YBNpgsqlTypes.NpgsqlPolygon.this[int index].set -> void
+YBNpgsqlTypes.NpgsqlRange<T>
+YBNpgsqlTypes.NpgsqlRange<T>.Equals(YBNpgsqlTypes.NpgsqlRange<T> other) -> bool
+YBNpgsqlTypes.NpgsqlRange<T>.IsEmpty.get -> bool
+YBNpgsqlTypes.NpgsqlRange<T>.LowerBound.get -> T
+YBNpgsqlTypes.NpgsqlRange<T>.LowerBoundInfinite.get -> bool
+YBNpgsqlTypes.NpgsqlRange<T>.LowerBoundIsInclusive.get -> bool
+YBNpgsqlTypes.NpgsqlRange<T>.NpgsqlRange() -> void
+YBNpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, bool lowerBoundIsInclusive, bool lowerBoundInfinite, T upperBound, bool upperBoundIsInclusive, bool upperBoundInfinite) -> void
+YBNpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, bool lowerBoundIsInclusive, T upperBound, bool upperBoundIsInclusive) -> void
+YBNpgsqlTypes.NpgsqlRange<T>.NpgsqlRange(T lowerBound, T upperBound) -> void
+YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter
+YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.RangeTypeConverter() -> void
+YBNpgsqlTypes.NpgsqlRange<T>.UpperBound.get -> T
+YBNpgsqlTypes.NpgsqlRange<T>.UpperBoundInfinite.get -> bool
+YBNpgsqlTypes.NpgsqlRange<T>.UpperBoundIsInclusive.get -> bool
+YBNpgsqlTypes.NpgsqlTid
+YBNpgsqlTypes.NpgsqlTid.BlockNumber.get -> uint
+YBNpgsqlTypes.NpgsqlTid.Equals(YBNpgsqlTypes.NpgsqlTid other) -> bool
+YBNpgsqlTypes.NpgsqlTid.NpgsqlTid() -> void
+YBNpgsqlTypes.NpgsqlTid.NpgsqlTid(uint blockNumber, ushort offsetNumber) -> void
+YBNpgsqlTypes.NpgsqlTid.OffsetNumber.get -> ushort
+YBNpgsqlTypes.NpgsqlTsQuery
+YBNpgsqlTypes.NpgsqlTsQuery.Kind.get -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind.And = 2 -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind.Empty = -1 -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind.Lexeme = 0 -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind.Not = 1 -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind.Or = 3 -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NodeKind.Phrase = 4 -> YBNpgsqlTypes.NpgsqlTsQuery.NodeKind
+YBNpgsqlTypes.NpgsqlTsQuery.NpgsqlTsQuery(YBNpgsqlTypes.NpgsqlTsQuery.NodeKind kind) -> void
+YBNpgsqlTypes.NpgsqlTsQuery.Write(System.Text.StringBuilder! stringBuilder) -> void
+YBNpgsqlTypes.NpgsqlTsQueryAnd
+YBNpgsqlTypes.NpgsqlTsQueryAnd.NpgsqlTsQueryAnd(YBNpgsqlTypes.NpgsqlTsQuery! left, YBNpgsqlTypes.NpgsqlTsQuery! right) -> void
+YBNpgsqlTypes.NpgsqlTsQueryBinOp
+YBNpgsqlTypes.NpgsqlTsQueryBinOp.Left.get -> YBNpgsqlTypes.NpgsqlTsQuery!
+YBNpgsqlTypes.NpgsqlTsQueryBinOp.Left.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryBinOp.NpgsqlTsQueryBinOp(YBNpgsqlTypes.NpgsqlTsQuery.NodeKind kind, YBNpgsqlTypes.NpgsqlTsQuery! left, YBNpgsqlTypes.NpgsqlTsQuery! right) -> void
+YBNpgsqlTypes.NpgsqlTsQueryBinOp.Right.get -> YBNpgsqlTypes.NpgsqlTsQuery!
+YBNpgsqlTypes.NpgsqlTsQueryBinOp.Right.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryEmpty
+YBNpgsqlTypes.NpgsqlTsQueryEmpty.NpgsqlTsQueryEmpty() -> void
+YBNpgsqlTypes.NpgsqlTsQueryFollowedBy
+YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.Distance.get -> int
+YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.Distance.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.NpgsqlTsQueryFollowedBy(YBNpgsqlTypes.NpgsqlTsQuery! left, int distance, YBNpgsqlTypes.NpgsqlTsQuery! right) -> void
+YBNpgsqlTypes.NpgsqlTsQueryLexeme
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.IsPrefixSearch.get -> bool
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.IsPrefixSearch.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text) -> void
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text, YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight weights) -> void
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.NpgsqlTsQueryLexeme(string! text, YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight weights, bool isPrefixSearch) -> void
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Text.get -> string!
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Text.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight.A = 8 -> YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight.B = 4 -> YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight.C = 2 -> YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight.D = 1 -> YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight.None = 0 -> YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weights.get -> YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weight
+YBNpgsqlTypes.NpgsqlTsQueryLexeme.Weights.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryNot
+YBNpgsqlTypes.NpgsqlTsQueryNot.Child.get -> YBNpgsqlTypes.NpgsqlTsQuery!
+YBNpgsqlTypes.NpgsqlTsQueryNot.Child.set -> void
+YBNpgsqlTypes.NpgsqlTsQueryNot.NpgsqlTsQueryNot(YBNpgsqlTypes.NpgsqlTsQuery! child) -> void
+YBNpgsqlTypes.NpgsqlTsQueryOr
+YBNpgsqlTypes.NpgsqlTsQueryOr.NpgsqlTsQueryOr(YBNpgsqlTypes.NpgsqlTsQuery! left, YBNpgsqlTypes.NpgsqlTsQuery! right) -> void
+YBNpgsqlTypes.NpgsqlTsVector
+YBNpgsqlTypes.NpgsqlTsVector.Count.get -> int
+YBNpgsqlTypes.NpgsqlTsVector.Equals(YBNpgsqlTypes.NpgsqlTsVector? other) -> bool
+YBNpgsqlTypes.NpgsqlTsVector.GetEnumerator() -> System.Collections.Generic.IEnumerator<YBNpgsqlTypes.NpgsqlTsVector.Lexeme>!
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Count.get -> int
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Equals(YBNpgsqlTypes.NpgsqlTsVector.Lexeme o) -> bool
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme() -> void
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme(string! text) -> void
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Lexeme(string! text, System.Collections.Generic.List<YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos>? wordEntryPositions) -> void
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Text.get -> string!
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Text.set -> void
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.this[int index].get -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.A = 3 -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.B = 2 -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.C = 1 -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.D = 0 -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Equals(YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos o) -> bool
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Pos.get -> int
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.Weight.get -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.WordEntryPos() -> void
+YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.WordEntryPos(int pos, YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight weight = YBNpgsqlTypes.NpgsqlTsVector.Lexeme.Weight.D) -> void
+YBNpgsqlTypes.NpgsqlTsVector.this[int index].get -> YBNpgsqlTypes.NpgsqlTsVector.Lexeme
+YBNpgsqlTypes.PgNameAttribute
+YBNpgsqlTypes.PgNameAttribute.PgName.get -> string!
+YBNpgsqlTypes.PgNameAttribute.PgNameAttribute(string! pgName) -> void
 override YBNpgsql.BackendMessages.FieldDescription.ToString() -> string!
 override YBNpgsql.NpgsqlBatch.Cancel() -> void
 override YBNpgsql.NpgsqlBatch.CreateDbBatchCommand() -> System.Data.Common.DbBatchCommand!
@@ -1799,17 +1799,17 @@ override YBNpgsqlTypes.NpgsqlTid.ToString() -> string!
 override YBNpgsqlTypes.NpgsqlTsQuery.Equals(object? obj) -> bool
 override YBNpgsqlTypes.NpgsqlTsQuery.GetHashCode() -> int
 override YBNpgsqlTypes.NpgsqlTsQuery.ToString() -> string!
-override YBNpgsqlTypes.NpgsqlTsQueryAnd.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryAnd.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 override YBNpgsqlTypes.NpgsqlTsQueryAnd.GetHashCode() -> int
-override YBNpgsqlTypes.NpgsqlTsQueryEmpty.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryEmpty.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 override YBNpgsqlTypes.NpgsqlTsQueryEmpty.GetHashCode() -> int
-override YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 override YBNpgsqlTypes.NpgsqlTsQueryFollowedBy.GetHashCode() -> int
-override YBNpgsqlTypes.NpgsqlTsQueryLexeme.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryLexeme.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 override YBNpgsqlTypes.NpgsqlTsQueryLexeme.GetHashCode() -> int
-override YBNpgsqlTypes.NpgsqlTsQueryNot.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryNot.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 override YBNpgsqlTypes.NpgsqlTsQueryNot.GetHashCode() -> int
-override YBNpgsqlTypes.NpgsqlTsQueryOr.Equals(NpgsqlTypes.NpgsqlTsQuery? other) -> bool
+override YBNpgsqlTypes.NpgsqlTsQueryOr.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
 override YBNpgsqlTypes.NpgsqlTsQueryOr.GetHashCode() -> int
 override YBNpgsqlTypes.NpgsqlTsVector.Equals(object? obj) -> bool
 override YBNpgsqlTypes.NpgsqlTsVector.GetHashCode() -> int
@@ -1845,71 +1845,71 @@ static YBNpgsql.NpgsqlDataSource.Create(YBNpgsql.NpgsqlConnectionStringBuilder! 
 static YBNpgsql.NpgsqlDataSource.Create(string! connectionString) -> YBNpgsql.NpgsqlDataSource!
 static YBNpgsql.NpgsqlLoggingConfiguration.InitializeLogging(Microsoft.Extensions.Logging.ILoggerFactory! loggerFactory, bool parameterLoggingEnabled = false) -> void
 static YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions.CreateLogicalReplicationSlot(this YBNpgsql.Replication.LogicalReplicationConnection! connection, string! slotName, string! outputPlugin, bool isTemporary = false, YBNpgsql.Replication.LogicalSlotSnapshotInitMode? slotSnapshotInitMode = null, bool twoPhase = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.ReplicationSlotOptions>!
-static YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions.StartLogicalReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.Internal.LogicalReplicationSlot! slot, System.Threading.CancellationToken cancellationToken, NpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, string?>>? options = null, bool bypassingStream = false) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
+static YBNpgsql.Replication.Internal.LogicalReplicationConnectionExtensions.StartLogicalReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.Internal.LogicalReplicationSlot! slot, System.Threading.CancellationToken cancellationToken, YBNpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, string?>>? options = null, bool bypassingStream = false) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.XLogDataMessage!>!
 static YBNpgsql.Replication.PgOutputConnectionExtensions.CreatePgOutputReplicationSlot(this YBNpgsql.Replication.LogicalReplicationConnection! connection, string! slotName, bool temporarySlot = false, YBNpgsql.Replication.LogicalSlotSnapshotInitMode? slotSnapshotInitMode = null, bool twoPhase = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot!>!
-static YBNpgsql.Replication.PgOutputConnectionExtensions.StartReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot! slot, YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions! options, System.Threading.CancellationToken cancellationToken, NpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage!>!
+static YBNpgsql.Replication.PgOutputConnectionExtensions.StartReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.PgOutput.PgOutputReplicationSlot! slot, YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions! options, System.Threading.CancellationToken cancellationToken, YBNpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.PgOutput.Messages.PgOutputReplicationMessage!>!
 static YBNpgsql.Replication.TestDecodingConnectionExtensions.CreateTestDecodingReplicationSlot(this YBNpgsql.Replication.LogicalReplicationConnection! connection, string! slotName, bool temporarySlot = false, YBNpgsql.Replication.LogicalSlotSnapshotInitMode? slotSnapshotInitMode = null, bool twoPhase = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot!>!
-static YBNpgsql.Replication.TestDecodingConnectionExtensions.StartReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot! slot, System.Threading.CancellationToken cancellationToken, YBNpgsql.Replication.TestDecoding.TestDecodingOptions? options = null, NpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.TestDecoding.TestDecodingData!>!
-static YBNpgsqlTypes.NpgsqlBox.operator !=(NpgsqlTypes.NpgsqlBox x, NpgsqlTypes.NpgsqlBox y) -> bool
-static YBNpgsqlTypes.NpgsqlBox.operator ==(NpgsqlTypes.NpgsqlBox x, NpgsqlTypes.NpgsqlBox y) -> bool
-static YBNpgsqlTypes.NpgsqlBox.Parse(string! s) -> NpgsqlTypes.NpgsqlBox
-static YBNpgsqlTypes.NpgsqlCircle.operator !=(NpgsqlTypes.NpgsqlCircle x, NpgsqlTypes.NpgsqlCircle y) -> bool
-static YBNpgsqlTypes.NpgsqlCircle.operator ==(NpgsqlTypes.NpgsqlCircle x, NpgsqlTypes.NpgsqlCircle y) -> bool
-static YBNpgsqlTypes.NpgsqlCircle.Parse(string! s) -> NpgsqlTypes.NpgsqlCircle
-static YBNpgsqlTypes.NpgsqlInet.explicit operator System.Net.IPAddress!(NpgsqlTypes.NpgsqlInet inet) -> System.Net.IPAddress!
-static YBNpgsqlTypes.NpgsqlInet.implicit operator NpgsqlTypes.NpgsqlInet(System.Net.IPAddress! ip) -> NpgsqlTypes.NpgsqlInet
-static YBNpgsqlTypes.NpgsqlInet.operator !=(NpgsqlTypes.NpgsqlInet x, NpgsqlTypes.NpgsqlInet y) -> bool
-static YBNpgsqlTypes.NpgsqlInet.operator ==(NpgsqlTypes.NpgsqlInet x, NpgsqlTypes.NpgsqlInet y) -> bool
-static YBNpgsqlTypes.NpgsqlInet.ToIPAddress(NpgsqlTypes.NpgsqlInet inet) -> System.Net.IPAddress!
-static YBNpgsqlTypes.NpgsqlInet.ToNpgsqlInet(System.Net.IPAddress? ip) -> NpgsqlTypes.NpgsqlInet
-static YBNpgsqlTypes.NpgsqlLine.operator !=(NpgsqlTypes.NpgsqlLine x, NpgsqlTypes.NpgsqlLine y) -> bool
-static YBNpgsqlTypes.NpgsqlLine.operator ==(NpgsqlTypes.NpgsqlLine x, NpgsqlTypes.NpgsqlLine y) -> bool
-static YBNpgsqlTypes.NpgsqlLine.Parse(string! s) -> NpgsqlTypes.NpgsqlLine
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.explicit operator NpgsqlTypes.NpgsqlLogSequenceNumber(ulong value) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.explicit operator ulong(NpgsqlTypes.NpgsqlLogSequenceNumber value) -> ulong
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Larger(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator !=(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator +(NpgsqlTypes.NpgsqlLogSequenceNumber lsn, double nbytes) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator -(NpgsqlTypes.NpgsqlLogSequenceNumber first, NpgsqlTypes.NpgsqlLogSequenceNumber second) -> ulong
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator -(NpgsqlTypes.NpgsqlLogSequenceNumber lsn, double nbytes) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator <(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator <=(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator ==(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator >(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator >=(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse(string! s) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse(System.ReadOnlySpan<char> s) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Smaller(NpgsqlTypes.NpgsqlLogSequenceNumber value1, NpgsqlTypes.NpgsqlLogSequenceNumber value2) -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.TryParse(string! s, out NpgsqlTypes.NpgsqlLogSequenceNumber result) -> bool
-static YBNpgsqlTypes.NpgsqlLogSequenceNumber.TryParse(System.ReadOnlySpan<char> s, out NpgsqlTypes.NpgsqlLogSequenceNumber result) -> bool
-static YBNpgsqlTypes.NpgsqlLSeg.operator !=(NpgsqlTypes.NpgsqlLSeg x, NpgsqlTypes.NpgsqlLSeg y) -> bool
-static YBNpgsqlTypes.NpgsqlLSeg.operator ==(NpgsqlTypes.NpgsqlLSeg x, NpgsqlTypes.NpgsqlLSeg y) -> bool
-static YBNpgsqlTypes.NpgsqlLSeg.Parse(string! s) -> NpgsqlTypes.NpgsqlLSeg
-static YBNpgsqlTypes.NpgsqlPath.operator !=(NpgsqlTypes.NpgsqlPath x, NpgsqlTypes.NpgsqlPath y) -> bool
-static YBNpgsqlTypes.NpgsqlPath.operator ==(NpgsqlTypes.NpgsqlPath x, NpgsqlTypes.NpgsqlPath y) -> bool
-static YBNpgsqlTypes.NpgsqlPath.Parse(string! s) -> NpgsqlTypes.NpgsqlPath
-static YBNpgsqlTypes.NpgsqlPoint.operator !=(NpgsqlTypes.NpgsqlPoint x, NpgsqlTypes.NpgsqlPoint y) -> bool
-static YBNpgsqlTypes.NpgsqlPoint.operator ==(NpgsqlTypes.NpgsqlPoint x, NpgsqlTypes.NpgsqlPoint y) -> bool
-static YBNpgsqlTypes.NpgsqlPoint.Parse(string! s) -> NpgsqlTypes.NpgsqlPoint
-static YBNpgsqlTypes.NpgsqlPolygon.operator !=(NpgsqlTypes.NpgsqlPolygon x, NpgsqlTypes.NpgsqlPolygon y) -> bool
-static YBNpgsqlTypes.NpgsqlPolygon.operator ==(NpgsqlTypes.NpgsqlPolygon x, NpgsqlTypes.NpgsqlPolygon y) -> bool
-static YBNpgsqlTypes.NpgsqlPolygon.Parse(string! s) -> NpgsqlTypes.NpgsqlPolygon
-static YBNpgsqlTypes.NpgsqlRange<T>.operator !=(NpgsqlTypes.NpgsqlRange<T> x, NpgsqlTypes.NpgsqlRange<T> y) -> bool
-static YBNpgsqlTypes.NpgsqlRange<T>.operator ==(NpgsqlTypes.NpgsqlRange<T> x, NpgsqlTypes.NpgsqlRange<T> y) -> bool
-static YBNpgsqlTypes.NpgsqlRange<T>.Parse(string! value) -> NpgsqlTypes.NpgsqlRange<T>
+static YBNpgsql.Replication.TestDecodingConnectionExtensions.StartReplication(this YBNpgsql.Replication.LogicalReplicationConnection! connection, YBNpgsql.Replication.TestDecoding.TestDecodingReplicationSlot! slot, System.Threading.CancellationToken cancellationToken, YBNpgsql.Replication.TestDecoding.TestDecodingOptions? options = null, YBNpgsqlTypes.NpgsqlLogSequenceNumber? walLocation = null) -> System.Collections.Generic.IAsyncEnumerable<YBNpgsql.Replication.TestDecoding.TestDecodingData!>!
+static YBNpgsqlTypes.NpgsqlBox.operator !=(YBNpgsqlTypes.NpgsqlBox x, YBNpgsqlTypes.NpgsqlBox y) -> bool
+static YBNpgsqlTypes.NpgsqlBox.operator ==(YBNpgsqlTypes.NpgsqlBox x, YBNpgsqlTypes.NpgsqlBox y) -> bool
+static YBNpgsqlTypes.NpgsqlBox.Parse(string! s) -> YBNpgsqlTypes.NpgsqlBox
+static YBNpgsqlTypes.NpgsqlCircle.operator !=(YBNpgsqlTypes.NpgsqlCircle x, YBNpgsqlTypes.NpgsqlCircle y) -> bool
+static YBNpgsqlTypes.NpgsqlCircle.operator ==(YBNpgsqlTypes.NpgsqlCircle x, YBNpgsqlTypes.NpgsqlCircle y) -> bool
+static YBNpgsqlTypes.NpgsqlCircle.Parse(string! s) -> YBNpgsqlTypes.NpgsqlCircle
+static YBNpgsqlTypes.NpgsqlInet.explicit operator System.Net.IPAddress!(YBNpgsqlTypes.NpgsqlInet inet) -> System.Net.IPAddress!
+static YBNpgsqlTypes.NpgsqlInet.implicit operator YBNpgsqlTypes.NpgsqlInet(System.Net.IPAddress! ip) -> YBNpgsqlTypes.NpgsqlInet
+static YBNpgsqlTypes.NpgsqlInet.operator !=(YBNpgsqlTypes.NpgsqlInet x, YBNpgsqlTypes.NpgsqlInet y) -> bool
+static YBNpgsqlTypes.NpgsqlInet.operator ==(YBNpgsqlTypes.NpgsqlInet x, YBNpgsqlTypes.NpgsqlInet y) -> bool
+static YBNpgsqlTypes.NpgsqlInet.ToIPAddress(YBNpgsqlTypes.NpgsqlInet inet) -> System.Net.IPAddress!
+static YBNpgsqlTypes.NpgsqlInet.ToNpgsqlInet(System.Net.IPAddress? ip) -> YBNpgsqlTypes.NpgsqlInet
+static YBNpgsqlTypes.NpgsqlLine.operator !=(YBNpgsqlTypes.NpgsqlLine x, YBNpgsqlTypes.NpgsqlLine y) -> bool
+static YBNpgsqlTypes.NpgsqlLine.operator ==(YBNpgsqlTypes.NpgsqlLine x, YBNpgsqlTypes.NpgsqlLine y) -> bool
+static YBNpgsqlTypes.NpgsqlLine.Parse(string! s) -> YBNpgsqlTypes.NpgsqlLine
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.explicit operator YBNpgsqlTypes.NpgsqlLogSequenceNumber(ulong value) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.explicit operator ulong(YBNpgsqlTypes.NpgsqlLogSequenceNumber value) -> ulong
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Larger(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator !=(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator +(YBNpgsqlTypes.NpgsqlLogSequenceNumber lsn, double nbytes) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator -(YBNpgsqlTypes.NpgsqlLogSequenceNumber first, YBNpgsqlTypes.NpgsqlLogSequenceNumber second) -> ulong
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator -(YBNpgsqlTypes.NpgsqlLogSequenceNumber lsn, double nbytes) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator <(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator <=(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator ==(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator >(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.operator >=(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse(string! s) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse(System.ReadOnlySpan<char> s) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.Smaller(YBNpgsqlTypes.NpgsqlLogSequenceNumber value1, YBNpgsqlTypes.NpgsqlLogSequenceNumber value2) -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.TryParse(string! s, out YBNpgsqlTypes.NpgsqlLogSequenceNumber result) -> bool
+static YBNpgsqlTypes.NpgsqlLogSequenceNumber.TryParse(System.ReadOnlySpan<char> s, out YBNpgsqlTypes.NpgsqlLogSequenceNumber result) -> bool
+static YBNpgsqlTypes.NpgsqlLSeg.operator !=(YBNpgsqlTypes.NpgsqlLSeg x, YBNpgsqlTypes.NpgsqlLSeg y) -> bool
+static YBNpgsqlTypes.NpgsqlLSeg.operator ==(YBNpgsqlTypes.NpgsqlLSeg x, YBNpgsqlTypes.NpgsqlLSeg y) -> bool
+static YBNpgsqlTypes.NpgsqlLSeg.Parse(string! s) -> YBNpgsqlTypes.NpgsqlLSeg
+static YBNpgsqlTypes.NpgsqlPath.operator !=(YBNpgsqlTypes.NpgsqlPath x, YBNpgsqlTypes.NpgsqlPath y) -> bool
+static YBNpgsqlTypes.NpgsqlPath.operator ==(YBNpgsqlTypes.NpgsqlPath x, YBNpgsqlTypes.NpgsqlPath y) -> bool
+static YBNpgsqlTypes.NpgsqlPath.Parse(string! s) -> YBNpgsqlTypes.NpgsqlPath
+static YBNpgsqlTypes.NpgsqlPoint.operator !=(YBNpgsqlTypes.NpgsqlPoint x, YBNpgsqlTypes.NpgsqlPoint y) -> bool
+static YBNpgsqlTypes.NpgsqlPoint.operator ==(YBNpgsqlTypes.NpgsqlPoint x, YBNpgsqlTypes.NpgsqlPoint y) -> bool
+static YBNpgsqlTypes.NpgsqlPoint.Parse(string! s) -> YBNpgsqlTypes.NpgsqlPoint
+static YBNpgsqlTypes.NpgsqlPolygon.operator !=(YBNpgsqlTypes.NpgsqlPolygon x, YBNpgsqlTypes.NpgsqlPolygon y) -> bool
+static YBNpgsqlTypes.NpgsqlPolygon.operator ==(YBNpgsqlTypes.NpgsqlPolygon x, YBNpgsqlTypes.NpgsqlPolygon y) -> bool
+static YBNpgsqlTypes.NpgsqlPolygon.Parse(string! s) -> YBNpgsqlTypes.NpgsqlPolygon
+static YBNpgsqlTypes.NpgsqlRange<T>.operator !=(YBNpgsqlTypes.NpgsqlRange<T> x, YBNpgsqlTypes.NpgsqlRange<T> y) -> bool
+static YBNpgsqlTypes.NpgsqlRange<T>.operator ==(YBNpgsqlTypes.NpgsqlRange<T> x, YBNpgsqlTypes.NpgsqlRange<T> y) -> bool
+static YBNpgsqlTypes.NpgsqlRange<T>.Parse(string! value) -> YBNpgsqlTypes.NpgsqlRange<T>
 static YBNpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.Register() -> void
-static YBNpgsqlTypes.NpgsqlTid.operator !=(NpgsqlTypes.NpgsqlTid left, NpgsqlTypes.NpgsqlTid right) -> bool
-static YBNpgsqlTypes.NpgsqlTid.operator ==(NpgsqlTypes.NpgsqlTid left, NpgsqlTypes.NpgsqlTid right) -> bool
-static YBNpgsqlTypes.NpgsqlTsQuery.operator !=(NpgsqlTypes.NpgsqlTsQuery? left, NpgsqlTypes.NpgsqlTsQuery? right) -> bool
-static YBNpgsqlTypes.NpgsqlTsQuery.operator ==(NpgsqlTypes.NpgsqlTsQuery? left, NpgsqlTypes.NpgsqlTsQuery? right) -> bool
-static YBNpgsqlTypes.NpgsqlTsQuery.Parse(string! value) -> NpgsqlTypes.NpgsqlTsQuery!
-static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.operator !=(NpgsqlTypes.NpgsqlTsVector.Lexeme left, NpgsqlTypes.NpgsqlTsVector.Lexeme right) -> bool
-static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.operator ==(NpgsqlTypes.NpgsqlTsVector.Lexeme left, NpgsqlTypes.NpgsqlTsVector.Lexeme right) -> bool
-static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.operator !=(NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos left, NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos right) -> bool
-static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.operator ==(NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos left, NpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos right) -> bool
-static YBNpgsqlTypes.NpgsqlTsVector.Parse(string! value) -> NpgsqlTypes.NpgsqlTsVector!
+static YBNpgsqlTypes.NpgsqlTid.operator !=(YBNpgsqlTypes.NpgsqlTid left, YBNpgsqlTypes.NpgsqlTid right) -> bool
+static YBNpgsqlTypes.NpgsqlTid.operator ==(YBNpgsqlTypes.NpgsqlTid left, YBNpgsqlTypes.NpgsqlTid right) -> bool
+static YBNpgsqlTypes.NpgsqlTsQuery.operator !=(YBNpgsqlTypes.NpgsqlTsQuery? left, YBNpgsqlTypes.NpgsqlTsQuery? right) -> bool
+static YBNpgsqlTypes.NpgsqlTsQuery.operator ==(YBNpgsqlTypes.NpgsqlTsQuery? left, YBNpgsqlTypes.NpgsqlTsQuery? right) -> bool
+static YBNpgsqlTypes.NpgsqlTsQuery.Parse(string! value) -> YBNpgsqlTypes.NpgsqlTsQuery!
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.operator !=(YBNpgsqlTypes.NpgsqlTsVector.Lexeme left, YBNpgsqlTypes.NpgsqlTsVector.Lexeme right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.operator ==(YBNpgsqlTypes.NpgsqlTsVector.Lexeme left, YBNpgsqlTypes.NpgsqlTsVector.Lexeme right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.operator !=(YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos left, YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos.operator ==(YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos left, YBNpgsqlTypes.NpgsqlTsVector.Lexeme.WordEntryPos right) -> bool
+static YBNpgsqlTypes.NpgsqlTsVector.Parse(string! value) -> YBNpgsqlTypes.NpgsqlTsVector!
 static readonly YBNpgsql.NpgsqlFactory.Instance -> YBNpgsql.NpgsqlFactory!
-static readonly NpgsqlTypes.NpgsqlLogSequenceNumber.Invalid -> NpgsqlTypes.NpgsqlLogSequenceNumber
-static readonly NpgsqlTypes.NpgsqlRange<T>.Empty -> NpgsqlTypes.NpgsqlRange<T>
+static readonly YBNpgsqlTypes.NpgsqlLogSequenceNumber.Invalid -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+static readonly YBNpgsqlTypes.NpgsqlRange<T>.Empty -> YBNpgsqlTypes.NpgsqlRange<T>
 virtual YBNpgsql.NpgsqlCommand.Clone() -> YBNpgsql.NpgsqlCommand!
 virtual YBNpgsql.Replication.PgOutput.ReplicationTuple.GetAsyncEnumerator(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerator<YBNpgsql.Replication.PgOutput.ReplicationValue!>!
