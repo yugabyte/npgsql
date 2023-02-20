@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data.Common;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 /// <summary>
 /// A simple type handler that supports a provider-specific value in addition to its default value.

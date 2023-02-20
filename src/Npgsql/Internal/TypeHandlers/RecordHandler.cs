@@ -3,12 +3,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
 
-namespace Npgsql.Internal.TypeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers;
 
 /// <summary>
 /// Type handler for PostgreSQL record types. Defaults to returning object[], but can also return <see cref="ValueTuple" /> or <see cref="Tuple"/>.

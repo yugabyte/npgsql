@@ -1,14 +1,14 @@
 ﻿using System;
 using NodaTime;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.NodaTime.Properties;
-using Npgsql.PostgresTypes;
-using static Npgsql.NodaTime.Internal.NodaTimeUtils;
-using BclDateHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.DateHandler;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.NodaTime.Properties;
+using YBNpgsql.PostgresTypes;
+using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
+using BclDateHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.DateHandler;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed partial class DateHandler : NpgsqlSimpleTypeHandler<LocalDate>,
     INpgsqlSimpleTypeHandler<DateTime>, INpgsqlSimpleTypeHandler<int>

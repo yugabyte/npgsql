@@ -3,7 +3,7 @@
 using System;
 using System.Linq;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides constants for PostgreSQL error codes.

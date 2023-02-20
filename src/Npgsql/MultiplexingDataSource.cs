@@ -4,10 +4,10 @@ using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class MultiplexingDataSource : PoolingDataSource
 {

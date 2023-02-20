@@ -5,13 +5,13 @@ using System.Data;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 public class GeoJSONTypeHandlerResolver : TypeHandlerResolver
 {

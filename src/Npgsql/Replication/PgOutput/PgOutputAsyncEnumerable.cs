@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers.DateTimeHandlers;
-using Npgsql.Replication.Internal;
-using Npgsql.Replication.PgOutput.Messages;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers.DateTimeHandlers;
+using YBNpgsql.Replication.Internal;
+using YBNpgsql.Replication.PgOutput.Messages;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.PgOutput;
+namespace YBNpgsql.Replication.PgOutput;
 
 sealed class PgOutputAsyncEnumerable : IAsyncEnumerable<PgOutputReplicationMessage>
 {

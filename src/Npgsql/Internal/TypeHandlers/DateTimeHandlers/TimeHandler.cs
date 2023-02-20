@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandlers.DateTimeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.DateTimeHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL time data type.

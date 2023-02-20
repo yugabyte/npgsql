@@ -2,13 +2,13 @@ using System;
 using System.Data;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.IO;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql.NetTopologySuite.Internal;
+namespace YBNpgsql.NetTopologySuite.Internal;
 
 public class NetTopologySuiteTypeHandlerResolver : TypeHandlerResolver
 {

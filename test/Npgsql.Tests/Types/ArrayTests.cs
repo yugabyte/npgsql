@@ -5,12 +5,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Npgsql.Internal.TypeHandlers;
-using NpgsqlTypes;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 /// <summary>
 /// Tests on PostgreSQL arrays

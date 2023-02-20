@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Transactions;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [NonParallelizable]
 public class DistributedTransactionTests : TestBase

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 /// <summary>
 /// Tests on the PostgreSQL BitString type

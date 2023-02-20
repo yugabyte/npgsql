@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Npgsql.NameTranslation;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.NameTranslation;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class EnumTests : MultiplexingTestBase
 {

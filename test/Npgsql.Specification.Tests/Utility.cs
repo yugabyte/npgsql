@@ -1,7 +1,7 @@
 using System;
 using AdoNet.Specification.Tests;
 
-namespace Npgsql.Specification.Tests;
+namespace YBNpgsql.Specification.Tests;
 
 public static class Utility
 {

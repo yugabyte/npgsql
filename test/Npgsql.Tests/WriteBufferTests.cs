@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [NonParallelizable] // Parallel access to a single buffer
 class WriteBufferTests

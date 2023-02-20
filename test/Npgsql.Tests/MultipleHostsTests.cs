@@ -1,5 +1,5 @@
-﻿using Npgsql.Internal;
-using Npgsql.Tests.Support;
+﻿using YBNpgsql.Internal;
+using YBNpgsql.Tests.Support;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,13 +12,13 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
-using Npgsql.Properties;
-using static Npgsql.Tests.Support.MockState;
-using static Npgsql.Tests.TestUtil;
+using YBNpgsql.Properties;
+using static YBNpgsql.Tests.Support.MockState;
+using static YBNpgsql.Tests.TestUtil;
 using IsolationLevel = System.Transactions.IsolationLevel;
-using TransactionStatus = Npgsql.Internal.TransactionStatus;
+using TransactionStatus = YBNpgsql.Internal.TransactionStatus;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [NonParallelizable]
 public class MultipleHostsTests : TestBase

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Threading;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 ///

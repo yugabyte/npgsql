@@ -2,10 +2,10 @@
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 /// <summary>
 /// Base class for all simple type handlers, which read and write short, non-arbitrary lengthed

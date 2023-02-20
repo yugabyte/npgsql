@@ -1,11 +1,11 @@
-﻿using Npgsql.Internal;
-using Npgsql.Util;
+﻿using YBNpgsql.Internal;
+using YBNpgsql.Util;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class MultiHostDataSourceWrapper : NpgsqlDataSource
 {

@@ -3,9 +3,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 /// <summary>
 /// This tests the .NET Framework DbDataReader schema/metadata API, which returns DataTable.

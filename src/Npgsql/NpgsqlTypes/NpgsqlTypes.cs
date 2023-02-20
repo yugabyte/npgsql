@@ -7,12 +7,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
 #pragma warning disable 1591
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Represents a PostgreSQL point type.

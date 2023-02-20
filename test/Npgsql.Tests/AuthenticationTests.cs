@@ -4,13 +4,13 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Properties;
-using Npgsql.Tests.Support;
+using YBNpgsql.Properties;
+using YBNpgsql.Tests.Support;
 using NUnit.Framework;
-using static Npgsql.Util.Statics;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Util.Statics;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class AuthenticationTests : MultiplexingTestBase
 {

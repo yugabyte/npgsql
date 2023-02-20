@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Replication.PgOutput.Messages;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Replication.PgOutput.Messages;
 
-namespace Npgsql.Replication.PgOutput;
+namespace YBNpgsql.Replication.PgOutput;
 
 sealed class TupleEnumerator : IAsyncEnumerator<ReplicationValue>
 {

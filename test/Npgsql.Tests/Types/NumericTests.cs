@@ -3,10 +3,10 @@ using System.Data;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class NumericTests : MultiplexingTestBase
 {

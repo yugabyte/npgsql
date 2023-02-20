@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using GeoJSON.Net;
 using GeoJSON.Net.CoordinateReferenceSystem;
 using GeoJSON.Net.Geometry;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 sealed partial class GeoJsonHandler : NpgsqlTypeHandler<GeoJSONObject>,
     INpgsqlTypeHandler<Point>, INpgsqlTypeHandler<MultiPoint>,

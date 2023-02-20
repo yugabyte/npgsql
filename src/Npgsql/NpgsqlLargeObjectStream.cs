@@ -1,10 +1,10 @@
-﻿using Npgsql.Util;
+﻿using YBNpgsql.Util;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// An interface to remotely control the seekable stream for an opened large object on a PostgreSQL server.

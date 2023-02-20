@@ -1,13 +1,13 @@
 ﻿using System;
 using NodaTime;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
-using BclIntervalHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.IntervalHandler;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
+using BclIntervalHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.IntervalHandler;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed partial class IntervalHandler :
     NpgsqlSimpleTypeHandler<Period>,

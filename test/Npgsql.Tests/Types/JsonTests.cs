@@ -2,10 +2,10 @@ using System;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 [TestFixture(MultiplexingMode.NonMultiplexing, NpgsqlDbType.Json)]
 [TestFixture(MultiplexingMode.NonMultiplexing, NpgsqlDbType.Jsonb)]

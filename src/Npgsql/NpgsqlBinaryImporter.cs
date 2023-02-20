@@ -4,12 +4,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides an API for a binary COPY FROM operation, a high-performance data import mechanism to

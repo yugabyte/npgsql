@@ -2,16 +2,16 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.NodaTime.Properties;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
-using static Npgsql.NodaTime.Internal.NodaTimeUtils;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.NodaTime.Properties;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
+using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 public partial class DateRangeHandler : RangeHandler<LocalDate>, INpgsqlTypeHandler<DateInterval>
 #if NET6_0_OR_GREATER

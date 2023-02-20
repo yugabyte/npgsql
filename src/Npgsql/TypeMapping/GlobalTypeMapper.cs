@@ -6,13 +6,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.Internal.TypeMapping;
-using Npgsql.NameTranslation;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.Internal.TypeMapping;
+using YBNpgsql.NameTranslation;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 sealed class GlobalTypeMapper : INpgsqlTypeMapper
 {

@@ -17,15 +17,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
+using static YBNpgsql.Util.Statics;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Properties;
+using YBNpgsql.Properties;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 /// <summary>
 /// Represents a connection to a PostgreSQL backend. Unlike NpgsqlConnection objects, which are

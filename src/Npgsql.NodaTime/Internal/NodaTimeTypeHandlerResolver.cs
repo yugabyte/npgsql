@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using NodaTime;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
-using static Npgsql.NodaTime.Internal.NodaTimeUtils;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
+using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 public class NodaTimeTypeHandlerResolver : TypeHandlerResolver
 {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 #pragma warning disable RS0016 // Add public types and members to the declared API
 #pragma warning disable 618 // Member is obsolete
 
-namespace Npgsql
+namespace YBNpgsql
 {
     public sealed partial class NpgsqlConnectionStringBuilder
     {

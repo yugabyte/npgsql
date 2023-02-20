@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.TypeMapping;
+using YBNpgsql.Internal;
+using YBNpgsql.TypeMapping;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class PostgresTypeTests : TestBase
 {

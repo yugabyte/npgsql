@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Npgsql.Netstandard20;
+namespace YBNpgsql.Netstandard20;
 
 static class ReadOnlySpanOfCharExtensions
 {

@@ -1,4 +1,4 @@
-﻿namespace Npgsql.BackendMessages;
+﻿namespace YBNpgsql.BackendMessages;
 
 sealed class PortalSuspendedMessage : IBackendMessage
 {

@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Npgsql.NodaTime.Tests;
+namespace YBNpgsql.NodaTime.Tests;
 
 // Note that we register NodaTime globally, rather than using the more standard data source mapping.
 // We can do this since NUnit runs each test assembly in a different process, so we get isolation and don't interfere with other,

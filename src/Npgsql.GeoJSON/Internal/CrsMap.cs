@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 /// <summary>
 /// An entry which maps the authority to the inclusive range of SRID.

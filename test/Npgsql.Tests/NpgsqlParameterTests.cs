@@ -1,11 +1,11 @@
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class NpgsqlParameterTest : TestBase
 {

@@ -1,6 +1,6 @@
-﻿using Npgsql.Internal;
+﻿using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Thrown when trying to use a connection that is already busy performing some other operation.

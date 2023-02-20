@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.NameTranslation;
-using NpgsqlTypes;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.NameTranslation;
+using YBNpgsqlTypes;
 
 // ReSharper disable UnusedMember.Global
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 /// <summary>
 /// A type mapper, managing how to read and write CLR values to PostgreSQL data types.

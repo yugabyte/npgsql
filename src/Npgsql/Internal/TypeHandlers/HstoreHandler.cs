@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
 #if NETCOREAPP1_0_OR_GREATER
 using System.Collections.Immutable;
 #endif
 
-namespace Npgsql.Internal.TypeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL hstore extension data type, which stores sets of key/value pairs within a

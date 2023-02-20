@@ -1,4 +1,4 @@
-﻿namespace Npgsql.Replication;
+﻿namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Contains information about a newly-created replication slot.

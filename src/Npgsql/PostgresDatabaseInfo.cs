@@ -7,17 +7,17 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
+using static YBNpgsql.Util.Statics;
 
 // ReSharper disable StringLiteralTypo
 // ReSharper disable CommentTypo
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// The default implementation of <see cref="INpgsqlDatabaseInfoFactory"/>, for standard PostgreSQL databases..

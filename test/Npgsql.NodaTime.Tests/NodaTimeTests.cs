@@ -2,15 +2,15 @@
 using System.Data;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.Tests;
-using NpgsqlTypes;
+using YBNpgsql.Tests;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
 // ReSharper disable AccessToModifiedClosure
 // ReSharper disable AccessToDisposedClosure
 
-namespace Npgsql.NodaTime.Tests;
+namespace YBNpgsql.NodaTime.Tests;
 
 // Since this test suite manipulates TimeZone, it is incompatible with multiplexing
 public class NodaTimeTests : TestBase

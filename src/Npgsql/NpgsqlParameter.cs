@@ -5,15 +5,15 @@ using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 ///<summary>
 /// This class represents a parameter to a command that will be sent to server
@@ -92,7 +92,7 @@ public class NpgsqlParameter : DbParameter, IDbDataParameter, ICloneable
     /// Initializes a new instance of the <see cref="NpgsqlParameter"/> class with the parameter name and the data type.
     /// </summary>
     /// <param name="parameterName">The name of the parameter to map.</param>
-    /// <param name="parameterType">One of the <see cref="NpgsqlTypes.NpgsqlDbType"/> values.</param>
+    /// <param name="parameterType">One of the <see cref="YBNpgsqlTypes.NpgsqlDbType"/> values.</param>
     public NpgsqlParameter(string? parameterName, NpgsqlDbType parameterType)
         : this(parameterName, parameterType, 0, string.Empty)
     {
@@ -112,7 +112,7 @@ public class NpgsqlParameter : DbParameter, IDbDataParameter, ICloneable
     /// Initializes a new instance of the <see cref="NpgsqlParameter"/>.
     /// </summary>
     /// <param name="parameterName">The name of the parameter to map.</param>
-    /// <param name="parameterType">One of the <see cref="NpgsqlTypes.NpgsqlDbType"/> values.</param>
+    /// <param name="parameterType">One of the <see cref="YBNpgsqlTypes.NpgsqlDbType"/> values.</param>
     /// <param name="size">The length of the parameter.</param>
     public NpgsqlParameter(string? parameterName, NpgsqlDbType parameterType, int size)
         : this(parameterName, parameterType, size, string.Empty)
@@ -134,7 +134,7 @@ public class NpgsqlParameter : DbParameter, IDbDataParameter, ICloneable
     /// Initializes a new instance of the <see cref="NpgsqlParameter"/>
     /// </summary>
     /// <param name="parameterName">The name of the parameter to map.</param>
-    /// <param name="parameterType">One of the <see cref="NpgsqlTypes.NpgsqlDbType"/> values.</param>
+    /// <param name="parameterType">One of the <see cref="YBNpgsqlTypes.NpgsqlDbType"/> values.</param>
     /// <param name="size">The length of the parameter.</param>
     /// <param name="sourceColumn">The name of the source column.</param>
     public NpgsqlParameter(string? parameterName, NpgsqlDbType parameterType, int size, string? sourceColumn)
@@ -168,7 +168,7 @@ public class NpgsqlParameter : DbParameter, IDbDataParameter, ICloneable
     /// Initializes a new instance of the <see cref="NpgsqlParameter"/>.
     /// </summary>
     /// <param name="parameterName">The name of the parameter to map.</param>
-    /// <param name="parameterType">One of the <see cref="NpgsqlTypes.NpgsqlDbType"/> values.</param>
+    /// <param name="parameterType">One of the <see cref="YBNpgsqlTypes.NpgsqlDbType"/> values.</param>
     /// <param name="size">The length of the parameter.</param>
     /// <param name="sourceColumn">The name of the source column.</param>
     /// <param name="direction">One of the <see cref="System.Data.ParameterDirection"/> values.</param>
@@ -339,9 +339,9 @@ public class NpgsqlParameter : DbParameter, IDbDataParameter, ICloneable
     }
 
     /// <summary>
-    /// Gets or sets the <see cref="NpgsqlTypes.NpgsqlDbType"/> of the parameter.
+    /// Gets or sets the <see cref="YBNpgsqlTypes.NpgsqlDbType"/> of the parameter.
     /// </summary>
-    /// <value>One of the <see cref="NpgsqlTypes.NpgsqlDbType"/> values. The default is <see cref="NpgsqlTypes.NpgsqlDbType"/>.</value>
+    /// <value>One of the <see cref="YBNpgsqlTypes.NpgsqlDbType"/> values. The default is <see cref="YBNpgsqlTypes.NpgsqlDbType"/>.</value>
     [DefaultValue(NpgsqlDbType.Unknown)]
     [Category("Data"), RefreshProperties(RefreshProperties.All)]
     [DbProviderSpecificTypeProperty(true)]

@@ -1,8 +1,8 @@
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Tests.Support;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Tests.Support;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 using System;
 using System.Buffers.Binary;
@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class CommandTests : MultiplexingTestBase
 {

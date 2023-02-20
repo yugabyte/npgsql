@@ -1,9 +1,9 @@
 using System;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.TypeMapping;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.TypeMapping;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 public class GeoJSONTypeHandlerResolverFactory : TypeHandlerResolverFactory
 {

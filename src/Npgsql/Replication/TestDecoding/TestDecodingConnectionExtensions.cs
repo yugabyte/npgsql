@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using NpgsqlTypes;
-using Npgsql.Replication.Internal;
-using Npgsql.Replication.TestDecoding;
+using YBNpgsqlTypes;
+using YBNpgsql.Replication.Internal;
+using YBNpgsql.Replication.TestDecoding;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Extension methods to use <see cref="LogicalReplicationConnection"/> with the

@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 public class ReadRows
 {

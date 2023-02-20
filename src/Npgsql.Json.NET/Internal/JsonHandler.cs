@@ -3,14 +3,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Json.NET.Internal;
+namespace YBNpgsql.Json.NET.Internal;
 
-class JsonHandler : Npgsql.Internal.TypeHandlers.JsonHandler
+class JsonHandler : YBNpgsql.Internal.TypeHandlers.JsonHandler
 {
     readonly JsonSerializerSettings _settings;
 

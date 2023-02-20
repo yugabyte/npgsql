@@ -1,4 +1,4 @@
-﻿namespace Npgsql.PostgresTypes;
+﻿namespace YBNpgsql.PostgresTypes;
 
 /// <summary>
 /// Represents a PostgreSQL data type that isn't known to Npgsql and cannot be handled.

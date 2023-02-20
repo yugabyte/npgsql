@@ -1,11 +1,11 @@
-﻿using Npgsql.Util;
+﻿using YBNpgsql.Util;
 using System;
 using System.Data;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Large object manager. This class can be used to store very large files in a PostgreSQL database.

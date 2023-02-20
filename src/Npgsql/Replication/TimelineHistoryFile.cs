@@ -1,4 +1,4 @@
-﻿namespace Npgsql.Replication;
+﻿namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Represents a PostgreSQL timeline history file

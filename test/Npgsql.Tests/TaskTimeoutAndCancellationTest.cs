@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class TaskTimeoutAndCancellationTest : TestBase
 {

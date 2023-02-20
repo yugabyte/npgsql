@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using Npgsql.Internal.TypeHandlers.NumericHandlers;
+using YBNpgsql.Internal.TypeHandlers.NumericHandlers;
 
-namespace Npgsql.Benchmarks.TypeHandlers;
+namespace YBNpgsql.Benchmarks.TypeHandlers;
 
 [Config(typeof(Config))]
 public class Int16 : TypeHandlerBenchmarks<short>

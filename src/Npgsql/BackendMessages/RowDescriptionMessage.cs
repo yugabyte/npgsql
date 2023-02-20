@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using Npgsql.Replication.PgOutput.Messages;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Replication.PgOutput.Messages;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 /// <summary>
 /// A RowDescription message sent from the backend.

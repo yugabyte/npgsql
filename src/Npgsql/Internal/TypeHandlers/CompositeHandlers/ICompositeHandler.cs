@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 interface ICompositeHandler
 {

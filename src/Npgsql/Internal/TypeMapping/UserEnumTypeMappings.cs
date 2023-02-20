@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeMapping;
+namespace YBNpgsql.Internal.TypeMapping;
 
 public interface IUserEnumTypeMapping : IUserTypeMapping
 {

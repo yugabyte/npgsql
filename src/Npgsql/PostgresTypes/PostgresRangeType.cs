@@ -1,4 +1,4 @@
-﻿namespace Npgsql.PostgresTypes;
+﻿namespace YBNpgsql.PostgresTypes;
 
 /// <summary>
 /// Represents a PostgreSQL range data type.

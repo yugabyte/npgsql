@@ -7,10 +7,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// For Uniform Load Balancing

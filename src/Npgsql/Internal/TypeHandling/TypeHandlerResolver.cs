@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 /// <summary>
 /// An Npgsql resolver for type handlers. Typically used by plugins to alter how Npgsql reads and writes values to PostgreSQL.

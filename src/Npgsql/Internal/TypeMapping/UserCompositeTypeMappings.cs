@@ -1,9 +1,9 @@
 using System;
-using Npgsql.Internal.TypeHandlers.CompositeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeMapping;
+namespace YBNpgsql.Internal.TypeMapping;
 
 public interface IUserCompositeTypeMapping : IUserTypeMapping
 {

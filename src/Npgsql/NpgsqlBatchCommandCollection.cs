@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <inheritdoc cref="DbBatchCommandCollection"/>
 public class NpgsqlBatchCommandCollection : DbBatchCommandCollection, IList<NpgsqlBatchCommand>

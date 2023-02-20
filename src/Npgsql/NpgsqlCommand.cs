@@ -9,16 +9,16 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Util;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Properties;
+using YBNpgsql.Internal;
+using YBNpgsql.Properties;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Represents a SQL statement or function (stored procedure) to execute

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class SingleThreadSynchronizationContext : SynchronizationContext, IDisposable
 {

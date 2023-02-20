@@ -2,10 +2,10 @@
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 /// <summary>
 /// Tests on PostgreSQL numeric types

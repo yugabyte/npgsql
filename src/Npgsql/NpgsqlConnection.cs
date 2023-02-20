@@ -14,14 +14,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.NameTranslation;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.NameTranslation;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using IsolationLevel = System.Data.IsolationLevel;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// This class represents a connection to a PostgreSQL server.

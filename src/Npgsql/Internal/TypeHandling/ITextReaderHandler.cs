@@ -1,7 +1,7 @@
 ﻿using System.Data.Common;
 using System.IO;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 /// <summary>
 /// Implemented by handlers which support <see cref="DbDataReader.GetTextReader"/>, returns a standard

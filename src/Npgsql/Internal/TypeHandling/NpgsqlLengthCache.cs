@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 /// <summary>
 /// An array of cached lengths for the parameters sending process.

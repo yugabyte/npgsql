@@ -1,7 +1,7 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using System;
 
-namespace Npgsql.Replication.TestDecoding;
+namespace YBNpgsql.Replication.TestDecoding;
 
 /// <summary>
 /// Text representations of PostgreSQL WAL operations decoded by the "test_decoding" plugin. See

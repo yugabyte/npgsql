@@ -1,7 +1,7 @@
 using System;
 using NodaTime;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 static class NodaTimeUtils
 {

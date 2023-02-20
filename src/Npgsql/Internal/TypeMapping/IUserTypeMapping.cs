@@ -1,8 +1,8 @@
 using System;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeMapping;
+namespace YBNpgsql.Internal.TypeMapping;
 
 public interface IUserTypeMapping
 {

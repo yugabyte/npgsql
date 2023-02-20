@@ -2,7 +2,7 @@
 using System.Text;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class LargeObjectTests : TestBase
 {

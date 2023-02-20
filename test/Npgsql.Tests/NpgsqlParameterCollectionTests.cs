@@ -1,11 +1,11 @@
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 using System;
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [NonParallelizable] // This test class has global effects on case sensitive matching in param collection.
 [TestFixture(CompatMode.OnePass)]

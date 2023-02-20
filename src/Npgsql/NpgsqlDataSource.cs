@@ -10,14 +10,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.Internal.TypeMapping;
-using Npgsql.Properties;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.Internal.TypeMapping;
+using YBNpgsql.Properties;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <inheritdoc />
 public abstract class NpgsqlDataSource : DbDataSource

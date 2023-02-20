@@ -2,10 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeHandlers.CompositeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.CompositeHandlers;
 
 abstract class CompositeMemberHandler<TComposite>
 {

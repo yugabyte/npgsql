@@ -7,11 +7,11 @@ using GeoJSON.Net.Converters;
 using GeoJSON.Net.CoordinateReferenceSystem;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-using Npgsql.Tests;
+using YBNpgsql.Tests;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.PluginTests;
+namespace YBNpgsql.PluginTests;
 
 public class GeoJSONTests : TestBase
 {

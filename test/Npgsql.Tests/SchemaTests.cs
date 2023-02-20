@@ -1,4 +1,4 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using NUnit.Framework;
 using System;
 using System.Data;
@@ -6,9 +6,9 @@ using System.Data.Common;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class SchemaTests : SyncOrAsyncTestBase
 {

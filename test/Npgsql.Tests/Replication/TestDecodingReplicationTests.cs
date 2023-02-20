@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Replication;
-using Npgsql.Replication.TestDecoding;
+using YBNpgsql.Replication;
+using YBNpgsql.Replication.TestDecoding;
 
-namespace Npgsql.Tests.Replication;
+namespace YBNpgsql.Tests.Replication;
 
 /// <summary>
 /// These tests are meant to run on PostgreSQL versions back to 9.4 where the

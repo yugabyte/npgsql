@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql.Internal.TypeHandling;
+namespace YBNpgsql.Internal.TypeHandling;
 
 public abstract class TypeHandlerResolverFactory
 {

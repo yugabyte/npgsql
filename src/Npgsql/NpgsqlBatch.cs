@@ -2,9 +2,9 @@ using System.Data;
 using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <inheritdoc />
 public class NpgsqlBatch : DbBatch

@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Represents a physical replication connection to a PostgreSQL server.

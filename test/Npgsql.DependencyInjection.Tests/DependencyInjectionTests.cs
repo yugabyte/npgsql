@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Npgsql.Tests;
-using Npgsql.Tests.Support;
+using YBNpgsql.Tests;
+using YBNpgsql.Tests.Support;
 using NUnit.Framework;
 
-namespace Npgsql.DependencyInjection.Tests;
+namespace YBNpgsql.DependencyInjection.Tests;
 
 public class DependencyInjectionTests
 {

@@ -1,4 +1,4 @@
-namespace Npgsql.Replication.PgOutput;
+namespace YBNpgsql.Replication.PgOutput;
 
 enum TupleType : byte
 {

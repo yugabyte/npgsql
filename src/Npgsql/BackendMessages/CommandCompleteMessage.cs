@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 sealed class CommandCompleteMessage : IBackendMessage
 {

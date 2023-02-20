@@ -2,12 +2,12 @@
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.Internal;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// A generic version of <see cref="NpgsqlParameter"/> which provides more type safety and

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [TestFixture]
 public class PgPassEntryTests

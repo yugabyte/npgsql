@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandlers.FullTextSearchHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.FullTextSearchHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL tsvector data type.

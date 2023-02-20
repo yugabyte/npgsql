@@ -1,4 +1,4 @@
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 static class Statics
 {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.TypeHandlers.GeometricHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.GeometricHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL path data type.

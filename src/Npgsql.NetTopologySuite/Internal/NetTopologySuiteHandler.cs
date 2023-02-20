@@ -4,12 +4,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.IO;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.NetTopologySuite.Internal;
+namespace YBNpgsql.NetTopologySuite.Internal;
 
 partial class NetTopologySuiteHandler : NpgsqlTypeHandler<Geometry>,
     INpgsqlTypeHandler<Point>,

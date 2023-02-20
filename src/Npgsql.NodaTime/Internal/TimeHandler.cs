@@ -2,13 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using BclTimeHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimeHandler;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using BclTimeHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.TimeHandler;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed partial class TimeHandler : NpgsqlSimpleTypeHandler<LocalTime>, INpgsqlSimpleTypeHandler<TimeSpan>
 #if NET6_0_OR_GREATER

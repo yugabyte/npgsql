@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Npgsql.Internal.TypeHandlers.NumericHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.NumericHandlers;
 
 [StructLayout(LayoutKind.Explicit)]
 struct DecimalRaw

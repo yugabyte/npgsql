@@ -1,9 +1,9 @@
 using System;
 using System.Runtime.CompilerServices;
-using Npgsql.Properties;
-using static Npgsql.Util.Statics;
+using YBNpgsql.Properties;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql.Internal.TypeHandlers.DateTimeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers.DateTimeHandlers;
 
 static class DateTimeUtils
 {

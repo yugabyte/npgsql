@@ -1,11 +1,11 @@
 using System;
-using Npgsql;
-using Npgsql.TypeMapping;
+using YBNpgsql;
+using YBNpgsql.TypeMapping;
 
 #pragma warning disable CA1720
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Represents a PostgreSQL data type that can be written or read to the database.
