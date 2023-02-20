@@ -1941,13 +1941,13 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
     }
 
     /// <summary>
-    /// This event is unsupported by Npgsql. Use <see cref="DbConnection.StateChange"/> instead.
+    /// This event is unsupported by YBNpgsql. Use <see cref="DbConnection.StateChange"/> instead.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public new event EventHandler? Disposed
     {
-        add => throw new NotSupportedException("The Disposed event isn't supported by Npgsql. Use DbConnection.StateChange instead.");
-        remove => throw new NotSupportedException("The Disposed event isn't supported by Npgsql. Use DbConnection.StateChange instead.");
+        add => throw new NotSupportedException("The Disposed event isn't supported by YBNpgsql. Use DbConnection.StateChange instead.");
+        remove => throw new NotSupportedException("The Disposed event isn't supported by YBNpgsql. Use DbConnection.StateChange instead.");
     }
 
     event EventHandler? IComponent.Disposed

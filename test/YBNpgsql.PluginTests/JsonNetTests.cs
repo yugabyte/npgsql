@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace YBNpgsql.PluginTests;
 
 /// <summary>
-/// Tests for the Npgsql.Json.NET mapping plugin
+/// Tests for the YBNpgsql.Json.NET mapping plugin
 /// </summary>
 [NonParallelizable]
 [TestFixture(NpgsqlDbType.Jsonb)]

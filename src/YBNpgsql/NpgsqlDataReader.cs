@@ -487,7 +487,7 @@ public sealed class NpgsqlDataReader : DbDataReader, IDbColumnSchemaGenerator
                         break;
                     case BackendMessageCode.CopyInResponse:
                         throw Connector.Break(new NotSupportedException(
-                            "COPY isn't supported in regular command execution - see https://www.npgsql.org/doc/copy.html for documentation on COPY with Npgsql. " +
+                            "COPY isn't supported in regular command execution - see https://www.npgsql.org/doc/copy.html for documentation on COPY with YBNpgsql. " +
                             "If you are trying to execute a SQL script created by pg_dump, pass the '--inserts' switch to disable generating COPY statements."));
                     default:
                         throw Connector.UnexpectedMessageReceived(msg.Code);

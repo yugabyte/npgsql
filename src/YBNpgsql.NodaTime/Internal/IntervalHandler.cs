@@ -5,7 +5,7 @@ using YBNpgsql.Internal;
 using YBNpgsql.Internal.TypeHandling;
 using YBNpgsql.PostgresTypes;
 using YBNpgsqlTypes;
-using BclIntervalHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.IntervalHandler;
+using BclIntervalHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.IntervalHandler;
 
 namespace YBNpgsql.NodaTime.Internal;
 

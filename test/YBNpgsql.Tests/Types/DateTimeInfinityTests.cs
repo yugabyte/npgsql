@@ -202,7 +202,7 @@ public class DateTimeInfinityTests : TestBase, IDisposable
         if (disableDateTimeInfinityConversions)
         {
             Assert.Ignore(
-                "DateTimeInfinityTests rely on the Npgsql.DisableDateTimeInfinityConversions AppContext switch and can only be run in DEBUG builds");
+                "DateTimeInfinityTests rely on the YBNpgsql.DisableDateTimeInfinityConversions AppContext switch and can only be run in DEBUG builds");
         }
 #endif
     }

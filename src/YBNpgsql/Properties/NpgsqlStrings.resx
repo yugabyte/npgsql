@@ -58,7 +58,7 @@
         <value>When using CommandType.StoredProcedure, all positional parameters must come before named parameters.</value>
     </data>
     <data name="CannotReadInfinityValue" xml:space="preserve">
-        <value>Cannot read infinity value since Npgsql.DisableDateTimeInfinityConversions is enabled.</value>
+        <value>Cannot read infinity value since YBNpgsql.DisableDateTimeInfinityConversions is enabled.</value>
     </data>
     <data name="SyncAndAsyncConnectionInitializersRequired" xml:space="preserve">
         <value>Both sync and async connection initializers must be provided.</value>

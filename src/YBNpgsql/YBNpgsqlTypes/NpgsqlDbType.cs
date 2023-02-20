@@ -489,7 +489,7 @@ public enum NpgsqlDbType
     /// </summary>
     /// <remarks>
     /// This value shouldn't ordinarily be used, and makes sense only when sending a data type
-    /// unsupported by Npgsql.
+    /// unsupported by YBNpgsql.
     /// </remarks>
     [BuiltInPostgresType("unknown", baseOID: 705, arrayOID: 0)]
     Unknown = 40,

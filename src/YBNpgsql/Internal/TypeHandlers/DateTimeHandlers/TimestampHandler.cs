@@ -45,7 +45,7 @@ public partial class TimestampHandler : NpgsqlSimpleTypeHandler<DateTime>, INpgs
                 "Cannot write DateTime with Kind=UTC to PostgreSQL type 'timestamp without time zone', " +
                 "consider using 'timestamp with time zone'. " +
                 "Note that it's not possible to mix DateTimes with different Kinds in an array/range. " +
-                "See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.");
+                "See the YBNpgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.");
 
     /// <inheritdoc />
     public int ValidateAndGetLength(long value, NpgsqlParameter? parameter) => 8;

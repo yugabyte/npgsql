@@ -32,7 +32,7 @@ public class NpgsqlConnectionStringBuilderSourceGenerator : ISourceGenerator
             context.ReportDiagnostic(Diagnostic.Create(
                 InternalError,
                 location: null,
-                "Could not find Npgsql.NpgsqlConnectionStringPropertyAttribute"));
+                "Could not find YBNpgsql.NpgsqlConnectionStringPropertyAttribute"));
             return;
         }
 

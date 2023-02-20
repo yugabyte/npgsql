@@ -36,7 +36,7 @@ sealed class UnknownTypeHandler : TextHandler
             // At least get the name of the PostgreSQL type for the exception
             throw new NotSupportedException(
                 buf.Connector.TypeMapper.DatabaseInfo.ByOID.TryGetValue(fieldDescription.TypeOID, out var pgType)
-                    ? $"The field '{fieldDescription.Name}' has type '{pgType.DisplayName}', which is currently unknown to Npgsql. You can retrieve it as a string by marking it as unknown, please see the FAQ."
+                    ? $"The field '{fieldDescription.Name}' has type '{pgType.DisplayName}', which is currently unknown to YBNpgsql. You can retrieve it as a string by marking it as unknown, please see the FAQ."
                     : $"The field '{fieldDescription.Name}' has a type currently unknown to Npgsql (OID {fieldDescription.TypeOID}). You can retrieve it as a string by marking it as unknown, please see the FAQ."
             );
         }

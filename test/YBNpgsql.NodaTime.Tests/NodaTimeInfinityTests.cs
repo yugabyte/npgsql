@@ -285,7 +285,7 @@ public class NodaTimeInfinityTests : TestBase
         if (disableDateTimeInfinityConversions)
         {
             Assert.Ignore(
-                "NodaTimeInfinityTests rely on the Npgsql.DisableDateTimeInfinityConversions AppContext switch and can only be run in DEBUG builds");
+                "NodaTimeInfinityTests rely on the YBNpgsql.DisableDateTimeInfinityConversions AppContext switch and can only be run in DEBUG builds");
         }
 #endif
     }

@@ -49,7 +49,7 @@ public class NpgsqlLoggingConfiguration
     /// <see cref="NpgsqlDataSourceBuilder" /> and use the resulting <see cref="NpgsqlDataSource "/> instead.
     /// </para>
     /// </summary>
-    /// <param name="loggerFactory">The logging factory to use when logging from Npgsql.</param>
+    /// <param name="loggerFactory">The logging factory to use when logging from YBNpgsql.</param>
     /// <param name="parameterLoggingEnabled">
     /// Determines whether parameter contents will be logged alongside SQL statements - this may reveal sensitive information.
     /// Defaults to <see langword="false" />.

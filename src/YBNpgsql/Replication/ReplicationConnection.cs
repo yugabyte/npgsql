@@ -425,7 +425,7 @@ public abstract class ReplicationConnection : IAsyncDisposable
                 return null;
             default:
                 throw new NotSupportedException(
-                    $"The replication slot type '{slotType}' is currently not supported by Npgsql. Please file an issue.");
+                    $"The replication slot type '{slotType}' is currently not supported by YBNpgsql. Please file an issue.");
         }
     }
 

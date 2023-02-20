@@ -16,7 +16,7 @@ using YBNpgsql.Properties;
 using static YBNpgsql.Tests.Support.MockState;
 using static YBNpgsql.Tests.TestUtil;
 using IsolationLevel = System.Transactions.IsolationLevel;
-using TransactionStatus = Npgsql.Internal.TransactionStatus;
+using TransactionStatus = YBNpgsql.Internal.TransactionStatus;
 
 namespace YBNpgsql.Tests;
 

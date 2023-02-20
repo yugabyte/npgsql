@@ -5,7 +5,7 @@ using YBNpgsql.Internal;
 using YBNpgsql.Internal.TypeHandling;
 using YBNpgsql.NodaTime.Properties;
 using YBNpgsql.PostgresTypes;
-using BclTimestampTzHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler;
+using BclTimestampTzHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler;
 using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
 namespace YBNpgsql.NodaTime.Internal;
@@ -65,7 +65,7 @@ sealed partial class TimestampTzHandler : NpgsqlSimpleTypeHandler<Instant>, INpg
             : throw new InvalidCastException(
                 $"Cannot write ZonedDateTime with Zone={value.Zone} to PostgreSQL type 'timestamp with time zone', " +
                 "only UTC is supported. " +
-                "See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.");
+                "See the YBNpgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.");
 
     public int ValidateAndGetLength(OffsetDateTime value, NpgsqlParameter? parameter)
         => value.Offset == Offset.Zero || LegacyTimestampBehavior
@@ -73,7 +73,7 @@ sealed partial class TimestampTzHandler : NpgsqlSimpleTypeHandler<Instant>, INpg
             : throw new InvalidCastException(
                 $"Cannot write OffsetDateTime with Offset={value.Offset} to PostgreSQL type 'timestamp with time zone', " +
                 "only offset 0 (UTC) is supported. " +
-                "See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.");
+                "See the YBNpgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.");
 
     public override void Write(Instant value, NpgsqlWriteBuffer buf, NpgsqlParameter? parameter)
         => WriteInstant(value, buf);

@@ -5,7 +5,7 @@ using YBNpgsql.BackendMessages;
 using YBNpgsql.Internal;
 using YBNpgsql.Internal.TypeHandling;
 using YBNpgsql.PostgresTypes;
-using BclTimestampTzHandler = Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler;
+using BclTimestampTzHandler = YBNpgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler;
 using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
 namespace YBNpgsql.NodaTime.Internal;

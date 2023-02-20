@@ -861,7 +861,7 @@ GROUP BY pg_proc.proargnames, pg_proc.proargtypes, pg_proc.proallargtypes, pg_pr
 
             case PlaceholderType.Named:
                 if (!EnableSqlRewriting)
-                    throw new NotSupportedException($"Named parameters are not supported when Npgsql.{nameof(EnableSqlRewriting)} is disabled");
+                    throw new NotSupportedException($"Named parameters are not supported when YBNpgsql.{nameof(EnableSqlRewriting)} is disabled");
 
                 // The parser is cached on NpgsqlConnector - unless we're in multiplexing mode.
                 parser ??= new SqlQueryParser();
@@ -1543,7 +1543,7 @@ GROUP BY pg_proc.proargnames, pg_proc.proargtypes, pg_proc.proallargtypes, pg_pr
     }
 
     /// <summary>
-    /// This property is ignored by Npgsql. PostgreSQL only supports a single transaction at a given time on
+    /// This property is ignored by YBNpgsql. PostgreSQL only supports a single transaction at a given time on
     /// a given connection, and all commands implicitly run inside the current transaction started via
     /// <see cref="NpgsqlConnection.BeginTransaction()"/>
     /// </summary>
@@ -1792,13 +1792,13 @@ GROUP BY pg_proc.proargnames, pg_proc.proargtypes, pg_proc.proallargtypes, pg_pr
     }
 
     /// <summary>
-    /// This event is unsupported by Npgsql. Use <see cref="System.Data.Common.DbConnection.StateChange"/> instead.
+    /// This event is unsupported by YBNpgsql. Use <see cref="System.Data.Common.DbConnection.StateChange"/> instead.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public new event EventHandler? Disposed
     {
-        add => throw new NotSupportedException("The Disposed event isn't supported by Npgsql. Use DbConnection.StateChange instead.");
-        remove => throw new NotSupportedException("The Disposed event isn't supported by Npgsql. Use DbConnection.StateChange instead.");
+        add => throw new NotSupportedException("The Disposed event isn't supported by YBNpgsql. Use DbConnection.StateChange instead.");
+        remove => throw new NotSupportedException("The Disposed event isn't supported by YBNpgsql. Use DbConnection.StateChange instead.");
     }
 
     event EventHandler? IComponent.Disposed

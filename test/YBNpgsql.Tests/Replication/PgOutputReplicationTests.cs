@@ -10,8 +10,8 @@ using NUnit.Framework;
 using YBNpgsql.Replication;
 using YBNpgsql.Replication.PgOutput;
 using YBNpgsql.Replication.PgOutput.Messages;
-using TruncateOptions = Npgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions;
-using ReplicaIdentitySetting = Npgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting;
+using TruncateOptions = YBNpgsql.Replication.PgOutput.Messages.TruncateMessage.TruncateOptions;
+using ReplicaIdentitySetting = YBNpgsql.Replication.PgOutput.Messages.RelationMessage.ReplicaIdentitySetting;
 using static YBNpgsql.Tests.TestUtil;
 
 namespace YBNpgsql.Tests.Replication;

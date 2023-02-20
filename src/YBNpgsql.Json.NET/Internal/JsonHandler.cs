@@ -10,7 +10,7 @@ using YBNpgsql.PostgresTypes;
 
 namespace YBNpgsql.Json.NET.Internal;
 
-class JsonHandler : Npgsql.Internal.TypeHandlers.JsonHandler
+class JsonHandler : YBNpgsql.Internal.TypeHandlers.JsonHandler
 {
     readonly JsonSerializerSettings _settings;
 

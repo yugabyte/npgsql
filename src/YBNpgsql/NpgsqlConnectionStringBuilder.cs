@@ -919,13 +919,13 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     {
         get => TargetSessionAttributesParsed switch
         {
-            Npgsql.TargetSessionAttributes.Any           => "any",
-            Npgsql.TargetSessionAttributes.Primary       => "primary",
-            Npgsql.TargetSessionAttributes.Standby       => "standby",
-            Npgsql.TargetSessionAttributes.PreferPrimary => "prefer-primary",
-            Npgsql.TargetSessionAttributes.PreferStandby => "prefer-standby",
-            Npgsql.TargetSessionAttributes.ReadWrite     => "read-write",
-            Npgsql.TargetSessionAttributes.ReadOnly      => "read-only",
+            YBNpgsql.TargetSessionAttributes.Any           => "any",
+            YBNpgsql.TargetSessionAttributes.Primary       => "primary",
+            YBNpgsql.TargetSessionAttributes.Standby       => "standby",
+            YBNpgsql.TargetSessionAttributes.PreferPrimary => "prefer-primary",
+            YBNpgsql.TargetSessionAttributes.PreferStandby => "prefer-standby",
+            YBNpgsql.TargetSessionAttributes.ReadWrite     => "read-write",
+            YBNpgsql.TargetSessionAttributes.ReadOnly      => "read-only",
             null => null,
 
             _ => throw new ArgumentException($"Unhandled enum value '{TargetSessionAttributesParsed}'")
@@ -943,13 +943,13 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     internal static TargetSessionAttributes ParseTargetSessionAttributes(string s)
         => s switch
         {
-            "any"            => Npgsql.TargetSessionAttributes.Any,
-            "primary"        => Npgsql.TargetSessionAttributes.Primary,
-            "standby"        => Npgsql.TargetSessionAttributes.Standby,
-            "prefer-primary" => Npgsql.TargetSessionAttributes.PreferPrimary,
-            "prefer-standby" => Npgsql.TargetSessionAttributes.PreferStandby,
-            "read-write"     => Npgsql.TargetSessionAttributes.ReadWrite,
-            "read-only"      => Npgsql.TargetSessionAttributes.ReadOnly,
+            "any"            => YBNpgsql.TargetSessionAttributes.Any,
+            "primary"        => YBNpgsql.TargetSessionAttributes.Primary,
+            "standby"        => YBNpgsql.TargetSessionAttributes.Standby,
+            "prefer-primary" => YBNpgsql.TargetSessionAttributes.PreferPrimary,
+            "prefer-standby" => YBNpgsql.TargetSessionAttributes.PreferStandby,
+            "read-write"     => YBNpgsql.TargetSessionAttributes.ReadWrite,
+            "read-only"      => YBNpgsql.TargetSessionAttributes.ReadOnly,
 
             _ => throw new ArgumentException($"TargetSessionAttributes contains an invalid value '{s}'")
         };
@@ -1609,7 +1609,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         if (!Host.Contains(','))
         {
             if (TargetSessionAttributesParsed is not null &&
-                TargetSessionAttributesParsed != Npgsql.TargetSessionAttributes.Any)
+                TargetSessionAttributesParsed != YBNpgsql.TargetSessionAttributes.Any)
             {
                 throw new NotSupportedException("Target Session Attributes other then Any is only supported with multiple hosts");
             }
@@ -1810,7 +1810,7 @@ public enum ServerCompatibilityMode
     Redshift,
     /// <summary>
     /// The server is doesn't support full type loading from the PostgreSQL catalogs, support the basic set
-    /// of types via information hardcoded inside Npgsql.
+    /// of types via information hardcoded inside YBNpgsql.
     /// </summary>
     NoTypeLoading,
 }
