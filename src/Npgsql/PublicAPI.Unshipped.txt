@@ -1,14 +1,14 @@
 ﻿#nullable enable
-Npgsql.NpgsqlBinaryImporter.WriteRow(params object?[]! values) -> void
-Npgsql.NpgsqlBinaryImporter.WriteRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), params object?[]! values) -> System.Threading.Tasks.Task!
-Npgsql.NpgsqlJsonExtensions
-static Npgsql.NpgsqlJsonExtensions.UseSystemTextJson(this Npgsql.TypeMapping.INpgsqlTypeMapper! mapper, System.Text.Json.JsonSerializerOptions? serializerOptions = null, System.Type![]? jsonbClrTypes = null, System.Type![]? jsonClrTypes = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*static NpgsqlTypes.NpgsqlBox.Parse(string! s) -> NpgsqlTypes.NpgsqlBox
-*REMOVED*static NpgsqlTypes.NpgsqlCircle.Parse(string! s) -> NpgsqlTypes.NpgsqlCircle
-*REMOVED*static NpgsqlTypes.NpgsqlLine.Parse(string! s) -> NpgsqlTypes.NpgsqlLine
-*REMOVED*static NpgsqlTypes.NpgsqlLSeg.Parse(string! s) -> NpgsqlTypes.NpgsqlLSeg
-*REMOVED*static NpgsqlTypes.NpgsqlPath.Parse(string! s) -> NpgsqlTypes.NpgsqlPath
-*REMOVED*static NpgsqlTypes.NpgsqlPoint.Parse(string! s) -> NpgsqlTypes.NpgsqlPoint
-*REMOVED*static NpgsqlTypes.NpgsqlPolygon.Parse(string! s) -> NpgsqlTypes.NpgsqlPolygon
-*REMOVED*Npgsql.NpgsqlBinaryImporter.WriteRow(params object![]! values) -> void
-*REMOVED*Npgsql.NpgsqlBinaryImporter.WriteRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), params object![]! values) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlBinaryImporter.WriteRow(params object?[]! values) -> void
+YBNpgsql.NpgsqlBinaryImporter.WriteRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), params object?[]! values) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlJsonExtensions
+static YBNpgsql.NpgsqlJsonExtensions.UseSystemTextJson(this YBNpgsql.TypeMapping.INpgsqlTypeMapper! mapper, System.Text.Json.JsonSerializerOptions? serializerOptions = null, System.Type![]? jsonbClrTypes = null, System.Type![]? jsonClrTypes = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*static YBNpgsqlTypes.NpgsqlBox.Parse(string! s) -> YBNpgsqlTypes.NpgsqlBox
+*REMOVED*static YBNpgsqlTypes.NpgsqlCircle.Parse(string! s) -> YBNpgsqlTypes.NpgsqlCircle
+*REMOVED*static YBNpgsqlTypes.NpgsqlLine.Parse(string! s) -> YBNpgsqlTypes.NpgsqlLine
+*REMOVED*static YBNpgsqlTypes.NpgsqlLSeg.Parse(string! s) -> YBNpgsqlTypes.NpgsqlLSeg
+*REMOVED*static YBNpgsqlTypes.NpgsqlPath.Parse(string! s) -> YBNpgsqlTypes.NpgsqlPath
+*REMOVED*static YBNpgsqlTypes.NpgsqlPoint.Parse(string! s) -> YBNpgsqlTypes.NpgsqlPoint
+*REMOVED*static YBNpgsqlTypes.NpgsqlPolygon.Parse(string! s) -> YBNpgsqlTypes.NpgsqlPolygon
+*REMOVED*YBNpgsql.NpgsqlBinaryImporter.WriteRow(params object![]! values) -> void
+*REMOVED*YBNpgsql.NpgsqlBinaryImporter.WriteRowAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken), params object![]! values) -> System.Threading.Tasks.Task!

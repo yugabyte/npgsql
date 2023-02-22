@@ -3,7 +3,7 @@ using System.Data;
 using System.Threading;
 using System.Transactions;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
 namespace YBNpgsql.Tests;
 
