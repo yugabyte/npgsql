@@ -10,10 +10,10 @@
     <SignAssembly>true</SignAssembly>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-    <Copyright>Copyright 2022 © The Npgsql Development Team</Copyright>
-    <Company>Npgsql</Company>
+    <Copyright>Copyright 2023 © The YugabyteDB Development Team</Copyright>
+    <Company>YugabyteDB</Company>
     <PackageLicenseExpression>PostgreSQL</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/npgsql/npgsql</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/yugabyte/npgsql</PackageProjectUrl>
     <PackageIcon>postgresql.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
