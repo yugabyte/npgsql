@@ -1,7 +1,7 @@
 ﻿#nullable enable
 abstract YBNpgsql.Replication.PgOutput.Messages.UpdateMessage.NewRow.get -> YBNpgsql.Replication.PgOutput.ReplicationTuple!
 abstract YBNpgsqlTypes.NpgsqlTsQuery.Equals(YBNpgsqlTypes.NpgsqlTsQuery? other) -> bool
-const YBNpgsql.NpgsqlConnection.DefaultPort = 5432 -> int
+const YBNpgsql.NpgsqlConnection.DefaultPort = 5433 -> int
 const YBNpgsql.PostgresErrorCodes.ActiveSqlTransaction = "25001" -> string!
 const YBNpgsql.PostgresErrorCodes.AdminShutdown = "57P01" -> string!
 const YBNpgsql.PostgresErrorCodes.AmbiguousAlias = "42P09" -> string!
