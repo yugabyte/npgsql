@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandlers;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandlers;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
 #if NET6_0_OR_GREATER || NETSTANDARD2_0 || NETSTANDARD2_1
 using System.Text.Json.Nodes;
 #endif
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 sealed class JsonTypeHandlerResolver : TypeHandlerResolver
 {

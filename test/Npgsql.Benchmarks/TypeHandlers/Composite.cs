@@ -7,7 +7,7 @@ using YBNpgsql.Util;
 
 /* Disabling for now: unmapped composite support is probably going away, and there's a good chance this
  * class can be simplified to a certain extent
-namespace Npgsql.Benchmarks.TypeHandlers
+namespace YBNpgsql.Benchmarks.TypeHandlers
 {
     public abstract class Composite<T> : TypeHandlerBenchmarks<T>
     {

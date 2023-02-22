@@ -4,11 +4,11 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal.TypeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers;
 
 /// <summary>
 /// A text-only type handler for the PostgreSQL json and jsonb data type. This handler does not support serialization/deserialization

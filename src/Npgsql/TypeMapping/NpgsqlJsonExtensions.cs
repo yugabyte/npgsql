@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Extension allowing adding the System.Text.Json plugin to an Npgsql type mapper.

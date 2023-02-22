@@ -5,15 +5,15 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal.TypeHandling;
-using Npgsql.PostgresTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal.TypeHandling;
+using YBNpgsql.PostgresTypes;
 
 #if NET6_0_OR_GREATER || NETSTANDARD2_0 || NETSTANDARD2_1
 using System.Text.Json.Nodes;
 #endif
 
-namespace Npgsql.Internal.TypeHandlers;
+namespace YBNpgsql.Internal.TypeHandlers;
 
 /// <summary>
 /// A type handler for the PostgreSQL json and jsonb data type which uses System.Text.Json.

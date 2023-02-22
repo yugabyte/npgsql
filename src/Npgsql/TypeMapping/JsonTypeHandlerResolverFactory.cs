@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using Npgsql.Internal;
-using Npgsql.Internal.TypeHandling;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.TypeHandling;
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 sealed class JsonTypeHandlerResolverFactory : TypeHandlerResolverFactory
 {
