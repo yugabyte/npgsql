@@ -60,6 +60,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// Value = Number of Connections to that pool
     /// </summary>
     protected static Dictionary<int, int> poolToNumConnMap = new Dictionary<int, int>();
+    
+    /// <summary>
+    /// Stores a map of host to their priority
+    /// </summary>
+    protected static Dictionary<string, int> hostToPriorityMap = new Dictionary<string, int>();
     /// <summary>
     /// Connection settings
     /// </summary>
@@ -194,6 +199,16 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
             }
         }
+    }
+
+    /// <summary>
+    /// Checks if a higher priority node is available
+    /// </summary>
+    /// <param name="poolindex"></param>
+    /// <returns></returns>
+    protected bool HasBetterNodeAvailable(int poolindex)
+    {
+        return false;
     }
 
     /// <summary>
@@ -369,6 +384,13 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             CheckDisposed();
 
             var poolIndex = conn.Settings.LoadBalanceHosts ? GetRoundRobinIndex() : 0;
+            var HasBetterNode = HasBetterNodeAvailable(poolIndex);
+            if (HasBetterNode)
+            {
+                UpdateConnectionMap(poolIndex, -1);
+                HasBetterNode = false;
+                await getConnector(conn, timeout, async, cancellationToken, exceptions);
+            }
             if (poolIndex == -1)
                 break;
             var timeoutPerHost = timeout.IsSet ? timeout.CheckAndGetTimeLeft() : TimeSpan.Zero;

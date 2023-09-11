@@ -153,6 +153,46 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         }
     }
 
+    new bool HasBetterNodeAvailable(int poolindex)
+    {
+        var chosenHost = _pools[poolindex].Settings.Host;
+        if (chosenHost != null && hostToPriorityMap.ContainsKey(chosenHost)) {
+            var chosenHostPriority = hostToPriorityMap[chosenHost];
+            for (var i = 1; i < chosenHostPriority; i++) {
+                if (hostToPriorityMap.Values.Contains(i)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    void UpdatePriorityMap(string host, string cloud, string region, string zone)
+    {
+        if (!unreachableHosts.Contains(host))
+        {
+            var priority = getPriority(cloud, region, zone);
+            hostToPriorityMap[host] = priority;
+        }
+    }
+    
+    private int getPriority(string cloud, string region, string zone) {
+        CloudPlacement cp = new CloudPlacement(cloud, region, zone);
+        return getKeysByValue(cp);
+    }
+
+    private int getKeysByValue(CloudPlacement cp) {
+        int i;
+        for (i = 1; i <= MAX_PREFERENCE_VALUE; i++) {
+            if (allowedPlacements[i] != null && !allowedPlacements.Any()) {
+                if (cp.IsContainedIn(allowedPlacements[i])){
+                    return i;
+                }
+            }
+        }
+        return MAX_PREFERENCE_VALUE + 1;
+    }
+
     new List<string> GetCurrentServers(NpgsqlConnection conn)
     {
         NpgsqlCommand QUERY_SERVER = new NpgsqlCommand("Select * from yb_servers()",conn);
@@ -160,6 +200,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         _lastServerFetchTime = DateTime.Now;
         List<string> currentPrivateIps = new List<string>();
         var hostConnectedTo = conn.Host;
+        hostToPriorityMap.Clear();
         
         Debug.Assert(hostConnectedTo != null, nameof(hostConnectedTo) + " != null");
         while (reader.Read())
@@ -169,6 +210,8 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             var cloud = reader.GetString(reader.GetOrdinal("cloud"));
             var region = reader.GetString(reader.GetOrdinal("region"));
             var zone = reader.GetString(reader.GetOrdinal("zone"));
+            
+            UpdatePriorityMap(host, cloud, region, zone);
 
             UpdateCurrentHostList(currentPrivateIps, host, publicHost, cloud, region, zone);
             
