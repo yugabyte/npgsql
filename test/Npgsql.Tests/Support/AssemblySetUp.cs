@@ -9,7 +9,7 @@ using System.Threading;
 [SetUpFixture]
 public class AssemblySetUp
 {
-    [OneTimeSetUp]
+    // [OneTimeSetUp]
     public void Setup()
     {
         var connString = TestUtil.ConnectionString;

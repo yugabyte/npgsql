@@ -1007,6 +1007,24 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         }
     }
     double _ybServersRefreshInterval;
+    
+    /// <summary>
+    /// Sets the reconnect time for failed hosts
+    /// </summary>
+    [Category("Failover and load balancing")]
+    [Description("Sets the reconnect time for failed hosts")]
+    [DisplayName("Failed Host Reconnect Delay Secs")]
+    [NpgsqlConnectionStringProperty]
+    public double FailedHostReconnectDelaySecs
+    {
+        get => _failedHostReconnectDelaySecs;
+        set
+        {
+            _failedHostReconnectDelaySecs = value;
+            SetValue(nameof(YBServersRefreshInterval), value);
+        }
+    }
+    double _failedHostReconnectDelaySecs;
 
     /// <summary>
     /// Controls for how long the host's cached state will be considered as valid.
