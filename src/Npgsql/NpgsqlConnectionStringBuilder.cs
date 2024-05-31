@@ -939,7 +939,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         }
     }
     bool _loadBalanceHosts;
-    
+
     /// <summary>
     /// Enables balancing between multiple hosts by round-robin in a specified topology
     /// </summary>
@@ -957,7 +957,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         }
     }
     string? _topologyKeys;
-    
+
     /// <summary>
     /// Sets the refresh interval for the yb_servers()
     /// </summary>
@@ -989,7 +989,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         set
         {
             _failedHostReconnectDelaySecs = value;
-            SetValue(nameof(YBServersRefreshInterval), value);
+            SetValue(nameof(FailedHostReconnectDelaySecs), value);
         }
     }
     double _failedHostReconnectDelaySecs;

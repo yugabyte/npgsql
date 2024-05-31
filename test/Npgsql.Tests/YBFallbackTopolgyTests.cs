@@ -16,7 +16,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     public async Task TestFallback1()
     {
         CreateCluster();
-        var conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-2a,aws.us-west.us-west-2c", 6, 0, 6);
+        var conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-2a,aws.us-west.us-west-2c", new[]{6, 0, 6 });
         CloseConnections(conns);
         DestroyCluster();
     }
@@ -24,7 +24,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     public async Task TestFallback2()
     {
         CreateCluster();
-        var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 6, 6, 0);
+        var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", new[]{6, 6, 0});
         CloseConnections(conns);
         DestroyCluster();
     }
@@ -33,7 +33,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     public async Task TestFallback3()
     {
         CreateCluster();
-        var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", 12, 0, 0);
+        var conns = await CreateConnections(connStringBuilder + "aws.us-west.us-west-2a:1,aws.us-west.us-west-2b:2,aws.us-west.us-west-2c:3", new[]{12, 0, 0});
         CloseConnections(conns);
         DestroyCluster();
     }
@@ -42,7 +42,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     public async Task TestFallback4()
     {
         CreateCluster();
-        var conns = await CreateConnections(connStringBuilder + "aws.us-west.*,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", 4, 4, 4);
+        var conns = await CreateConnections(connStringBuilder + "aws.us-west.*,aws.us-west.us-west-2b:1,aws.us-west.us-west-2c:2", new []{4, 4, 4});
         CloseConnections(conns);
         DestroyCluster();
     }
@@ -64,7 +64,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
 
-        var conns =await CreateConnections(connString, 0, 12, 0);
+        var conns =await CreateConnections(connString, new[]{0, 12, 0});
 
         CloseConnections(conns);
         DestroyCluster();
@@ -87,12 +87,12 @@ public class YBFallbackTopolgyTests : YBTestUtils
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
 
-        var conns = await CreateConnections(connString, 0, 6, 6);
+        var conns = await CreateConnections(connString, new[]{0, 6, 6});
         CloseConnections(conns);
         DestroyCluster();
     }
 
-    static async Task<List<NpgsqlConnection>> CreateConnections(string connString, int cnt1, int cnt2, int cnt3)
+    protected static async Task<List<NpgsqlConnection>> CreateConnections(string connString, int[] count)
     {
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         if (mlock == 0)
@@ -109,9 +109,16 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
                 Console.WriteLine("Connections Created");
 
-                await VerifyOn("127.0.0.1", cnt1);
-                await VerifyOn("127.0.0.2", cnt2);
-                await VerifyOn("127.0.0.3", cnt3);
+                var j = 1;
+                foreach(var expectedCount in count)
+                {
+                    if (expectedCount != 1)
+                    {
+                        await VerifyOn("127.0.0." + j, expectedCount);
+                    }
+
+                    j++;
+                }
                 CloseConnections(conns);
                 mlock = 0;
             }
@@ -138,7 +145,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         }
     }
 
-    void CreateCluster()
+    protected void CreateCluster()
     {
         string? _Output = null;
         string? _Error = null;
@@ -147,7 +154,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         Console.WriteLine("Output:" + _Output);
     }
 
-    void DestroyCluster()
+    protected void DestroyCluster()
     {
         string? _Output = null;
         string? _Error = null;

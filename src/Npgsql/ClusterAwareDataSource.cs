@@ -38,7 +38,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// List of unreachable hosts
     /// </summary>
     protected static List<int> unreachableHostsIndices = new List<int>();
-    
+
     /// <summary>
     /// List of unreachable hosts
     /// </summary>
@@ -81,7 +81,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// Lock object
     /// </summary>
     protected static readonly object lockObject = new object();
-    
+
     /// <summary>
     /// TODO
     /// </summary>
@@ -102,7 +102,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// TODO
     /// </summary>
     protected List<string> currentPublicIps = new List<string>();
-    
+
     /// <summary>
     /// TODO
     /// </summary>
@@ -150,12 +150,12 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     if (initialHosts.Count == 0)
                         throw;
                 }
-                
+
             }
         }
 
     }
-    
+
 
     /// <summary>
     /// Returns the current instance
@@ -194,7 +194,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 _pools.Add(settings.Pooling
                     ? new PoolingDataSource(poolSettings, dataSourceConfig)
                     : new UnpooledDataSource(poolSettings, dataSourceConfig));
-            
+
                 poolToNumConnMap[index] = 0;
                 index++;
 
@@ -224,7 +224,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         List<string> currentPrivateIps = new List<string>();
         List<string> currentPublicIps = new List<string>();
         var hostConnectedTo = conn.Host;
-        
+
         Debug.Assert(hostConnectedTo != null, nameof(hostConnectedTo) + " != null");
         var isIpv6Addresses = hostConnectedTo.Contains(":");
         if (isIpv6Addresses) {
@@ -245,7 +245,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         }
         return GetPrivateOrPublicServers(currentPrivateIps, currentPublicIps);
     }
-    
+
     /// <summary>
     /// Returns a list of private or public IPs based on the value of useHostColumn variable
     /// </summary>
@@ -275,7 +275,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
 
             poolToNumConnMap[poolIndex] =  currentCount + incDec;
-            
+
         }
     }
 
@@ -310,7 +310,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 if (initialHosts.Count == 0)
                     throw;
             }
-                
+
         }
         unreachableHostsIndices.Clear();
         unreachableHosts.Clear();
@@ -322,8 +322,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         NpgsqlConnector? connector = null;
         var exceptions = new List<Exception>();
-        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
-        
+        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+
         if (this is TopologyAwareDataSource)
         {
             exceptions.Clear();
@@ -339,7 +339,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     {
                         exceptions.Clear();
                         CreatePool(fallbackPrivateIPs[i]);
-                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
                         if (connector != null)
                             break;
                     }
@@ -347,7 +347,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     {
                         exceptions.Clear();
                         CreatePool(fallbackPublicIPs[i]);
-                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
                         if (connector != null)
                             break;
                     }
@@ -362,17 +362,17 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 {
                     exceptions.Clear();
                     CreatePool(fallbackPrivateIPs[REST_OF_CLUSTER]);
-                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
                 }
                 else if (public_ip != null)
                 {
                     exceptions.Clear();
                     CreatePool(fallbackPublicIPs[REST_OF_CLUSTER]);
-                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions);
+                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
                 }
             }
         }
-       
+
         return connector ?? throw NoSuitableHostsException(exceptions);
     }
 
@@ -391,22 +391,22 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 UpdateConnectionMap(poolIndex, -1);
                 HasBetterNode = false;
-                await getConnector(conn, timeout, async, cancellationToken, exceptions);
+                await getConnector(conn, timeout, async, cancellationToken, exceptions).ConfigureAwait(false);
             }
-            
+
             if (poolIndex == -1)
                 break;
             var timeoutPerHost = timeout.IsSet ? timeout.CheckAndGetTimeLeft() : TimeSpan.Zero;
             var preferredType = GetTargetSessionAttributes(conn);
             var checkUnpreferred = preferredType is TargetSessionAttributes.PreferPrimary or TargetSessionAttributes.PreferStandby;
 
-            connector = await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken) ??
+            connector = await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken).ConfigureAwait(false) ??
                         (checkUnpreferred ?
-                            await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken)
+                            await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken).ConfigureAwait(false)
                             : null) ??
-                        await TryGet(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken) ??
+                        await TryGet(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken).ConfigureAwait(false) ??
                         (checkUnpreferred ?
-                            await TryGet(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken)
+                            await TryGet(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken).ConfigureAwait(false)
                             : null);
             if (connector != null)
             {
@@ -422,8 +422,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         return connector;
 
     }
-    
-    
+
+
 
     internal override bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
         => throw new NpgsqlException("Npgsql bug: trying to get an idle connector from " + nameof(ClusterAwareDataSource));
@@ -452,7 +452,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     }
 
     internal override bool OwnsConnectors { get; }
-    
+
     static bool IsPreferred(DatabaseState state, TargetSessionAttributes preferredType)
         => state switch
         {
@@ -479,13 +479,13 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
             _ => preferredType == TargetSessionAttributes.Any
         };
-    
+
     static bool IsOnline(DatabaseState state, TargetSessionAttributes preferredType)
     {
         Debug.Assert(preferredType is TargetSessionAttributes.PreferPrimary or TargetSessionAttributes.PreferStandby);
         return state != DatabaseState.Offline;
     }
-    
+
     static NpgsqlException NoSuitableHostsException(IList<Exception> exceptions)
         => exceptions.Count == 0
             ? new NpgsqlException("No suitable host was found.")
@@ -501,7 +501,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         var diff = (currentTime - _lastServerFetchTime).TotalSeconds;
         return (diff > REFRESH_LIST_SECONDS);
     }
-    
+
     int GetRoundRobinIndex()
     {
         // Randomize when two indexes have the same number of connections
@@ -521,13 +521,13 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             return -1;
         }
     }
-    
+
     static TargetSessionAttributes GetTargetSessionAttributes(NpgsqlConnection connection)
         => connection.Settings.TargetSessionAttributesParsed ??
            (PostgresEnvironment.TargetSessionAttributes is { } s
                ? NpgsqlConnectionStringBuilder.ParseTargetSessionAttributes(s)
                : TargetSessionAttributes.Any);
-    
+
     async ValueTask<NpgsqlConnector?> TryGetIdleOrNew(
         NpgsqlConnection conn,
         TimeSpan timeoutPerHost,
@@ -547,7 +547,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 if (databaseState == DatabaseState.Unknown)
                 {
-                    databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken);
+                    databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
                     Debug.Assert(databaseState != DatabaseState.Unknown);
                     if (!stateValidator(databaseState, preferredType))
                     {
@@ -559,7 +559,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
             else
             {
-                connector = await pool.OpenNewConnector(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken);
+                connector = await pool.OpenNewConnector(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
                 if (connector is not null)
                 {
                     if (databaseState == DatabaseState.Unknown)
@@ -567,7 +567,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                         // While opening a new connector we might have refreshed the database state, check again
                         databaseState = pool.GetDatabaseState();
                         if (databaseState == DatabaseState.Unknown)
-                            databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken);
+                            databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
                         Debug.Assert(databaseState != DatabaseState.Unknown);
                         if (!stateValidator(databaseState, preferredType))
                         {
@@ -588,7 +588,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
         return null;
     }
-    
+
     async ValueTask<NpgsqlConnector?> TryGet(
         NpgsqlConnection conn,
         TimeSpan timeoutPerHost,
@@ -603,17 +603,17 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         var pool = pools[poolIndex];
         var databaseState = pool.GetDatabaseState();
         NpgsqlConnector? connector = null;
-    
+
         try
         {
-            connector = await pool.Get(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken);
+            connector = await pool.Get(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
             if (databaseState == DatabaseState.Unknown)
             {
                 // Get might have opened a new physical connection and refreshed the database state, check again
                 databaseState = pool.GetDatabaseState();
                 if (databaseState == DatabaseState.Unknown)
-                    databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken);
-    
+                    databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
+
                 Debug.Assert(databaseState != DatabaseState.Unknown);
                 if (!stateValidator(databaseState, preferredType))
                 {
@@ -621,7 +621,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     return null;
                 }
             }
-    
+
             return connector;
         }
         catch (Exception ex)

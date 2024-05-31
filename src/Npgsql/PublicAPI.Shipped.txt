@@ -1941,4 +1941,7 @@ YBNpgsql.NpgsqlConnectionStringBuilder.TopologyKeys.get -> string?
 YBNpgsql.NpgsqlConnectionStringBuilder.TopologyKeys.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.get -> double
 YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.FailedHostReconnectDelaySecs.get -> double
+YBNpgsql.NpgsqlConnectionStringBuilder.FailedHostReconnectDelaySecs.set -> void
 YBNpgsql.TopologyAwareDataSource
+

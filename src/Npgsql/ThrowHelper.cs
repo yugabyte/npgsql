@@ -100,11 +100,6 @@ static class ThrowHelper
         => throw new NotSupportedException(message);
 
     [DoesNotReturn]
-<<<<<<< HEAD
     internal static void ThrowNpgsqlExceptionWithInnerTimeoutException(string message)
         => throw new NpgsqlException(message, new TimeoutException());
-=======
-    internal static void ThrowTimeoutException()
-        => throw new TimeoutException();
->>>>>>> e9e89c19 (Change namespace from Npgsql to YBNpgsql)
 }

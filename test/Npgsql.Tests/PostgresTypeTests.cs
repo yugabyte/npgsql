@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using YBNpgsql.Internal;
-using YBNpgsql.Framework;
+using NUnit.Framework;
 
 namespace YBNpgsql.Tests;
 

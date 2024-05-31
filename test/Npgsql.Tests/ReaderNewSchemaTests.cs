@@ -751,7 +751,7 @@ CREATE TABLE {table2} (foo INTEGER)");
 
         using var cmd = new NpgsqlCommand($"SELECT foo FROM {table} WHERE foo > @p", conn)
         {
-            Parameters = { new() { ParameterName = "p", NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer } }
+            Parameters = { new() { ParameterName = "p", NpgsqlDbType = YBNpgsqlTypes.NpgsqlDbType.Integer } }
         };
         await using var reader = await cmd.ExecuteReaderAsync(CommandBehavior.SchemaOnly | CommandBehavior.KeyInfo);
 

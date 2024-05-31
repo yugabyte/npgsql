@@ -4,7 +4,7 @@ using GeoJSON.Net.Geometry;
 using YBNpgsql.Internal;
 using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 sealed class GeoJSONTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

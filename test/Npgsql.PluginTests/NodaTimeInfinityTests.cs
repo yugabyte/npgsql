@@ -7,11 +7,7 @@ using YBNpgsqlTypes;
 using NUnit.Framework;
 using static YBNpgsql.NodaTime.Internal.NodaTimeUtils;
 
-<<<<<<< HEAD:test/Npgsql.PluginTests/NodaTimeInfinityTests.cs
-namespace Npgsql.PluginTests;
-=======
-namespace YBNpgsql.NodaTime.Tests;
->>>>>>> e9e89c19 (Change namespace from Npgsql to YBNpgsql):test/Npgsql.NodaTime.Tests/NodaTimeInfinityTests.cs
+namespace YBNpgsql.PluginTests;
 
 [TestFixture(false)]
 #if DEBUG

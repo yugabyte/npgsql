@@ -1,7 +1,7 @@
 ﻿
 using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.PostgresTypes;
+namespace YBNpgsql.PostgresTypes;
 
 /// <summary>
 /// Represents a PostgreSQL base data type, which is a simple scalar value.
