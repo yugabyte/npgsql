@@ -668,7 +668,7 @@ public sealed partial class NpgsqlConnector : IDisposable
                 reader.NextResult();
                 reader.Read();
             }
-                
+
             _isTransactionReadOnly = reader.GetString(0) != "off";
 
             var clusterState = UpdateClusterState();
@@ -2003,7 +2003,7 @@ public sealed partial class NpgsqlConnector : IDisposable
             lock (CleanupLock) { }
             return reason;
         }
-        
+
         try
         {
             // If we're broken while reading prepended messages
@@ -2072,7 +2072,7 @@ public sealed partial class NpgsqlConnector : IDisposable
             Monitor.Exit(CleanupLock);
         }
     }
-        
+
     void FullCleanup()
     {
         lock (CleanupLock)
@@ -2191,12 +2191,12 @@ public sealed partial class NpgsqlConnector : IDisposable
             sb.Append("SELECT pg_advisory_unlock_all();");
             _resetWithoutDeallocateResponseCount += 2;
         }
-        if (DatabaseInfo.SupportsDiscardSequences)
+        if (DatabaseInfo.SupportsDiscardSequences && Settings.EnableDiscardSequences)
         {
             sb.Append("DISCARD SEQUENCES;");
             _resetWithoutDeallocateResponseCount++;
         }
-        if (DatabaseInfo.SupportsDiscardTemp)
+        if (DatabaseInfo.SupportsDiscardTemp && Settings.EnableDiscardTemp)
         {
             sb.Append("DISCARD TEMP");
             _resetWithoutDeallocateResponseCount++;
@@ -2370,7 +2370,7 @@ public sealed partial class NpgsqlConnector : IDisposable
                 throw IsBroken
                     ? new NpgsqlException("The connection was previously broken because of the following exception", _breakReason)
                     : new NpgsqlException("The connection is closed");
-            }  
+            }
 
             if (!_userLock!.Wait(0))
             {

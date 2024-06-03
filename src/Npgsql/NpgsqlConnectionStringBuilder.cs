@@ -1412,6 +1412,44 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     }
     ServerCompatibilityMode _serverCompatibilityMode;
 
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the discard sequences sql during reset")]
+    [DisplayName("Enable Discard Sequences")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableDiscardSequences
+    {
+        get => _enablediscardsequences;
+        set
+        {
+            _enablediscardsequences = value;
+            SetValue(nameof(EnableDiscardSequences), value);
+        }
+    }
+    bool _enablediscardsequences;
+
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the discard temp sql during reset")]
+    [DisplayName("Enable Discard Temp")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableDiscardTemp
+    {
+        get => _enablediscardtemp;
+        set
+        {
+            _enablediscardtemp = value;
+            SetValue(nameof(EnableDiscardTemp), value);
+        }
+    }
+    bool _enablediscardtemp;
+
     #endregion
 
     #region Properties - Obsolete

@@ -61,8 +61,16 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
     /// </summary>
     public bool IsRedshift { get; private set; }
 
+    /// <summary>
+    /// True if the backend is YugabyteDB; otherwise, false.
+    /// </summary>
+    public bool IsYugabyteDB { get; set; }
+
     /// <inheritdoc />
-    public override bool SupportsUnlisten => Version.IsGreaterOrEqual(6, 4) && !IsRedshift;
+    public override bool SupportsUnlisten => Version.IsGreaterOrEqual(6, 4) && !IsRedshift && !IsYugabyteDB ;
+
+    /// <inheritdoc />
+    public override bool SupportsAdvisoryLocks => Version.IsGreaterOrEqual(6, 4) && !IsYugabyteDB ;
 
     /// <summary>
     /// True if the 'pg_enum' table includes the 'enumsortorder' column; otherwise, false.
@@ -99,6 +107,7 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
             intDateTimes == "on";
 
         IsRedshift = conn.Settings.ServerCompatibilityMode == ServerCompatibilityMode.Redshift;
+        IsYugabyteDB = ServerVersion.Contains("YB");
         _types = await LoadBackendTypes(conn, timeout, async);
     }
 
