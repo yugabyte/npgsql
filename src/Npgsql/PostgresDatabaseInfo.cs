@@ -61,16 +61,12 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
     /// </summary>
     public bool IsRedshift { get; private set; }
 
-    /// <summary>
-    /// True if the backend is YugabyteDB; otherwise, false.
-    /// </summary>
-    public bool IsYugabyteDB { get; set; }
 
     /// <inheritdoc />
-    public override bool SupportsUnlisten => Version.IsGreaterOrEqual(6, 4) && !IsRedshift && !IsYugabyteDB ;
+    public override bool SupportsUnlisten => false ;
 
     /// <inheritdoc />
-    public override bool SupportsAdvisoryLocks => Version.IsGreaterOrEqual(6, 4) && !IsYugabyteDB ;
+    public override bool SupportsAdvisoryLocks => false ;
 
     /// <summary>
     /// True if the 'pg_enum' table includes the 'enumsortorder' column; otherwise, false.
@@ -107,7 +103,6 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
             intDateTimes == "on";
 
         IsRedshift = conn.Settings.ServerCompatibilityMode == ServerCompatibilityMode.Redshift;
-        IsYugabyteDB = ServerVersion.Contains("YB");
         _types = await LoadBackendTypes(conn, timeout, async);
     }
 
@@ -123,6 +118,7 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
     /// </remarks>
     static string GenerateLoadTypesQuery(bool withRange, bool withMultirange, bool loadTableComposites)
         => $@"
+
 SELECT ns.nspname, t.oid, t.typname, t.typtype, t.typnotnull, t.elemtypoid
 FROM (
     -- Arrays have typtype=b - this subquery identifies them by their typreceive and converts their typtype to a

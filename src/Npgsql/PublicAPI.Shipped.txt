@@ -1911,3 +1911,7 @@ Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.get -> bool
 Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.set -> void
 Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardTemp.get -> bool
 Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardTemp.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.get -> bool
+Npgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.get -> bool
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.set -> void

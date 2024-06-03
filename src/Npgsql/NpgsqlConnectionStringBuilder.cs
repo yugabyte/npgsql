@@ -1450,6 +1450,44 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     }
     bool _enablediscardtemp;
 
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the Close All sql during reset")]
+    [DisplayName("Enable Close All")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableCloseAll
+    {
+        get => _enablecloseall;
+        set
+        {
+            _enablecloseall = value;
+            SetValue(nameof(EnableCloseAll), value);
+        }
+    }
+    bool _enablecloseall;
+
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the Discard All sql during reset")]
+    [DisplayName("Enable Discard All")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableDiscardAll
+    {
+        get => _enablediscardall;
+        set
+        {
+            _enablediscardall = value;
+            SetValue(nameof(EnableDiscardAll), value);
+        }
+    }
+    bool _enablediscardall;
+
     #endregion
 
     #region Properties - Obsolete

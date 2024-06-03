@@ -2176,7 +2176,7 @@ public sealed partial class NpgsqlConnector : IDisposable
     {
         var sb = new StringBuilder("SET SESSION AUTHORIZATION DEFAULT;RESET ALL;");
         _resetWithoutDeallocateResponseCount = 2;
-        if (DatabaseInfo.SupportsCloseAll)
+        if (DatabaseInfo.SupportsCloseAll && Settings.EnableCloseAll)
         {
             sb.Append("CLOSE ALL;");
             _resetWithoutDeallocateResponseCount++;
@@ -2265,7 +2265,8 @@ public sealed partial class NpgsqlConnector : IDisposable
                 {
                     // There are no prepared statements.
                     // We simply send DISCARD ALL which is more efficient than sending the above messages separately
-                    PrependInternalMessage(PregeneratedMessages.DiscardAll, 2);
+                    if (Settings.EnableDiscardAll)
+                        PrependInternalMessage(PregeneratedMessages.DiscardAll, 2);
                 }
             }
 
