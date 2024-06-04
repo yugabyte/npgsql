@@ -1907,3 +1907,11 @@ override NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.CanConvertFrom(System.Com
 override NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Type? destinationType) -> bool
 override NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object! value) -> object?
 override NpgsqlTypes.NpgsqlRange<T>.RangeTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, System.Type! destinationType) -> object?
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.get -> bool
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardTemp.get -> bool
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardTemp.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.get -> bool
+Npgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.set -> void
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.get -> bool
+Npgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.set -> void
