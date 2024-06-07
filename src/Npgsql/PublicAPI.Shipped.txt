@@ -1944,4 +1944,12 @@ YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.FailedHostReconnectDelaySecs.get -> double
 YBNpgsql.NpgsqlConnectionStringBuilder.FailedHostReconnectDelaySecs.set -> void
 YBNpgsql.TopologyAwareDataSource
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardTemp.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardTemp.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.set -> void
 

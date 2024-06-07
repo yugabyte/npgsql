@@ -112,6 +112,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// </summary>
     protected ConcurrentDictionary<int, List<string>> fallbackPublicIPs;
 
+    /// <summary>
+    /// To set refresh value explicitly
+    /// </summary>
+    protected internal static bool forceRefresh = false;
+
     internal ClusterAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig, bool useClusterAwareDataSource)
         : base(settings, dataSourceConfig)
     {
@@ -497,6 +502,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
     internal override bool NeedsRefresh()
     {
+        if (forceRefresh)
+            return true;
         var currentTime = DateTime.Now;
         var diff = (currentTime - _lastServerFetchTime).TotalSeconds;
         return (diff > REFRESH_LIST_SECONDS);
