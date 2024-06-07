@@ -58,7 +58,10 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
     public bool IsRedshift { get; private set; }
 
     /// <inheritdoc />
-    public override bool SupportsUnlisten => Version.IsGreaterOrEqual(6, 4) && !IsRedshift;
+    public override bool SupportsUnlisten => false;
+
+    /// <inheritdoc />
+    public override bool SupportsAdvisoryLocks => false;
 
     /// <summary>
     /// True if the 'pg_enum' table includes the 'enumsortorder' column; otherwise, false.
