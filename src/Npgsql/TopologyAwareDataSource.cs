@@ -10,7 +10,7 @@ using System.Linq;
 namespace YBNpgsql;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 {
@@ -45,7 +45,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                     throw;
                 initialHosts.Remove(host);
             }
-                
+
         }
     }
 
@@ -114,7 +114,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 
         }
     }
-    
+
 
     /// <summary>
     /// Create a new pool
@@ -144,7 +144,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 _pools.Add(settings.Pooling
                     ? new PoolingDataSource(poolSettings, dataSourceConfig)
                     : new UnpooledDataSource(poolSettings, dataSourceConfig));
-            
+
                 poolToNumConnMap[index] = 0;
                 index++;
 
@@ -182,9 +182,12 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 
     private int getKeysByValue(CloudPlacement cp) {
         int i;
-        for (i = 1; i <= MAX_PREFERENCE_VALUE; i++) {
-            if (allowedPlacements[i] != null && !allowedPlacements.Any()) {
-                if (cp.IsContainedIn(allowedPlacements[i])){
+        HashSet<CloudPlacement>? placement;
+        for (i = 1; i <= MAX_PREFERENCE_VALUE; i++)
+        {
+            allowedPlacements.TryGetValue(i, out placement);
+            if (placement != null && allowedPlacements.Any()) {
+                if (cp.IsContainedIn(placement)){
                     return i;
                 }
             }
@@ -200,7 +203,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         List<string> currentPrivateIps = new List<string>();
         var hostConnectedTo = conn.Host;
         hostToPriorityMap.Clear();
-        
+
         Debug.Assert(hostConnectedTo != null, nameof(hostConnectedTo) + " != null");
         while (reader.Read())
         {
@@ -213,14 +216,14 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             UpdatePriorityMap(host, cloud, region, zone);
 
             UpdateCurrentHostList(currentPrivateIps, host, publicHost, cloud, region, zone);
-            
+
             if (hostConnectedTo.Equals(host))
             {
                 UseHostColumn = true;
             } else if (hostConnectedTo.Equals(publicHost)) {
                 UseHostColumn = false;
             }
-            
+
         }
         return GetPrivateOrPublicServers(currentPrivateIps, currentPublicIps);
     }
@@ -229,7 +232,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     {
         List<string> servers = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
         var flag = 0;
-        
+
         if (servers != null && servers.Any())
         {
             foreach (var server in servers)
@@ -275,7 +278,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 {
                     List<string> hosts = fallbackPrivateIPs.GetOrAdd(allowedCPs.Key, k => new List<string>());
                     hosts.Add(host);
-                    
+
                     if (!string.IsNullOrEmpty(publicIP.Trim()))
                     {
                         List<string> publicIPs = fallbackPublicIPs.GetOrAdd(allowedCPs.Key, k => new List<string>());
@@ -292,7 +295,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             remainingPublicIPs.Add(publicIP);
         }
     }
-    
+
     class CloudPlacement
     {
         private string cloud;

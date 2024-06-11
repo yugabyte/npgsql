@@ -64,7 +64,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
 
-        var conns =await CreateConnections(connString, new[]{0, 12, 0});
+        var conns =await CreateConnections(connString, new[]{-1, 12, 0});
 
         CloseConnections(conns);
         DestroyCluster();
@@ -87,7 +87,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
 
-        var conns = await CreateConnections(connString, new[]{0, 6, 6});
+        var conns = await CreateConnections(connString, new[]{-1, 6, 6});
         CloseConnections(conns);
         DestroyCluster();
     }
@@ -112,7 +112,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
                 var j = 1;
                 foreach(var expectedCount in count)
                 {
-                    if (expectedCount != 1)
+                    if (expectedCount != -1)
                     {
                         await VerifyOn("127.0.0." + j, expectedCount);
                     }
