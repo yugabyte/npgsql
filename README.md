@@ -81,6 +81,11 @@ The following connection properties are added to enable load balancing:
 * Load Balance Hosts - enable cluster-aware load balancing by setting this property to True; disabled by default.
 * Topology Keys - provide comma-separated geo-location values to enable topology-aware load balancing. Geo-locations can be provided as cloud.region.zone.
 * YB Servers Refresh Interval - The list of servers, to balance the connection load on, are refreshed periodically every 5 minutes by default. This time can be regulated by this property.
+* Failed Host Reconnect Delay Secs - Sets the reconnect time for failed hosts
+* Enable Discard Sequence - Flag to enable/disable running `Discard sequences` on connection Reset
+* Enable Discard Temp - Flag to enable/disable running `Discard Temp` on connection Reset
+* Enable Close All - Flag to enable/disable running `Close All` on connection Reset
+* Enable Discard Al - Flag to enable/disable running `Discard All` on connection Reset
 
 Pass new connection properties for load balancing in the connection string. To enable uniform load balancing across all servers, you set the `Load Balance Hosts` property to True in the URL, as per the following example.
 
