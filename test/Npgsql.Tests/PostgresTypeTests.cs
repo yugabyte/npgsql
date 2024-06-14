@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class PostgresTypeTests : TestBase
 {

@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using Npgsql.GeoJSON.Internal;
+using YBNpgsql.GeoJSON.Internal;
 
-namespace Npgsql.GeoJSON;
+namespace YBNpgsql.GeoJSON;
 
 /// <summary>
 /// Extensions for getting a CrsMap from a database.

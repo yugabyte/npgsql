@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.Internal;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsqlTypes;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 public class DateIntervalConverter : PgStreamingConverter<DateInterval>
 {

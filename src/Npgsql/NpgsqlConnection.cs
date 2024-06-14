@@ -14,12 +14,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.TypeMapping;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.TypeMapping;
+using YBNpgsql.Util;
 using IsolationLevel = System.Data.IsolationLevel;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// This class represents a connection to a PostgreSQL server.
@@ -95,7 +95,7 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
     /// <summary>
     /// The default TCP/IP port for PostgreSQL.
     /// </summary>
-    public const int DefaultPort = 5432;
+    public const int DefaultPort = 5433;
 
     /// <summary>
     /// Maximum value for connection timeout.
@@ -171,8 +171,17 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
     void SetupDataSource()
     {
         // Fast path: a pool already corresponds to this exact version of the connection string.
-        if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource))
+        if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource) && !_dataSource.NeedsRefresh())
         {
+            Settings = _dataSource.Settings;  // Great, we already have a pool
+            return;
+        }
+        
+        // A pool already corresponds to this version of string but also needs Refresh
+        
+        if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource) && _dataSource.NeedsRefresh())
+        {
+            _dataSource.Refresh();
             Settings = _dataSource.Settings;  // Great, we already have a pool
             return;
         }
@@ -195,13 +204,22 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
         // Note that we remove TargetSessionAttributes to make all connection strings that are otherwise identical point to the same pool.
         var canonical = settings.ConnectionStringForMultipleHosts;
 
-        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource))
+        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && !_dataSource.NeedsRefresh())
         {
             // If this is a multi-host data source and the user specified a TargetSessionAttributes, create a wrapper in front of the
             // MultiHostDataSource with that TargetSessionAttributes.
             if (_dataSource is NpgsqlMultiHostDataSource multiHostDataSource && settings.TargetSessionAttributesParsed.HasValue)
                 _dataSource = multiHostDataSource.WithTargetSession(settings.TargetSessionAttributesParsed.Value);
 
+            // The pool was found, but only under the canonical key - we're using a different version
+            // for the first time. Map it via our own key for next time.
+            _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
+            return;
+        }
+        
+        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && _dataSource.NeedsRefresh())
+        {
+            _dataSource.Refresh();
             // The pool was found, but only under the canonical key - we're using a different version
             // for the first time. Map it via our own key for next time.
             _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
@@ -323,7 +341,7 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
                     EnlistTransaction(enlistToTransaction);
 
                 LogMessages.OpenedConnection(_connectionLogger, Host!, Port, Database, _userFacingConnectionString, connector.Id);
-                FullState = ConnectionState.Open;
+                   FullState = ConnectionState.Open;
             }
             catch
             {
@@ -908,6 +926,10 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
                 }
                 else
                 {
+                    if (_dataSource is ClusterAwareDataSource || _dataSource is TopologyAwareDataSource)
+                    {
+                        _dataSource.Return(connector);
+                    }
                     connector.Connection = null;
                     connector.Return();
                 }

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal.Composites;
+namespace YBNpgsql.Internal.Composites;
 
 sealed class CompositeInfo<T>
 {

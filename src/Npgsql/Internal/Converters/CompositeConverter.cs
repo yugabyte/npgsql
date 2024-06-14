@@ -2,9 +2,9 @@ using System;
 using System.Buffers;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.Composites;
+using YBNpgsql.Internal.Composites;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class CompositeConverter<T> : PgStreamingConverter<T> where T : notnull
 {

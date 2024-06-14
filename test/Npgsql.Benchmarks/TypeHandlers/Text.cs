@@ -1,9 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System.Collections.Generic;
 using System.Text;
-using Npgsql.Internal.Converters;
+using YBNpgsql.Internal.Converters;
 
-namespace Npgsql.Benchmarks.TypeHandlers;
+namespace YBNpgsql.Benchmarks.TypeHandlers;
 
 [Config(typeof(Config))]
 public class Text : TypeHandlerBenchmarks<string>

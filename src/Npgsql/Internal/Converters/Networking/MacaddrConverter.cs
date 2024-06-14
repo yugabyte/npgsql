@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net.NetworkInformation;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class MacaddrConverter : PgBufferedConverter<PhysicalAddress>
 {

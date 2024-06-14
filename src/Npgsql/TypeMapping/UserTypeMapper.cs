@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Npgsql.Internal;
-using Npgsql.Internal.Composites;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
-using Npgsql.NameTranslation;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Composites;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.NameTranslation;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.TypeMapping;
+namespace YBNpgsql.TypeMapping;
 
 /// <summary>
 /// The base class for user type mappings.

@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 static class PgDateTime
 {

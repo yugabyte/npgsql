@@ -1,6 +1,6 @@
-﻿using Npgsql.Internal.Postgres;
+﻿using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.PostgresTypes;
+namespace YBNpgsql.PostgresTypes;
 
 /// <summary>
 /// Represents a PostgreSQL array data type, which can hold several multiple values in a single column.

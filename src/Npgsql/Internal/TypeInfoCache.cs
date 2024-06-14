@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Concurrent;
 using System.Runtime.CompilerServices;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 sealed class TypeInfoCache<TPgTypeId> where TPgTypeId : struct
 {

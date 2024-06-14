@@ -17,14 +17,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Util;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Util;
+using static YBNpgsql.Util.Statics;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Properties;
+using YBNpgsql.Properties;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 /// <summary>
 /// Represents a connection to a PostgreSQL backend. Unlike NpgsqlConnection objects, which are
@@ -2238,7 +2238,7 @@ public sealed partial class NpgsqlConnector
     {
         var sb = new StringBuilder("SET SESSION AUTHORIZATION DEFAULT;RESET ALL;");
         _resetWithoutDeallocateResponseCount = 2;
-        if (DatabaseInfo.SupportsCloseAll)
+        if (DatabaseInfo.SupportsCloseAll && Settings.EnableCloseAll)
         {
             sb.Append("CLOSE ALL;");
             _resetWithoutDeallocateResponseCount++;
@@ -2253,12 +2253,12 @@ public sealed partial class NpgsqlConnector
             sb.Append("SELECT pg_advisory_unlock_all();");
             _resetWithoutDeallocateResponseCount += 2;
         }
-        if (DatabaseInfo.SupportsDiscardSequences)
+        if (DatabaseInfo.SupportsDiscardSequences && Settings.EnableDiscardSequences)
         {
             sb.Append("DISCARD SEQUENCES;");
             _resetWithoutDeallocateResponseCount++;
         }
-        if (DatabaseInfo.SupportsDiscardTemp)
+        if (DatabaseInfo.SupportsDiscardTemp && Settings.EnableDiscardTemp)
         {
             sb.Append("DISCARD TEMP");
             _resetWithoutDeallocateResponseCount++;
@@ -2328,7 +2328,8 @@ public sealed partial class NpgsqlConnector
                 {
                     // There are no prepared statements.
                     // We simply send DISCARD ALL which is more efficient than sending the above messages separately
-                    PrependInternalMessage(PregeneratedMessages.DiscardAll, 2);
+                    if (Settings.EnableDiscardAll)
+                        PrependInternalMessage(PregeneratedMessages.DiscardAll, 2);
                 }
             }
 

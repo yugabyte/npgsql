@@ -1,12 +1,12 @@
 using System;
 using System.Numerics;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
-using Npgsql.Util;
-using NpgsqlTypes;
-using static Npgsql.Internal.PgConverterFactory;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
+using static YBNpgsql.Internal.PgConverterFactory;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed partial class AdoTypeInfoResolverFactory
 {

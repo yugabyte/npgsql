@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 static class PgTimestamp
 {

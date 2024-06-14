@@ -1,9 +1,9 @@
-﻿using Npgsql.BackendMessages;
+﻿using YBNpgsql.BackendMessages;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 static class ThrowHelper
 {

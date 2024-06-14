@@ -1,4 +1,4 @@
-namespace Npgsql.PostgresTypes;
+namespace YBNpgsql.PostgresTypes;
 
 enum PostgresTypeKind
 {

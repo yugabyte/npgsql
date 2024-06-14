@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Replication.Internal;
-using NpgsqlTypes;
+using YBNpgsql.Replication.Internal;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.TestDecoding;
+namespace YBNpgsql.Replication.TestDecoding;
 
 sealed class TestDecodingAsyncEnumerable : IAsyncEnumerable<TestDecodingData>
 {

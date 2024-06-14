@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Npgsql.NodaTime.Properties {
+namespace YBNpgsql.NodaTime.Properties {
     using System;
     
     

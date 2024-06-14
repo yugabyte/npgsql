@@ -3,11 +3,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Npgsql.Internal.Postgres;
-using Npgsql.NameTranslation;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.NameTranslation;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]
 public sealed class PgSerializerOptions

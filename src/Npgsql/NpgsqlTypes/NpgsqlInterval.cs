@@ -1,7 +1,7 @@
 ﻿using System;
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// A raw representation of the PostgreSQL interval datatype. Use only when <see cref="TimeSpan" /> or NodaTime

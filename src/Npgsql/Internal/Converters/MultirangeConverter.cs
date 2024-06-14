@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class MultirangeConverter<T, TRange> : PgStreamingConverter<T>
     where T : IList<TRange>

@@ -1,7 +1,7 @@
 ﻿using System;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Contains information about a replication slot.

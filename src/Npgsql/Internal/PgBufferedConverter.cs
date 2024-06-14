@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]
 public abstract class PgBufferedConverter<T> : PgConverter<T>

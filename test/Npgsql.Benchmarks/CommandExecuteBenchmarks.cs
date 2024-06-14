@@ -6,7 +6,7 @@ using BenchmarkDotNet.Configs;
 
 // ReSharper disable UnusedMember.Global
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
 [Config(typeof(Config))]

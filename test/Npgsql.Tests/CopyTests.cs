@@ -9,13 +9,13 @@ using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Tests.Support;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Tests.Support;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class CopyTests : MultiplexingTestBase
 {

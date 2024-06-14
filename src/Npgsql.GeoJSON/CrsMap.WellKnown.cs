@@ -1,4 +1,4 @@
-﻿namespace Npgsql.GeoJSON;
+﻿namespace YBNpgsql.GeoJSON;
 
 public partial class CrsMap
 {

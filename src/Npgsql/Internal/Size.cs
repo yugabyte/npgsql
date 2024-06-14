@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]
 public enum SizeKind

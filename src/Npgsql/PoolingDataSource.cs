@@ -7,10 +7,10 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 class PoolingDataSource : NpgsqlDataSource
 {
@@ -116,6 +116,12 @@ class PoolingDataSource : NpgsqlDataSource
     }
 
     static SemaphoreSlim SyncOverAsyncSemaphore { get; } = new(Math.Max(1, Environment.ProcessorCount / 2));
+    internal override bool NeedsRefresh()
+    {
+        return false;
+    }
+
+    internal override bool Refresh() => throw new NotImplementedException();
 
     internal sealed override ValueTask<NpgsqlConnector> Get(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)

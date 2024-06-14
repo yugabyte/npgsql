@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class HstoreTests : MultiplexingTestBase
 {

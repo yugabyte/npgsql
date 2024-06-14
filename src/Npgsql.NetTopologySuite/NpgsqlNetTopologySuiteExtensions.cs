@@ -1,9 +1,9 @@
 ﻿using NetTopologySuite.Geometries;
-using Npgsql.NetTopologySuite.Internal;
-using Npgsql.TypeMapping;
+using YBNpgsql.NetTopologySuite.Internal;
+using YBNpgsql.TypeMapping;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Extension allowing adding the NetTopologySuite plugin to an Npgsql type mapper.

@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed class JsonTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

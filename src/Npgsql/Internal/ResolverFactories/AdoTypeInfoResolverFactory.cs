@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Converters.Internal;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Converters.Internal;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed partial class AdoTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

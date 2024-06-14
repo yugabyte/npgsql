@@ -1,10 +1,10 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]
 [RequiresDynamicCode("A dynamic type info resolver may need to construct a generic converter for a statically unknown type.")]

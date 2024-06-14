@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Threading.Tasks;
-using Npgsql.Properties;
-using NpgsqlTypes;
+using YBNpgsql.Properties;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
 #pragma warning disable CS0618 // NpgsqlTsVector.Parse is obsolete
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class FullTextSearchTests : MultiplexingTestBase
 {

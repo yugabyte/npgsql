@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Buffers.Text;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 sealed class CommandCompleteMessage : IBackendMessage
 {

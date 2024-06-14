@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 sealed class ChainTypeInfoResolver : IPgTypeInfoResolver
 {

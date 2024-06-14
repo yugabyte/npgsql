@@ -1,10 +1,10 @@
 using System;
 using GeoJSON.Net;
 using GeoJSON.Net.Geometry;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 sealed class GeoJSONTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

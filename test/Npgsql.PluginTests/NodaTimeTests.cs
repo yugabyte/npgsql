@@ -2,16 +2,16 @@
 using System.Data;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.NodaTime.Properties;
-using Npgsql.Tests;
-using NpgsqlTypes;
+using YBNpgsql.NodaTime.Properties;
+using YBNpgsql.Tests;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
 // ReSharper disable AccessToModifiedClosure
 // ReSharper disable AccessToDisposedClosure
 
-namespace Npgsql.PluginTests;
+namespace YBNpgsql.PluginTests;
 
 public class NodaTimeTests : MultiplexingTestBase, IDisposable
 {

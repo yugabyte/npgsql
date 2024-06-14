@@ -1,8 +1,8 @@
 using BenchmarkDotNet.Attributes;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 [MemoryDiagnoser]
 public class ResolveHandler

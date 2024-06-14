@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 interface IElementOperations
 {

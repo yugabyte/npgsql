@@ -5,7 +5,7 @@ using System.Text;
 
 #pragma warning disable CA1040, CA1034
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Represents a PostgreSQL tsvector.

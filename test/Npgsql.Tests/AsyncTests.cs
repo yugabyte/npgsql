@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using System.Data;
 using System.Threading.Tasks;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class AsyncTests : TestBase
 {

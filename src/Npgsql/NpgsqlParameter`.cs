@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsqlTypes;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// A generic version of <see cref="NpgsqlParameter"/> which provides more type safety and

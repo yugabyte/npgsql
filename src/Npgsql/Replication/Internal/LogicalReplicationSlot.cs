@@ -1,7 +1,7 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using System;
 
-namespace Npgsql.Replication.Internal;
+namespace YBNpgsql.Replication.Internal;
 
 /// <summary>
 /// Contains information about a newly-created logical replication slot.

@@ -6,11 +6,11 @@ using System.ComponentModel;
 using System.Data.Common;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.Internal;
-using Npgsql.Netstandard20;
-using Npgsql.Replication;
+using YBNpgsql.Internal;
+using YBNpgsql.Netstandard20;
+using YBNpgsql.Replication;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides a simple way to create and manage the contents of connection strings used by
@@ -887,13 +887,13 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     {
         get => TargetSessionAttributesParsed switch
         {
-            Npgsql.TargetSessionAttributes.Any           => "any",
-            Npgsql.TargetSessionAttributes.Primary       => "primary",
-            Npgsql.TargetSessionAttributes.Standby       => "standby",
-            Npgsql.TargetSessionAttributes.PreferPrimary => "prefer-primary",
-            Npgsql.TargetSessionAttributes.PreferStandby => "prefer-standby",
-            Npgsql.TargetSessionAttributes.ReadWrite     => "read-write",
-            Npgsql.TargetSessionAttributes.ReadOnly      => "read-only",
+            YBNpgsql.TargetSessionAttributes.Any           => "any",
+            YBNpgsql.TargetSessionAttributes.Primary       => "primary",
+            YBNpgsql.TargetSessionAttributes.Standby       => "standby",
+            YBNpgsql.TargetSessionAttributes.PreferPrimary => "prefer-primary",
+            YBNpgsql.TargetSessionAttributes.PreferStandby => "prefer-standby",
+            YBNpgsql.TargetSessionAttributes.ReadWrite     => "read-write",
+            YBNpgsql.TargetSessionAttributes.ReadOnly      => "read-only",
             null => null,
 
             _ => throw new ArgumentException($"Unhandled enum value '{TargetSessionAttributesParsed}'")
@@ -911,13 +911,13 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     internal static TargetSessionAttributes ParseTargetSessionAttributes(string s)
         => s switch
         {
-            "any"            => Npgsql.TargetSessionAttributes.Any,
-            "primary"        => Npgsql.TargetSessionAttributes.Primary,
-            "standby"        => Npgsql.TargetSessionAttributes.Standby,
-            "prefer-primary" => Npgsql.TargetSessionAttributes.PreferPrimary,
-            "prefer-standby" => Npgsql.TargetSessionAttributes.PreferStandby,
-            "read-write"     => Npgsql.TargetSessionAttributes.ReadWrite,
-            "read-only"      => Npgsql.TargetSessionAttributes.ReadOnly,
+            "any"            => YBNpgsql.TargetSessionAttributes.Any,
+            "primary"        => YBNpgsql.TargetSessionAttributes.Primary,
+            "standby"        => YBNpgsql.TargetSessionAttributes.Standby,
+            "prefer-primary" => YBNpgsql.TargetSessionAttributes.PreferPrimary,
+            "prefer-standby" => YBNpgsql.TargetSessionAttributes.PreferStandby,
+            "read-write"     => YBNpgsql.TargetSessionAttributes.ReadWrite,
+            "read-only"      => YBNpgsql.TargetSessionAttributes.ReadOnly,
 
             _ => throw new ArgumentException($"TargetSessionAttributes contains an invalid value '{s}'")
         };
@@ -939,6 +939,60 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         }
     }
     bool _loadBalanceHosts;
+
+    /// <summary>
+    /// Enables balancing between multiple hosts by round-robin in a specified topology
+    /// </summary>
+    [Category("Failover and load balancing")]
+    [Description("Enables balancing between multiple hosts by round-robin in a topology.")]
+    [DisplayName("Topology Keys")]
+    [NpgsqlConnectionStringProperty]
+    public string? TopologyKeys
+    {
+        get => _topologyKeys;
+        set
+        {
+            _topologyKeys = value;
+            SetValue(nameof(TopologyKeys), value);
+        }
+    }
+    string? _topologyKeys;
+
+    /// <summary>
+    /// Sets the refresh interval for the yb_servers()
+    /// </summary>
+    [Category("Failover and load balancing")]
+    [Description("Sets the refresh interval for the yb_servers()")]
+    [DisplayName("YB Servers Refresh Interval")]
+    [NpgsqlConnectionStringProperty]
+    public double YBServersRefreshInterval
+    {
+        get => _ybServersRefreshInterval;
+        set
+        {
+            _ybServersRefreshInterval = value;
+            SetValue(nameof(YBServersRefreshInterval), value);
+        }
+    }
+    double _ybServersRefreshInterval;
+
+    /// <summary>
+    /// Sets the reconnect time for failed hosts
+    /// </summary>
+    [Category("Failover and load balancing")]
+    [Description("Sets the reconnect time for failed hosts")]
+    [DisplayName("Failed Host Reconnect Delay Secs")]
+    [NpgsqlConnectionStringProperty]
+    public double FailedHostReconnectDelaySecs
+    {
+        get => _failedHostReconnectDelaySecs;
+        set
+        {
+            _failedHostReconnectDelaySecs = value;
+            SetValue(nameof(FailedHostReconnectDelaySecs), value);
+        }
+    }
+    double _failedHostReconnectDelaySecs;
 
     /// <summary>
     /// Controls for how long the host's cached state will be considered as valid.
@@ -1334,6 +1388,82 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     }
     ServerCompatibilityMode _serverCompatibilityMode;
 
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the discard sequences sql during reset")]
+    [DisplayName("Enable Discard Sequences")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableDiscardSequences
+    {
+        get => _enablediscardsequences;
+        set
+        {
+            _enablediscardsequences = value;
+            SetValue(nameof(EnableDiscardSequences), value);
+        }
+    }
+    bool _enablediscardsequences;
+
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the discard temp sql during reset")]
+    [DisplayName("Enable Discard Temp")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableDiscardTemp
+    {
+        get => _enablediscardtemp;
+        set
+        {
+            _enablediscardtemp = value;
+            SetValue(nameof(EnableDiscardTemp), value);
+        }
+    }
+    bool _enablediscardtemp;
+
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the Close All sql during reset")]
+    [DisplayName("Enable Close All")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableCloseAll
+    {
+        get => _enablecloseall;
+        set
+        {
+            _enablecloseall = value;
+            SetValue(nameof(EnableCloseAll), value);
+        }
+    }
+    bool _enablecloseall;
+
+    /// <summary>
+    /// Enables running the discard sequences sql during reset.
+    /// </summary>
+    [Category("Compatibility")]
+    [Description("Enables running the Discard All sql during reset")]
+    [DisplayName("Enable Discard All")]
+    [DefaultValue(true)]
+    [NpgsqlConnectionStringProperty]
+    public bool EnableDiscardAll
+    {
+        get => _enablediscardall;
+        set
+        {
+            _enablediscardall = value;
+            SetValue(nameof(EnableDiscardAll), value);
+        }
+    }
+    bool _enablediscardall;
+
     #endregion
 
     #region Properties - Obsolete
@@ -1395,7 +1525,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
         if (!Host.Contains(","))
         {
             if (TargetSessionAttributesParsed is not null &&
-                TargetSessionAttributesParsed != Npgsql.TargetSessionAttributes.Any)
+                TargetSessionAttributesParsed != YBNpgsql.TargetSessionAttributes.Any)
             {
                 throw new NotSupportedException("Target Session Attributes other then Any is only supported with multiple hosts");
             }

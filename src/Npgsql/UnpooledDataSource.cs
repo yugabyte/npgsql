@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class UnpooledDataSource : NpgsqlDataSource
 {
@@ -18,6 +18,13 @@ sealed class UnpooledDataSource : NpgsqlDataSource
     internal override (int Total, int Idle, int Busy) Statistics => (_numConnectors, 0, _numConnectors);
 
     internal override bool OwnsConnectors => true;
+
+    internal override bool NeedsRefresh()
+    {
+        return false;
+    }
+
+    internal override bool Refresh() => throw new System.NotImplementedException();
 
     internal override async ValueTask<NpgsqlConnector> Get(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)

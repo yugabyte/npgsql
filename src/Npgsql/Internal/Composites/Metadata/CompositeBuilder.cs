@@ -1,8 +1,8 @@
 using System;
 using System.Buffers;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal.Composites;
+namespace YBNpgsql.Internal.Composites;
 
 abstract class CompositeBuilder
 {

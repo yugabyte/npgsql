@@ -7,12 +7,12 @@ using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Internal.ResolverFactories;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.ResolverFactories;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides a simple API for configuring and creating an <see cref="NpgsqlDataSource" />, from which database connections can be obtained.

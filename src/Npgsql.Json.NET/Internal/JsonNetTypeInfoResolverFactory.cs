@@ -1,10 +1,10 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Json.NET.Internal;
+namespace YBNpgsql.Json.NET.Internal;
 
 sealed class JsonNetTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

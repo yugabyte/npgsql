@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using GeoJSON.Net;
 using GeoJSON.Net.CoordinateReferenceSystem;
 using GeoJSON.Net.Geometry;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 sealed class GeoJSONConverter<T> : PgStreamingConverter<T> where T : IGeoJSONObject
 {

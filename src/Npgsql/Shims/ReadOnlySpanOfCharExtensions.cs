@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Npgsql.Netstandard20;
+namespace YBNpgsql.Netstandard20;
 
 static class ReadOnlySpanOfCharExtensions
 {

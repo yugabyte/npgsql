@@ -2,7 +2,7 @@ using System;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// A factory to create instances of various Npgsql objects.

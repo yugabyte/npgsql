@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 sealed partial class NpgsqlReadBuffer
 {

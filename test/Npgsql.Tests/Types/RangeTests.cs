@@ -4,13 +4,13 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql.Properties;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Properties;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 class RangeTests : MultiplexingTestBase
 {

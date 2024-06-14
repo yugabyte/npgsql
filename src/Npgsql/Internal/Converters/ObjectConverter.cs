@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 sealed class ObjectConverter : PgStreamingConverter<object>
 {

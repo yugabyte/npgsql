@@ -3,11 +3,11 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql.PostgresTypes;
+using YBNpgsql.PostgresTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 /// <summary>
 /// This tests the new CoreCLR schema/metadata API, which returns ReadOnlyCollection&lt;DbColumn&gt;.
@@ -684,8 +684,8 @@ CREATE TABLE {table2} (foo INTEGER)");
         using var cmd = new NpgsqlCommand($"SELECT foo,8::INTEGER FROM {table}", conn);
         using var reader = await cmd.ExecuteReaderAsync(CommandBehavior.SchemaOnly);
         var columns = await GetColumnSchema(reader);
-        Assert.That(columns[0].NpgsqlDbType, Is.EqualTo(NpgsqlTypes.NpgsqlDbType.Integer));
-        Assert.That(columns[1].NpgsqlDbType, Is.EqualTo(NpgsqlTypes.NpgsqlDbType.Integer));
+        Assert.That(columns[0].NpgsqlDbType, Is.EqualTo(YBNpgsqlTypes.NpgsqlDbType.Integer));
+        Assert.That(columns[1].NpgsqlDbType, Is.EqualTo(YBNpgsqlTypes.NpgsqlDbType.Integer));
     }
 
     [Test]
@@ -699,7 +699,7 @@ CREATE TABLE {table2} (foo INTEGER)");
         using var reader = await cmd.ExecuteReaderAsync(CommandBehavior.SchemaOnly);
         var columns = await GetColumnSchema(reader);
         // The full datatype name for PostGIS is public.geometry (unlike int4 which is in pg_catalog).
-        Assert.That(columns[0].NpgsqlDbType, Is.EqualTo(NpgsqlTypes.NpgsqlDbType.Hstore));
+        Assert.That(columns[0].NpgsqlDbType, Is.EqualTo(YBNpgsqlTypes.NpgsqlDbType.Hstore));
     }
 
     [Test, IssueLink("https://github.com/npgsql/npgsql/issues/1950")]
@@ -735,7 +735,7 @@ CREATE TABLE {table2} (foo INTEGER)");
 
         using var cmd = new NpgsqlCommand($"SELECT foo FROM {table} WHERE foo > @p", conn)
         {
-            Parameters = { new() { ParameterName = "p", NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer } }
+            Parameters = { new() { ParameterName = "p", NpgsqlDbType = YBNpgsqlTypes.NpgsqlDbType.Integer } }
         };
         await using var reader = await cmd.ExecuteReaderAsync(CommandBehavior.SchemaOnly | CommandBehavior.KeyInfo);
 
@@ -751,7 +751,7 @@ CREATE TABLE {table2} (foo INTEGER)");
 
         using var cmd = new NpgsqlCommand($"SELECT foo FROM {table} WHERE foo > @p", conn)
         {
-            Parameters = { new() { ParameterName = "p", NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer } }
+            Parameters = { new() { ParameterName = "p", NpgsqlDbType = YBNpgsqlTypes.NpgsqlDbType.Integer } }
         };
         await using var reader = await cmd.ExecuteReaderAsync(CommandBehavior.SchemaOnly | CommandBehavior.KeyInfo);
 

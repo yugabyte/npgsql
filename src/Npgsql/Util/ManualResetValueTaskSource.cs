@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks.Sources;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 sealed class ManualResetValueTaskSource<T> : IValueTaskSource<T>, IValueTaskSource
 {

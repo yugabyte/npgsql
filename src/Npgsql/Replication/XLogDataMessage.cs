@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// A message representing a section of the WAL data stream.

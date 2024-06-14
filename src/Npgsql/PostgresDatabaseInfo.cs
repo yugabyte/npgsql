@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
+using static YBNpgsql.Util.Statics;
 
 // ReSharper disable StringLiteralTypo
 // ReSharper disable CommentTypo
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// The default implementation of <see cref="INpgsqlDatabaseInfoFactory"/>, for standard PostgreSQL databases..
@@ -58,7 +58,10 @@ class PostgresDatabaseInfo : NpgsqlDatabaseInfo
     public bool IsRedshift { get; private set; }
 
     /// <inheritdoc />
-    public override bool SupportsUnlisten => Version.IsGreaterOrEqual(6, 4) && !IsRedshift;
+    public override bool SupportsUnlisten => false;
+
+    /// <inheritdoc />
+    public override bool SupportsAdvisoryLocks => false;
 
     /// <summary>
     /// True if the 'pg_enum' table includes the 'enumsortorder' column; otherwise, false.

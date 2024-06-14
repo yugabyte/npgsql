@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using System.Reflection;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 class Program
 {

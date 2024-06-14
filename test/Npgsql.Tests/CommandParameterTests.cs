@@ -1,10 +1,10 @@
 using System;
 using System.Data;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class CommandParameterTests : MultiplexingTestBase
 {

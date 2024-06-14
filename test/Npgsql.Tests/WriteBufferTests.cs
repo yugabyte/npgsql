@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)] // Parallel access to a single buffer
 class WriteBufferTests

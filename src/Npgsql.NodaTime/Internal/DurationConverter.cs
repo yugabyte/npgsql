@@ -1,9 +1,9 @@
 using System;
 using NodaTime;
-using Npgsql.Internal;
-using Npgsql.NodaTime.Properties;
+using YBNpgsql.Internal;
+using YBNpgsql.NodaTime.Properties;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed class DurationConverter : PgBufferedConverter<Duration>
 {
