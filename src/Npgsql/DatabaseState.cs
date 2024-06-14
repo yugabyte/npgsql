@@ -1,4 +1,4 @@
-namespace Npgsql;
+namespace YBNpgsql;
 
 enum DatabaseState : byte
 {

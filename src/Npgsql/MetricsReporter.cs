@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 using System.Collections.Generic;
 using System.Diagnostics;

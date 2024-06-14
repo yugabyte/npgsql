@@ -1,10 +1,10 @@
 using System;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
-using Npgsql.Properties;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.Properties;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed class FullTextSearchTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

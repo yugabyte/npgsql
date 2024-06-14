@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Immutable;
 using System.Numerics;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed class ExtraConversionResolverFactory : PgTypeInfoResolverFactory
 {

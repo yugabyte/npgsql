@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 static class BenchmarkEnvironment
 {

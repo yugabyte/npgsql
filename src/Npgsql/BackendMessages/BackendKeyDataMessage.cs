@@ -1,6 +1,6 @@
-﻿using Npgsql.Internal;
+﻿using YBNpgsql.Internal;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 sealed class BackendKeyDataMessage : IBackendMessage
 {

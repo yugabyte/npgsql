@@ -1,10 +1,10 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class PathConverter : PgStreamingConverter<NpgsqlPath>
 {

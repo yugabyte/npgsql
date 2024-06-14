@@ -8,14 +8,14 @@ using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using Npgsql.Internal.ResolverFactories;
-using Npgsql.NameTranslation;
-using Npgsql.Properties;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.ResolverFactories;
+using YBNpgsql.NameTranslation;
+using YBNpgsql.Properties;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides a simple API for configuring and creating an <see cref="NpgsqlDataSource" />, from which database connections can be obtained.
@@ -748,7 +748,17 @@ public sealed class NpgsqlSlimDataSourceBuilder : INpgsqlTypeMapper
     {
         var (connectionStringBuilder, config) = PrepareConfiguration();
 
-        if (ConnectionStringBuilder.Host!.Contains(','))
+        if (ConnectionStringBuilder.LoadBalanceHosts && ConnectionStringBuilder.TopologyKeys != null)
+        {
+            return new TopologyAwareDataSource(ConnectionStringBuilder, config);
+        }
+
+        if (ConnectionStringBuilder.LoadBalanceHosts)
+        {
+            return new ClusterAwareDataSource(ConnectionStringBuilder, config, true);
+        }
+
+        if (ConnectionStringBuilder.Host!.Contains(","))
         {
             ValidateMultiHost();
 

@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Text;
-using Npgsql.Internal;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 static class PregeneratedMessages
 {

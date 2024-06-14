@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Replication;
-using Npgsql.Replication.TestDecoding;
-using NpgsqlTypes;
+using YBNpgsql.Replication;
+using YBNpgsql.Replication.TestDecoding;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Tests.Replication;
+namespace YBNpgsql.Tests.Replication;
 
 [TestFixture(typeof(LogicalReplicationConnection))]
 [TestFixture(typeof(PhysicalReplicationConnection))]

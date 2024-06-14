@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class UInt32Converter : PgBufferedConverter<uint>
 {

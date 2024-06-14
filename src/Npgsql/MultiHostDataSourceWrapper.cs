@@ -1,11 +1,11 @@
-﻿using Npgsql.Internal;
-using Npgsql.Util;
+﻿using YBNpgsql.Internal;
+using YBNpgsql.Util;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class MultiHostDataSourceWrapper(NpgsqlMultiHostDataSource wrappedSource, TargetSessionAttributes targetSessionAttributes)
     : NpgsqlDataSource(CloneSettingsForTargetSessionAttributes(wrappedSource.Settings, targetSessionAttributes), wrappedSource.Configuration)
@@ -24,6 +24,13 @@ sealed class MultiHostDataSourceWrapper(NpgsqlMultiHostDataSource wrappedSource,
     }
 
     internal override (int Total, int Idle, int Busy) Statistics => wrappedSource.Statistics;
+
+    internal override bool NeedsRefresh()
+    {
+        return false;
+    }
+
+    internal override bool Refresh() => throw new System.NotImplementedException();
 
     internal override ValueTask<NpgsqlConnector> Get(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)
         => wrappedSource.Get(conn, timeout, async, cancellationToken);

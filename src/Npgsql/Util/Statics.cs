@@ -1,4 +1,4 @@
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 static class Statics
 {

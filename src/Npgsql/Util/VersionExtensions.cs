@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 static class VersionExtensions
 {

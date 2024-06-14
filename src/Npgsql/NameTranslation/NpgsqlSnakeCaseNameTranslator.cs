@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Npgsql.NameTranslation;
+namespace YBNpgsql.NameTranslation;
 
 /// <summary>
 /// A name translator which converts standard CLR names (e.g. SomeClass) to snake-case database

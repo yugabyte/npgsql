@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql.Internal.Postgres;
+namespace YBNpgsql.Internal.Postgres;
 
 /// Base field type shared between tables and composites.
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]

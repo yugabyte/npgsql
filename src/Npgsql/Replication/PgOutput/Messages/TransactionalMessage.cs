@@ -1,7 +1,7 @@
 ﻿using System;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.PgOutput.Messages;
+namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// The common base class for all streaming replication messages that can be part of a streaming transaction (protocol V2)

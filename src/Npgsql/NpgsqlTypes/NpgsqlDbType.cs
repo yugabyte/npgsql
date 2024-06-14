@@ -1,13 +1,13 @@
 using System;
 using System.Data;
-using Npgsql;
-using Npgsql.Internal.Postgres;
-using static Npgsql.Util.Statics;
+using YBNpgsql;
+using YBNpgsql.Internal.Postgres;
+using static YBNpgsql.Util.Statics;
 
 #pragma warning disable CA1720
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Represents a PostgreSQL data type that can be written or read to the database.

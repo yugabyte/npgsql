@@ -1,4 +1,4 @@
-namespace Npgsql;
+namespace YBNpgsql;
 
 #pragma warning disable CS1591
 #pragma warning disable RS0016

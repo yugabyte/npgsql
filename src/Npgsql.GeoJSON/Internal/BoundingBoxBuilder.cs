@@ -1,6 +1,6 @@
 ﻿using GeoJSON.Net.Geometry;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 sealed class BoundingBoxBuilder
 {

@@ -13,15 +13,15 @@ using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.Converters;
-using Npgsql.PostgresTypes;
-using Npgsql.Schema;
-using NpgsqlTypes;
-using static Npgsql.Util.Statics;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Schema;
+using YBNpgsqlTypes;
+using static YBNpgsql.Util.Statics;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Reads a forward-only stream of rows from a data source.

@@ -1,8 +1,8 @@
 using System;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class DataTypeNameTests
 {

@@ -1,3 +1,3 @@
 ﻿#nullable enable
-Npgsql.NpgsqlNodaTimeExtensions
-static Npgsql.NpgsqlNodaTimeExtensions.UseNodaTime(this Npgsql.TypeMapping.INpgsqlTypeMapper! mapper) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
+YBNpgsql.NpgsqlNodaTimeExtensions
+static YBNpgsql.NpgsqlNodaTimeExtensions.UseNodaTime(this YBNpgsql.TypeMapping.INpgsqlTypeMapper! mapper) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!

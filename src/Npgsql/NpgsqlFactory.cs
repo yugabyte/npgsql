@@ -1,7 +1,7 @@
 using System;
 using System.Data.Common;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// A factory to create instances of various Npgsql objects.

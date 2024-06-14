@@ -9,7 +9,7 @@ using static Npgsql.Tests.TestUtil;
 
 // ReSharper disable MethodHasAsyncOverload
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class DataSourceTests : TestBase
 {

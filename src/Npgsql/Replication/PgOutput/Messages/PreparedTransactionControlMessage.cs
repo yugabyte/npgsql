@@ -1,7 +1,7 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using System;
 
-namespace Npgsql.Replication.PgOutput.Messages;
+namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// Abstract base class for Logical Replication Protocol prepare and begin prepare message

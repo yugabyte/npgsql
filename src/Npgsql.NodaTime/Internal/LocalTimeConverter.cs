@@ -1,7 +1,7 @@
 using NodaTime;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed class LocalTimeConverter : PgBufferedConverter<LocalTime>
 {

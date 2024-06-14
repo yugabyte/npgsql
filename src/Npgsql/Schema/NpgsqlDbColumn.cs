@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.Common;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Schema;
+namespace YBNpgsql.Schema;
 
 /// <summary>
 /// Provides schema information about a column.

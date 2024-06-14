@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Npgsql.Properties {
+namespace YBNpgsql.Properties {
     using System;
     
     

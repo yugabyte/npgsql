@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Diagnostics.Tracing;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class NpgsqlEventSource : EventSource
 {

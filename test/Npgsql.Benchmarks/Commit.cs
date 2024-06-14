@@ -4,7 +4,7 @@ using BenchmarkDotNet.Configs;
 
 // ReSharper disable AssignNullToNotNullAttribute.Global
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 [Config(typeof(Config))]
 public class Commit

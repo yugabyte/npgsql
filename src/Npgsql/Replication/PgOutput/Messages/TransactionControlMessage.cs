@@ -1,7 +1,7 @@
 ﻿using System;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.PgOutput.Messages;
+namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// The common base class for all replication messages that set the transaction xid of a transaction

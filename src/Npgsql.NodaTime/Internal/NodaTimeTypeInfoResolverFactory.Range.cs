@@ -1,11 +1,11 @@
 using System;
 using NodaTime;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
-using NpgsqlTypes;
-using static Npgsql.Internal.PgConverterFactory;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsqlTypes;
+using static YBNpgsql.Internal.PgConverterFactory;
 
-namespace Npgsql.NodaTime.Internal;
+namespace YBNpgsql.NodaTime.Internal;
 
 sealed partial class NodaTimeTypeInfoResolverFactory
 {

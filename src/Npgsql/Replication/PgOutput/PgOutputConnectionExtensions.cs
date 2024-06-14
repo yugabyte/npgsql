@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using NpgsqlTypes;
-using Npgsql.Replication.Internal;
-using Npgsql.Replication.PgOutput;
-using Npgsql.Replication.PgOutput.Messages;
+using YBNpgsqlTypes;
+using YBNpgsql.Replication.Internal;
+using YBNpgsql.Replication.PgOutput;
+using YBNpgsql.Replication.PgOutput.Messages;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Extension methods to use <see cref="LogicalReplicationConnection"/> with the pg_output logical decoding plugin.

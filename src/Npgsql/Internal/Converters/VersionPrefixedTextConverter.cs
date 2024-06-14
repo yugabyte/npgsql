@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class VersionPrefixedTextConverter<T>(byte versionPrefix, PgConverter<T> textConverter)
     : PgStreamingConverter<T>(textConverter.DbNullPredicateKind is DbNullPredicate.Custom)

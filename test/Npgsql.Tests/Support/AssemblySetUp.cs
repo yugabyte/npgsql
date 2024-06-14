@@ -1,5 +1,5 @@
-﻿using Npgsql;
-using Npgsql.Tests;
+﻿using YBNpgsql;
+using YBNpgsql.Tests;
 using NUnit.Framework;
 using System;
 using System.Threading;
@@ -7,7 +7,7 @@ using System.Threading;
 [SetUpFixture]
 public class AssemblySetUp
 {
-    [OneTimeSetUp]
+    // [OneTimeSetUp]
     public void Setup()
     {
         var connString = TestUtil.ConnectionString;

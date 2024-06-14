@@ -1,10 +1,10 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.Internal.Postgres;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 static class AdoSerializerHelpers
 {

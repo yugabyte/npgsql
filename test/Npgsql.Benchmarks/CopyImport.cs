@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 public class CopyImport
 {

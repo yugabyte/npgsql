@@ -1,5 +1,5 @@
-﻿using Npgsql.BackendMessages;
-using NpgsqlTypes;
+﻿using YBNpgsql.BackendMessages;
+using YBNpgsqlTypes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,11 +10,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Npgsql.Internal;
-using static Npgsql.Util.Statics;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using static YBNpgsql.Util.Statics;
+using YBNpgsql.Util;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Defines the core behavior of replication connections and provides the base class for

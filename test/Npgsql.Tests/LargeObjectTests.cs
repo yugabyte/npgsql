@@ -2,7 +2,7 @@
 using System.Text;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 #pragma warning disable CS0618 // Large object support is obsolete
 

@@ -1,11 +1,11 @@
 using System.Data;
 using System.Threading.Tasks;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class StoredProcedureTests : TestBase
 {

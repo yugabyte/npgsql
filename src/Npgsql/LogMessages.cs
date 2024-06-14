@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.Extensions.Logging;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 // ReSharper disable InconsistentNaming
 #pragma warning disable SYSLIB1015 // Argument is not referenced from the logging message

@@ -1,9 +1,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 [Experimental(NpgsqlDiagnostics.ConvertersExperimental)]
 #if NET9_0_OR_GREATER

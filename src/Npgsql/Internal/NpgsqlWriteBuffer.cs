@@ -7,10 +7,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Util;
+using YBNpgsql.Util;
 using static System.Threading.Timeout;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 /// <summary>
 /// A buffer used by Npgsql to write data to the socket efficiently.

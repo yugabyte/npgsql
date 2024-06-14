@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Utility class to execute a potentially non-cancellable <see cref="Task"/> while allowing to timeout and/or cancel awaiting for it and at the same time prevent <see cref="TaskScheduler.UnobservedTaskException"/> event if the original <see cref="Task"/> fails later.

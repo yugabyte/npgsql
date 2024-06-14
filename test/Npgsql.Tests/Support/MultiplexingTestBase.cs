@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [TestFixture(MultiplexingMode.NonMultiplexing)]
 [TestFixture(MultiplexingMode.Multiplexing)]

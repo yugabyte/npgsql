@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class InternalTypeTests(MultiplexingMode multiplexingMode) : MultiplexingTestBase(multiplexingMode)
 {
@@ -78,7 +78,7 @@ public class InternalTypeTests(MultiplexingMode multiplexingMode) : Multiplexing
     public async Task NpgsqlLogSequenceNumber()
     {
         var expected1 = new NpgsqlLogSequenceNumber(42949672971ul);
-        Assert.AreEqual(expected1, NpgsqlTypes.NpgsqlLogSequenceNumber.Parse("A/B"));
+        Assert.AreEqual(expected1, YBNpgsqlTypes.NpgsqlLogSequenceNumber.Parse("A/B"));
         await using var conn = await OpenConnectionAsync();
         using var cmd = conn.CreateCommand();
         cmd.CommandText = "SELECT 'A/B'::pg_lsn, @p::pg_lsn";
