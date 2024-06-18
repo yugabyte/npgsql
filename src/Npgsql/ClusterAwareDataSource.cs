@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using YBNpgsql.Internal;
 using YBNpgsql.Util;
 
@@ -117,6 +118,10 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// </summary>
     protected internal static bool forceRefresh = false;
 
+    /// <summary>
+    /// Logger instance
+    /// </summary>
+    protected readonly ILogger _connectionLogger;
     internal ClusterAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig, bool useClusterAwareDataSource)
         : base(settings, dataSourceConfig)
     {
@@ -128,6 +133,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             ? this.settings.YBServersRefreshInterval
             : 300;
         initialHosts = Settings.Host?.Split(',').ToList();
+        _connectionLogger = LoggingConfiguration.ConnectionLogger;
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
         if(useClusterAwareDataSource)
         {
@@ -151,9 +157,13 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 }
                 catch (Exception)
                 {
+                    _connectionLogger.LogDebug("Could not connect to host: {host}", host);
                     initialHosts.Remove(host);
                     if (initialHosts.Count == 0)
+                    {
+                        _connectionLogger.LogError("Failed to make Control Connection. No suitable host found");
                         throw;
+                    }
                 }
 
             }
@@ -195,7 +205,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     continue;
                 var poolSettings = settings.Clone();
                 poolSettings.Host = host.ToString();
-
+                _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
                 _pools.Add(settings.Pooling
                     ? new PoolingDataSource(poolSettings, dataSourceConfig)
                     : new UnpooledDataSource(poolSettings, dataSourceConfig));
@@ -280,6 +290,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
 
             poolToNumConnMap[poolIndex] =  currentCount + incDec;
+            _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}", _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMap[poolIndex]);
 
         }
     }
@@ -288,6 +299,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
     internal override bool Refresh()
     {
+        _connectionLogger.LogDebug("Refreshing connection");
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
         if (_hosts != null && _hosts.Count != 0)
         {
@@ -311,9 +323,14 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
             catch (Exception)
             {
+                _connectionLogger.LogDebug("Failed to connect to {host}", host);
                 initialHosts.Remove(host);
                 if (initialHosts.Count == 0)
+                {
+                    _connectionLogger.LogError("Failed to create control connection. No suitable host found");
                     throw;
+                }
+
             }
 
         }
@@ -338,6 +355,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 for (var i = FIRST_FALLBACK; i <= MAX_PREFERENCE_VALUE; i++)
                 {
+                    _connectionLogger.LogDebug("Attempting Fallback: {fallback}", i);
                     fallbackPrivateIPs.TryGetValue(i, out hosts);
                     fallbackPublicIPs.TryGetValue(i, out public_ip);
                     if (hosts != null)
@@ -390,10 +408,12 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             CheckDisposed();
 
             var poolIndex = conn.Settings.LoadBalanceHosts ? GetRoundRobinIndex() : 0;
-
+            var chosenHost = _pools[poolIndex].Settings.Host;
+            _connectionLogger.LogDebug("Chosen Host: {host}", chosenHost);
             var HasBetterNode = HasBetterNodeAvailable(poolIndex);
             if (HasBetterNode)
             {
+                _connectionLogger.LogDebug("A better node is available");
                 UpdateConnectionMap(poolIndex, -1);
                 HasBetterNode = false;
                 await getConnector(conn, timeout, async, cancellationToken, exceptions).ConfigureAwait(false);

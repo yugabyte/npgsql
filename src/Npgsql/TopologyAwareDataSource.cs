@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace YBNpgsql;
 
@@ -20,7 +21,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     {
         allowedPlacements = new ConcurrentDictionary<int, HashSet<CloudPlacement>?>();
         ParseGeoLocations();
-        Console.WriteLine("Inside TopologyAwareDatasource");
+        _connectionLogger.LogDebug("Allowed Placements: {allowedPlacements}", allowedPlacements);
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
         foreach (var host in initialHosts.ToList())
         {
@@ -41,9 +42,13 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             }
             catch (Exception)
             {
-                if (initialHosts.Count == 0)
-                    throw;
+                _connectionLogger.LogDebug("Could not connect to host: {host}", host);
                 initialHosts.Remove(host);
+                if (initialHosts.Count == 0)
+                {
+                    _connectionLogger.LogError("Failed to make Control Connection. No suitable host found");
+                    throw;
+                }
             }
 
         }
@@ -140,6 +145,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                     continue;
                 var poolSettings = settings.Clone();
                 poolSettings.Host = host.ToString();
+                _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
 
                 _pools.Add(settings.Pooling
                     ? new PoolingDataSource(poolSettings, dataSourceConfig)

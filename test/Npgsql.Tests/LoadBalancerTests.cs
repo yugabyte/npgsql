@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 namespace YBNpgsql.Tests;
@@ -47,17 +48,17 @@ public class LoadBalancerTests : YBTestUtils
             var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;YB Servers Refresh Interval=30;Timeout=0";
             List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
 
-            // CreateCluster();
+            CreateCluster();
             try
             {
                 var conn1 = CreateConnections(connStringBuilder, numConns);
                 conns.AddRange(conn1);
 
-                // string? _Output = null;
-                // string? _Error = null;
-                // var cmd = "/bin/yb-ctl stop_node 1";
-                // ExecuteShellCommand(cmd, ref _Output, ref _Error );
-                // Console.WriteLine(_Output);
+                string? _Output = null;
+                string? _Error = null;
+                var cmd = "/bin/yb-ctl stop_node 1";
+                ExecuteShellCommand(cmd, ref _Output, ref _Error );
+                Console.WriteLine(_Output);
 
                 System.Threading.Thread.Sleep(30000);
 
@@ -91,7 +92,7 @@ public class LoadBalancerTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        CreateCluster();
+        // CreateCluster();
         try
         {
             List<Thread> threads = new List<Thread>();
