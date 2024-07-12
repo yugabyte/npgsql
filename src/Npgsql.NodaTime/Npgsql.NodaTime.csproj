@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <PackageId>YBNpgsql.NodaTime</PackageId>
     <Authors>Shay Rojansky</Authors>
-    <Description>NodaTime plugin for Npgsql, allowing mapping of PostgreSQL date/time types to NodaTime types.</Description>
-    <PackageTags>npgsql;postgresql;postgres;nodatime;date;time;ado;ado;net;database;sql</PackageTags>
+    <Description>NodaTime plugin for NpgsqlYugabyteDB, allowing mapping of YugabyteDB date/time types to NodaTime types.</Description>
+    <PackageTags>npgsql;postgresql;postgres;nodatime;date;time;ado;ado;net;database;sql;yugabytedb</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyName>YBNpgsql.NodaTime</AssemblyName>
     <TargetFrameworks Condition="'$(DeveloperBuild)' != 'True'">netstandard2.0;net6.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(DeveloperBuild)' == 'True'">net8.0</TargetFrameworks>
     <NoWarn>$(NoWarn);NPG9001</NoWarn> <!-- Converter-related APIs are experimental -->
