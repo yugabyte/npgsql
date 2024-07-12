@@ -1,11 +1,11 @@
-Npgsql is the open source .NET data provider for PostgreSQL. It allows you to connect and interact with PostgreSQL server using .NET.
+NpgsqlYugabyteDB is the open source .NET data provider for YugabyteDB. It allows you to connect and interact with YugabyteDB server using .NET.
 
-This package is an Npgsql plugin which allows you to use the [NodaTime](https://nodatime.org) date/time library when interacting with PostgreSQL; this provides a better and safer API for dealing with date and time data. 
+This package is an NpgsqlYugabyteDB plugin which allows you to use the [NodaTime](https://nodatime.org) date/time library when interacting with YugabyteDB; this provides a better and safer API for dealing with date and time data. 
 
-To use the NodaTime plugin, add a dependency on this package and create a NpgsqlDataSource. Once this is done, you can use NodaTime types when interacting with PostgreSQL, just as you would use e.g. `DateTime`:
+To use the NodaTime plugin, add a dependency on this package and create a NpgsqlDataSource. Once this is done, you can use NodaTime types when interacting with YugabyteDB, just as you would use e.g. `DateTime`:
 
 ```csharp
-using Npgsql;
+using YBNpgsql;
 
 var dataSourceBuilder = new NpgsqlDataSourceBuilder(ConnectionString);
 

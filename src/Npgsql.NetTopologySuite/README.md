@@ -1,11 +1,11 @@
-Npgsql is the open source .NET data provider for PostgreSQL. It allows you to connect and interact with PostgreSQL server using .NET.
+NpgsqlYugabyteDB is the open source .NET data provider for PostgreSQL. It allows you to connect and interact with YugabyteDB server using .NET.
 
-This package is an Npgsql plugin which allows you to interact with spatial data provided by the PostgreSQL [PostGIS extension](https://postgis.net); PostGIS is a mature, standard extension considered to provide top-of-the-line database spatial features. On the .NET side, the plugin adds support for the types from the [NetTopologySuite library](https://github.com/NetTopologySuite/NetTopologySuite), allowing you to read and write them directly to PostgreSQL. 
+This package is an NpgsqlYugabyteDB plugin which allows you to interact with spatial data provided by the PostgreSQL [PostGIS extension](https://postgis.net); PostGIS is a mature, standard extension considered to provide top-of-the-line database spatial features. On the .NET side, the plugin adds support for the types from the [NetTopologySuite library](https://github.com/NetTopologySuite/NetTopologySuite), allowing you to read and write them directly to PostgreSQL. 
 
 To use the NetTopologySuite plugin, add a dependency on this package and create a NpgsqlDataSource.
 
 ```csharp
-using Npgsql;
+using YBNpgsql;
 using NetTopologySuite.Geometries;
 
 var dataSourceBuilder = new NpgsqlDataSourceBuilder(ConnectionString);
