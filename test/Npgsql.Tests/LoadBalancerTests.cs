@@ -15,7 +15,7 @@ public class LoadBalancerTests : YBTestUtils
     [Test]
     public async Task TestLoadBalance1()
     {
-        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
+        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=preferrr;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         // CreateCluster();
@@ -26,6 +26,10 @@ public class LoadBalancerTests : YBTestUtils
             await VerifyOn("127.0.0.1", numConns/3);
             await VerifyOn("127.0.0.2", numConns/3);
             await VerifyOn("127.0.0.3", numConns / 3);
+            await VerifyOn("127.0.0.4", numConns / 3);
+            await VerifyOn("127.0.0.5", numConns / 3);
+            await VerifyOn("127.0.0.6", numConns / 3);
+
         }
         catch (Exception ex)
         {

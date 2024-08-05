@@ -929,7 +929,8 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     [Description("Enables balancing between multiple hosts by round-robin.")]
     [DisplayName("Load Balance Hosts")]
     [NpgsqlConnectionStringProperty]
-    public bool LoadBalanceHosts
+    [DefaultValue(LoadBalanceHosts.False)]
+    public LoadBalanceHosts LoadBalanceHosts
     {
         get => _loadBalanceHosts;
         set
@@ -938,7 +939,7 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
             SetValue(nameof(LoadBalanceHosts), value);
         }
     }
-    bool _loadBalanceHosts;
+    LoadBalanceHosts _loadBalanceHosts;
 
     /// <summary>
     /// Enables balancing between multiple hosts by round-robin in a specified topology
@@ -1857,6 +1858,41 @@ enum ReplicationMode
     /// Logical replication enabled
     /// </summary>
     Logical
+}
+
+/// <summary>
+///
+/// </summary>
+public enum LoadBalanceHosts
+{
+    /// <summary>
+    ///
+    /// </summary>
+    False,
+    /// <summary>
+    ///
+    /// </summary>
+    OnlyRR,
+    /// <summary>
+    ///
+    /// </summary>
+    OnlyPrimary,
+    /// <summary>
+    ///
+    /// </summary>
+    PreferRR,
+    /// <summary>
+    ///
+    /// </summary>
+    PreferPrimary,
+    /// <summary>
+    ///
+    /// </summary>
+    Any,
+    /// <summary>
+    ///
+    /// </summary>
+    True
 }
 
 #endregion

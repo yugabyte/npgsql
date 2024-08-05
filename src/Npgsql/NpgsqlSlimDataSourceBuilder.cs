@@ -568,12 +568,12 @@ public sealed class NpgsqlSlimDataSourceBuilder : INpgsqlTypeMapper
         var config = PrepareConfiguration();
         var connectionStringBuilder = ConnectionStringBuilder.Clone();
 
-        if (ConnectionStringBuilder.LoadBalanceHosts && ConnectionStringBuilder.TopologyKeys != null)
-        {
-            return new TopologyAwareDataSource(ConnectionStringBuilder, config);
-        }
+        // if (ConnectionStringBuilder.LoadBalanceHosts != LoadBalanceHosts.False && ConnectionStringBuilder.TopologyKeys != null)
+        // {
+        //     return new TopologyAwareDataSource(ConnectionStringBuilder, config);
+        // }
 
-        if (ConnectionStringBuilder.LoadBalanceHosts)
+        if (ConnectionStringBuilder.LoadBalanceHosts != LoadBalanceHosts.False)
         {
             return new ClusterAwareDataSource(ConnectionStringBuilder, config, true);
         }
