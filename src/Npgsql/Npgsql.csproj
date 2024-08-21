@@ -4,9 +4,9 @@
 	<PackageId>NpgsqlYugabyteDB</PackageId>
     <Description>Npgsql is the open source .NET data provider for PostgreSQL.</Description>
     <Authors>Shay Rojansky;Yoh Deadfall;Austin Drenski;Emil Lenngren;Francisco Figueiredo Jr.;Kenji Uno</Authors>
-    <Copyright>Copyright 2019 © The Npgsql Development Team</Copyright>
-    <Company>Npgsql</Company>
-    <PackageTags>npgsql postgresql postgres ado ado.net database sql</PackageTags>
+    <Copyright>Copyright 2024 © The YugabyteDB Development Team</Copyright>
+    <Company>YugabyteDB</Company>
+    <PackageTags>npgsql postgresql postgres ado ado.net database sql yugabyte</PackageTags>
     <LangVersion>latest</LangVersion>
     <TargetFrameworks>net45;net451;netstandard2.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT' OR '$(CoreOnly)' == 'True'">netstandard2.0</TargetFrameworks>
@@ -20,7 +20,7 @@
     <PackageIconUrl>http://www.npgsql.org/img/postgresql.gif</PackageIconUrl>
     <PackageLicenseExpression>PostgreSQL</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>git://github.com/npgsql/npgsql</RepositoryUrl>
+    <RepositoryUrl>git://github.com/yugabyte/npgsql</RepositoryUrl>
     <Deterministic>true</Deterministic>
     <!-- This is somehow important for Microsoft.CodeQuality.Analyzers -->
     <Features>IOperation</Features>
