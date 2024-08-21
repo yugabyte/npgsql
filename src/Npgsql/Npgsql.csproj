@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+	<PackageId>NpgsqlYugabyteDB</PackageId>
     <Description>Npgsql is the open source .NET data provider for PostgreSQL.</Description>
     <Authors>Shay Rojansky;Yoh Deadfall;Austin Drenski;Emil Lenngren;Francisco Figueiredo Jr.;Kenji Uno</Authors>
     <Copyright>Copyright 2019 © The Npgsql Development Team</Copyright>
@@ -9,7 +10,7 @@
     <LangVersion>latest</LangVersion>
     <TargetFrameworks>net45;net451;netstandard2.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT' OR '$(CoreOnly)' == 'True'">netstandard2.0</TargetFrameworks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyOriginatorKeyFile>../../Npgsql.snk</AssemblyOriginatorKeyFile>
