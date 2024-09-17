@@ -66,7 +66,7 @@ public class YBTestUtils
             var responseBody = await response.Content.ReadAsStringAsync();
             var count = responseBody.Split("client backend");
             Console.WriteLine(server + ":" + (count.Length - 1));
-            // Assert.AreEqual(ExpectedCount, count.Length - 1);
+            Assert.AreEqual(ExpectedCount, count.Length - 1);
         }
         catch (HttpRequestException e)
         {

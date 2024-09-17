@@ -14,7 +14,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -38,7 +38,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -48,8 +48,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node : 127.0.0.2, 127.0.0.3
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -73,7 +81,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -83,8 +91,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;FallBack To Topology Keys Only=true;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node : 127.0.0.2, 127.0.0.3
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -102,7 +118,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -112,8 +128,13 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.3;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node : 127.0.0.2
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -137,7 +158,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -147,7 +168,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -171,7 +192,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -181,8 +202,13 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node : 127.0.0.2
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -206,7 +232,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
     [Test]
@@ -215,8 +241,19 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.1, 127.0.0.2, 127.0.0.3
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 1";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -240,7 +277,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -250,8 +287,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node : 127.0.0.2, 127.0.0.3
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -275,7 +320,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
     [Test]
@@ -284,7 +329,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -308,7 +353,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -318,8 +363,13 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.4
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -343,7 +393,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -353,8 +403,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -378,7 +436,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -388,8 +446,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;FallBack To Topology Keys Only=true;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -407,7 +473,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -417,7 +483,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -441,7 +507,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -451,8 +517,13 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.4
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -476,7 +547,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -486,8 +557,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -511,7 +590,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -521,8 +600,19 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5, 127.0.0.6
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 6";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -546,7 +636,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
     [Test]
@@ -555,7 +645,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -579,7 +669,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -589,8 +679,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.2, 127.0.0.4
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -614,7 +712,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -624,8 +722,22 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2; FallBack To Topology Keys Only=true;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -643,7 +755,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -653,8 +765,22 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop Node: 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
 
         try
         {
@@ -678,7 +804,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -705,5 +831,34 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         return conns;
 
+    }
+
+    void CreateRRCluster()
+    {
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl create --rf 3 --placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 --tserver_flags \"placement_uuid=live,max_stale_read_bound_time_ms=60000000\"";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/build/latest/bin/yb-admin --master_addresses 127.0.0.1:7100,127.0.0.2:7100,127.0.0.3:7100 modify_placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 3 live";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter2.rack1 --tserver_flags placement_uuid=rr";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl add_node--placement_info cloud1.datacenter3.rack1 --tserver_flags placement_uuid=rr";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter4.rack1 --tserver_flags placement_uuid=rr";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+    }
+
+    protected void DestroyCluster()
+    {
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl destroy";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
     }
 }

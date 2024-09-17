@@ -13,7 +13,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -37,7 +37,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -47,7 +47,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -71,7 +71,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
     [Test]
@@ -80,7 +80,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.4;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node: 127.0.0.1, 127.0.0.2, 127.0.0.3
 
         try
@@ -105,7 +105,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
     [Test]
@@ -114,7 +114,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -138,7 +138,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -148,7 +148,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -172,7 +172,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -182,7 +182,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
         // Stop node : 127.0.0.4, 127.0.0.5, 127.0.0.6
 
         try
@@ -207,7 +207,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
     [Test]
@@ -216,7 +216,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateRRCluster();
 
         try
         {
@@ -240,7 +240,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
-            // DestroyCluster();
+            DestroyCluster();
         }
     }
 
@@ -267,5 +267,34 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         return conns;
 
+    }
+
+    void CreateRRCluster()
+    {
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl create --rf 3 --placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 --tserver_flags \"placement_uuid=live,max_stale_read_bound_time_ms=60000000\"";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/build/latest/bin/yb-admin --master_addresses 127.0.0.1:7100,127.0.0.2:7100,127.0.0.3:7100 modify_placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 3 live";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter2.rack1 --tserver_flags placement_uuid=rr";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl add_node--placement_info cloud1.datacenter3.rack1 --tserver_flags placement_uuid=rr";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter4.rack1 --tserver_flags placement_uuid=rr";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+    }
+
+    protected void DestroyCluster()
+    {
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl destroy";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
     }
 }
