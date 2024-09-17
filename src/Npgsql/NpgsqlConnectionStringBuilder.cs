@@ -996,6 +996,25 @@ public sealed partial class NpgsqlConnectionStringBuilder : DbConnectionStringBu
     double _failedHostReconnectDelaySecs;
 
     /// <summary>
+    /// If set to true the connections do not go to the rest of the cluster when all the nodes in region specified by topology keys are down
+    /// </summary>
+    [Category("Failover and load balancing")]
+    [Description("Determines if fallback should be done on rest of the cluster")]
+    [DisplayName("FallBack To Topology Keys Only")]
+    [DefaultValue(false)]
+    [NpgsqlConnectionStringProperty]
+    public bool FallBackToTopologyKeysOnly
+    {
+        get => _fallBackToTopologyKeysOnly;
+        set
+        {
+            _fallBackToTopologyKeysOnly = value;
+            SetValue(nameof(FallBackToTopologyKeysOnly), value);
+        }
+    }
+    bool _fallBackToTopologyKeysOnly;
+
+    /// <summary>
     /// Controls for how long the host's cached state will be considered as valid.
     /// </summary>
     [Category("Failover and load balancing")]
