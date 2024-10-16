@@ -50,20 +50,18 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// False = Public IPs
     /// </summary>
     protected bool? UseHostColumn = null;
-    /// <summary>
-    /// TODO
-    /// </summary>
-    protected static int index = 0;
 
     /// <summary>
-    /// Stores a map of pool index to number of connections made to the pool
+    /// Stores a map of pool to number of connections made to the pool for the Primary nodes
     /// Key = Pool
     /// Value = Number of Connections to that pool
     /// </summary>
     protected static Dictionary<NpgsqlDataSource, int> poolToNumConnMapPrimary = new Dictionary<NpgsqlDataSource, int>();
 
     /// <summary>
-    /// TODO
+    /// Stores a map of pool to number of connections for the Read Replica nodes
+    /// Key = Pool
+    /// Value = Number of Connections to that pool
     /// </summary>
     protected static Dictionary<NpgsqlDataSource, int> poolToNumConnMapRR = new Dictionary<NpgsqlDataSource, int>();
 
@@ -89,29 +87,29 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     protected static readonly object lockObject = new object();
 
     /// <summary>
-    /// TODO
+    /// Key of primary placement in the allowedPlacementMap
     /// </summary>
     protected readonly int PRIMARY_PLACEMENTS = 1;
     /// <summary>
-    /// TODO
+    /// Key of first fallback placement in the allowedPlacementMap
     /// </summary>
     protected readonly int FIRST_FALLBACK = 2;
     /// <summary>
-    /// TODO
+    /// Key for placements not mentioned in the Toplology Keys in the allowedPlacementMap
     /// </summary>
     protected readonly int REST_OF_CLUSTER = 11;
     /// <summary>
-    /// TODO
+    /// Maximum value of priority of fallback placements possible
     /// </summary>
     protected readonly int MAX_PREFERENCE_VALUE = 10;
     /// <summary>
-    /// TODO
+    /// list of nodes' public IPs
     /// </summary>
     protected Dictionary<string, string> currentPublicIps = new Dictionary<string, string>();
 
     /// <summary>
     /// Contains a dictionary of private IPs for fallback
-    /// Key = Fallback priority leve
+    /// Key = Fallback priority level
     /// Value = Dictionary (IP , nodeType)
     /// </summary>
     protected ConcurrentDictionary<int, Dictionary<string, string>> fallbackPrivateIPs;
@@ -301,15 +299,12 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         }
         else
         {
+            _connectionLogger.LogWarning("Poolindex not found in pools map");
             return;
         }
         lock (lockObject)
         {
             int currentCount;
-            // if (!poolToNumConnMapPrimary.TryGetValue(currPool, out currentCount))
-            // {
-            //     return;
-            // }
 
             if(poolToNumConnMapPrimary.ContainsKey(currPool))
             {
