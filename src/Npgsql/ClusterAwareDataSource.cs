@@ -238,6 +238,32 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    /// <param name="server"></param>
+    public int GetLoad(string server)
+    {
+        foreach (var pool in poolToNumConnMapPrimary)
+        {
+            Debug.Assert(pool.Key.Settings.Host != null, "pool.Key.Settings.Host != null");
+            if (pool.Key.Settings.Host.Equals(server, StringComparison.OrdinalIgnoreCase))
+            {
+                return pool.Value;
+            }
+        }
+        foreach (var pool in poolToNumConnMapRR)
+        {
+            Debug.Assert(pool.Key.Settings.Host != null, "pool.Key.Settings.Host != null");
+            if (pool.Key.Settings.Host.Equals(server, StringComparison.OrdinalIgnoreCase))
+            {
+                return pool.Value;
+            }
+        }
+
+        return -1;
+    }
+
+    /// <summary>
     /// gets the list of hosts
     /// </summary>
     /// <param name="conn"></param>

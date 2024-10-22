@@ -8,7 +8,7 @@ namespace YBNpgsql.Tests;
 public class YBTopologyAwareRRSupportTests : YBTestUtils
 {
      int numConns = 6;
-    [Test]
+     [Test, Timeout(60000)]
     public async Task TestOnlyPrimary()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -42,7 +42,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyPrimaryAllNodesDownAllPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -85,7 +85,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public void TestOnlyPrimaryAllNodesDownInAllPlacementsFallBackToTopologyOnly()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;FallBack To Topology Keys Only=true;Timeout=0";
@@ -122,7 +122,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyPrimaryAllNodesDownPrimarylacement()
     {
         var connStringBuilder = "host=127.0.0.3;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -162,7 +162,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferPrimary()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -196,7 +196,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferPrimaryAllNodesDownPrimaryPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -232,10 +232,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task? TestPreferPrimaryAllPrimaryNodesDown()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -277,11 +283,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferPrimaryAllNodesDownAllPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary; Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -320,10 +332,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyRR()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -353,11 +371,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyRRAllNodesDownInPrimaryPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -393,11 +417,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyRRAllNodesDownInAllPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -436,11 +466,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public void TestOnlyRRAllNodesDownInAllPlacementsFallBackToTopologyOnly()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;FallBack To Topology Keys Only=true;Timeout=0";
@@ -473,11 +509,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferRR()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -507,11 +549,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferRRAllNodesDownInPrimaryPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -547,11 +595,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferRRAllNodesDownInAllPlacements()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -590,11 +644,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task? TestPreferRRAllRRNodesDown()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -636,10 +696,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestAny()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -669,11 +735,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestAnyAllNodesDownPrimaryPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -712,11 +784,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public void TestAnyAllNodesDownAllPlacementFallBackToTopologyOnly()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2; FallBack To Topology Keys Only=true;Timeout=0";
@@ -755,11 +833,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestAnyAllNodesDownAllPlacement()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
@@ -804,6 +888,12 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }

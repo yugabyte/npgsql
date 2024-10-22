@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -7,13 +8,15 @@ namespace YBNpgsql.Tests;
 
 public class YBClusterAwareRRSupportTests : YBTestUtils{
     int numConns = 6;
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyPrimary()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyprimary;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
+
+        Thread.Sleep(15000);
 
         try
         {
@@ -37,11 +40,17 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferPrimary()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary;Timeout=0";
@@ -71,17 +80,35 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferPrimaryAllNodesDown()
     {
-        var connStringBuilder = "host=127.0.0.4;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Timeout=0";
+        var connStringBuilder = "host=127.0.0.4;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop node: 127.0.0.1, 127.0.0.2, 127.0.0.3
+
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 1";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
+        cmd = "/bin/yb-ctl stop_node 2";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
+        cmd = "/bin/yb-ctl stop_node 3";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
 
         try
         {
@@ -105,10 +132,16 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestOnlyRR()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=onlyrr;Timeout=0";
@@ -138,11 +171,17 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferRR()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Timeout=0";
@@ -172,11 +211,17 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestPreferRRAllNodesDown()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Timeout=0";
@@ -185,6 +230,17 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         CreateRRCluster();
         // Stop node : 127.0.0.4, 127.0.0.5, 127.0.0.6
 
+        string? _Output = null;
+        string? _Error = null;
+        var cmd = "/bin/yb-ctl stop_node 4";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
+        cmd = "/bin/yb-ctl stop_node 5";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
+        cmd = "/bin/yb-ctl stop_node 6";
+        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine(_Output);
         try
         {
             conns = CreateConnections(connStringBuilder, numConns);
@@ -207,10 +263,16 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestAny()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=any;Timeout=0";
@@ -240,6 +302,12 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
+            VerifyLocal("127.0.0.4", 0);
+            VerifyLocal("127.0.0.5", 0);
+            VerifyLocal("127.0.0.6", 0);
             DestroyCluster();
         }
     }
