@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -270,6 +272,25 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             await VerifyOn("127.0.0.4", numConns / 3 );
             await VerifyOn("127.0.0.5", numConns / 3);
             await VerifyOn("127.0.0.6", numConns / 3);
+
+            // Start Node 1
+            _Output = null;
+            _Error = null;
+            cmd = "/bin/yb-ctl start_node 1";
+            ExecuteShellCommand(cmd, ref _Output, ref _Error );
+            Console.WriteLine("Output:" + _Output);
+
+            Thread.Sleep(10000);
+
+            conns.Concat(CreateConnections(connStringBuilder, numConns));
+
+            await VerifyOn("127.0.0.1", numConns);
+            await VerifyOn("127.0.0.2", -1);
+            await VerifyOn("127.0.0.3", -1);
+            await VerifyOn("127.0.0.4", numConns / 3 );
+            await VerifyOn("127.0.0.5", numConns / 3);
+            await VerifyOn("127.0.0.6", numConns / 3);
+
 
         }
         catch (Exception ex)
@@ -683,6 +704,20 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             await VerifyOn("127.0.0.4", -1);
             await VerifyOn("127.0.0.5", -1);
             await VerifyOn("127.0.0.6", -1);
+
+            // Start RR node: 127.0.0.4
+            cmd = "/bin/yb-ctl start_node 4";
+            ExecuteShellCommand(cmd, ref _Output, ref _Error );
+            Console.WriteLine("Output:" + _Output);
+
+            conns.Concat(CreateConnections(connStringBuilder, numConns));
+            await VerifyOn("127.0.0.1", numConns / 3 );
+            await VerifyOn("127.0.0.2", numConns / 3);
+            await VerifyOn("127.0.0.3", numConns / 3);
+            await VerifyOn("127.0.0.4", numConns);
+            await VerifyOn("127.0.0.5", -1);
+            await VerifyOn("127.0.0.6", -1);
+
 
         }
         catch (Exception ex)

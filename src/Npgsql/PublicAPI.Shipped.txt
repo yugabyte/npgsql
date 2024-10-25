@@ -1962,5 +1962,5 @@ YBNpgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.get -> bool
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.get -> bool
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.set -> void
-YBNpgsql.ClusterAwareDataSource.GetLoad(string! server) -> int
+static YBNpgsql.ClusterAwareDataSource.GetLoad(string! server) -> int
 

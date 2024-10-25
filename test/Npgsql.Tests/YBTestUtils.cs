@@ -84,10 +84,7 @@ public class YBTestUtils
     {
         Console.WriteLine("Client side verification:");
 
-        ClusterAwareDataSource? cs = ClusterAwareDataSource.GetInstance();
-
-        Debug.Assert(cs != null, nameof(cs) + " != null");
-        var recorded = cs.GetLoad(server);
+        var recorded = ClusterAwareDataSource.GetLoad(server);
         Console.WriteLine(server + ":" + recorded);
         // Assert.AreEqual(ExpectedCount, recorded);
 

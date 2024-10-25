@@ -238,10 +238,10 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     }
 
     /// <summary>
-    ///
+    /// Returns the connection count of a server
     /// </summary>
     /// <param name="server"></param>
-    public int GetLoad(string server)
+    public static int GetLoad(string server)
     {
         foreach (var pool in poolToNumConnMapPrimary)
         {
