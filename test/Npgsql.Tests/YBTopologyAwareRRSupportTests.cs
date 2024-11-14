@@ -20,13 +20,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", numConns);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns, 0, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -59,13 +53,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", -1);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -98,7 +86,12 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
+            for (var i = 1; i <= numConns; i++)
+            {
+                NpgsqlConnection conn = new NpgsqlConnection(connStringBuilder);
+                conn.Open();
+                conns.Add(conn);
+            }
 
         }
         catch (NpgsqlException ex)
@@ -128,13 +121,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", numConns);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, -1, numConns, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -158,13 +145,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", numConns);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns, 0, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -194,14 +175,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", numConns);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, -1, numConns, 0, 0, 0});
         }
         catch (Exception ex)
         {
@@ -235,13 +209,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", -1);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", -1);
-            await VerifyOn("127.0.0.4", numConns / 3 );
-            await VerifyOn("127.0.0.5", numConns / 3);
-            await VerifyOn("127.0.0.6", numConns / 3);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{-1, -1, -1, numConns / 3, numConns / 3, numConns / 3});
 
             // Start Node 1
             _Output = null;
@@ -251,16 +219,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             Console.WriteLine("Output:" + _Output);
 
             Thread.Sleep(10000);
-
-            conns.Concat(CreateConnections(connStringBuilder, numConns));
-
-            await VerifyOn("127.0.0.1", numConns);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", -1);
-            await VerifyOn("127.0.0.4", numConns / 3 );
-            await VerifyOn("127.0.0.5", numConns / 3);
-            await VerifyOn("127.0.0.6", numConns / 3);
-
+            conns.Concat(await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, numConns / 3, numConns / 3, numConns / 3}));
 
         }
         catch (Exception ex)
@@ -293,13 +252,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", -1);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -322,14 +275,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", numConns);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns, 0, 0, 0});
         }
         catch (Exception ex)
         {
@@ -358,14 +304,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", numConns);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, numConns, 0});
         }
         catch (Exception ex)
         {
@@ -397,14 +336,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", -1);
-            await VerifyOn("127.0.0.6", numConns);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, -1, numConns});
         }
         catch (Exception ex)
         {
@@ -436,7 +368,12 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
+            for (var i = 1; i <= numConns; i++)
+            {
+                NpgsqlConnection conn = new NpgsqlConnection(connStringBuilder);
+                conn.Open();
+                conns.Add(conn);
+            }
 
         }
         catch (NpgsqlException ex)
@@ -460,14 +397,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", numConns);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns, 0, 0});
         }
         catch (Exception ex)
         {
@@ -496,14 +426,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", numConns);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, numConns, 0});
         }
         catch (Exception ex)
         {
@@ -535,14 +458,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", -1);
-            await VerifyOn("127.0.0.6", numConns);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, -1, numConns});
         }
         catch (Exception ex)
         {
@@ -577,27 +493,14 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns / 3 );
-            await VerifyOn("127.0.0.2", numConns / 3);
-            await VerifyOn("127.0.0.3", numConns / 3);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", -1);
-            await VerifyOn("127.0.0.6", -1);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, -1, -1, -1});
 
             // Start RR node: 127.0.0.4
             cmd = "/bin/yb-ctl start_node 4";
             ExecuteShellCommand(cmd, ref _Output, ref _Error );
             Console.WriteLine("Output:" + _Output);
 
-            conns.Concat(CreateConnections(connStringBuilder, numConns));
-            await VerifyOn("127.0.0.1", numConns / 3 );
-            await VerifyOn("127.0.0.2", numConns / 3);
-            await VerifyOn("127.0.0.3", numConns / 3);
-            await VerifyOn("127.0.0.4", numConns);
-            await VerifyOn("127.0.0.5", -1);
-            await VerifyOn("127.0.0.6", -1);
-
+            conns.Concat(await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, numConns, -1, -1}));
 
         }
         catch (Exception ex)
@@ -620,14 +523,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", numConns / 2);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", numConns / 2);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns / 2, 0, numConns / 2, 0, 0});
         }
         catch (Exception ex)
         {
@@ -659,14 +555,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", numConns /2);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", numConns / 2);
-            await VerifyOn("127.0.0.6", 0);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, -1, numConns /2, -1, numConns / 2, 0});
         }
         catch (Exception ex)
         {
@@ -704,7 +593,12 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
+            for (var i = 1; i <= numConns; i++)
+            {
+                NpgsqlConnection conn = new NpgsqlConnection(connStringBuilder);
+                conn.Open();
+                conns.Add(conn);
+            }
 
         }
         catch (NpgsqlException ex)
@@ -743,14 +637,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns /2);
-            await VerifyOn("127.0.0.2", -1);
-            await VerifyOn("127.0.0.3", -1);
-            await VerifyOn("127.0.0.4", -1);
-            await VerifyOn("127.0.0.5", -1);
-            await VerifyOn("127.0.0.6", numConns /2);
-
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns /2 , -1, -1, -1, -1, numConns / 2});
         }
         catch (Exception ex)
         {
@@ -763,7 +650,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         }
     }
 
-    static List<NpgsqlConnection> CreateConnections(string connString, int numConns)
+    static async Task<List<NpgsqlConnection>> CreateConnections(string connString, int numConns,  int[] count)
     {
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         try
@@ -776,6 +663,17 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             }
 
             Console.WriteLine("Connections Created");
+
+            var j = 1;
+            foreach(var expectedCount in count)
+            {
+                if (expectedCount != -1)
+                {
+                    await VerifyOn("127.0.0." + j, expectedCount);
+                }
+
+                j++;
+            }
         }
         catch (Exception ex)
         {

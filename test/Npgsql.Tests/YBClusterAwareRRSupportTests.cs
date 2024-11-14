@@ -20,13 +20,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns / 3);
-            await VerifyOn("127.0.0.2", numConns / 3);
-            await VerifyOn("127.0.0.3", numConns / 3);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -50,13 +44,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns / 3);
-            await VerifyOn("127.0.0.2", numConns / 3);
-            await VerifyOn("127.0.0.3", numConns / 3);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, 0, 0, 0});
 
         }
         catch (Exception ex)
@@ -92,13 +80,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", numConns / 3);
-            await VerifyOn("127.0.0.5", numConns / 3);
-            await VerifyOn("127.0.0.6", numConns / 3);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{-1, -1, -1, numConns / 3, numConns / 3, numConns / 3});
 
         }
         catch (Exception ex)
@@ -121,13 +103,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", numConns / 3);
-            await VerifyOn("127.0.0.5", numConns / 3);
-            await VerifyOn("127.0.0.6", numConns / 3);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns / 3, numConns / 3, numConns / 3});
 
         }
         catch (Exception ex)
@@ -151,13 +127,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", 0);
-            await VerifyOn("127.0.0.2", 0);
-            await VerifyOn("127.0.0.3", 0);
-            await VerifyOn("127.0.0.4", numConns / 3);
-            await VerifyOn("127.0.0.5", numConns / 3);
-            await VerifyOn("127.0.0.6", numConns / 3);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns / 3, numConns / 3, numConns / 3});
 
         }
         catch (Exception ex)
@@ -193,13 +163,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         Console.WriteLine(_Output);
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns / 3);
-            await VerifyOn("127.0.0.2", numConns / 3);
-            await VerifyOn("127.0.0.3", numConns / 3);
-            await VerifyOn("127.0.0.4", 0);
-            await VerifyOn("127.0.0.5", 0);
-            await VerifyOn("127.0.0.6", 0);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, -1, -1, -1});
 
         }
         catch (Exception ex)
@@ -222,13 +186,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns / 6);
-            await VerifyOn("127.0.0.2", numConns / 6);
-            await VerifyOn("127.0.0.3", numConns / 6);
-            await VerifyOn("127.0.0.4", numConns / 6);
-            await VerifyOn("127.0.0.5", numConns / 6);
-            await VerifyOn("127.0.0.6", numConns / 6);
+            conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 6, numConns / 6, numConns / 6, numConns / 6, numConns / 6, numConns / 6});
 
         }
         catch (Exception ex)
@@ -242,7 +200,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
     }
 
-    static List<NpgsqlConnection> CreateConnections(string connString, int numConns)
+    static async Task<List<NpgsqlConnection>> CreateConnections(string connString, int numConns,  int[] count)
     {
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         try
@@ -255,6 +213,16 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             }
 
             Console.WriteLine("Connections Created");
+            var j = 1;
+            foreach(var expectedCount in count)
+            {
+                if (expectedCount != -1)
+                {
+                    await VerifyOn("127.0.0." + j, expectedCount);
+                }
+
+                j++;
+            }
         }
         catch (Exception ex)
         {
