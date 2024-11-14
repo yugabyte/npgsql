@@ -462,7 +462,15 @@ YBNpgsql.NpgsqlConnectionStringBuilder.KeepAlive.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.KerberosServiceName.get -> string!
 YBNpgsql.NpgsqlConnectionStringBuilder.KerberosServiceName.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.Keys.get -> System.Collections.Generic.ICollection<string!>!
-YBNpgsql.NpgsqlConnectionStringBuilder.LoadBalanceHosts.get -> bool
+YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.OnlyRR = 1 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.False = 0 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.OnlyPrimary = 2 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.PreferRR = 3 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.PreferPrimary = 4 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.Any = 5 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.LoadBalanceHosts.True = 6 -> YBNpgsql.LoadBalanceHosts
+YBNpgsql.NpgsqlConnectionStringBuilder.LoadBalanceHosts.get -> YBNpgsql.LoadBalanceHosts
 YBNpgsql.NpgsqlConnectionStringBuilder.LoadBalanceHosts.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.LoadTableComposites.get -> bool
 YBNpgsql.NpgsqlConnectionStringBuilder.LoadTableComposites.set -> void
@@ -1943,6 +1951,8 @@ YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.get -> double
 YBNpgsql.NpgsqlConnectionStringBuilder.YBServersRefreshInterval.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.FailedHostReconnectDelaySecs.get -> double
 YBNpgsql.NpgsqlConnectionStringBuilder.FailedHostReconnectDelaySecs.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.FallBackToTopologyKeysOnly.get -> bool
+YBNpgsql.NpgsqlConnectionStringBuilder.FallBackToTopologyKeysOnly.set -> void
 YBNpgsql.TopologyAwareDataSource
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.get -> bool
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardSequences.set -> void
@@ -1952,4 +1962,5 @@ YBNpgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.get -> bool
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableCloseAll.set -> void
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.get -> bool
 YBNpgsql.NpgsqlConnectionStringBuilder.EnableDiscardAll.set -> void
+static YBNpgsql.ClusterAwareDataSource.GetLoad(string! server) -> int
 

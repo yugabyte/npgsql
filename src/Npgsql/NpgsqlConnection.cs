@@ -176,9 +176,9 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
             Settings = _dataSource.Settings;  // Great, we already have a pool
             return;
         }
-        
+
         // A pool already corresponds to this version of string but also needs Refresh
-        
+
         if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource) && _dataSource.NeedsRefresh())
         {
             _dataSource.Refresh();
@@ -216,7 +216,7 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
             _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
             return;
         }
-        
+
         if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && _dataSource.NeedsRefresh())
         {
             _dataSource.Refresh();
@@ -926,7 +926,7 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
                 }
                 else
                 {
-                    if (_dataSource is ClusterAwareDataSource || _dataSource is TopologyAwareDataSource)
+                    if (_dataSource is ClusterAwareDataSource)
                     {
                         _dataSource.Return(connector);
                     }

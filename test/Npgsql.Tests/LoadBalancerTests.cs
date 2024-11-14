@@ -15,10 +15,10 @@ public class LoadBalancerTests : YBTestUtils
     [Test]
     public async Task TestLoadBalance1()
     {
-        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
+        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=any;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateCluster();
 
         try
         {
@@ -26,6 +26,7 @@ public class LoadBalancerTests : YBTestUtils
             await VerifyOn("127.0.0.1", numConns/3);
             await VerifyOn("127.0.0.2", numConns/3);
             await VerifyOn("127.0.0.3", numConns / 3);
+
         }
         catch (Exception ex)
         {
@@ -38,6 +39,10 @@ public class LoadBalancerTests : YBTestUtils
             {
                 conn.Close();
             }
+            Console.WriteLine("Verifying if all connections are closed...");
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
             DestroyCluster();
         }
     }
@@ -82,6 +87,8 @@ public class LoadBalancerTests : YBTestUtils
                         conn.Close();
                     }
                 }
+                VerifyLocal("127.0.0.2", 0);
+                VerifyLocal("127.0.0.3", 0);
                 DestroyCluster();
             }
         }
@@ -91,8 +98,8 @@ public class LoadBalancerTests : YBTestUtils
     {
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
 
-        List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        List<NpgsqlConnection> allConns = new List<NpgsqlConnection>();
+        CreateCluster();
         try
         {
             List<Thread> threads = new List<Thread>();
@@ -100,7 +107,13 @@ public class LoadBalancerTests : YBTestUtils
             var numThreads = 15;
             for (var i = 0; i < numThreads; i++)
             {
-                Thread thread = new Thread(() => { conn = CreateConnections(connStringBuilder, numConns); });
+                Thread thread = new Thread(() => {
+                    var threadConns = CreateConnections(connStringBuilder, numConns); // Each thread uses its own list
+                    lock (allConns)
+                    {
+                        allConns.AddRange(threadConns); // Safely add to the shared list
+                    }
+                });
                 threads.Add(thread);
             }
 
@@ -112,7 +125,6 @@ public class LoadBalancerTests : YBTestUtils
             foreach (var thread in threads)
             {
                 thread.Join();
-                conns.AddRange(conn);
             }
             await VerifyOn("127.0.0.1", numThreads * numConns/3);
             await VerifyOn("127.0.0.2", numThreads * numConns/3);
@@ -125,10 +137,14 @@ public class LoadBalancerTests : YBTestUtils
         }
         finally
         {
-            foreach (var conn in conns)
+            Console.WriteLine("Conns count" + allConns.Count);
+            foreach (var conn in allConns)
             {
                 conn.Close();
             }
+            VerifyLocal("127.0.0.1", 0);
+            VerifyLocal("127.0.0.2", 0);
+            VerifyLocal("127.0.0.3", 0);
             DestroyCluster();
         }
     }

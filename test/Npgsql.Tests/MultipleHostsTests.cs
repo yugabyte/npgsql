@@ -343,7 +343,7 @@ public class MultipleHostsTests : TestBase
             Host = MultipleHosts(primaryPostmaster, standbyPostmaster),
             ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading,
             MaxPoolSize = 1,
-            LoadBalanceHosts = true,
+            LoadBalanceHosts = LoadBalanceHosts.True,
         };
 
         await using var dataSource = new NpgsqlDataSourceBuilder(defaultCsb.ConnectionString)
@@ -391,7 +391,7 @@ public class MultipleHostsTests : TestBase
             Host = MultipleHosts(primaryPostmaster, standbyPostmaster),
             ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading,
             MaxPoolSize = 1,
-            LoadBalanceHosts = false,
+            LoadBalanceHosts = LoadBalanceHosts.False,
         };
 
         await using var dataSource = new NpgsqlDataSourceBuilder(defaultCsb.ConnectionString)
@@ -892,7 +892,7 @@ public class MultipleHostsTests : TestBase
     }
 
     [Test, NonParallelizable]
-    public void IntegrationTest([Values] bool loadBalancing, [Values] bool alwaysCheckHostState)
+    public void IntegrationTest([Values] LoadBalanceHosts loadBalancing, [Values] bool alwaysCheckHostState)
     {
         PoolManager.Reset();
 
@@ -1083,7 +1083,7 @@ public class MultipleHostsTests : TestBase
         {
             builder.Host = hostList;
             builder.ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading;
-            builder.LoadBalanceHosts = true;
+            builder.LoadBalanceHosts = LoadBalanceHosts.True;
             builder.TargetSessionAttributesParsed = targetSessionAttributes;
 
         });

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Reflection.Metadata.Ecma335;
@@ -67,10 +68,25 @@ public class YBTestUtils
             var count = responseBody.Split("client backend");
             Console.WriteLine(server + ":" + (count.Length - 1));
             Assert.AreEqual(ExpectedCount, count.Length - 1);
+
+            // Verify Local
+
+           VerifyLocal(server, ExpectedCount);
+
         }
         catch (HttpRequestException e)
         {
             Console.WriteLine(e.Message);
         }
+    }
+
+    protected static void VerifyLocal(string server, int ExpectedCount)
+    {
+        Console.WriteLine("Client side verification:");
+
+        var recorded = ClusterAwareDataSource.GetLoad(server);
+        Console.WriteLine(server + ":" + recorded);
+        Assert.AreEqual(ExpectedCount, recorded);
+
     }
 }
