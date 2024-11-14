@@ -330,7 +330,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         {
             int currentCount;
 
-            if(poolToNumConnMapPrimary.ContainsKey(currPool))
+            if (poolToNumConnMapPrimary.ContainsKey(currPool))
             {
                 currentCount = poolToNumConnMapPrimary[currPool];
                 poolToNumConnMapPrimary[currPool] += incDec;
