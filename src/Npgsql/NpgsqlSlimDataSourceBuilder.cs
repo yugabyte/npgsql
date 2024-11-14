@@ -748,12 +748,12 @@ public sealed class NpgsqlSlimDataSourceBuilder : INpgsqlTypeMapper
     {
         var (connectionStringBuilder, config) = PrepareConfiguration();
 
-        if (ConnectionStringBuilder.LoadBalanceHosts && ConnectionStringBuilder.TopologyKeys != null)
+        if (ConnectionStringBuilder.LoadBalanceHosts != LoadBalanceHosts.False && ConnectionStringBuilder.TopologyKeys != null)
         {
             return new TopologyAwareDataSource(ConnectionStringBuilder, config);
         }
 
-        if (ConnectionStringBuilder.LoadBalanceHosts)
+        if (ConnectionStringBuilder.LoadBalanceHosts != LoadBalanceHosts.False)
         {
             return new ClusterAwareDataSource(ConnectionStringBuilder, config, true);
         }

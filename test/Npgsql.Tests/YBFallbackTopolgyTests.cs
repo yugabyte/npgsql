@@ -143,6 +143,9 @@ public class YBFallbackTopolgyTests : YBTestUtils
                 conn.Close();
             }
         }
+        VerifyLocal("127.0.0.1", 0);
+        VerifyLocal("127.0.0.2", 0);
+        VerifyLocal("127.0.0.3", 0);
     }
 
     protected void CreateCluster()

@@ -16,6 +16,8 @@ namespace YBNpgsql;
 public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 {
     ConcurrentDictionary<int, HashSet<CloudPlacement>?> allowedPlacements;
+    Dictionary<string, string> AllRRIps = new Dictionary<string, string>();
+    Dictionary<string, string> AllPrimaryIps = new Dictionary<string, string>();
 
     internal TopologyAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig) : base(settings,dataSourceConfig,false)
     {
@@ -34,9 +36,9 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 controlConnection.Open();
                 lock (lockObject)
                 {
-                    _hosts = GetCurrentServers(controlConnection);
+                    _hostsToNodeTypeMap = GetCurrentServers(controlConnection);
                 }
-                CreatePool(_hosts);
+                CreatePool(_hostsToNodeTypeMap);
                 controlConnection.Close();
                 break;
             }
@@ -124,17 +126,17 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     /// <summary>
     /// Create a new pool
     /// </summary>
-    internal new  void CreatePool(List<string> hosts)
+    internal new  void CreatePool(Dictionary<string,string> hostsmap)
     {
         lock (lockObject)
         {
-            _hosts = hosts;
-            foreach(var host in _hosts)
+            _hostsToNodeTypeMap = hostsmap;
+            foreach(var host in _hostsToNodeTypeMap)
             {
                 var flag = 0;
                 foreach (var pool in _pools)
                 {
-                    if (host.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
+                    if (host.Key.Equals(pool.Settings.Host, StringComparison.OrdinalIgnoreCase))
                     {
                         flag = 1;
                         break;
@@ -144,16 +146,18 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 if (flag == 1)
                     continue;
                 var poolSettings = settings.Clone();
-                poolSettings.Host = host.ToString();
+                poolSettings.Host = host.Key;
                 _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
-
-                _pools.Add(settings.Pooling
-                    ? new PoolingDataSource(poolSettings, dataSourceConfig)
-                    : new UnpooledDataSource(poolSettings, dataSourceConfig));
-
-                poolToNumConnMap[index] = 0;
-                index++;
-
+                NpgsqlDataSource poolnew = settings.Pooling? new PoolingDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
+                _pools.Add(poolnew);
+                if (host.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
+                {
+                    poolToNumConnMapPrimary[poolnew] = 0;
+                }
+                else if (host.Value.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
+                {
+                    poolToNumConnMapRR[poolnew] = 0;
+                }
             }
             unreachableHostsIndices.Clear();
         }
@@ -201,12 +205,13 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         return MAX_PREFERENCE_VALUE + 1;
     }
 
-    new List<string> GetCurrentServers(NpgsqlConnection conn)
+    new Dictionary<string, string> GetCurrentServers(NpgsqlConnection conn)
     {
         NpgsqlCommand QUERY_SERVER = new NpgsqlCommand("Select * from yb_servers()",conn);
         NpgsqlDataReader reader = QUERY_SERVER.ExecuteReader();
         _lastServerFetchTime = DateTime.Now;
-        List<string> currentPrivateIps = new List<string>();
+        Dictionary<string, string> currentPrivateIps = new Dictionary<string, string>();
+
         var hostConnectedTo = conn.Host;
         hostToPriorityMap.Clear();
 
@@ -218,10 +223,19 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             var cloud = reader.GetString(reader.GetOrdinal("cloud"));
             var region = reader.GetString(reader.GetOrdinal("region"));
             var zone = reader.GetString(reader.GetOrdinal("zone"));
+            var nodeType = reader.GetString(reader.GetOrdinal("node_type"));
+            if (nodeType.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
+            {
+                AllRRIps[host] = nodeType;
+            }
+            if (nodeType.Equals("primary", StringComparison.OrdinalIgnoreCase))
+            {
+                AllPrimaryIps[host] = nodeType;
+            }
 
             UpdatePriorityMap(host, cloud, region, zone);
 
-            UpdateCurrentHostList(currentPrivateIps, host, publicHost, cloud, region, zone);
+            UpdateCurrentHostList(currentPrivateIps, host, publicHost, cloud, region, zone, nodeType);
 
             if (hostConnectedTo.Equals(host))
             {
@@ -234,46 +248,115 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         return GetPrivateOrPublicServers(currentPrivateIps, currentPublicIps);
     }
 
-    new List<string> GetPrivateOrPublicServers(List<string> privateHosts, List<string> publicHosts)
+    Dictionary<string, string> GetRelevantServerToNodeTypeMap(Dictionary<string, string> serverToNodeTypeMap)
     {
-        List<string> servers = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
-        var flag = 0;
-
-        if (servers != null && servers.Any())
+        Dictionary<string,string> serversNodeTypeMapCopy = serverToNodeTypeMap;
+        foreach (var serverNodeType in serverToNodeTypeMap)
         {
-            foreach (var server in servers)
+            if (!unreachableHosts.Contains(serverNodeType.Key))
             {
-                if (!unreachableHosts.Contains(server))
+                if (settings.LoadBalanceHosts == LoadBalanceHosts.OnlyPrimary || settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
                 {
-                    flag = 1;
-                    break;
+                    if (serverNodeType.Value.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
+                    {
+                        serversNodeTypeMapCopy.Remove(serverNodeType.Key);
+                    }
+                }
+                if (settings.LoadBalanceHosts == LoadBalanceHosts.OnlyRR || settings.LoadBalanceHosts == LoadBalanceHosts.PreferRR)
+                {
+                    if (serverNodeType.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
+                    {
+                        serversNodeTypeMapCopy.Remove(serverNodeType.Key);
+                    }
                 }
             }
+        }
 
-            if (flag == 1)
-                return servers;
+        return serversNodeTypeMapCopy;
+    }
+    new Dictionary<string, string> GetPrivateOrPublicServers(Dictionary<string, string> privateHosts, Dictionary<string,string> publicHosts)
+    {
+        var exceptions = new List<Exception>();
+        Dictionary<string,string> serverToNodeTypeMap = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
+
+        if (serverToNodeTypeMap != null && serverToNodeTypeMap.Any())
+        {
+            serverToNodeTypeMap = GetRelevantServerToNodeTypeMap(serverToNodeTypeMap);
+
+            if (serverToNodeTypeMap.Any())
+                return serverToNodeTypeMap;
         }
 
         for (var i = FIRST_FALLBACK; i <= MAX_PREFERENCE_VALUE; i++)
         {
-            if (fallbackPrivateIPs[i] != null && !fallbackPrivateIPs[i].Any())
+            fallbackPrivateIPs.TryGetValue(i, out var privateIp);
+            fallbackPublicIPs.TryGetValue(i, out var  publicIp);
+            if (privateIp == null)
+                privateIp = new Dictionary<string, string>();
+            if (publicIp == null)
+                publicIp = new Dictionary<string, string>();
+            if (privateIp.Any() ||  publicIp.Any())
             {
-                return base.GetPrivateOrPublicServers(fallbackPrivateIPs[i], fallbackPublicIPs[i]);
+                serverToNodeTypeMap = base.GetPrivateOrPublicServers(privateIp, publicIp);
+                serverToNodeTypeMap = GetRelevantServerToNodeTypeMap(serverToNodeTypeMap);
+
+                if (serverToNodeTypeMap.Any())
+                    return serverToNodeTypeMap;
             }
         }
 
-        return base.GetPrivateOrPublicServers(fallbackPrivateIPs[REST_OF_CLUSTER], fallbackPublicIPs[REST_OF_CLUSTER]);
+        if (settings.FallBackToTopologyKeysOnly)
+        {
+            if (settings.LoadBalanceHosts != LoadBalanceHosts.PreferPrimary || settings.LoadBalanceHosts != LoadBalanceHosts.PreferRR)
+            {
+                throw NoSuitableHostsException(exceptions);
+            }
+            if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
+            {
+                return AllRRIps;
+            }
+            else if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferRR)
+            {
+                return AllPrimaryIps;
+            }
+        }
+
+        fallbackPrivateIPs.TryGetValue(REST_OF_CLUSTER, out var privateIPRest);
+        fallbackPublicIPs.TryGetValue(REST_OF_CLUSTER, out var publicIPRest);
+
+        if (privateIPRest == null)
+            privateIPRest = new Dictionary<string, string>();
+        if (publicIPRest == null)
+            publicIPRest = new Dictionary<string, string>();
+
+        serverToNodeTypeMap = base.GetPrivateOrPublicServers(privateIPRest, publicIPRest);
+        serverToNodeTypeMap = GetRelevantServerToNodeTypeMap(serverToNodeTypeMap);
+
+        if (serverToNodeTypeMap.Any())
+            return serverToNodeTypeMap;
+
+        if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
+        {
+            return AllRRIps;
+        }
+        else if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferRR)
+        {
+            return AllPrimaryIps;
+        }
+
+        throw NoSuitableHostsException(exceptions);
     }
 
-    void UpdateCurrentHostList(List<string> currentPrivateIPs, string host, string publicIP, string cloud, string region, string zone)
+    void UpdateCurrentHostList(Dictionary<string, string> currentPrivateIPs, string host, string publicIP, string cloud, string region, string zone, string nodetype)
     {
         CloudPlacement cp = new CloudPlacement(cloud, region, zone);
+        Console.WriteLine("Adding host:" + host);
         if (cp.IsContainedIn(allowedPlacements[PRIMARY_PLACEMENTS]))
         {
-            currentPrivateIPs.Add(host);
+            currentPrivateIPs[host] = nodetype;
             if (!string.IsNullOrEmpty(publicIP.Trim()))
             {
-                currentPublicIps.Add(publicIP);
+                currentPublicIps[publicIP] = nodetype;
             }
         }
         else
@@ -282,23 +365,27 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             {
                 if (cp.IsContainedIn(allowedCPs.Value))
                 {
-                    List<string> hosts = fallbackPrivateIPs.GetOrAdd(allowedCPs.Key, k => new List<string>());
-                    hosts.Add(host);
+                    Dictionary<string,string> hostsmap = fallbackPrivateIPs.GetOrAdd(allowedCPs.Key, k => new Dictionary<string, string>());
+                    hostsmap.Add(host, nodetype);
 
                     if (!string.IsNullOrEmpty(publicIP.Trim()))
                     {
-                        List<string> publicIPs = fallbackPublicIPs.GetOrAdd(allowedCPs.Key, k => new List<string>());
-                        publicIPs.Add(publicIP);
+                        Dictionary<string,string> publicIPsMap = fallbackPublicIPs.GetOrAdd(allowedCPs.Key, k => new Dictionary<string, string>());
+                        publicIPsMap.Add(publicIP, nodetype);
                     }
 
                     return;
                 }
             }
 
-            List<string> remainingHosts = fallbackPrivateIPs.GetOrAdd(REST_OF_CLUSTER, k => new List<string>());
-            remainingHosts.Add(host);
-            List<string> remainingPublicIPs = fallbackPublicIPs.GetOrAdd(REST_OF_CLUSTER, k => new List<string>());
-            remainingPublicIPs.Add(publicIP);
+            Dictionary<string,string> remainingHosts = fallbackPrivateIPs.GetOrAdd(REST_OF_CLUSTER, k => new Dictionary<string, string>());
+            remainingHosts.Add(host, nodetype);
+            if (!string.IsNullOrEmpty(publicIP.Trim()))
+            {
+                Dictionary<string, string> remainingPublicIPs =
+                    fallbackPublicIPs.GetOrAdd(REST_OF_CLUSTER, k => new Dictionary<string, string>());
+                remainingPublicIPs.Add(publicIP, nodetype);
+            }
         }
     }
 
