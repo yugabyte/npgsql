@@ -36,17 +36,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
 
@@ -76,17 +66,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
     [Test, Timeout(60000)]
@@ -128,17 +108,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
     [Test, Timeout(60000)]
@@ -167,17 +137,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
 
@@ -207,17 +167,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
 
@@ -259,17 +209,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
     [Test, Timeout(60000)]
@@ -298,17 +238,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         }
         finally
         {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            VerifyLocal("127.0.0.4", 0);
-            VerifyLocal("127.0.0.5", 0);
-            VerifyLocal("127.0.0.6", 0);
-            DestroyCluster();
+            CloseConnections(conns);
         }
     }
 
@@ -364,5 +294,20 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         string? _Error = null;
         var cmd = "/bin/yb-ctl destroy";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
+    }
+
+    void CloseConnections(List<NpgsqlConnection> conns)
+    {
+        foreach (var conn in conns)
+        {
+            conn.Close();
+        }
+        VerifyLocal("127.0.0.1", 0);
+        VerifyLocal("127.0.0.2", 0);
+        VerifyLocal("127.0.0.3", 0);
+        VerifyLocal("127.0.0.4", 0);
+        VerifyLocal("127.0.0.5", 0);
+        VerifyLocal("127.0.0.6", 0);
+        DestroyCluster();
     }
 }

@@ -926,7 +926,7 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
                 }
                 else
                 {
-                    if (_dataSource is ClusterAwareDataSource)// || _dataSource is TopologyAwareDataSource)
+                    if (_dataSource is ClusterAwareDataSource)
                     {
                         _dataSource.Return(connector);
                     }

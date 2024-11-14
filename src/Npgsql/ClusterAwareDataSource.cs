@@ -27,7 +27,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// <summary>
     /// Map of yb_server hosts
     /// </summary>
-    protected Dictionary<string, string>? _hostsNodeTypeMap = null;
+    protected Dictionary<string, string>? _hostsToNodeTypeMap = null;
     // volatile int _roundRobinIndex = -1;
     /// <summary>
     /// Stores the last time yb_servers() was called
@@ -156,9 +156,9 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     controlConnection.Open();
                     lock (lockObject)
                     {
-                        _hostsNodeTypeMap = GetCurrentServers(controlConnection);
+                        _hostsToNodeTypeMap = GetCurrentServers(controlConnection);
                     }
-                    CreatePool(_hostsNodeTypeMap);
+                    CreatePool(_hostsToNodeTypeMap);
                     controlConnection.Close();
                     break;
                 }
@@ -195,8 +195,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         lock (lockObject)
         {
-            _hostsNodeTypeMap = hostsmap;
-            foreach(var host in _hostsNodeTypeMap)
+            _hostsToNodeTypeMap = hostsmap;
+            foreach(var host in _hostsToNodeTypeMap)
             {
                 var flag = 0;
                 foreach (var pool in _pools)
@@ -245,16 +245,14 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         foreach (var pool in poolToNumConnMapPrimary)
         {
-            Debug.Assert(pool.Key.Settings.Host != null, "pool.Key.Settings.Host != null");
-            if (pool.Key.Settings.Host.Equals(server, StringComparison.OrdinalIgnoreCase))
+            if (pool.Key.Settings.Host != null && pool.Key.Settings.Host.Equals(server, StringComparison.OrdinalIgnoreCase))
             {
                 return pool.Value;
             }
         }
         foreach (var pool in poolToNumConnMapRR)
         {
-            Debug.Assert(pool.Key.Settings.Host != null, "pool.Key.Settings.Host != null");
-            if (pool.Key.Settings.Host.Equals(server, StringComparison.OrdinalIgnoreCase))
+            if (pool.Key.Settings.Host != null && pool.Key.Settings.Host.Equals(server, StringComparison.OrdinalIgnoreCase))
             {
                 return pool.Value;
             }
@@ -319,7 +317,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     void UpdateConnectionMap(int poolIndex, int incDec)
     {
         NpgsqlDataSource currPool = null!;
-        if (poolIndex >= 0 && poolIndex <= _pools.Count)
+        if (poolIndex >= 0 && poolIndex < _pools.Count)
         {
             currPool = _pools[poolIndex];
         }
@@ -336,13 +334,15 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 currentCount = poolToNumConnMapPrimary[currPool];
                 poolToNumConnMapPrimary[currPool] += incDec;
-                _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}", _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapPrimary[currPool]);
+                _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}",
+                    _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapPrimary[currPool]);
             }
             else if (poolToNumConnMapRR.ContainsKey(currPool))
             {
                 currentCount = poolToNumConnMapRR[currPool];
                 poolToNumConnMapRR[currPool] += incDec;
-                _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}", _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapRR[currPool]);
+                _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}",
+                    _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapRR[currPool]);
             }
         }
     }
@@ -353,9 +353,9 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         _connectionLogger.LogDebug("Refreshing connection");
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
-        if (_hostsNodeTypeMap != null && _hostsNodeTypeMap.Count != 0)
+        if (_hostsToNodeTypeMap != null && _hostsToNodeTypeMap.Count != 0)
         {
-            initialHosts.AddRange(_hostsNodeTypeMap.Keys);
+            initialHosts.AddRange(_hostsToNodeTypeMap.Keys);
         }
 
         initialHosts = initialHosts.Distinct().ToList();
@@ -368,8 +368,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
                 NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
                 controlConnection.Open();
-                _hostsNodeTypeMap = GetCurrentServers(controlConnection);
-                CreatePool(_hostsNodeTypeMap);
+                _hostsToNodeTypeMap = GetCurrentServers(controlConnection);
+                CreatePool(_hostsToNodeTypeMap);
                 controlConnection.Close();
                 break;
             }
@@ -573,7 +573,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     }
 
     /// <summary>
-    ///
+    /// Exception when no suitable host is available to connect to
     /// </summary>
     /// <param name="exceptions"></param>
     /// <returns></returns>
@@ -614,7 +614,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         var PoolIndex = -1;
         lock(lockObject)
         {
-            Debug.Assert(poolToNumConnMap != null, nameof(poolToNumConnMap) + " != null");
+            Debug.Assert(poolToNumConnMap != null, nameof(poolToNumConnMap) + " = null");
             PoolIndex = getHosts(poolToNumConnMap);
             if (PoolIndex != -1)
             {
@@ -643,7 +643,16 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         Debug.Assert(poolToNumConnMap != null, nameof(poolToNumConnMap) + " != null");
         for (var i = 0; i < poolToNumConnMap.Count; i++)
         {
-            var Pool = poolToNumConnMap.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;
+            var random = new Random();
+            var Pool = poolToNumConnMap.Aggregate((l, r) =>
+            {
+                if (l.Value < r.Value) return l;
+                if (l.Value > r.Value) return r;
+
+                // If values are equal, randomly select between l and r
+                return random.Next(2) == 0 ? l : r;
+            }).Key;
+
             PoolIndex = _pools.IndexOf(Pool);
             if (!unreachableHostsIndices.Contains(PoolIndex))
             {

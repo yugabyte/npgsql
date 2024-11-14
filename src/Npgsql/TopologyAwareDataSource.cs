@@ -36,9 +36,9 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 controlConnection.Open();
                 lock (lockObject)
                 {
-                    _hostsNodeTypeMap = GetCurrentServers(controlConnection);
+                    _hostsToNodeTypeMap = GetCurrentServers(controlConnection);
                 }
-                CreatePool(_hostsNodeTypeMap);
+                CreatePool(_hostsToNodeTypeMap);
                 controlConnection.Close();
                 break;
             }
@@ -130,8 +130,8 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     {
         lock (lockObject)
         {
-            _hostsNodeTypeMap = hostsmap;
-            foreach(var host in _hostsNodeTypeMap)
+            _hostsToNodeTypeMap = hostsmap;
+            foreach(var host in _hostsToNodeTypeMap)
             {
                 var flag = 0;
                 foreach (var pool in _pools)
@@ -248,10 +248,10 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         return GetPrivateOrPublicServers(currentPrivateIps, currentPublicIps);
     }
 
-    Dictionary<string, string> GetServerNodeTypeMap(Dictionary<string, string> serversNodeTypeMap)
+    Dictionary<string, string> GetRelevantServerToNodeTypeMap(Dictionary<string, string> serverToNodeTypeMap)
     {
-        Dictionary<string,string> serversNodeTypeMapCopy = serversNodeTypeMap;
-        foreach (var serverNodeType in serversNodeTypeMap)
+        Dictionary<string,string> serversNodeTypeMapCopy = serverToNodeTypeMap;
+        foreach (var serverNodeType in serverToNodeTypeMap)
         {
             if (!unreachableHosts.Contains(serverNodeType.Key))
             {
@@ -277,15 +277,14 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     new Dictionary<string, string> GetPrivateOrPublicServers(Dictionary<string, string> privateHosts, Dictionary<string,string> publicHosts)
     {
         var exceptions = new List<Exception>();
-        Dictionary<string,string> serversNodeTypeMap = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
-        // var flag = 0;
+        Dictionary<string,string> serverToNodeTypeMap = base.GetPrivateOrPublicServers(privateHosts, publicHosts);
 
-        if (serversNodeTypeMap != null && serversNodeTypeMap.Any())
+        if (serverToNodeTypeMap != null && serverToNodeTypeMap.Any())
         {
-            serversNodeTypeMap = GetServerNodeTypeMap(serversNodeTypeMap);
+            serverToNodeTypeMap = GetRelevantServerToNodeTypeMap(serverToNodeTypeMap);
 
-            if (serversNodeTypeMap.Any())
-                return serversNodeTypeMap;
+            if (serverToNodeTypeMap.Any())
+                return serverToNodeTypeMap;
         }
 
         for (var i = FIRST_FALLBACK; i <= MAX_PREFERENCE_VALUE; i++)
@@ -298,16 +297,29 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 publicIp = new Dictionary<string, string>();
             if (privateIp.Any() ||  publicIp.Any())
             {
-                serversNodeTypeMap = base.GetPrivateOrPublicServers(privateIp, publicIp);
-                serversNodeTypeMap = GetServerNodeTypeMap(serversNodeTypeMap);
+                serverToNodeTypeMap = base.GetPrivateOrPublicServers(privateIp, publicIp);
+                serverToNodeTypeMap = GetRelevantServerToNodeTypeMap(serverToNodeTypeMap);
 
-                if (serversNodeTypeMap.Any())
-                    return serversNodeTypeMap;
+                if (serverToNodeTypeMap.Any())
+                    return serverToNodeTypeMap;
             }
         }
 
         if (settings.FallBackToTopologyKeysOnly)
-            throw NoSuitableHostsException(exceptions);
+        {
+            if (settings.LoadBalanceHosts != LoadBalanceHosts.PreferPrimary || settings.LoadBalanceHosts != LoadBalanceHosts.PreferRR)
+            {
+                throw NoSuitableHostsException(exceptions);
+            }
+            if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
+            {
+                return AllRRIps;
+            }
+            else if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferRR)
+            {
+                return AllPrimaryIps;
+            }
+        }
 
         fallbackPrivateIPs.TryGetValue(REST_OF_CLUSTER, out var privateIPRest);
         fallbackPublicIPs.TryGetValue(REST_OF_CLUSTER, out var publicIPRest);
@@ -317,11 +329,11 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         if (publicIPRest == null)
             publicIPRest = new Dictionary<string, string>();
 
-        serversNodeTypeMap = base.GetPrivateOrPublicServers(privateIPRest, publicIPRest);
-        serversNodeTypeMap = GetServerNodeTypeMap(serversNodeTypeMap);
+        serverToNodeTypeMap = base.GetPrivateOrPublicServers(privateIPRest, publicIPRest);
+        serverToNodeTypeMap = GetRelevantServerToNodeTypeMap(serverToNodeTypeMap);
 
-        if (serversNodeTypeMap.Any())
-            return serversNodeTypeMap;
+        if (serverToNodeTypeMap.Any())
+            return serverToNodeTypeMap;
 
         if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
         {

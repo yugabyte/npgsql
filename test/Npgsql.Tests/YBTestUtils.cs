@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Reflection.Metadata.Ecma335;
@@ -11,8 +12,7 @@ public class YBTestUtils
 {
     public void ExecuteShellCommand(string argument, ref string? _outputMessage, ref string? _errorMessage)
 {
-    // var path = Environment.GetEnvironmentVariable("YBDB_PATH");
-    var path = "/Users/sfurtisarah/code/yugabyte-db";
+    var path = Environment.GetEnvironmentVariable("YBDB_PATH");
     var arguments = path + argument;
     // Set process variable
     // Provides access to local and remote processes and enables you to start and stop local system processes.
@@ -67,7 +67,7 @@ public class YBTestUtils
             var responseBody = await response.Content.ReadAsStringAsync();
             var count = responseBody.Split("client backend");
             Console.WriteLine(server + ":" + (count.Length - 1));
-            // Assert.AreEqual(ExpectedCount, count.Length - 1);
+            Assert.AreEqual(ExpectedCount, count.Length - 1);
 
             // Verify Local
 
@@ -86,7 +86,7 @@ public class YBTestUtils
 
         var recorded = ClusterAwareDataSource.GetLoad(server);
         Console.WriteLine(server + ":" + recorded);
-        // Assert.AreEqual(ExpectedCount, recorded);
+        Assert.AreEqual(ExpectedCount, recorded);
 
     }
 }
