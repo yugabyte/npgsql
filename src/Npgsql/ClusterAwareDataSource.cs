@@ -232,7 +232,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// </summary>
     /// <param name="poolindex"></param>
     /// <returns></returns>
-    protected bool HasBetterNodeAvailable(int poolindex)
+    protected virtual  bool HasBetterNodeAvailable(int poolindex)
     {
         return false;
     }
