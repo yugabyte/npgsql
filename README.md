@@ -78,10 +78,17 @@ Load balancing connection properties:
 
 The following connection properties are added to enable load balancing:
 
-* Load Balance Hosts - enable cluster-aware load balancing by setting this property to True; disabled by default.
+* Load Balance Hosts - Starting with version 8.0.3.2, it expects one of False, Any (same as true), OnlyPrimary, OnlyRR, PreferPrimary and PreferRR as its possible values.
+    * False - No connection load balancing. Behaviour is similar to vanilla Npgsql driver
+    * Any - Same as value true. Distribute connections equally across all nodes in the cluster, irrespective of its type (primary or read-replica)
+    * OnlyPrimary - Create connections equally across only the primary nodes of the cluster
+    * OnlyRR - Create connections equally across only the read-replica nodes of the cluster
+    * PreferPrimary - Create connections equally across primary cluster nodes. If none available, on any available read replica node in the cluster
+    * PreferRR - Create connections equally across read replica nodes of the cluster. If none available, on any available primary cluster node
 * Topology Keys - provide comma-separated geo-location values to enable topology-aware load balancing. Geo-locations can be provided as cloud.region.zone.
 * YB Servers Refresh Interval - The list of servers, to balance the connection load on, are refreshed periodically every 5 minutes by default. This time can be regulated by this property.
-* Failed Host Reconnect Delay Secs - Sets the reconnect time for failed hosts
+* Fallback To Topology Keys Only - Decides if the driver can fall back to nodes outside of the given placements for new connections, if the nodes in the given placements are not available. Value true means stick to explicitly given placements for fallback, else fail. Value false means fall back to entire cluster nodes when nodes in the given placements are unavailable. Default is false. It is ignored if topology-keys is not specified or load-balance is set to either prefer-primary or prefer-rr.
+* Failed Host Reconnect Delay Sec - When the driver cannot connect to a server, it marks it as failed with a timestamp. Later, whenever it refreshes the server list via yb_servers(), if it sees the failed server in the response, it marks the server as UP only if the time specified via this property has elapsed since the time it was last marked as a failed host. Default is 5 seconds.
 * Enable Discard Sequence - Flag to enable/disable running `Discard sequences` on connection Reset
 * Enable Discard Temp - Flag to enable/disable running `Discard Temp` on connection Reset
 * Enable Close All - Flag to enable/disable running `Close All` on connection Reset
