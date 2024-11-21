@@ -163,7 +163,12 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
         }
     }
 
-    new bool HasBetterNodeAvailable(int poolindex)
+    /// <summary>
+    /// Checks if a better node is available or not
+    /// </summary>
+    /// <param name="poolindex"></param>
+    /// <returns></returns>
+    protected override bool HasBetterNodeAvailable(int poolindex)
     {
         var chosenHost = _pools[poolindex].Settings.Host;
         if (chosenHost != null && hostToPriorityMap.ContainsKey(chosenHost)) {
@@ -366,12 +371,19 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 if (cp.IsContainedIn(allowedCPs.Value))
                 {
                     Dictionary<string,string> hostsmap = fallbackPrivateIPs.GetOrAdd(allowedCPs.Key, k => new Dictionary<string, string>());
-                    hostsmap.Add(host, nodetype);
+                    if (!hostsmap.ContainsKey(host))
+                    {
+                        hostsmap.Add(host, nodetype);
+                    }
 
                     if (!string.IsNullOrEmpty(publicIP.Trim()))
                     {
                         Dictionary<string,string> publicIPsMap = fallbackPublicIPs.GetOrAdd(allowedCPs.Key, k => new Dictionary<string, string>());
-                        publicIPsMap.Add(publicIP, nodetype);
+                        if (!publicIPsMap.ContainsKey(publicIP))
+                        {
+                            publicIPsMap.Add(publicIP, nodetype);
+                        }
+
                     }
 
                     return;
@@ -379,14 +391,64 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
             }
 
             Dictionary<string,string> remainingHosts = fallbackPrivateIPs.GetOrAdd(REST_OF_CLUSTER, k => new Dictionary<string, string>());
-            remainingHosts.Add(host, nodetype);
+            if (!remainingHosts.ContainsKey(host))
+            {
+                remainingHosts.Add(host, nodetype);
+            }
             if (!string.IsNullOrEmpty(publicIP.Trim()))
             {
                 Dictionary<string, string> remainingPublicIPs =
                     fallbackPublicIPs.GetOrAdd(REST_OF_CLUSTER, k => new Dictionary<string, string>());
-                remainingPublicIPs.Add(publicIP, nodetype);
+                if (!remainingPublicIPs.ContainsKey(publicIP))
+                {
+                    remainingPublicIPs.Add(publicIP, nodetype);
+                }
             }
         }
+    }
+
+    internal override bool Refresh()
+    {
+        _connectionLogger.LogDebug("Refreshing connection");
+        poolToNumConnMapPrimary.Clear();
+        poolToNumConnMapRR.Clear();
+        Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
+        if (_hostsToNodeTypeMap != null && _hostsToNodeTypeMap.Count != 0)
+        {
+            initialHosts.AddRange(_hostsToNodeTypeMap.Keys);
+        }
+
+        initialHosts = initialHosts.Distinct().ToList();
+        foreach (var host in initialHosts.ToList())
+        {
+            try
+            {
+                var controlSettings = settings;
+                controlSettings.Host = host.ToString();
+                NpgsqlDataSource control = new UnpooledDataSource(controlSettings, dataSourceConfig);
+                NpgsqlConnection controlConnection = NpgsqlConnection.FromDataSource(control);
+                controlConnection.Open();
+                _hostsToNodeTypeMap = GetCurrentServers(controlConnection);
+                CreatePool(_hostsToNodeTypeMap);
+                controlConnection.Close();
+                break;
+            }
+            catch (Exception)
+            {
+                _connectionLogger.LogDebug("Failed to connect to {host}", host);
+                initialHosts.Remove(host);
+                if (initialHosts.Count == 0)
+                {
+                    _connectionLogger.LogError("Failed to create control connection. No suitable host found");
+                    throw;
+                }
+
+            }
+
+        }
+        unreachableHostsIndices.Clear();
+        unreachableHosts.Clear();
+        return true;
     }
 
     class CloudPlacement

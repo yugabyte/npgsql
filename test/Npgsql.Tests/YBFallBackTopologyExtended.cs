@@ -9,7 +9,7 @@ namespace YBNpgsql.Tests;
 
 public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
 {
-    string connStringBuilder = "host=127.0.0.1,127.0.0.4,127.0.0.7;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;YB Servers Refresh Interval=10;Topology Keys=";
+    string connStringBuilder = "host=127.0.0.1,127.0.0.5,127.0.0.7;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;YB Servers Refresh Interval=10;Topology Keys=";
     int numConnections = 12;
     new void CreateCluster()
     {
@@ -72,7 +72,7 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
             j++;
         }
     }
-    [Test]
+     [Test, Timeout(240000)]
     public async Task TestFallback()
     {
 
@@ -80,7 +80,7 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
         string? _Error = null;
 
         CreateCluster();
-        int[] count = { 4, 4, 4, -1, -1, -1 };
+        int[] count = { 4, 4, 4, 0, 0, 0 };
         var conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-1a:1,aws.us-east.us-east-2a:2,aws.us-east.us-east-2b:3,aws.us-east.us-east-2c:4", count);
 
         var cmd = "/bin/yb-ctl stop_node 1";
