@@ -2,7 +2,7 @@
 using OpenTelemetry.Metrics;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Extension method for setting up Npgsql OpenTelemetry metrics.

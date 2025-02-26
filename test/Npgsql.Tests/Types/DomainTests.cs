@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 using static YBNpgsql.Tests.TestUtil;
 

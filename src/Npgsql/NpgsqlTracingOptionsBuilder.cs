@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// A builder to configure Npgsql's support for OpenTelemetry tracing.

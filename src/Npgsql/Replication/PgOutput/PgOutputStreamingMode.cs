@@ -1,4 +1,4 @@
-﻿namespace Npgsql.Replication.PgOutput;
+﻿namespace YBNpgsql.Replication.PgOutput;
 
 /// <summary>
 /// Option to enable streaming of in-progress transactions.

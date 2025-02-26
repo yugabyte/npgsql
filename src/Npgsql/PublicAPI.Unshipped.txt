@@ -1,77 +1,78 @@
 ﻿#nullable enable
-abstract Npgsql.NpgsqlDataSource.Clear() -> void
-Npgsql.NpgsqlConnection.CloneWithAsync(string! connectionString, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<Npgsql.NpgsqlConnection!>
-Npgsql.NpgsqlConnection.SslClientAuthenticationOptionsCallback.get -> System.Action<System.Net.Security.SslClientAuthenticationOptions!>?
-Npgsql.NpgsqlConnection.SslClientAuthenticationOptionsCallback.set -> void
-Npgsql.NpgsqlConnectionStringBuilder.SslNegotiation.get -> Npgsql.SslNegotiation
-Npgsql.NpgsqlConnectionStringBuilder.SslNegotiation.set -> void
-Npgsql.NpgsqlDataSourceBuilder.ConfigureTypeLoading(System.Action<Npgsql.NpgsqlTypeLoadingOptionsBuilder!>! configureAction) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.MapComposite<T>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.ConfigureTracing(System.Action<Npgsql.NpgsqlTracingOptionsBuilder!>! configureAction) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.UseNegotiateOptionsCallback(System.Action<System.Net.Security.NegotiateAuthenticationClientOptions!>? negotiateOptionsCallback) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlDataSourceBuilder.UseSslClientAuthenticationOptionsCallback(System.Action<System.Net.Security.SslClientAuthenticationOptions!>? sslClientAuthenticationOptionsCallback) -> Npgsql.NpgsqlDataSourceBuilder!
-Npgsql.NpgsqlMetricsOptions
-Npgsql.NpgsqlMetricsOptions.NpgsqlMetricsOptions() -> void
-Npgsql.NpgsqlSlimDataSourceBuilder.ConfigureTracing(System.Action<Npgsql.NpgsqlTracingOptionsBuilder!>! configureAction) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.ConfigureTypeLoading(System.Action<Npgsql.NpgsqlTypeLoadingOptionsBuilder!>! configureAction) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.EnableGeometricTypes() -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.EnableJsonTypes() -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.EnableNetworkTypes() -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.MapComposite<T>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.UseNegotiateOptionsCallback(System.Action<System.Net.Security.NegotiateAuthenticationClientOptions!>? negotiateOptionsCallback) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-Npgsql.NpgsqlSlimDataSourceBuilder.UseSslClientAuthenticationOptionsCallback(System.Action<System.Net.Security.SslClientAuthenticationOptions!>? sslClientAuthenticationOptionsCallback) -> Npgsql.NpgsqlSlimDataSourceBuilder!
-*REMOVED*Npgsql.NpgsqlTracingOptions
-*REMOVED*Npgsql.NpgsqlTracingOptions.NpgsqlTracingOptions() -> void
-Npgsql.NpgsqlTracingOptionsBuilder
-Npgsql.NpgsqlTracingOptionsBuilder.ConfigureBatchEnrichmentCallback(System.Action<System.Diagnostics.Activity!, Npgsql.NpgsqlBatch!>? batchEnrichmentCallback) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTracingOptionsBuilder.ConfigureBatchFilter(System.Func<Npgsql.NpgsqlBatch!, bool>? batchFilter) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTracingOptionsBuilder.ConfigureBatchSpanNameProvider(System.Func<Npgsql.NpgsqlBatch!, string?>? batchSpanNameProvider) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTracingOptionsBuilder.ConfigureCommandEnrichmentCallback(System.Action<System.Diagnostics.Activity!, Npgsql.NpgsqlCommand!>? commandEnrichmentCallback) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTracingOptionsBuilder.ConfigureCommandFilter(System.Func<Npgsql.NpgsqlCommand!, bool>? commandFilter) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTracingOptionsBuilder.ConfigureCommandSpanNameProvider(System.Func<Npgsql.NpgsqlCommand!, string?>? commandSpanNameProvider) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTracingOptionsBuilder.EnableFirstResponseEvent(bool enable = true) -> Npgsql.NpgsqlTracingOptionsBuilder!
-Npgsql.NpgsqlTypeLoadingOptionsBuilder
-Npgsql.NpgsqlTypeLoadingOptionsBuilder.EnableTableCompositesLoading(bool enable = true) -> Npgsql.NpgsqlTypeLoadingOptionsBuilder!
-Npgsql.NpgsqlTypeLoadingOptionsBuilder.EnableTypeLoading(bool enable = true) -> Npgsql.NpgsqlTypeLoadingOptionsBuilder!
-Npgsql.NpgsqlTypeLoadingOptionsBuilder.SetTypeLoadingSchemas(params System.Collections.Generic.IEnumerable<string!>? schemas) -> Npgsql.NpgsqlTypeLoadingOptionsBuilder!
-Npgsql.Replication.PgOutput.ReplicationValue.GetFieldName() -> string!
-Npgsql.Replication.PgOutput.Messages.ParallelStreamAbortMessage
-Npgsql.Replication.PgOutput.Messages.ParallelStreamAbortMessage.AbortLsn.get -> NpgsqlTypes.NpgsqlLogSequenceNumber
-Npgsql.Replication.PgOutput.Messages.ParallelStreamAbortMessage.AbortTimestamp.get -> System.DateTime
-Npgsql.Replication.PgOutput.PgOutputProtocolVersion
-Npgsql.Replication.PgOutput.PgOutputProtocolVersion.V1 = 1 -> Npgsql.Replication.PgOutput.PgOutputProtocolVersion
-Npgsql.Replication.PgOutput.PgOutputProtocolVersion.V2 = 2 -> Npgsql.Replication.PgOutput.PgOutputProtocolVersion
-Npgsql.Replication.PgOutput.PgOutputProtocolVersion.V3 = 3 -> Npgsql.Replication.PgOutput.PgOutputProtocolVersion
-Npgsql.Replication.PgOutput.PgOutputProtocolVersion.V4 = 4 -> Npgsql.Replication.PgOutput.PgOutputProtocolVersion
-Npgsql.Replication.PgOutput.PgOutputReplicationOptions.PgOutputReplicationOptions(string! publicationName, Npgsql.Replication.PgOutput.PgOutputProtocolVersion protocolVersion, bool? binary = null, Npgsql.Replication.PgOutput.PgOutputStreamingMode? streamingMode = null, bool? messages = null, bool? twoPhase = null) -> void
-Npgsql.Replication.PgOutput.PgOutputReplicationOptions.PgOutputReplicationOptions(System.Collections.Generic.IEnumerable<string!>! publicationNames, Npgsql.Replication.PgOutput.PgOutputProtocolVersion protocolVersion, bool? binary = null, Npgsql.Replication.PgOutput.PgOutputStreamingMode? streamingMode = null, bool? messages = null, bool? twoPhase = null) -> void
-Npgsql.Replication.PgOutput.PgOutputReplicationOptions.ProtocolVersion.get -> Npgsql.Replication.PgOutput.PgOutputProtocolVersion
-*REMOVED*Npgsql.Replication.PgOutput.PgOutputReplicationOptions.ProtocolVersion.get -> ulong
-Npgsql.Replication.PgOutput.PgOutputReplicationOptions.StreamingMode.get -> Npgsql.Replication.PgOutput.PgOutputStreamingMode?
-*REMOVED*Npgsql.Replication.PgOutput.PgOutputReplicationOptions.Streaming.get -> bool?
-Npgsql.Replication.PgOutput.PgOutputStreamingMode
-Npgsql.Replication.PgOutput.PgOutputStreamingMode.Off = 0 -> Npgsql.Replication.PgOutput.PgOutputStreamingMode
-Npgsql.Replication.PgOutput.PgOutputStreamingMode.On = 1 -> Npgsql.Replication.PgOutput.PgOutputStreamingMode
-Npgsql.Replication.PgOutput.PgOutputStreamingMode.Parallel = 2 -> Npgsql.Replication.PgOutput.PgOutputStreamingMode
-Npgsql.SslNegotiation
-Npgsql.SslNegotiation.Direct = 1 -> Npgsql.SslNegotiation
-Npgsql.SslNegotiation.Postgres = 0 -> Npgsql.SslNegotiation
-override Npgsql.NpgsqlMultiHostDataSource.Clear() -> void
-Npgsql.NpgsqlDataSource.ReloadTypes() -> void
-Npgsql.NpgsqlDataSource.ReloadTypesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
-Npgsql.NpgsqlConnection.ReloadTypesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
-*REMOVED*Npgsql.NpgsqlConnection.ReloadTypesAsync() -> System.Threading.Tasks.Task!
-*REMOVED*Npgsql.NpgsqlDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlDataSourceBuilder.MapComposite<T>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlSlimDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlSlimDataSourceBuilder.MapComposite<T>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlSlimDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
-*REMOVED*Npgsql.NpgsqlSlimDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, Npgsql.INpgsqlNameTranslator? nameTranslator = null) -> Npgsql.TypeMapping.INpgsqlTypeMapper!
+abstract YBNpgsql.NpgsqlDataSource.Clear() -> void
+YBNpgsql.NpgsqlConnection.CloneWithAsync(string! connectionString, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<YBNpgsql.NpgsqlConnection!>
+YBNpgsql.NpgsqlConnection.SslClientAuthenticationOptionsCallback.get -> System.Action<System.Net.Security.SslClientAuthenticationOptions!>?
+YBNpgsql.NpgsqlConnection.SslClientAuthenticationOptionsCallback.set -> void
+YBNpgsql.NpgsqlConnectionStringBuilder.SslNegotiation.get -> YBNpgsql.SslNegotiation
+YBNpgsql.NpgsqlConnectionStringBuilder.SslNegotiation.set -> void
+YBNpgsql.NpgsqlDataSourceBuilder.ConfigureTypeLoading(System.Action<YBNpgsql.NpgsqlTypeLoadingOptionsBuilder!>! configureAction) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.ConfigureTracing(System.Action<YBNpgsql.NpgsqlTracingOptionsBuilder!>! configureAction) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UseNegotiateOptionsCallback(System.Action<System.Net.Security.NegotiateAuthenticationClientOptions!>? negotiateOptionsCallback) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlDataSourceBuilder.UseSslClientAuthenticationOptionsCallback(System.Action<System.Net.Security.SslClientAuthenticationOptions!>? sslClientAuthenticationOptionsCallback) -> YBNpgsql.NpgsqlDataSourceBuilder!
+YBNpgsql.NpgsqlMetricsOptions
+YBNpgsql.NpgsqlMetricsOptions.NpgsqlMetricsOptions() -> void
+YBNpgsql.NpgsqlSlimDataSourceBuilder.ConfigureTracing(System.Action<YBNpgsql.NpgsqlTracingOptionsBuilder!>! configureAction) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.ConfigureTypeLoading(System.Action<YBNpgsql.NpgsqlTypeLoadingOptionsBuilder!>! configureAction) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.EnableGeometricTypes() -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.EnableJsonTypes() -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.EnableNetworkTypes() -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.UseNegotiateOptionsCallback(System.Action<System.Net.Security.NegotiateAuthenticationClientOptions!>? negotiateOptionsCallback) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+YBNpgsql.NpgsqlSlimDataSourceBuilder.UseSslClientAuthenticationOptionsCallback(System.Action<System.Net.Security.SslClientAuthenticationOptions!>? sslClientAuthenticationOptionsCallback) -> YBNpgsql.NpgsqlSlimDataSourceBuilder!
+*REMOVED*YBNpgsql.NpgsqlTracingOptions
+*REMOVED*YBNpgsql.NpgsqlTracingOptions.NpgsqlTracingOptions() -> void
+YBNpgsql.NpgsqlTracingOptionsBuilder
+YBNpgsql.NpgsqlTracingOptionsBuilder.ConfigureBatchEnrichmentCallback(System.Action<System.Diagnostics.Activity!, YBNpgsql.NpgsqlBatch!>? batchEnrichmentCallback) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTracingOptionsBuilder.ConfigureBatchFilter(System.Func<YBNpgsql.NpgsqlBatch!, bool>? batchFilter) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTracingOptionsBuilder.ConfigureBatchSpanNameProvider(System.Func<YBNpgsql.NpgsqlBatch!, string?>? batchSpanNameProvider) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTracingOptionsBuilder.ConfigureCommandEnrichmentCallback(System.Action<System.Diagnostics.Activity!, YBNpgsql.NpgsqlCommand!>? commandEnrichmentCallback) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTracingOptionsBuilder.ConfigureCommandFilter(System.Func<YBNpgsql.NpgsqlCommand!, bool>? commandFilter) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTracingOptionsBuilder.ConfigureCommandSpanNameProvider(System.Func<YBNpgsql.NpgsqlCommand!, string?>? commandSpanNameProvider) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTracingOptionsBuilder.EnableFirstResponseEvent(bool enable = true) -> YBNpgsql.NpgsqlTracingOptionsBuilder!
+YBNpgsql.NpgsqlTypeLoadingOptionsBuilder
+YBNpgsql.NpgsqlTypeLoadingOptionsBuilder.EnableTableCompositesLoading(bool enable = true) -> YBNpgsql.NpgsqlTypeLoadingOptionsBuilder!
+YBNpgsql.NpgsqlTypeLoadingOptionsBuilder.EnableTypeLoading(bool enable = true) -> YBNpgsql.NpgsqlTypeLoadingOptionsBuilder!
+YBNpgsql.NpgsqlTypeLoadingOptionsBuilder.SetTypeLoadingSchemas(params System.Collections.Generic.IEnumerable<string!>? schemas) -> YBNpgsql.NpgsqlTypeLoadingOptionsBuilder!
+YBNpgsql.Replication.PgOutput.ReplicationValue.GetFieldName() -> string!
+YBNpgsql.Replication.PgOutput.Messages.ParallelStreamAbortMessage
+YBNpgsql.Replication.PgOutput.Messages.ParallelStreamAbortMessage.AbortLsn.get -> YBNpgsqlTypes.NpgsqlLogSequenceNumber
+YBNpgsql.Replication.PgOutput.Messages.ParallelStreamAbortMessage.AbortTimestamp.get -> System.DateTime
+YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion
+YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion.V1 = 1 -> YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion
+YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion.V2 = 2 -> YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion
+YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion.V3 = 3 -> YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion
+YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion.V4 = 4 -> YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.PgOutputReplicationOptions(string! publicationName, YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion protocolVersion, bool? binary = null, YBNpgsql.Replication.PgOutput.PgOutputStreamingMode? streamingMode = null, bool? messages = null, bool? twoPhase = null) -> void
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.PgOutputReplicationOptions(System.Collections.Generic.IEnumerable<string!>! publicationNames, YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion protocolVersion, bool? binary = null, YBNpgsql.Replication.PgOutput.PgOutputStreamingMode? streamingMode = null, bool? messages = null, bool? twoPhase = null) -> void
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.ProtocolVersion.get -> YBNpgsql.Replication.PgOutput.PgOutputProtocolVersion
+*REMOVED*YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.ProtocolVersion.get -> ulong
+YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.StreamingMode.get -> YBNpgsql.Replication.PgOutput.PgOutputStreamingMode?
+*REMOVED*YBNpgsql.Replication.PgOutput.PgOutputReplicationOptions.Streaming.get -> bool?
+YBNpgsql.Replication.PgOutput.PgOutputStreamingMode
+YBNpgsql.Replication.PgOutput.PgOutputStreamingMode.Off = 0 -> YBNpgsql.Replication.PgOutput.PgOutputStreamingMode
+YBNpgsql.Replication.PgOutput.PgOutputStreamingMode.On = 1 -> YBNpgsql.Replication.PgOutput.PgOutputStreamingMode
+YBNpgsql.Replication.PgOutput.PgOutputStreamingMode.Parallel = 2 -> YBNpgsql.Replication.PgOutput.PgOutputStreamingMode
+YBNpgsql.SslNegotiation
+YBNpgsql.SslNegotiation.Direct = 1 -> YBNpgsql.SslNegotiation
+YBNpgsql.SslNegotiation.Postgres = 0 -> YBNpgsql.SslNegotiation
+override YBNpgsql.NpgsqlMultiHostDataSource.Clear() -> void
+override YBNpgsql.ClusterAwareDataSource.Clear() -> void
+YBNpgsql.NpgsqlDataSource.ReloadTypes() -> void
+YBNpgsql.NpgsqlDataSource.ReloadTypesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+YBNpgsql.NpgsqlConnection.ReloadTypesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+*REMOVED*YBNpgsql.NpgsqlConnection.ReloadTypesAsync() -> System.Threading.Tasks.Task!
+*REMOVED*YBNpgsql.NpgsqlDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlDataSourceBuilder.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapComposite(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
+*REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!

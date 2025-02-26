@@ -1,8 +1,8 @@
 using System;
 using NUnit.Framework;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class SizeTests
 {

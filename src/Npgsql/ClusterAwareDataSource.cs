@@ -258,7 +258,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
         }
 
-        return -1;
+        return 0;
     }
 
     /// <summary>
@@ -531,7 +531,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         UpdateConnectionMap(poolIndex, -1);
     }
 
-    internal override void Clear()
+    /// <inheritdoc />
+    public override void Clear()
     {
         foreach (var pool in _pools)
             pool.Clear();
