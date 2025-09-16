@@ -64,7 +64,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
 
-        var conns =await CreateConnections(connString, new[]{-1, 12, 0});
+        var conns = await CreateConnections(connString, new[]{-1, 12, 0});
 
         CloseConnections(conns);
         DestroyCluster();

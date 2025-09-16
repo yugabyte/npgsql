@@ -248,7 +248,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter2.rack1 --tserver_flags placement_uuid=rr";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        cmd = "/bin/yb-ctl add_node--placement_info cloud1.datacenter3.rack1 --tserver_flags placement_uuid=rr";
+        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter3.rack1 --tserver_flags placement_uuid=rr";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
         cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter4.rack1 --tserver_flags placement_uuid=rr";

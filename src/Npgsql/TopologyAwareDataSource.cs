@@ -126,7 +126,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     /// <summary>
     /// Create a new pool
     /// </summary>
-    internal new  void CreatePool(Dictionary<string,string> hostsmap)
+    protected  override void CreatePool(Dictionary<string,string> hostsmap)
     {
         lock (lockObject)
         {
@@ -150,6 +150,10 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
                 NpgsqlDataSource poolnew = settings.Pooling? new PoolingDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
                 _pools.Add(poolnew);
+                int index;
+                index = _pools.IndexOf(poolnew);
+                var priority = hostToPriorityMap[host.Key];
+                priorityToPoolIndexMap[priority] = index;
                 if (host.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
                 {
                     poolToNumConnMapPrimary[poolnew] = 0;

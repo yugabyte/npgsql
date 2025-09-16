@@ -52,6 +52,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     protected bool? UseHostColumn = null;
 
     /// <summary>
+    /// Stores if better node is available or not
+    /// </summary>
+    protected bool HasBetterNode = false;
+
+    /// <summary>
     /// Stores a map of pool to number of connections made to the pool for the Primary nodes
     /// Key = Pool
     /// Value = Number of Connections to that pool
@@ -69,6 +74,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// Stores a map of host to their priority
     /// </summary>
     protected static Dictionary<string, int> hostToPriorityMap = new Dictionary<string, int>();
+
+    /// <summary>
+    /// Stores a map of host to their priority
+    /// </summary>
+    protected static Dictionary<int, int> priorityToPoolIndexMap = new Dictionary<int, int>();
 
     /// <summary>
     /// Connection settings
@@ -191,7 +201,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// <summary>
     /// Create a new pool
     /// </summary>
-    internal void CreatePool(Dictionary<string, string> hostsmap)
+    protected virtual void CreatePool(Dictionary<string, string> hostsmap)
     {
         lock (lockObject)
         {
@@ -450,7 +460,59 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
         }
 
+        if (connector != null)
+        {
+            return connector;
+        }
+        _connectionLogger.LogDebug("Failed to apply Load balance. Trying normal connection");
+        conn.Settings.LoadBalanceHosts = LoadBalanceHosts.False;
+        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
         return connector ?? throw NoSuitableHostsException(exceptions);
+    }
+
+    async Task<NpgsqlConnector?> getConnector(int chosenHostPriority, int priority, NpgsqlConnection conn, NpgsqlTimeout timeout, bool async,
+        CancellationToken cancellationToken, List<Exception> exceptions)
+    {
+        if (priority == chosenHostPriority)
+            return null;
+        NpgsqlConnector? connector = null;
+        var poolIndex = -1;
+        if (priorityToPoolIndexMap.ContainsKey(priority))
+        {
+            poolIndex = priorityToPoolIndexMap[priority];
+        }
+
+        if (poolIndex == -1)
+            return null;
+        UpdateConnectionMap(poolIndex, 1);
+        var timeoutPerHost = timeout.IsSet ? timeout.CheckAndGetTimeLeft() : TimeSpan.Zero;
+        var preferredType = GetTargetSessionAttributes(conn);
+        var checkUnpreferred = preferredType is TargetSessionAttributes.PreferPrimary or TargetSessionAttributes.PreferStandby;
+        connector = await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken).ConfigureAwait(false) ??
+                    (checkUnpreferred ?
+                        await TryGetIdleOrNew(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken).ConfigureAwait(false)
+                        : null) ??
+                    await TryGet(conn, timeoutPerHost, async, preferredType, IsPreferred, poolIndex, exceptions, cancellationToken).ConfigureAwait(false) ??
+                    (checkUnpreferred ?
+                        await TryGet(conn, timeoutPerHost, async, preferredType, IsOnline, poolIndex, exceptions, cancellationToken).ConfigureAwait(false)
+                        : null);
+        if (connector == null)
+        {
+            UpdateConnectionMap(poolIndex, -1);
+            priority++;
+            connector = await getConnector(chosenHostPriority, priority, conn, timeout, async, cancellationToken, exceptions)
+                .ConfigureAwait(false);
+        }
+
+        if (connector != null)
+        {
+            var host = _pools[poolIndex].Settings.Host;
+            if (host != null && unreachableHosts.Contains(host))
+            {
+                unreachableHosts.Remove(host);
+            }
+        }
+        return connector;
     }
 
     async Task<NpgsqlConnector?> getConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async,
@@ -461,22 +523,35 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         {
             CheckDisposed();
 
-            var poolIndex = conn.Settings.LoadBalanceHosts != LoadBalanceHosts.False ? GetRoundRobinIndex() : 0;
+            var poolIndex = conn.Settings.LoadBalanceHosts != LoadBalanceHosts.False ? GetRoundRobinIndex() : -2;
             if (poolIndex == -1)
                 return null;
-            var chosenHost = _pools[poolIndex].Settings.Host;
-            _connectionLogger.LogDebug("Chosen Host: {host}", chosenHost);
-            var HasBetterNode = HasBetterNodeAvailable(poolIndex);
-            if (HasBetterNode)
-            {
-                _connectionLogger.LogDebug("A better node is available");
-                UpdateConnectionMap(poolIndex, -1);
-                HasBetterNode = false;
-                await getConnector(conn, timeout, async, cancellationToken, exceptions).ConfigureAwait(false);
+            if (poolIndex != -2) {
+                var chosenHost = _pools[poolIndex].Settings.Host;
+                _connectionLogger.LogDebug("Chosen Host: {host}", chosenHost);
+                HasBetterNode = HasBetterNodeAvailable(poolIndex);
+                if (HasBetterNode)
+                {
+                    _connectionLogger.LogDebug("A better node is available");
+                    var chosenHostPriority = 1;
+                    if (chosenHost != null && hostToPriorityMap.ContainsKey(chosenHost))
+                    {
+                        chosenHostPriority = hostToPriorityMap[chosenHost];
+                    }
+
+                    connector = await getConnector(chosenHostPriority, 1, conn, timeout, async, cancellationToken, exceptions).ConfigureAwait(false);
+                    if (connector == null)
+                    {
+                        HasBetterNode = false;
+                    }
+                    else
+                    {
+                        UpdateConnectionMap(poolIndex, -1);
+                        return connector;
+                    }
+                }
             }
 
-            if (poolIndex == -1)
-                break;
             var timeoutPerHost = timeout.IsSet ? timeout.CheckAndGetTimeLeft() : TimeSpan.Zero;
             var preferredType = GetTargetSessionAttributes(conn);
             var checkUnpreferred = preferredType is TargetSessionAttributes.PreferPrimary or TargetSessionAttributes.PreferStandby;
@@ -682,7 +757,15 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         CancellationToken cancellationToken)
     {
         var pools = _pools;
-        var pool = pools[poolIndex];
+        NpgsqlDataSource pool;
+        if (poolIndex != -2)
+        {
+            pool = pools[poolIndex];
+        }
+        else
+        {
+            pool = settings.Pooling? new PoolingDataSource(Settings, dataSourceConfig): new UnpooledDataSource(Settings, dataSourceConfig);
+        }
         var databaseState = pool.GetDatabaseState();
         NpgsqlConnector? connector = null;
         try
@@ -744,7 +827,15 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         CancellationToken cancellationToken)
     {
         var pools = _pools;
-        var pool = pools[poolIndex];
+        NpgsqlDataSource pool;
+        if (poolIndex != -2)
+        {
+            pool = pools[poolIndex];
+        }
+        else
+        {
+            pool = settings.Pooling? new PoolingDataSource(Settings, dataSourceConfig): new UnpooledDataSource(Settings, dataSourceConfig);
+        }
         var databaseState = pool.GetDatabaseState();
         NpgsqlConnector? connector = null;
 

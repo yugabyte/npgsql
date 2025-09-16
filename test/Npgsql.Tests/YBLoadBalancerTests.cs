@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace YBNpgsql.Tests;
 
-public class LoadBalancerTests : YBTestUtils
+public class YBLoadBalancerTests : YBTestUtils
 {
     int numConns = 6;
 
@@ -18,7 +18,7 @@ public class LoadBalancerTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=any;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        CreateCluster();
+        // CreateCluster();
 
         try
         {
