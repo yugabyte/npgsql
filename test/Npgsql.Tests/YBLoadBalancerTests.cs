@@ -18,7 +18,7 @@ public class YBLoadBalancerTests : YBTestUtils
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=any;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        // CreateCluster();
+        CreateCluster();
 
         try
         {
