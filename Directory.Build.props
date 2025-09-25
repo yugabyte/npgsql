@@ -1,6 +1,6 @@
 ﻿<Project>
   <PropertyGroup>
-    <VersionPrefix>9.0.2</VersionPrefix>
+    <VersionPrefix>9.0.2.1</VersionPrefix>
     <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
@@ -10,10 +10,10 @@
     <SignAssembly>true</SignAssembly>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
-    <Copyright>Copyright 2024 © The Npgsql Development Team</Copyright>
-    <Company>Npgsql</Company>
+    <Copyright>Copyright 2025 © The YugabyteDB Development Team</Copyright>
+    <Company>YugabyteDB</Company>
     <PackageLicenseExpression>PostgreSQL</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/npgsql/npgsql</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/yugabyte/npgsql</PackageProjectUrl>
     <PackageIcon>postgresql.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>

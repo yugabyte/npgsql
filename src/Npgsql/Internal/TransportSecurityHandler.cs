@@ -2,10 +2,10 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Properties;
-using Npgsql.Util;
+using YBNpgsql.Properties;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal;
+namespace YBNpgsql.Internal;
 
 class TransportSecurityHandler
 {

@@ -2,7 +2,7 @@
 using System.Globalization;
 
 // ReSharper disable once CheckNamespace
-namespace NpgsqlTypes;
+namespace YBNpgsqlTypes;
 
 /// <summary>
 /// Wraps a PostgreSQL Write-Ahead Log Sequence Number (see: https://www.postgresql.org/docs/current/datatype-pg-lsn.html)

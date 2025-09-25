@@ -4,7 +4,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Runtime.Serialization;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// The exception that is thrown when server-related issues occur.

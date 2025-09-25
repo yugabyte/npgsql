@@ -9,7 +9,7 @@ using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class JsonConverter<T, TBase> : PgStreamingConverter<T?> where T: TBase?
 {

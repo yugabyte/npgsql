@@ -2,12 +2,12 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using NodaTime;
-using Npgsql.Tests;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Tests;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.PluginTests;
+namespace YBNpgsql.PluginTests;
 
 [TestFixture(false)]
 #if DEBUG

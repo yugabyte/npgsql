@@ -3,11 +3,11 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Npgsql.Properties;
-using NpgsqlTypes;
+using YBNpgsql.Properties;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 [TestFixture(MultiplexingMode.NonMultiplexing, NpgsqlDbType.Json)]
 [TestFixture(MultiplexingMode.NonMultiplexing, NpgsqlDbType.Jsonb)]

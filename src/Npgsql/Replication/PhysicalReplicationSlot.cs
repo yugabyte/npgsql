@@ -1,6 +1,6 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 
-namespace Npgsql.Replication;
+namespace YBNpgsql.Replication;
 
 /// <summary>
 /// Wraps a replication slot that uses physical replication.

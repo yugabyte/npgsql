@@ -2,9 +2,9 @@
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 sealed class PreparedTextReader : TextReader
 {

@@ -1,9 +1,9 @@
 using System;
 using System.Buffers;
 using System.Collections.Generic;
-using Npgsql.Util;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal.Composites;
+namespace YBNpgsql.Internal.Composites;
 
 abstract class CompositeBuilder(StrongBox[] tempBoxes, IReadOnlyList<CompositeFieldInfo> fields)
 {

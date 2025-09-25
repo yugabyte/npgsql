@@ -1,10 +1,10 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 [RequiresUnreferencedCode("Tupled record resolver may perform reflection on trimmed tuple types.")]
 [RequiresDynamicCode("Tupled records need to construct a generic converter for a statically unknown (value)tuple type.")]

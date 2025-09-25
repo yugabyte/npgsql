@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Npgsql.NameTranslation;
+namespace YBNpgsql.NameTranslation;
 
 /// <summary>
 /// A name translator which preserves CLR names (e.g. SomeClass) when mapping names to the database.

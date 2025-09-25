@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class HstoreConverter<T>(Encoding encoding, Func<ICollection<KeyValuePair<string, string?>>, T>? convert = null)
     : PgStreamingConverter<T>

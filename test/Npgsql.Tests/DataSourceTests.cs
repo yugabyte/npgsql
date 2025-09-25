@@ -5,11 +5,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
 // ReSharper disable MethodHasAsyncOverload
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class DataSourceTests : TestBase
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Options for configuring Npgsql type loading.

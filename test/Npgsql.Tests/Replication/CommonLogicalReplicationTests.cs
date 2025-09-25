@@ -2,11 +2,11 @@
 using System.Data;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Replication;
-using Npgsql.Replication.Internal;
-using NpgsqlTypes;
+using YBNpgsql.Replication;
+using YBNpgsql.Replication.Internal;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Tests.Replication;
+namespace YBNpgsql.Tests.Replication;
 
 /// <summary>
 /// Tests for common logical replication functionality.

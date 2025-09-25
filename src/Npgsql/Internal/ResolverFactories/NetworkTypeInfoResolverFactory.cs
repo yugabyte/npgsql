@@ -1,11 +1,11 @@
 using System;
 using System.Net;
 using System.Net.NetworkInformation;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed class NetworkTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

@@ -1,5 +1,5 @@
-﻿using Npgsql.Internal;
-using Npgsql.Tests.Support;
+﻿using YBNpgsql.Internal;
+using YBNpgsql.Tests.Support;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -11,13 +11,13 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
-using Npgsql.Properties;
-using static Npgsql.Tests.Support.MockState;
-using static Npgsql.Tests.TestUtil;
+using YBNpgsql.Properties;
+using static YBNpgsql.Tests.Support.MockState;
+using static YBNpgsql.Tests.TestUtil;
 using IsolationLevel = System.Transactions.IsolationLevel;
-using TransactionStatus = Npgsql.Internal.TransactionStatus;
+using TransactionStatus = YBNpgsql.Internal.TransactionStatus;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 #pragma warning disable CS0618
 
@@ -340,7 +340,7 @@ public class MultipleHostsTests : TestBase
             Host = MultipleHosts(primaryPostmaster, standbyPostmaster),
             ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading,
             MaxPoolSize = 1,
-            LoadBalanceHosts = true,
+            LoadBalanceHosts = LoadBalanceHosts.True,
         };
 
         await using var dataSource = new NpgsqlDataSourceBuilder(defaultCsb.ConnectionString)
@@ -388,7 +388,7 @@ public class MultipleHostsTests : TestBase
             Host = MultipleHosts(primaryPostmaster, standbyPostmaster),
             ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading,
             MaxPoolSize = 1,
-            LoadBalanceHosts = false,
+            LoadBalanceHosts = LoadBalanceHosts.False,
         };
 
         await using var dataSource = new NpgsqlDataSourceBuilder(defaultCsb.ConnectionString)
@@ -893,7 +893,7 @@ public class MultipleHostsTests : TestBase
     }
 
     [Test, NonParallelizable]
-    public void IntegrationTest([Values] bool loadBalancing, [Values] bool alwaysCheckHostState)
+    public void IntegrationTest([Values] LoadBalanceHosts loadBalancing, [Values] bool alwaysCheckHostState)
     {
         PoolManager.Reset();
 
@@ -1084,7 +1084,7 @@ public class MultipleHostsTests : TestBase
         {
             builder.Host = hostList;
             builder.ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading;
-            builder.LoadBalanceHosts = true;
+            builder.LoadBalanceHosts = LoadBalanceHosts.True;
             builder.TargetSessionAttributesParsed = targetSessionAttributes;
 
         });

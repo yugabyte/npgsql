@@ -2,10 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Npgsql.Replication;
-using NpgsqlTypes;
+using YBNpgsql.Replication;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Tests.Replication;
+namespace YBNpgsql.Tests.Replication;
 
 [Explicit("Flakiness")]
 public class PhysicalReplicationTests : SafeReplicationTestBase<PhysicalReplicationConnection>

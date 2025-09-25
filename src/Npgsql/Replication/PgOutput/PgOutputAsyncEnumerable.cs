@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Replication.Internal;
-using Npgsql.Replication.PgOutput.Messages;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Replication.Internal;
+using YBNpgsql.Replication.PgOutput.Messages;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.PgOutput;
+namespace YBNpgsql.Replication.PgOutput;
 
 sealed class PgOutputAsyncEnumerable : IAsyncEnumerable<PgOutputReplicationMessage>
 {

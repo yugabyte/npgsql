@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 abstract class StrongBox
 {

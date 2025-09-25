@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Npgsql.Properties;
-using NpgsqlTypes;
+using YBNpgsql.Properties;
+using YBNpgsqlTypes;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests.Types;
+namespace YBNpgsql.Tests.Types;
 
 public class MultirangeTests : TestBase
 {

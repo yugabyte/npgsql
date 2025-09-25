@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Replication.PgOutput.Messages;
+namespace YBNpgsql.Replication.PgOutput.Messages;
 
 /// <summary>
 /// Logical Replication Protocol logical decoding message

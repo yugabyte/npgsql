@@ -6,11 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
 #nullable disable
 
-namespace Npgsql.Benchmarks.TypeHandlers;
+namespace YBNpgsql.Benchmarks.TypeHandlers;
 
 public abstract class TypeHandlerBenchmarks<T>
 {

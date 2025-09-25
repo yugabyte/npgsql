@@ -3,9 +3,9 @@ using System;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class NotificationTests : TestBase
 {

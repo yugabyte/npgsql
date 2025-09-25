@@ -1,4 +1,4 @@
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Base class for all classes which represent a message sent by the PostgreSQL backend.

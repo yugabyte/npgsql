@@ -1,9 +1,9 @@
 using System;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 sealed class GeometricTypeInfoResolverFactory : PgTypeInfoResolverFactory
 {

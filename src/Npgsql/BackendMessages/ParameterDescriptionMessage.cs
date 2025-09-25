@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.BackendMessages;
+namespace YBNpgsql.BackendMessages;
 
 sealed class ParameterDescriptionMessage : IBackendMessage
 {

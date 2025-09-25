@@ -1,12 +1,12 @@
-﻿using NpgsqlTypes;
+﻿using YBNpgsqlTypes;
 using NUnit.Framework;
 using System;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class AutoPrepareTests : TestBase
 {

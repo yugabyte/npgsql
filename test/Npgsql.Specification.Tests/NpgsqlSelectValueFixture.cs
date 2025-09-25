@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using AdoNet.Specification.Tests;
 
-namespace Npgsql.Specification.Tests;
+namespace YBNpgsql.Specification.Tests;
 
 public class NpgsqlSelectValueFixture : NpgsqlDbFactoryFixture, ISelectValueFixture, IDeleteFixture, IDisposable
 {

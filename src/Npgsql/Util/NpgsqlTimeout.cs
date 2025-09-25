@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-using Npgsql.Internal;
+using YBNpgsql.Internal;
 
-namespace Npgsql.Util;
+namespace YBNpgsql.Util;
 
 /// <summary>
 /// Represents a timeout that will expire at some point.

@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Npgsql.Internal.Converters;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Converters;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.ResolverFactories;
+namespace YBNpgsql.Internal.ResolverFactories;
 
 [RequiresUnreferencedCode("The use of unmapped enums, ranges or multiranges requires reflection usage which is incompatible with trimming.")]
 [RequiresDynamicCode("The use of unmapped enums, ranges or multiranges requires dynamic code usage which is incompatible with NativeAOT.")]

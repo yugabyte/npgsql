@@ -5,14 +5,14 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Transactions;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Schema;
+namespace YBNpgsql.Schema;
 
 sealed class DbColumnSchemaGenerator
 {

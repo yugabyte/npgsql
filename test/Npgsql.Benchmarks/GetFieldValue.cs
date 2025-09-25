@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 [Config(typeof(Config))]
 public class GetFieldValue

@@ -1,6 +1,6 @@
-﻿using Npgsql.Replication.Internal;
+﻿using YBNpgsql.Replication.Internal;
 
-namespace Npgsql.Replication.TestDecoding;
+namespace YBNpgsql.Replication.TestDecoding;
 
 /// <summary>
 /// Acts as a proxy for a logical replication slot

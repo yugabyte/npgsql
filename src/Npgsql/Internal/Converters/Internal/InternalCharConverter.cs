@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql.Internal.Converters;
+namespace YBNpgsql.Internal.Converters;
 
 sealed class InternalCharConverter<T> : PgBufferedConverter<T>
 #if NET7_0_OR_GREATER

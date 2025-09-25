@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.PostgresTypes;
+namespace YBNpgsql.PostgresTypes;
 
 /// <summary>
 /// Represents a PostgreSQL composite data type, which can hold multiple fields of varying types in a single column.

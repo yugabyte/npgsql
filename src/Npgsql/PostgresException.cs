@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Microsoft.Extensions.Logging;
-using Npgsql.BackendMessages;
-using Npgsql.Internal;
+using YBNpgsql.BackendMessages;
+using YBNpgsql.Internal;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// The exception that is thrown when the PostgreSQL backend reports errors (e.g. query

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Npgsql.GeoJSON.Internal;
+namespace YBNpgsql.GeoJSON.Internal;
 
 struct CrsMapBuilder
 {

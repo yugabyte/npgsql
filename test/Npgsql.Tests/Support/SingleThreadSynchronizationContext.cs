@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading;
 
-namespace Npgsql.Tests.Support;
+namespace YBNpgsql.Tests.Support;
 
 sealed class SingleThreadSynchronizationContext : SynchronizationContext, IDisposable
 {

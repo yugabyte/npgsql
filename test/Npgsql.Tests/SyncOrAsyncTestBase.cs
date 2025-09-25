@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [TestFixture(SyncOrAsync.Sync)]
 [TestFixture(SyncOrAsync.Async)]

@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace Npgsql.SourceGenerators;
+namespace YBNpgsql.SourceGenerators;
 
 static class EmbeddedResource
 {

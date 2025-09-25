@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Provides constants for PostgreSQL error codes.

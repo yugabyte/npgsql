@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Npgsql.TypeMapping;
-using NpgsqlTypes;
+using YBNpgsql.TypeMapping;
+using YBNpgsqlTypes;
 using Newtonsoft.Json;
-using Npgsql.Json.NET.Internal;
+using YBNpgsql.Json.NET.Internal;
 
 // ReSharper disable once CheckNamespace
-namespace Npgsql;
+namespace YBNpgsql;
 
 /// <summary>
 /// Extension allowing adding the Json.NET plugin to an Npgsql type mapper.

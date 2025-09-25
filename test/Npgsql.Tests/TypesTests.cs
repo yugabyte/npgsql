@@ -1,9 +1,9 @@
 using System;
 using System.Net;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 using NUnit.Framework;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 /// <summary>
 /// Tests NpgsqlTypes.* independent of a database

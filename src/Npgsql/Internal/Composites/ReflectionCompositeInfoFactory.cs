@@ -5,12 +5,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Npgsql.Internal.Postgres;
-using Npgsql.PostgresTypes;
-using Npgsql.Util;
-using NpgsqlTypes;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.PostgresTypes;
+using YBNpgsql.Util;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Internal.Composites;
+namespace YBNpgsql.Internal.Composites;
 
 [RequiresDynamicCode("Serializing arbitrary types can require creating new generic types or methods. This may not work when AOT compiling.")]
 static class ReflectionCompositeInfoFactory

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using BenchmarkDotNet.Attributes;
-using NpgsqlTypes;
+using YBNpgsqlTypes;
 
-namespace Npgsql.Benchmarks.Types;
+namespace YBNpgsql.Benchmarks.Types;
 
 public class WriteVaryingNumberOfParameters
 {

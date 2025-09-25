@@ -2,10 +2,10 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Newtonsoft.Json;
-using Npgsql.Internal;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.Json.NET.Internal;
+namespace YBNpgsql.Json.NET.Internal;
 
 [RequiresUnreferencedCode("Json serializer may perform reflection on trimmed types.")]
 [RequiresDynamicCode("Serializing arbitrary types to json can require creating new generic types or methods, which requires creating code at runtime. This may not work when AOT compiling.")]

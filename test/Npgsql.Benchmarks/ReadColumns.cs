@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 
-namespace Npgsql.Benchmarks;
+namespace YBNpgsql.Benchmarks;
 
 public class ReadColumns
 {

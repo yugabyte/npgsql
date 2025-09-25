@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Npgsql.Internal.Postgres;
+using YBNpgsql.Internal.Postgres;
 
-namespace Npgsql.PostgresTypes;
+namespace YBNpgsql.PostgresTypes;
 
 /// <summary>
 /// Represents a PostgreSQL enum data type.

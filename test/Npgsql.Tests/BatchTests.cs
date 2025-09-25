@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 [TestFixture(MultiplexingMode.NonMultiplexing, CommandBehavior.Default)]
 [TestFixture(MultiplexingMode.Multiplexing, CommandBehavior.Default)]

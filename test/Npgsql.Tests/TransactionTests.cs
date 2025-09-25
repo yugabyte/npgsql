@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Data;
 using System.Threading.Tasks;
-using Npgsql.Internal;
-using Npgsql.Tests.Support;
-using Npgsql.Util;
+using YBNpgsql.Internal;
+using YBNpgsql.Tests.Support;
+using YBNpgsql.Util;
 using NUnit.Framework;
-using static Npgsql.Tests.TestUtil;
+using static YBNpgsql.Tests.TestUtil;
 
 // ReSharper disable MethodHasAsyncOverload
 // ReSharper disable UseAwaitUsing
 
-namespace Npgsql.Tests;
+namespace YBNpgsql.Tests;
 
 public class TransactionTests(MultiplexingMode multiplexingMode) : MultiplexingTestBase(multiplexingMode)
 {

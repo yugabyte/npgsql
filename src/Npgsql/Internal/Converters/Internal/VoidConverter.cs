@@ -1,6 +1,6 @@
 using System;
 
-namespace Npgsql.Internal.Converters.Internal;
+namespace YBNpgsql.Internal.Converters.Internal;
 
 // Void is not a value so we read it as a null reference, not a DBNull.
 sealed class VoidConverter : PgBufferedConverter<object?>

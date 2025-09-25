@@ -1,6 +1,6 @@
-Npgsql is the open source .NET data provider for PostgreSQL. It allows you to connect and interact with PostgreSQL server using .NET.
+NpgsqlYugabyteDB is the open source .NET data provider for YugabyteDB. It allows you to connect and interact with YugabyteDB server using .NET.
 
-This package helps set up Npgsql in applications using dependency injection, notably ASP.NET applications. It allows easy configuration of your Npgsql connections and registers the appropriate services in your DI container. 
+This package helps set up NpgsqlYugabyteDB in applications using dependency injection, notably ASP.NET applications. It allows easy configuration of your Npgsql connections and registers the appropriate services in your DI container. 
 
 For example, if using the ASP.NET minimal web API, simply use the following to register Npgsql:
 

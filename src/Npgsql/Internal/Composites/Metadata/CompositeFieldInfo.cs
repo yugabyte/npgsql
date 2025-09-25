@@ -2,10 +2,10 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Npgsql.Internal.Postgres;
-using Npgsql.Util;
+using YBNpgsql.Internal.Postgres;
+using YBNpgsql.Util;
 
-namespace Npgsql.Internal.Composites;
+namespace YBNpgsql.Internal.Composites;
 
 abstract class CompositeFieldInfo
 {

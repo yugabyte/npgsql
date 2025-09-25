@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Npgsql.PostgresTypes;
+namespace YBNpgsql.PostgresTypes;
 
 readonly struct PostgresFacets : IEquatable<PostgresFacets>
 {
