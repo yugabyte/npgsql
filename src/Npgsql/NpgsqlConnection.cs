@@ -168,23 +168,24 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
     /// <returns>A task representing the asynchronous operation.</returns>
     public override Task OpenAsync(CancellationToken cancellationToken) => Open(async: true, cancellationToken);
 
+    static readonly object SetupDataSourceLock = new();
     void SetupDataSource()
     {
-        // Fast path: a pool already corresponds to this exact version of the connection string.
-        if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource) && !_dataSource.NeedsRefresh())
-        {
-            Settings = _dataSource.Settings;  // Great, we already have a pool
-            return;
-        }
-
         // A pool already corresponds to this version of string but also needs Refresh
 
-        if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource) && _dataSource.NeedsRefresh())
+        lock (SetupDataSourceLock)
         {
-            _dataSource.Refresh();
-            Settings = _dataSource.Settings;  // Great, we already have a pool
-            return;
+            if (PoolManager.Pools.TryGetValue(_connectionString, out _dataSource))
+            {
+                if (_dataSource.NeedsRefresh())
+                {
+                    _dataSource.Refresh();
+                }
+                Settings = _dataSource.Settings;  // Great, we already have a pool
+                return;
+            }
         }
+
 
         // Connection string hasn't been seen before. Check for empty and parse (slow one-time path).
         if (_connectionString == string.Empty)
@@ -204,26 +205,23 @@ public sealed class NpgsqlConnection : DbConnection, ICloneable, IComponent
         // Note that we remove TargetSessionAttributes to make all connection strings that are otherwise identical point to the same pool.
         var canonical = settings.ConnectionStringForMultipleHosts;
 
-        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && !_dataSource.NeedsRefresh())
+        lock (SetupDataSourceLock)
         {
-            // If this is a multi-host data source and the user specified a TargetSessionAttributes, create a wrapper in front of the
-            // MultiHostDataSource with that TargetSessionAttributes.
-            if (_dataSource is NpgsqlMultiHostDataSource multiHostDataSource && settings.TargetSessionAttributesParsed.HasValue)
-                _dataSource = multiHostDataSource.WithTargetSession(settings.TargetSessionAttributesParsed.Value);
-
-            // The pool was found, but only under the canonical key - we're using a different version
-            // for the first time. Map it via our own key for next time.
-            _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
-            return;
-        }
-
-        if (PoolManager.Pools.TryGetValue(canonical, out _dataSource) && _dataSource.NeedsRefresh())
-        {
-            _dataSource.Refresh();
-            // The pool was found, but only under the canonical key - we're using a different version
-            // for the first time. Map it via our own key for next time.
-            _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
-            return;
+            if (PoolManager.Pools.TryGetValue(canonical, out _dataSource))
+            {
+                if (_dataSource.NeedsRefresh())
+                {
+                    _dataSource.Refresh();
+                }
+                // If this is a multi-host data source and the user specified a TargetSessionAttributes, create a wrapper in front of the
+                // MultiHostDataSource with that TargetSessionAttributes.
+                if (_dataSource is NpgsqlMultiHostDataSource multiHostDataSource && settings.TargetSessionAttributesParsed.HasValue)
+                    _dataSource = multiHostDataSource.WithTargetSession(settings.TargetSessionAttributesParsed.Value);
+                // The pool was found, but only under the canonical key - we're using a different version
+                // for the first time. Map it via our own key for next time.
+                _dataSource = PoolManager.Pools.GetOrAdd(_connectionString, _dataSource);
+                return;
+            }
         }
 
         // Really unseen, need to create a new pool
