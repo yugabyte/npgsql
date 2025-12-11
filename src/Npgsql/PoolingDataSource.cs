@@ -320,6 +320,10 @@ class PoolingDataSource : NpgsqlDataSource
         return null;
     }
 
+    internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken,
+        NpgsqlConnectionStringBuilder settings) =>
+        throw new NotImplementedException();
+
     internal sealed override void Return(NpgsqlConnector connector)
     {
         Debug.Assert(!connector.InTransaction);

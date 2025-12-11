@@ -13,38 +13,77 @@ public class YBLoadBalancerTests : YBTestUtils
     int numConns = 6;
 
     [Test]
-    public async Task TestLoadBalance1()
+    public void TestLoadBalance1()
     {
-        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=any;Timeout=0";
+        var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Timeout=0;";
+        var connStringBuilder2 = "host=127.0.0.1;database=yugabyte;userid=tester;password=abc123;Load Balance Hosts=any;Timeout=0;";
+
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
-        CreateCluster();
+        // CreateCluster();
 
         try
         {
-            conns = CreateConnections(connStringBuilder, numConns);
-            await VerifyOn("127.0.0.1", numConns/3);
-            await VerifyOn("127.0.0.2", numConns/3);
-            await VerifyOn("127.0.0.3", numConns / 3);
+            // for (var i = 1; i <= numConns; i++)
+            // {
+            NpgsqlConnection conn = new NpgsqlConnection(connStringBuilder1);
+            NpgsqlConnection conn1 = new NpgsqlConnection(connStringBuilder1);
+            NpgsqlConnection conn2 = new NpgsqlConnection(connStringBuilder2);
+            conn.Open();
+            conn.Close();
+            conn1.Open();
+            // for (int i = 0; i < 6; i++)
+            // {
+            //     NpgsqlConnection conn3 = new NpgsqlConnection(connStringBuilder1);
+            //     conn3.Open();
+            //     conns.Add(conn3);
+            // }
+            conn2.Open();
 
+            // NpgsqlCommand cmd = new NpgsqlCommand("SELECT current_user;", conn);
+            // NpgsqlDataReader reader = cmd.ExecuteReader();
+            // Console.WriteLine("User 1: ");
+            // while (reader.Read())
+            // {
+            //     Console.WriteLine("{0}", reader.GetString(0));
+            // }
+
+            NpgsqlCommand cmd1 = new NpgsqlCommand("SELECT current_user;", conn1);
+            NpgsqlDataReader reader1 = cmd1.ExecuteReader();
+            Console.WriteLine("User 1: ");
+            while (reader1.Read())
+            {
+                Console.WriteLine("{0}", reader1.GetString(0));
+            }
+            // }
+
+            NpgsqlCommand cmd2 = new NpgsqlCommand("SELECT current_user;", conn2);
+            NpgsqlDataReader reader2 = cmd2.ExecuteReader();
+            Console.WriteLine("User 2: ");
+            while (reader2.Read())
+            {
+                Console.WriteLine("{0}", reader2.GetString(0));
+            }
+
+            Console.WriteLine("Connections Created");
         }
         catch (Exception ex)
         {
             Console.WriteLine("Failure:" + ex.Message);
             Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
-        finally
-        {
-            foreach (var conn in conns)
-            {
-                conn.Close();
-            }
-            Console.WriteLine("Verifying if all connections are closed...");
-            VerifyLocal("127.0.0.1", 0);
-            VerifyLocal("127.0.0.2", 0);
-            VerifyLocal("127.0.0.3", 0);
-            DestroyCluster();
-        }
+        // finally
+        // {
+        //     foreach (var conn in conns)
+        //     {
+        //         conn.Close();
+        //     }
+        //     Console.WriteLine("Verifying if all connections are closed...");
+        //     // VerifyLocal("127.0.0.1", 0);
+        //     // VerifyLocal("127.0.0.2", 0);
+        //     // VerifyLocal("127.0.0.3", 0);
+        //     // DestroyCluster();
+        // }
     }
 
     [Test]

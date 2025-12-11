@@ -25,7 +25,7 @@ public abstract class NpgsqlDataSource : DbDataSource
     /// Contains the connection string returned to the user from <see cref="NpgsqlConnection.ConnectionString"/>
     /// after the connection has been opened. Does not contain the password unless Persist Security Info=true.
     /// </summary>
-    internal NpgsqlConnectionStringBuilder Settings { get; }
+    internal NpgsqlConnectionStringBuilder Settings { get; set; }
 
     internal NpgsqlDataSourceConfiguration Configuration { get; }
     internal NpgsqlLoggingConfiguration LoggingConfiguration { get; }
@@ -401,6 +401,9 @@ public abstract class NpgsqlDataSource : DbDataSource
 
     internal abstract ValueTask<NpgsqlConnector?> OpenNewConnector(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken);
+
+    internal abstract ValueTask<NpgsqlConnector?> OpenNewConnector(
+        NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken, NpgsqlConnectionStringBuilder settings);
 
     internal abstract void Return(NpgsqlConnector connector);
 

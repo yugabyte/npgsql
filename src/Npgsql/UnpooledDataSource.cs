@@ -43,6 +43,10 @@ sealed class UnpooledDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDa
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)
         => new((NpgsqlConnector?)null);
 
+    internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken,
+        NpgsqlConnectionStringBuilder settings) =>
+        throw new System.NotImplementedException();
+
     internal override void Return(NpgsqlConnector connector)
     {
         Interlocked.Decrement(ref _numConnectors);

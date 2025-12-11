@@ -223,7 +223,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 var poolSettings = settings.Clone();
                 poolSettings.Host = host.Key;
                 _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
-                NpgsqlDataSource poolnew = settings.Pooling? new PoolingDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
+                NpgsqlDataSource poolnew = settings.Pooling? new YBPoolingWrapperDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
                 _pools.Add(poolnew);
                 if (host.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
                 {
@@ -591,6 +591,10 @@ public class ClusterAwareDataSource: NpgsqlDataSource
 
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken) => throw new NotImplementedException();
 
+    internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken,
+        NpgsqlConnectionStringBuilder settings) =>
+        throw new NotImplementedException();
+
     internal override void Return(NpgsqlConnector connector)
     {
         var host = connector.Host;
@@ -604,6 +608,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
         }
         UpdateConnectionMap(poolIndex, -1);
+        // Return the connector back to the pool to avoid memory leak
+        _pools[poolIndex].Return(connector);
     }
 
     /// <inheritdoc />
@@ -786,7 +792,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
             else
             {
-                connector = await pool.OpenNewConnector(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
+                connector = await pool.OpenNewConnector(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken, settings).ConfigureAwait(false);
                 if (connector is not null)
                 {
                     if (databaseState == DatabaseState.Unknown)
