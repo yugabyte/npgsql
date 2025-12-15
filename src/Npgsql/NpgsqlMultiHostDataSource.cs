@@ -370,6 +370,8 @@ public sealed class NpgsqlMultiHostDataSource : NpgsqlDataSource
     internal override bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
         => throw new NpgsqlException("Npgsql bug: trying to get an idle connector from " + nameof(NpgsqlMultiHostDataSource));
 
+    internal override bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, out NpgsqlConnector? connector) => throw new NotImplementedException();
+
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)
         => throw new NpgsqlException("Npgsql bug: trying to open a new connector from " + nameof(NpgsqlMultiHostDataSource));
 

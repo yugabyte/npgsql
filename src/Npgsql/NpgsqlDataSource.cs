@@ -399,6 +399,9 @@ public abstract class NpgsqlDataSource : DbDataSource
 
     internal abstract bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector);
 
+    internal abstract bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, out NpgsqlConnector? connector);
+
+
     internal abstract ValueTask<NpgsqlConnector?> OpenNewConnector(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken);
 
@@ -559,4 +562,5 @@ public abstract class NpgsqlDataSource : DbDataSource
 
         public DatabaseStateInfo() : this(default, default, default) { }
     }
+
 }

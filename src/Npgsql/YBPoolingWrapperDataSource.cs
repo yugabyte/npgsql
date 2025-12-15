@@ -1,7 +1,5 @@
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using YBNpgsql.Internal;
@@ -15,10 +13,14 @@ namespace YBNpgsql;
 sealed class YBPoolingWrapperDataSource: PoolingDataSource
 {
     static ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>  connStringToConnectorsMap = null!;
+    static ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>  connStringToIdleConnectorsMap = null!;
+
     internal YBPoolingWrapperDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfiguration) :
         base(settings, dataSourceConfiguration)
     {
         connStringToConnectorsMap = new ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>();
+        connStringToIdleConnectorsMap = new ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>();
+
     }
 
     internal override async ValueTask<NpgsqlConnector?> OpenNewConnector(
@@ -65,15 +67,93 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
         return connector;
     }
 
-    internal new bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
+    internal override bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, [NotNullWhen(true)] out NpgsqlConnector? connector)
 
     {
-        return base.TryGetIdleConnector(out connector);
+        connector = null;
+
+        // Try to get the array for this conn string
+        if (!connStringToConnectorsMap.TryGetValue(originalConnString, out var connectors))
+            return false;
+
+        // Fast scan for the first non-null, *idle* connector
+        // (assuming "idle" means connector.State == Idle or similar)
+        for (var i = 0; i < connectors.Length; i++)
+        {
+            var c = connectors[i];
+            if (c is null)
+                continue;  // skip nulls quickly
+
+            if (CheckIdleConnector(c))
+            {
+                connector = c;
+                if (connStringToIdleConnectorsMap.TryGetValue(originalConnString, out var idleconnectorslist))
+                {
+                    for (var j = 0; j < MaxConnections; j++)
+                        if (Interlocked.CompareExchange(ref idleconnectorslist[j], null, connector) == connector)
+                            break;
+                    connStringToIdleConnectorsMap[originalConnString] = idleconnectorslist;
+
+                }
+                if (connStringToConnectorsMap.TryGetValue(originalConnString, out  var list))
+                {
+                    for (var j = 0; i < MaxConnections; i++)
+                        if (Interlocked.CompareExchange(ref list[j], connector, null) == null)
+                            break;
+                    connStringToConnectorsMap[originalConnString] = list;
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    internal new void Return(NpgsqlConnector connector)
+    internal override void Return(NpgsqlConnector connector)
     {
-       base.Return(connector);
+        var flag = 0;
+        foreach (var connStringToConnectors in connStringToConnectorsMap)
+        {
+            for (var i = 0; i < connStringToConnectors.Value.Length; i++)
+            {
+                if (connStringToConnectors.Value[i] == null)
+                    continue;
+                if (ReferenceEquals(connStringToConnectors.Value[i], connector))
+                {
+
+                    if (connStringToConnectorsMap.TryGetValue(connStringToConnectors.Key, out var connectorslist))
+                    {
+                        for (var j = 0; j < MaxConnections; j++)
+                            if (Interlocked.CompareExchange(ref connectorslist[j], null, connector) == connector)
+                                break;
+                        connStringToConnectorsMap[connStringToConnectors.Key] = connectorslist;
+
+                    }
+                    if (connStringToIdleConnectorsMap.TryGetValue(connStringToConnectors.Key, out  var list))
+                    {
+                        for (var j = 0; i < MaxConnections; i++)
+                            if (Interlocked.CompareExchange(ref list[j], connector, null) == null)
+                                break;
+                        connStringToIdleConnectorsMap[connStringToConnectors.Key] = list;
+                    }
+                    else
+                    {
+                        list = new NpgsqlConnector[MaxConnections];
+                        for (var j = 0; i < MaxConnections; i++)
+                            if (Interlocked.CompareExchange(ref list[j], connector, null) == null)
+                                break;
+                        connStringToIdleConnectorsMap[connStringToConnectors.Key] = list;
+                    }
+
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 1)
+                break;
+        }
+        base.Return(connector);
+
     }
 
 

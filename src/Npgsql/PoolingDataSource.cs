@@ -218,8 +218,10 @@ class PoolingDataSource : NpgsqlDataSource
         return false;
     }
 
+    internal override bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, out NpgsqlConnector? connector) => throw new NotImplementedException();
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    bool CheckIdleConnector([NotNullWhen(true)] NpgsqlConnector? connector)
+    protected bool CheckIdleConnector([NotNullWhen(true)] NpgsqlConnector? connector)
     {
         if (connector is null)
             return false;
@@ -324,7 +326,7 @@ class PoolingDataSource : NpgsqlDataSource
         NpgsqlConnectionStringBuilder settings) =>
         throw new NotImplementedException();
 
-    internal sealed override void Return(NpgsqlConnector connector)
+    internal override void Return(NpgsqlConnector connector)
     {
         Debug.Assert(!connector.InTransaction);
         Debug.Assert(connector.MultiplexAsyncWritingLock == 0 || connector.IsBroken || connector.IsClosed,
@@ -370,7 +372,7 @@ class PoolingDataSource : NpgsqlDataSource
         }
     }
 
-    void CloseConnector(NpgsqlConnector connector)
+    protected void CloseConnector(NpgsqlConnector connector)
     {
         try
         {

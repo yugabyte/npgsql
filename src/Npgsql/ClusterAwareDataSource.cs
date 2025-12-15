@@ -589,6 +589,8 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     internal override bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
         => throw new NpgsqlException("Npgsql bug: trying to get an idle connector from " + nameof(ClusterAwareDataSource));
 
+    internal override bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, out NpgsqlConnector? connector) => throw new NotImplementedException();
+
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken) => throw new NotImplementedException();
 
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken,
@@ -776,16 +778,20 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         NpgsqlConnector? connector = null;
         try
         {
-            if (pool.TryGetIdleConnector(out connector))
+            if (pool.TryGetIdleConnector(settings, out connector))
             {
                 if (databaseState == DatabaseState.Unknown)
                 {
-                    databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
-                    Debug.Assert(databaseState != DatabaseState.Unknown);
-                    if (!stateValidator(databaseState, preferredType))
+                    if (connector != null)
                     {
-                        pool.Return(connector);
-                        return null;
+                        databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken)
+                            .ConfigureAwait(false);
+                        Debug.Assert(databaseState != DatabaseState.Unknown);
+                        if (!stateValidator(databaseState, preferredType))
+                        {
+                            pool.Return(connector);
+                            return null;
+                        }
                     }
                 }
                 return connector;
