@@ -32,12 +32,12 @@ public class YBLoadBalancerTests : YBTestUtils
             conn.Open();
             conn.Close();
             conn1.Open();
-            // for (int i = 0; i < 6; i++)
-            // {
-            //     NpgsqlConnection conn3 = new NpgsqlConnection(connStringBuilder1);
-            //     conn3.Open();
-            //     conns.Add(conn3);
-            // }
+            for (var i = 0; i < 6; i++)
+            {
+                NpgsqlConnection conn3 = new NpgsqlConnection(connStringBuilder1);
+                conn3.Open();
+                conns.Add(conn3);
+            }
             conn2.Open();
 
             // NpgsqlCommand cmd = new NpgsqlCommand("SELECT current_user;", conn);

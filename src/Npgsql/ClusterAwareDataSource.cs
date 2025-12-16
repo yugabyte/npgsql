@@ -610,8 +610,6 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
         }
         UpdateConnectionMap(poolIndex, -1);
-        // Return the connector back to the pool to avoid memory leak
-        _pools[poolIndex].Return(connector);
     }
 
     /// <inheritdoc />

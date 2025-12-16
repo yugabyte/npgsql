@@ -12,8 +12,8 @@ namespace YBNpgsql;
 /// </summary>
 sealed class YBPoolingWrapperDataSource: PoolingDataSource
 {
-    static ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>  connStringToConnectorsMap = null!;
-    static ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>  connStringToIdleConnectorsMap = null!;
+    ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>  connStringToConnectorsMap = null!;
+    ConcurrentDictionary<NpgsqlConnectionStringBuilder, NpgsqlConnector?[]>  connStringToIdleConnectorsMap = null!;
 
     internal YBPoolingWrapperDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfiguration) :
         base(settings, dataSourceConfiguration)
@@ -73,7 +73,7 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
         connector = null;
 
         // Try to get the array for this conn string
-        if (!connStringToConnectorsMap.TryGetValue(originalConnString, out var connectors))
+        if (!connStringToIdleConnectorsMap.TryGetValue(originalConnString, out var connectors))
             return false;
 
         // Fast scan for the first non-null, *idle* connector
@@ -87,14 +87,10 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
             if (CheckIdleConnector(c))
             {
                 connector = c;
-                if (connStringToIdleConnectorsMap.TryGetValue(originalConnString, out var idleconnectorslist))
-                {
-                    for (var j = 0; j < MaxConnections; j++)
-                        if (Interlocked.CompareExchange(ref idleconnectorslist[j], null, connector) == connector)
-                            break;
-                    connStringToIdleConnectorsMap[originalConnString] = idleconnectorslist;
-
-                }
+                for (var j = 0; j < MaxConnections; j++)
+                    if (Interlocked.CompareExchange(ref connectors[j], null, connector) == connector)
+                        break;
+                connStringToIdleConnectorsMap[originalConnString] = connectors;
                 if (connStringToConnectorsMap.TryGetValue(originalConnString, out  var list))
                 {
                     for (var j = 0; i < MaxConnections; i++)
