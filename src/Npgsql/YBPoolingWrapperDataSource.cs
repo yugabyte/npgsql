@@ -96,7 +96,7 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
                     connStringToIdleConnectorsMap[originalConnString] = connectors;
                     if (connStringToConnectorsMap.TryGetValue(originalConnString, out  var list))
                     {
-                        for (var j = 0; i < MaxConnections; i++)
+                        for (var j = 0; j < MaxConnections; j++)
                             if (Interlocked.CompareExchange(ref list[j], connector, null) == null)
                                 break;
                         connStringToConnectorsMap[originalConnString] = list;
@@ -133,7 +133,7 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
                         }
                         if (connStringToIdleConnectorsMap.TryGetValue(connStringToConnectors.Key, out  var list))
                         {
-                            for (var j = 0; i < MaxConnections; i++)
+                            for (var j = 0; j < MaxConnections; j++)
                                 if (Interlocked.CompareExchange(ref list[j], connector, null) == null)
                                     break;
                             connStringToIdleConnectorsMap[connStringToConnectors.Key] = list;
@@ -141,7 +141,7 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
                         else
                         {
                             list = new NpgsqlConnector[MaxConnections];
-                            for (var j = 0; i < MaxConnections; i++)
+                            for (var j = 0; j < MaxConnections; j++)
                                 if (Interlocked.CompareExchange(ref list[j], connector, null) == null)
                                     break;
                             connStringToIdleConnectorsMap[connStringToConnectors.Key] = list;
