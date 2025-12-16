@@ -148,7 +148,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 var poolSettings = settings.Clone();
                 poolSettings.Host = host.Key;
                 _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
-                NpgsqlDataSource poolnew = settings.Pooling? new PoolingDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
+                NpgsqlDataSource poolnew = settings.Pooling? new YBPoolingWrapperDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
                 _pools.Add(poolnew);
                 int index;
                 index = _pools.IndexOf(poolnew);
