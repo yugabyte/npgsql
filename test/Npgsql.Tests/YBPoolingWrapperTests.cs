@@ -9,7 +9,7 @@ namespace YBNpgsql.Tests;
 public class YBPoolingWrapperTests : YBTestUtils
 {
     [Test]
-    public void TestPoolingForMultileConnStrings()
+    public void TestPoolingForMultipleConnStrings()
     {
         var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Timeout=0;";
         var connStringBuilder2 = "host=127.0.0.1;database=yugabyte;userid=tester;password=abc123;Load Balance Hosts=any;Timeout=0;";
@@ -57,12 +57,16 @@ public class YBPoolingWrapperTests : YBTestUtils
         }
         finally
         {
+            foreach (var conn in conns)
+            {
+                conn.Close();
+            }
             DestroyCluster();
         }
     }
 
     [Test]
-    public void TestPoolingForMultileConnStringsWithTopologyKeys()
+    public void TestPoolingForMultipleConnStringsWithTopologyKeys()
     {
         var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Topology Keys=cloud1.datacenter1.rack1:1;Timeout=0;";
         var connStringBuilder2 = "host=127.0.0.1;database=yugabyte;userid=tester;password=abc123;Load Balance Hosts=any;Topology Keys=cloud1.datacenter1.rack1:1;Timeout=0;";
@@ -110,12 +114,16 @@ public class YBPoolingWrapperTests : YBTestUtils
         }
         finally
         {
+            foreach (var conn in conns)
+            {
+                conn.Close();
+            }
             DestroyCluster();
         }
     }
 
     [Test]
-    public void TestPoolingForMultileConnStringsMultiThread()
+    public void TestPoolingForMultipleConnStringsMultiThread()
     {
         var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Timeout=0;";
         var connStringBuilder2 = "host=127.0.0.1;database=yugabyte;userid=tester;password=abc123;Load Balance Hosts=any;Timeout=0;";
@@ -183,6 +191,14 @@ public class YBPoolingWrapperTests : YBTestUtils
         }
         finally
         {
+            foreach (var conn in conns1)
+            {
+                conn.Close();
+            }
+            foreach (var conn in conns2)
+            {
+                conn.Close();
+            }
             DestroyCluster();
         }
     }
