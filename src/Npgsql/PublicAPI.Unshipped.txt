@@ -76,4 +76,3 @@ YBNpgsql.NpgsqlConnection.ReloadTypesAsync(System.Threading.CancellationToken ca
 *REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapComposite<T>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
 *REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapEnum(System.Type! clrType, string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
 *REMOVED*YBNpgsql.NpgsqlSlimDataSourceBuilder.MapEnum<TEnum>(string? pgName = null, YBNpgsql.INpgsqlNameTranslator? nameTranslator = null) -> YBNpgsql.TypeMapping.INpgsqlTypeMapper!
-
