@@ -50,11 +50,6 @@ public class YBPoolingWrapperTests : YBTestUtils
 
             Console.WriteLine("Connections Created");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
         finally
         {
             foreach (var conn in conns)
@@ -106,11 +101,6 @@ public class YBPoolingWrapperTests : YBTestUtils
             }
 
             Console.WriteLine("Connections Created");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
         finally
         {
@@ -183,11 +173,6 @@ public class YBPoolingWrapperTests : YBTestUtils
                 Assert.AreEqual(reader2.GetString(0), "tester");
             }
 
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
         finally
         {
