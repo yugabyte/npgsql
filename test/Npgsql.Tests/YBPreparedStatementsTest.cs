@@ -36,9 +36,9 @@ public class YBPreparedStatementsTest
 
             conn.Close();
         }
-        catch (PostgresException e)
+        finally
         {
-            Console.WriteLine(e);
+
         }
     }
 

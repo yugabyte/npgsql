@@ -28,11 +28,7 @@ public class YBLoadBalancerTests : YBTestUtils
             await VerifyOn("127.0.0.3", numConns / 3);
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             foreach (var conn in conns)
@@ -73,11 +69,7 @@ public class YBLoadBalancerTests : YBTestUtils
                 await VerifyOn("127.0.0.2", 5);
                 await VerifyOn("127.0.0.3", 5);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Failure:" + ex.Message);
-                Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-            }
+
             finally
             {
                 foreach (var conn in conns)
@@ -130,11 +122,7 @@ public class YBLoadBalancerTests : YBTestUtils
             await VerifyOn("127.0.0.2", numThreads * numConns/3);
             await VerifyOn("127.0.0.3", numThreads * numConns / 3);
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             Console.WriteLine("Conns count" + allConns.Count);

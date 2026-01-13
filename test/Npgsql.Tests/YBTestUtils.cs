@@ -13,6 +13,10 @@ public class YBTestUtils
     public void ExecuteShellCommand(string argument, ref string? _outputMessage, ref string? _errorMessage)
 {
     var path = Environment.GetEnvironmentVariable("YBDB_PATH");
+    if (path == null)
+    {
+        throw new ArgumentException("YBDB_PATH not initialized");
+    }
     var arguments = path + argument;
     // Set process variable
     // Provides access to local and remote processes and enables you to start and stop local system processes.

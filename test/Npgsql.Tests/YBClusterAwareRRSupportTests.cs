@@ -23,11 +23,6 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, 0, 0, 0});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
         finally
         {
             CloseConnections(conns);
@@ -46,11 +41,6 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, 0, 0, 0});
 
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
         finally
         {
@@ -83,11 +73,6 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             conns = await CreateConnections(connStringBuilder, numConns, new []{-1, -1, -1, numConns / 3, numConns / 3, numConns / 3});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
         finally
         {
             CloseConnections(conns);
@@ -106,11 +91,7 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns / 3, numConns / 3, numConns / 3});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -129,11 +110,6 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns / 3, numConns / 3, numConns / 3});
 
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
         finally
         {
@@ -166,11 +142,6 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, -1, -1, -1});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
         finally
         {
             CloseConnections(conns);
@@ -188,11 +159,6 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 6, numConns / 6, numConns / 6, numConns / 6, numConns / 6, numConns / 6});
 
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
         finally
         {

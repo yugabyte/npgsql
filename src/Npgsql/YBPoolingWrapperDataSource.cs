@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using YBNpgsql.Internal;
@@ -27,20 +28,27 @@ sealed class YBPoolingWrapperDataSource: PoolingDataSource
     internal override async ValueTask<NpgsqlConnector?> OpenNewConnector(
         NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken, NpgsqlConnectionStringBuilder originalConnString)
     {
-        var originalConnStringCopy = originalConnString.Clone();
-        /*
-         * The connectors are created using the Settings initialized in the pool.
-         * When connection strings are different, it will still use the first connection string which was initialized in the pool to create the connection.
-         * So check if connection string is same as the original connection string
-         * if not replace the host in the original conn string with the chosen host in the pool Settings
-         */
-        if (!Settings.Equals(originalConnStringCopy))
+        ConfiguredValueTaskAwaitable<NpgsqlConnector?> awaitableconnector;
+        NpgsqlConnector? connector = null;
+        lock (lockObject)
         {
-            originalConnStringCopy.Host = Settings.Host;
-            Settings = originalConnStringCopy;
+            var originalConnStringCopy = originalConnString.Clone();
+            /*
+             * The connectors are created using the Settings initialized in the pool.
+             * When connection strings are different, it will still use the first connection string which was initialized in the pool to create the connection.
+             * So check if connection string is same as the original connection string
+             * if not replace the host in the original conn string with the chosen host in the pool Settings
+             */
+            if (!Settings.Equals(originalConnStringCopy))
+            {
+                originalConnStringCopy.Host = Settings.Host;
+                Settings = originalConnStringCopy;
+            }
+            // 1. Call base logic → this increments _numConnectors and populates Connectors[]
+            awaitableconnector = base.OpenNewConnector(conn, timeout, async, cancellationToken).ConfigureAwait(false);
         }
-        // 1. Call base logic → this increments _numConnectors and populates Connectors[]
-        var connector = await base.OpenNewConnector(conn, timeout, async, cancellationToken).ConfigureAwait(false);
+
+        connector = await awaitableconnector;
 
         if (connector is not null)
         {

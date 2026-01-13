@@ -18,11 +18,12 @@ public class YBPoolingWrapperTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateCluster();
 
+        NpgsqlConnection conn1 = new NpgsqlConnection(connStringBuilder1);
+        NpgsqlConnection conn2 = new NpgsqlConnection(connStringBuilder2);
+
         try
         {
             NpgsqlConnection conn = new NpgsqlConnection(connStringBuilder1);
-            NpgsqlConnection conn1 = new NpgsqlConnection(connStringBuilder1);
-            NpgsqlConnection conn2 = new NpgsqlConnection(connStringBuilder2);
             conn.Open();
             conn.Close();
             conn1.Open();
@@ -56,6 +57,9 @@ public class YBPoolingWrapperTests : YBTestUtils
             {
                 conn.Close();
             }
+
+            conn1.Close();
+            conn2.Close();
             DestroyCluster();
         }
     }
@@ -70,11 +74,12 @@ public class YBPoolingWrapperTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateCluster();
 
+        NpgsqlConnection conn1 = new NpgsqlConnection(connStringBuilder1);
+        NpgsqlConnection conn2 = new NpgsqlConnection(connStringBuilder2);
+
         try
         {
             NpgsqlConnection conn = new NpgsqlConnection(connStringBuilder1);
-            NpgsqlConnection conn1 = new NpgsqlConnection(connStringBuilder1);
-            NpgsqlConnection conn2 = new NpgsqlConnection(connStringBuilder2);
             conn.Open();
             conn.Close();
             conn1.Open();
@@ -108,6 +113,9 @@ public class YBPoolingWrapperTests : YBTestUtils
             {
                 conn.Close();
             }
+
+            conn1.Close();
+            conn2.Close();
             DestroyCluster();
         }
     }
@@ -133,7 +141,7 @@ public class YBPoolingWrapperTests : YBTestUtils
                     var threadConns = CreateConnections(connStringBuilder1, 6); // Each thread uses its own list
                     lock (conns1)
                     {
-                        conns1.AddRange(threadConns); // Safely add to the shared list
+                        conns1.AddRange(threadConns);
                     }
                 });
                 threads.Add(thread);
@@ -159,18 +167,25 @@ public class YBPoolingWrapperTests : YBTestUtils
             {
                 thread.Join();
             }
-            NpgsqlCommand cmd1 = new NpgsqlCommand("SELECT current_user;", conns1[0]);
-            NpgsqlDataReader reader1 = cmd1.ExecuteReader();
-            while (reader1.Read())
+
+            foreach (var conn1 in conns1)
             {
-                Assert.AreEqual(reader1.GetString(0), "postgres");
+                NpgsqlCommand cmd1 = new NpgsqlCommand("SELECT current_user;", conn1);
+                NpgsqlDataReader reader1 = cmd1.ExecuteReader();
+                while (reader1.Read())
+                {
+                    Assert.AreEqual("postgres", reader1.GetString(0));
+                }
             }
 
-            NpgsqlCommand cmd2 = new NpgsqlCommand("SELECT current_user;", conns2[0]);
-            NpgsqlDataReader reader2 = cmd2.ExecuteReader();
-            while (reader2.Read())
+            foreach (var conn2 in conns2)
             {
-                Assert.AreEqual(reader2.GetString(0), "tester");
+                NpgsqlCommand cmd2 = new NpgsqlCommand("SELECT current_user;", conn2);
+                NpgsqlDataReader reader2 = cmd2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    Assert.AreEqual("tester",reader2.GetString(0) );
+                }
             }
 
         }
@@ -218,12 +233,15 @@ public class YBPoolingWrapperTests : YBTestUtils
         var cmd = "/bin/yb-ctl create --rf 3";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        cmd = "bin/ysqlsh -c \"CREATE USER tester WITH PASSWORD 'abc123'\"";
+        Console.WriteLine("Error:" + _Error);
+        cmd = "/bin/ysqlsh -c \"CREATE USER tester WITH PASSWORD 'abc123'\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        cmd = "bin/ysqlsh -c \"GRANT ALL PRIVILEGES ON DATABASE \"yugabyte\" to tester;\"";
+        Console.WriteLine("Error:" + _Error);
+        cmd = "/bin/ysqlsh -c \"GRANT ALL PRIVILEGES ON DATABASE \"yugabyte\" to tester;\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
+        Console.WriteLine("Error:" + _Error);
     }
 
     void DestroyCluster()
@@ -232,5 +250,7 @@ public class YBPoolingWrapperTests : YBTestUtils
         string? _Error = null;
         var cmd = "/bin/yb-ctl destroy";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        Console.WriteLine("Error:" + _Error);
     }
 }

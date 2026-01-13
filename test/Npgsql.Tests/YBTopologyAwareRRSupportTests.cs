@@ -23,11 +23,6 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns, 0, 0, 0, 0});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
         finally
         {
             CloseConnections(conns);
@@ -55,11 +50,6 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, 0, 0, 0});
 
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
         }
         finally
         {
@@ -94,11 +84,6 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             }
 
         }
-        catch (NpgsqlException ex)
-        {
-            if (ex.Message.Equals("No suitable host was found", StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine("Expected Failure:" + ex.Message);
-        }
         finally
         {
             CloseConnections(conns);
@@ -124,11 +109,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, -1, numConns, 0, 0, 0});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -148,11 +129,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns, 0, 0, 0, 0});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -177,11 +154,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, -1, numConns, 0, 0, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -222,11 +195,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             conns.Concat(await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, numConns / 3, numConns / 3, numConns / 3}));
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -255,11 +224,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, 0, 0, 0});
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -277,11 +242,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns, 0, 0, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -306,11 +267,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, numConns, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -338,11 +295,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, -1, numConns});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -376,11 +329,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             }
 
         }
-        catch (NpgsqlException ex)
-        {
-            if (ex.Message.Equals("No suitable host was found", StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine("Expected Failure:" + ex.Message);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -399,11 +348,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns, 0, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -428,11 +373,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, numConns, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -460,11 +401,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, -1, -1, numConns});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -503,11 +440,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             conns.Concat(await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, numConns, -1, -1}));
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -525,11 +458,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns / 2, 0, numConns / 2, 0, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -557,11 +486,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{0, -1, numConns /2, -1, numConns / 2, 0});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -601,11 +526,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
             }
 
         }
-        catch (NpgsqlException ex)
-        {
-            if (ex.Message.Equals("No suitable host was found", StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine("Expected Failure:" + ex.Message);
-        }
+
         finally
         {
             CloseConnections(conns);
@@ -639,11 +560,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns /2 , -1, -1, -1, -1, numConns / 2});
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
            CloseConnections(conns);
