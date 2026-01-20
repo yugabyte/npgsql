@@ -12,7 +12,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     static int mlock = 0;
     string connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback1()
     {
         CreateCluster();
@@ -20,7 +20,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         CloseConnections(conns);
         DestroyCluster();
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback2()
     {
         CreateCluster();
@@ -29,7 +29,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback3()
     {
         CreateCluster();
@@ -38,7 +38,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback4()
     {
         CreateCluster();
@@ -47,7 +47,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback5()
     {
         CreateCluster();
@@ -63,6 +63,8 @@ public class YBFallbackTopolgyTests : YBTestUtils
         var cmd = "/bin/yb-ctl stop_node 1";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
 
         var conns = await CreateConnections(connString, new[]{-1, 12, 0});
 
@@ -70,7 +72,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback6()
     {
         CreateCluster();
@@ -86,6 +88,8 @@ public class YBFallbackTopolgyTests : YBTestUtils
         var cmd = "/bin/yb-ctl stop_node 1";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine(_Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
 
         var conns = await CreateConnections(connString, new[]{-1, 6, 6});
         CloseConnections(conns);
@@ -155,6 +159,9 @@ public class YBFallbackTopolgyTests : YBTestUtils
         var cmd = "/bin/yb-ctl start --rf 3 --placement_info \"aws.us-west.us-west-2a,aws.us-west.us-west-2b,aws.us-west.us-west-2c\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
+        System.Threading.Thread.Sleep(5000);
     }
 
     protected void DestroyCluster()
@@ -163,6 +170,9 @@ public class YBFallbackTopolgyTests : YBTestUtils
         string? _Error = null;
         var cmd = "/bin/yb-ctl destroy";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
     }
 
 }

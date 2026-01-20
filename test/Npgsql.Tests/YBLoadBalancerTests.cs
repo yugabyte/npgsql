@@ -12,7 +12,7 @@ public class YBLoadBalancerTests : YBTestUtils
 {
     int numConns = 6;
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestLoadBalance1()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=any;Timeout=0";
@@ -43,7 +43,7 @@ public class YBLoadBalancerTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestLoadBalance2()
         {
             var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;YB Servers Refresh Interval=30;Timeout=0";
@@ -60,8 +60,8 @@ public class YBLoadBalancerTests : YBTestUtils
                 var cmd = "/bin/yb-ctl stop_node 1";
                 ExecuteShellCommand(cmd, ref _Output, ref _Error );
                 Console.WriteLine(_Output);
-
-                System.Threading.Thread.Sleep(30000);
+                if (!string.IsNullOrWhiteSpace(_Error))
+                    Console.WriteLine("Error:" + _Error);
 
                 var conn2 = CreateConnections(connStringBuilder, numConns);
                 conns.AddRange(conn2);
@@ -85,7 +85,7 @@ public class YBLoadBalancerTests : YBTestUtils
             }
         }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestLoadBalance3()
     {
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
@@ -144,6 +144,9 @@ public class YBLoadBalancerTests : YBTestUtils
         var cmd = "/bin/yb-ctl create --rf 3";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
+        System.Threading.Thread.Sleep(5000);
     }
 
     void DestroyCluster()
@@ -152,6 +155,9 @@ public class YBLoadBalancerTests : YBTestUtils
         string? _Error = null;
         var cmd = "/bin/yb-ctl destroy";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
     }
 
     static List<NpgsqlConnection> CreateConnections(string connString, int numConns)

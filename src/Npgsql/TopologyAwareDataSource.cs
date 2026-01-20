@@ -16,13 +16,11 @@ namespace YBNpgsql;
 public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 {
     ConcurrentDictionary<int, HashSet<CloudPlacement>?> allowedPlacements;
-    Dictionary<string, string> AllRRIps = new Dictionary<string, string>();
-    Dictionary<string, string> AllPrimaryIps = new Dictionary<string, string>();
 
     internal TopologyAwareDataSource(NpgsqlConnectionStringBuilder settings, NpgsqlDataSourceConfiguration dataSourceConfig) : base(settings,dataSourceConfig,false)
     {
         allowedPlacements = new ConcurrentDictionary<int, HashSet<CloudPlacement>?>();
-        ParseGeoLocations();
+        ParseGeoLocations(); 
         _connectionLogger.LogDebug("Allowed Placements: {allowedPlacements}", allowedPlacements);
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");
         foreach (var host in initialHosts.ToList())
@@ -153,13 +151,26 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 int index;
                 index = _pools.IndexOf(poolnew);
                 var priority = hostToPriorityMap[host.Key];
-                priorityToPoolIndexMap[priority] = index;
                 if (host.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
                 {
+                    if (!priorityToPoolIndexMapPrimary.TryGetValue(priority, out var list))
+                    {
+                        list = new List<int>();
+                        priorityToPoolIndexMapPrimary[priority] = list;
+                    }
+
+                    list.Add(index);;
                     poolToNumConnMapPrimary[poolnew] = 0;
                 }
                 else if (host.Value.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
                 {
+                    if (!priorityToPoolIndexMapRR.TryGetValue(priority, out var list))
+                    {
+                        list = new List<int>();
+                        priorityToPoolIndexMapRR[priority] = list;
+                    }
+
+                    list.Add(index);
                     poolToNumConnMapRR[poolnew] = 0;
                 }
             }
@@ -280,7 +291,7 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 }
             }
         }
-
+        
         return serversNodeTypeMapCopy;
     }
     new Dictionary<string, string> GetPrivateOrPublicServers(Dictionary<string, string> privateHosts, Dictionary<string,string> publicHosts)
@@ -329,7 +340,6 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 return AllPrimaryIps;
             }
         }
-
         fallbackPrivateIPs.TryGetValue(REST_OF_CLUSTER, out var privateIPRest);
         fallbackPublicIPs.TryGetValue(REST_OF_CLUSTER, out var publicIPRest);
 

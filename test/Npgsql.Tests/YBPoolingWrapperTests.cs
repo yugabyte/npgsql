@@ -8,7 +8,7 @@ namespace YBNpgsql.Tests;
 
 public class YBPoolingWrapperTests : YBTestUtils
 {
-    [Test]
+    [Test, Timeout(60000)]
     public void TestPoolingForMultipleConnStrings()
     {
         var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Timeout=0;";
@@ -64,7 +64,7 @@ public class YBPoolingWrapperTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public void TestPoolingForMultipleConnStringsWithTopologyKeys()
     {
         var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Topology Keys=cloud1.datacenter1.rack1:1;Timeout=0;";
@@ -120,7 +120,7 @@ public class YBPoolingWrapperTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public void TestPoolingForMultipleConnStringsMultiThread()
     {
         var connStringBuilder1 = "host=127.0.0.1;database=yugabyte;userid=postgres;password=postgres;Load Balance Hosts=any;Timeout=0;";
@@ -233,15 +233,19 @@ public class YBPoolingWrapperTests : YBTestUtils
         var cmd = "/bin/yb-ctl create --rf 3";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/ysqlsh -c \"CREATE USER tester WITH PASSWORD 'abc123'\"";
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
+        System.Threading.Thread.Sleep(5000);
+        cmd = "/bin/ysqlsh -c \\\"CREATE USER tester WITH PASSWORD 'abc123'\\\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/ysqlsh -c \"GRANT ALL PRIVILEGES ON DATABASE \"yugabyte\" to tester;\"";
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
+        cmd = "/bin/ysqlsh -c \\\"GRANT ALL PRIVILEGES ON DATABASE \\\"yugabyte\\\" to tester;\\\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        Console.WriteLine("Error:" + _Error);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
     }
 
     void DestroyCluster()
@@ -251,6 +255,7 @@ public class YBPoolingWrapperTests : YBTestUtils
         var cmd = "/bin/yb-ctl destroy";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
-        Console.WriteLine("Error:" + _Error);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
     }
 }
