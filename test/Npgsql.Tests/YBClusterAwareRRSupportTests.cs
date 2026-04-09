@@ -217,6 +217,10 @@ public class YBClusterAwareRRSupportTests : YBTestUtils{
     {
         string? _Output = null;
         string? _Error = null;
+        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
         var cmd = "/bin/yb-ctl create --rf 3 --placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 --tserver_flags \"placement_uuid=live,max_stale_read_bound_time_ms=60000000\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);

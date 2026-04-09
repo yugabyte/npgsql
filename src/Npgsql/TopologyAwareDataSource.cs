@@ -142,7 +142,28 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 }
 
                 if (flag == 1)
+                {
+                    var existingPool = _pools.First(p => host.Key.Equals(p.Settings.Host, StringComparison.OrdinalIgnoreCase));
+                    if (host.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (!poolToNumConnMapPrimary.ContainsKey(existingPool))
+                        {
+                            var restoredCount = _savedConnectionCounts.TryGetValue(host.Key, out var sc) ? sc : 0;
+                            poolToNumConnMapPrimary[existingPool] = restoredCount;
+                            _savedConnectionCounts.Remove(host.Key);
+                        }
+                    }
+                    else if (host.Value.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (!poolToNumConnMapRR.ContainsKey(existingPool))
+                        {
+                            var restoredCount = _savedConnectionCounts.TryGetValue(host.Key, out var sc) ? sc : 0;
+                            poolToNumConnMapRR[existingPool] = restoredCount;
+                            _savedConnectionCounts.Remove(host.Key);
+                        }
+                    }
                     continue;
+                }
                 var poolSettings = settings.Clone();
                 poolSettings.Host = host.Key;
                 _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
@@ -291,7 +312,6 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
                 }
             }
         }
-        
         return serversNodeTypeMapCopy;
     }
     new Dictionary<string, string> GetPrivateOrPublicServers(Dictionary<string, string> privateHosts, Dictionary<string,string> publicHosts)
@@ -353,7 +373,6 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
 
         if (serverToNodeTypeMap.Any())
             return serverToNodeTypeMap;
-
         if (settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
         {
             return AllRRIps;
@@ -424,6 +443,12 @@ public sealed class TopologyAwareDataSource: ClusterAwareDataSource
     internal override bool Refresh()
     {
         _connectionLogger.LogDebug("Refreshing connection");
+        foreach (var kvp in poolToNumConnMapPrimary)
+            if (kvp.Key.Settings.Host != null)
+                _savedConnectionCounts[kvp.Key.Settings.Host] = kvp.Value;
+        foreach (var kvp in poolToNumConnMapRR)
+            if (kvp.Key.Settings.Host != null)
+                _savedConnectionCounts[kvp.Key.Settings.Host] = kvp.Value;
         poolToNumConnMapPrimary.Clear();
         poolToNumConnMapRR.Clear();
         Debug.Assert(initialHosts != null, nameof(initialHosts) + " != null");

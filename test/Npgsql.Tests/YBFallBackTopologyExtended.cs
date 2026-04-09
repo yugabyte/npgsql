@@ -10,11 +10,15 @@ namespace YBNpgsql.Tests;
 public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
 {
     string connStringBuilder = "host=127.0.0.1,127.0.0.5,127.0.0.7;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;YB Servers Refresh Interval=10;Topology Keys=";
-    int numConnections = 12;
+    int numConnections = 18;
     new void CreateCluster()
     {
         string? _Output = null;
         string? _Error = null;
+        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
         var cmd = "/bin/yb-ctl start --rf 3 --placement_info \"aws.us-west.us-west-1a,aws.us-west.us-west-1a,aws.us-west.us-west-1a\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);
@@ -139,6 +143,8 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
         if (!string.IsNullOrWhiteSpace(_Error))
             Console.WriteLine("Error:" + _Error);
 
+        Thread.Sleep(15000);
+
         count = new[] { -1, -1, -1, -1, 12, 0 };
         conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-1a:1,aws.us-east.us-east-2a:2,aws.us-east.us-east-2b:3,aws.us-east.us-east-2c:4", count);
 
@@ -166,7 +172,7 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
 
         Thread.Sleep(15000);
 
-        count = new[] { 6, 6, -1, -1, -1, -1 };
+        count = new[] { 6, 6, -1, 0, 0, 0 };
         conns = await CreateConnections(connStringBuilder+"aws.us-west.us-west-1a:1,aws.us-east.us-east-2a:2,aws.us-east.us-east-2b:3,aws.us-east.us-east-2c:4", count);
 
         DestroyCluster();
@@ -268,9 +274,12 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
     }
 
     [Test, Timeout(240000)]
-    private async Task checkNodeDownPrimary() {
+    public async Task checkNodeDownPrimary() {
       string? _Output = null;
       string? _Error = null;
+
+      var savedConnString = connStringBuilder;
+      connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;YB Servers Refresh Interval=10;Topology Keys=";
 
       ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
       Console.WriteLine("Output:" + _Output);
@@ -283,6 +292,7 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
       if (!string.IsNullOrWhiteSpace(_Error))
           Console.WriteLine("Error:" + _Error);
 
+      Thread.Sleep(15000);
       try {
           await createConnectionsWithoutCloseAndVerify( "aws.us-west.*:1", new[]{6, 6, 6});
           ExecuteShellCommand("/bin/yb-ctl stop_node 1", ref _Output, ref _Error);
@@ -300,7 +310,8 @@ public class YBFallBackTopologyExtended : YBFallbackTopolgyTests
           await createConnectionsWithoutCloseAndVerify("aws.us-west.*:1", new[]{16, 16, 16});
 
       } finally {
-          ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
+          connStringBuilder = savedConnString;
+          ExecuteShellCommand("/bin/yb-ctl status", ref _Output, ref _Error);
           Console.WriteLine("Output:" + _Output);
           if (!string.IsNullOrWhiteSpace(_Error))
               Console.WriteLine("Error:" + _Error);

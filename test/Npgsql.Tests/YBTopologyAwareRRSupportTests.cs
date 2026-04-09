@@ -179,10 +179,13 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
     [Test, Timeout(60000)]
     public async Task? TestPreferPrimaryAllPrimaryNodesDown()
     {
-        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
+        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferprimary;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
+
+        conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns, 0, 0, 0, 0});
+
         // Stop Node: 127.0.0.1, 127.0.0.2, 127.0.0.3
         string? _Output = null;
         string? _Error = null;
@@ -216,7 +219,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
                 Console.WriteLine("Error:" + _Error);
 
             Thread.Sleep(10000);
-            conns.Concat(await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, numConns / 3, numConns / 3, numConns / 3}));
+            conns.AddRange(await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, numConns / 3, numConns / 3, numConns / 3}));
 
         }
 
@@ -459,10 +462,13 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
     [Test, Timeout(60000)]
     public async Task? TestPreferRRAllRRNodesDown()
     {
-        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0";
+        var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugabyte;Load Balance Hosts=preferrr;Topology Keys=cloud1.datacenter2.rack1:1,cloud1.datacenter3.rack1:2;Timeout=0;YB Servers Refresh Interval=10";
 
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
+
+        conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns, 0, 0});
+
         // Stop Node: 127.0.0.4, 127.0.0.5, 127.0.0.6
         string? _Output = null;
         string? _Error = null;
@@ -494,7 +500,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
                 Console.WriteLine("Error:" + _Error);
             Thread.Sleep(15000);
 
-            conns.Concat(await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, numConns, -1, -1}));
+            conns.AddRange(await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, numConns, -1, -1}));
 
         }
 
@@ -687,6 +693,10 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
     {
         string? _Output = null;
         string? _Error = null;
+        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
         var cmd = "/bin/yb-ctl create --rf 3 --placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 --tserver_flags \"placement_uuid=live,max_stale_read_bound_time_ms=60000000\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);

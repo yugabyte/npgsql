@@ -141,6 +141,10 @@ public class YBLoadBalancerTests : YBTestUtils
     {
         string? _Output = null;
         string? _Error = null;
+        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
         var cmd = "/bin/yb-ctl create --rf 3";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);

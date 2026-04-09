@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -147,6 +148,12 @@ public class YBFallbackTopolgyTests : YBTestUtils
                 conn.Close();
             }
         }
+        // conn.Close() with pooling enabled returns the connection to the pool
+        // rather than closing the physical TCP connection. ClearAllPools()
+        // forces physical disconnection, and the sleep lets the server
+        // register the disconnections before we verify counts via rpcz.
+        NpgsqlConnection.ClearAllPools();
+        Thread.Sleep(1000);
         VerifyLocal("127.0.0.1", 0);
         VerifyLocal("127.0.0.2", 0);
         VerifyLocal("127.0.0.3", 0);
@@ -156,6 +163,10 @@ public class YBFallbackTopolgyTests : YBTestUtils
     {
         string? _Output = null;
         string? _Error = null;
+        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
+        Console.WriteLine("Output:" + _Output);
+        if (!string.IsNullOrWhiteSpace(_Error))
+            Console.WriteLine("Error:" + _Error);
         var cmd = "/bin/yb-ctl start --rf 3 --placement_info \"aws.us-west.us-west-2a,aws.us-west.us-west-2b,aws.us-west.us-west-2c\"";
         ExecuteShellCommand(cmd, ref _Output, ref _Error );
         Console.WriteLine("Output:" + _Output);

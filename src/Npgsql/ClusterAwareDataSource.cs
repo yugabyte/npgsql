@@ -71,6 +71,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     protected static Dictionary<NpgsqlDataSource, int> poolToNumConnMapRR = new Dictionary<NpgsqlDataSource, int>();
 
     /// <summary>
+    /// Preserves connection counts across map rebuilds (e.g. during Refresh).
+    /// </summary>
+    protected static Dictionary<string, int> _savedConnectionCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>
     /// Stores a map of host to their priority
     /// </summary>
     protected static Dictionary<string, int> hostToPriorityMap = new Dictionary<string, int>();
@@ -286,6 +291,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             }
         }
 
+        if (_savedConnectionCounts.TryGetValue(server, out var savedCount) && savedCount > 0)
+        {
+            return savedCount;
+        }
+
         return 0;
     }
 
@@ -357,20 +367,43 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         lock (lockObject)
         {
             int currentCount;
+            var host = _pools[poolIndex].Settings.Host;
 
             if (poolToNumConnMapPrimary.ContainsKey(currPool))
             {
                 currentCount = poolToNumConnMapPrimary[currPool];
                 poolToNumConnMapPrimary[currPool] += incDec; 
                 _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}",
-                    _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapPrimary[currPool]);
+                    host, currentCount, poolToNumConnMapPrimary[currPool]);
             }
             else if (poolToNumConnMapRR.ContainsKey(currPool))
             {
                 currentCount = poolToNumConnMapRR[currPool];
                 poolToNumConnMapRR[currPool] += incDec;
                 _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}",
-                    _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapRR[currPool]);
+                    host, currentCount, poolToNumConnMapRR[currPool]);
+            }
+            else if (incDec > 0)
+            {
+                if (_hostsToNodeTypeMap != null && host != null && _hostsToNodeTypeMap.TryGetValue(host, out var nodeType))
+                {
+                    if (nodeType.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
+                    {
+                        poolToNumConnMapRR[currPool] = Math.Max(0, incDec);
+                    }
+                    else
+                    {
+                        poolToNumConnMapPrimary[currPool] = Math.Max(0, incDec);
+                    }
+                }
+            }
+            else if (incDec < 0 && host != null && _savedConnectionCounts.TryGetValue(host, out var savedCount))
+            {
+                var newCount = savedCount + incDec;
+                if (newCount > 0)
+                    _savedConnectionCounts[host] = newCount;
+                else
+                    _savedConnectionCounts.Remove(host);
             }
         }
     }
@@ -551,9 +584,9 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                         : null);
         if (connector == null)
         {
-            unreachableHostsIndices.Add(poolIndex);
+            if (!unreachableHostsIndices.Contains(poolIndex)) unreachableHostsIndices.Add(poolIndex);
             var settingsHost = _pools[poolIndex].Settings.Host;
-            if (settingsHost != null) unreachableHosts.Add(settingsHost);
+            if (settingsHost != null && !unreachableHosts.Contains(settingsHost)) unreachableHosts.Add(settingsHost);
             var pool = _pools[poolIndex];
             if (poolToNumConnMapPrimary.ContainsKey(pool))
                 poolToNumConnMapPrimary.Remove(pool);
@@ -637,10 +670,9 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 break;
             }
-            unreachableHostsIndices.Add(poolIndex);
+            if (!unreachableHostsIndices.Contains(poolIndex)) unreachableHostsIndices.Add(poolIndex);
             var settingsHost = _pools[poolIndex].Settings.Host;
-            if (settingsHost != null) unreachableHosts.Add(settingsHost);
-            // poolToNumConnMap.Remove(poolIndex);
+            if (settingsHost != null && !unreachableHosts.Contains(settingsHost)) unreachableHosts.Add(settingsHost);
             var pool = _pools[poolIndex];
             if (poolToNumConnMapPrimary.ContainsKey(pool))
                 poolToNumConnMapPrimary.Remove(pool);
