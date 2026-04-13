@@ -12,7 +12,7 @@ public class YBLoadBalancerTests : YBTestUtils
 {
     int numConns = 6;
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestLoadBalance1()
     {
         var connStringBuilder = "host=127.0.0.1;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=any;Timeout=0";
@@ -28,11 +28,7 @@ public class YBLoadBalancerTests : YBTestUtils
             await VerifyOn("127.0.0.3", numConns / 3);
 
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             foreach (var conn in conns)
@@ -47,7 +43,7 @@ public class YBLoadBalancerTests : YBTestUtils
         }
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestLoadBalance2()
         {
             var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;YB Servers Refresh Interval=30;Timeout=0";
@@ -59,13 +55,7 @@ public class YBLoadBalancerTests : YBTestUtils
                 var conn1 = CreateConnections(connStringBuilder, numConns);
                 conns.AddRange(conn1);
 
-                string? _Output = null;
-                string? _Error = null;
-                var cmd = "/bin/yb-ctl stop_node 1";
-                ExecuteShellCommand(cmd, ref _Output, ref _Error );
-                Console.WriteLine(_Output);
-
-                System.Threading.Thread.Sleep(30000);
+                ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
 
                 var conn2 = CreateConnections(connStringBuilder, numConns);
                 conns.AddRange(conn2);
@@ -73,11 +63,7 @@ public class YBLoadBalancerTests : YBTestUtils
                 await VerifyOn("127.0.0.2", 5);
                 await VerifyOn("127.0.0.3", 5);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Failure:" + ex.Message);
-                Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-            }
+
             finally
             {
                 foreach (var conn in conns)
@@ -93,7 +79,7 @@ public class YBLoadBalancerTests : YBTestUtils
             }
         }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestLoadBalance3()
     {
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0";
@@ -130,11 +116,7 @@ public class YBLoadBalancerTests : YBTestUtils
             await VerifyOn("127.0.0.2", numThreads * numConns/3);
             await VerifyOn("127.0.0.3", numThreads * numConns / 3);
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Failure:" + ex.Message);
-            Console.WriteLine("Failure stacktrace: " + ex.StackTrace);
-        }
+
         finally
         {
             Console.WriteLine("Conns count" + allConns.Count);
@@ -151,19 +133,14 @@ public class YBLoadBalancerTests : YBTestUtils
 
     void CreateCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl create --rf 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
+        ExecuteShellCommand("/bin/yb-ctl create --rf 3", "create cluster");
+        System.Threading.Thread.Sleep(5000);
     }
 
     void DestroyCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl destroy";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
     }
 
     static List<NpgsqlConnection> CreateConnections(string connString, int numConns)

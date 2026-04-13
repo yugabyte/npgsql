@@ -36,8 +36,16 @@ sealed class MultiHostDataSourceWrapper(NpgsqlMultiHostDataSource wrappedSource,
         => wrappedSource.Get(conn, timeout, async, cancellationToken);
     internal override bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
         => throw new NpgsqlException("Npgsql bug: trying to get an idle connector from " + nameof(MultiHostDataSourceWrapper));
+
+    internal override bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, out NpgsqlConnector? connector) => throw new System.NotImplementedException();
+
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken)
         => throw new NpgsqlException("Npgsql bug: trying to open a new connector from " + nameof(MultiHostDataSourceWrapper));
+
+    internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken,
+        NpgsqlConnectionStringBuilder settings) =>
+        throw new System.NotImplementedException();
+
     internal override void Return(NpgsqlConnector connector)
         => wrappedSource.Return(connector);
 

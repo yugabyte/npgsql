@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
@@ -12,7 +13,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
     static int mlock = 0;
     string connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugsbyte;Load Balance Hosts=true;Timeout=0;Topology Keys=";
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback1()
     {
         CreateCluster();
@@ -20,7 +21,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         CloseConnections(conns);
         DestroyCluster();
     }
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback2()
     {
         CreateCluster();
@@ -29,7 +30,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback3()
     {
         CreateCluster();
@@ -38,7 +39,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback4()
     {
         CreateCluster();
@@ -47,7 +48,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback5()
     {
         CreateCluster();
@@ -58,11 +59,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
         await VerifyOn("127.0.0.1", 1);
 
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 1";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine(_Output);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
 
         var conns = await CreateConnections(connString, new[]{-1, 12, 0});
 
@@ -70,7 +67,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
         DestroyCluster();
     }
 
-    [Test]
+    [Test, Timeout(60000)]
     public async Task TestFallback6()
     {
         CreateCluster();
@@ -81,11 +78,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
         await VerifyOn("127.0.0.1", 1);
 
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 1";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine(_Output);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
 
         var conns = await CreateConnections(connString, new[]{-1, 6, 6});
         CloseConnections(conns);
@@ -143,6 +136,12 @@ public class YBFallbackTopolgyTests : YBTestUtils
                 conn.Close();
             }
         }
+        // conn.Close() with pooling enabled returns the connection to the pool
+        // rather than closing the physical TCP connection. ClearAllPools()
+        // forces physical disconnection, and the sleep lets the server
+        // register the disconnections before we verify counts via rpcz.
+        NpgsqlConnection.ClearAllPools();
+        Thread.Sleep(1000);
         VerifyLocal("127.0.0.1", 0);
         VerifyLocal("127.0.0.2", 0);
         VerifyLocal("127.0.0.3", 0);
@@ -150,19 +149,15 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
     protected void CreateCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
         var cmd = "/bin/yb-ctl start --rf 3 --placement_info \"aws.us-west.us-west-2a,aws.us-west.us-west-2b,aws.us-west.us-west-2c\"";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
+        ExecuteShellCommand(cmd, "start cluster");
+        System.Threading.Thread.Sleep(5000);
     }
 
     protected void DestroyCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl destroy";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
     }
 
 }

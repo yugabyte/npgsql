@@ -1,14 +1,35 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using YBNpgsqlTypes;
 using NUnit.Framework;
 
 namespace YBNpgsql.Tests;
 
-public class YBPreparedStatementsTest
+public class YBPreparedStatementsTest : YBTestUtils
 {
-    [Test]
+    [OneTimeSetUp]
+    public void SetUp()
+    {
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
+        ExecuteShellCommand("/bin/yb-ctl create --rf 3", "create cluster");
+        Thread.Sleep(5000);
 
+        var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugabyte";
+        using var conn = new NpgsqlConnection(connStringBuilder);
+        conn.Open();
+        using var cmd = new NpgsqlCommand("CREATE DATABASE northwind", conn);
+        try { cmd.ExecuteNonQuery(); }
+        catch (Exception ex) { Console.WriteLine("northwind DB may already exist: " + ex.Message); }
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
+    }
+
+    [Test]
     public async Task PreparedStatementsTestWithFlagsEnabled()
     {
         var connStringBuilder = "host=localhost;port=5433;database=yugabyte;userid=yugabyte;password=yugabyte;Enable Discard Sequences=false;Enable Discard Temp= false;Enable Close All=false;Load Balance Hosts=true;";
@@ -16,6 +37,8 @@ public class YBPreparedStatementsTest
         try
         {
             conn.Open();
+            using var dropCmd = new NpgsqlCommand("DROP TABLE IF EXISTS employee", conn);
+            dropCmd.ExecuteNonQuery();
             NpgsqlCommand empCreateCmd = new NpgsqlCommand("CREATE TABLE employee (id int PRIMARY KEY,age int);", conn);
             empCreateCmd.ExecuteNonQuery();
             Console.WriteLine("Created table Employee");
@@ -34,16 +57,14 @@ public class YBPreparedStatementsTest
                 await empInsertCommand.ExecuteNonQueryAsync();
             }
 
-            conn.Close();
         }
-        catch (PostgresException e)
+        finally
         {
-            Console.WriteLine(e);
+            conn.Close();
         }
     }
 
     [Test]
-
     public void TypeLoadingTimeTest()
     {
         var connStringBuilderWithNoTypeLoading = "host=localhost;port=5433;database=northwind;userid=yugabyte;Enable Discard Sequences=false;Enable Discard Temp= false;Load Balance Hosts=true; Server Compatibility Mode=NoTypeLoading";

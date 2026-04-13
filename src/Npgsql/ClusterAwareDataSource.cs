@@ -71,6 +71,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     protected static Dictionary<NpgsqlDataSource, int> poolToNumConnMapRR = new Dictionary<NpgsqlDataSource, int>();
 
     /// <summary>
+    /// Preserves connection counts across map rebuilds (e.g. during Refresh).
+    /// </summary>
+    protected static Dictionary<string, int> _savedConnectionCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>
     /// Stores a map of host to their priority
     /// </summary>
     protected static Dictionary<string, int> hostToPriorityMap = new Dictionary<string, int>();
@@ -78,7 +83,12 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// <summary>
     /// Stores a map of host to their priority
     /// </summary>
-    protected static Dictionary<int, int> priorityToPoolIndexMap = new Dictionary<int, int>();
+    protected static Dictionary<int, List<int>> priorityToPoolIndexMapPrimary = new Dictionary<int, List<int>>();
+
+    /// <summary>
+    /// Stores a map of host to their priority
+    /// </summary>
+    protected static Dictionary<int, List<int>> priorityToPoolIndexMapRR = new Dictionary<int, List<int>>();
 
     /// <summary>
     /// Connection settings
@@ -129,6 +139,19 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     /// Value = Dictionary (IP , nodeType)
     /// </summary>
     protected ConcurrentDictionary<int, Dictionary<string, string>> fallbackPublicIPs;
+
+    /// <summary>
+    /// Contains a dictionary of IPs for all Read replica IPs
+    /// Key = Read replica IPs
+    /// Value = Dictionary (IP , nodeType)
+    /// </summary>
+    protected Dictionary<string, string> AllRRIps = new Dictionary<string, string>();
+    /// <summary>
+    /// Contains a dictionary of IPs for PRimary nodes of cluster
+    /// Key = Primary node IPs
+    /// Value = Dictionary (IP , nodeType)
+    /// </summary>
+    protected Dictionary<string, string> AllPrimaryIps = new Dictionary<string, string>();
 
     /// <summary>
     /// To set refresh value explicitly
@@ -223,7 +246,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 var poolSettings = settings.Clone();
                 poolSettings.Host = host.Key;
                 _connectionLogger.LogDebug("Adding {host} to connection pool", poolSettings.Host);
-                NpgsqlDataSource poolnew = settings.Pooling? new PoolingDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
+                NpgsqlDataSource poolnew = settings.Pooling? new YBPoolingWrapperDataSource(poolSettings, dataSourceConfig): new UnpooledDataSource(poolSettings, dataSourceConfig);
                 _pools.Add(poolnew);
                 if (host.Value.Equals("primary", StringComparison.OrdinalIgnoreCase))
                 {
@@ -266,6 +289,11 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 return pool.Value;
             }
+        }
+
+        if (_savedConnectionCounts.TryGetValue(server, out var savedCount) && savedCount > 0)
+        {
+            return savedCount;
         }
 
         return 0;
@@ -339,20 +367,43 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         lock (lockObject)
         {
             int currentCount;
+            var host = _pools[poolIndex].Settings.Host;
 
             if (poolToNumConnMapPrimary.ContainsKey(currPool))
             {
                 currentCount = poolToNumConnMapPrimary[currPool];
-                poolToNumConnMapPrimary[currPool] += incDec;
+                poolToNumConnMapPrimary[currPool] += incDec; 
                 _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}",
-                    _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapPrimary[currPool]);
+                    host, currentCount, poolToNumConnMapPrimary[currPool]);
             }
             else if (poolToNumConnMapRR.ContainsKey(currPool))
             {
                 currentCount = poolToNumConnMapRR[currPool];
                 poolToNumConnMapRR[currPool] += incDec;
                 _connectionLogger.LogTrace("Updated the current count for {host} from {currentCount} to {newCount}",
-                    _pools[poolIndex].Settings.Host, currentCount, poolToNumConnMapRR[currPool]);
+                    host, currentCount, poolToNumConnMapRR[currPool]);
+            }
+            else if (incDec > 0)
+            {
+                if (_hostsToNodeTypeMap != null && host != null && _hostsToNodeTypeMap.TryGetValue(host, out var nodeType))
+                {
+                    if (nodeType.Equals("read_replica", StringComparison.OrdinalIgnoreCase))
+                    {
+                        poolToNumConnMapRR[currPool] = Math.Max(0, incDec);
+                    }
+                    else
+                    {
+                        poolToNumConnMapPrimary[currPool] = Math.Max(0, incDec);
+                    }
+                }
+            }
+            else if (incDec < 0 && host != null && _savedConnectionCounts.TryGetValue(host, out var savedCount))
+            {
+                var newCount = savedCount + incDec;
+                if (newCount > 0)
+                    _savedConnectionCounts[host] = newCount;
+                else
+                    _savedConnectionCounts.Remove(host);
             }
         }
     }
@@ -406,7 +457,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     {
         NpgsqlConnector? connector = null;
         var exceptions = new List<Exception>();
-        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, false).ConfigureAwait(false);
 
         if (this is TopologyAwareDataSource)
         {
@@ -424,7 +475,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     {
                         exceptions.Clear();
                         CreatePool(fallbackPrivateIPs[i]);
-                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, false).ConfigureAwait(false);
                         if (connector != null)
                             break;
                     }
@@ -432,7 +483,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                     {
                         exceptions.Clear();
                         CreatePool(fallbackPublicIPs[i]);
-                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+                        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, false).ConfigureAwait(false);
                         if (connector != null)
                             break;
                     }
@@ -449,14 +500,28 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                 {
                     exceptions.Clear();
                     CreatePool(fallbackPrivateIPs[REST_OF_CLUSTER]);
-                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, false).ConfigureAwait(false);
                 }
                 else if (public_ip != null)
                 {
                     exceptions.Clear();
                     CreatePool(fallbackPublicIPs[REST_OF_CLUSTER]);
-                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+                    connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, false).ConfigureAwait(false);
                 }
+            }
+        }
+
+        if (connector == null)
+        {
+            if (Settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
+            {
+                CreatePool(AllRRIps);
+                connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, true).ConfigureAwait(false);
+            }
+            if (Settings.LoadBalanceHosts == LoadBalanceHosts.PreferRR)
+            {
+                CreatePool(AllPrimaryIps);
+                connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, true).ConfigureAwait(false);
             }
         }
 
@@ -466,7 +531,7 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         }
         _connectionLogger.LogDebug("Failed to apply Load balance. Trying normal connection");
         conn.Settings.LoadBalanceHosts = LoadBalanceHosts.False;
-        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions).ConfigureAwait(false);
+        connector = await getConnector(conn, timeout,async, cancellationToken, exceptions, true).ConfigureAwait(false);
         return connector ?? throw NoSuitableHostsException(exceptions);
     }
 
@@ -476,15 +541,36 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         if (priority == chosenHostPriority)
             return null;
         NpgsqlConnector? connector = null;
-        var poolIndex = -1;
-        if (priorityToPoolIndexMap.ContainsKey(priority))
+        Dictionary<int, List<int>>? priorityToPoolIndexMap = null;
+        if (Settings.LoadBalanceHosts == LoadBalanceHosts.OnlyPrimary || Settings.LoadBalanceHosts == LoadBalanceHosts.PreferPrimary)
         {
-            poolIndex = priorityToPoolIndexMap[priority];
+            priorityToPoolIndexMap = priorityToPoolIndexMapPrimary;
+        }
+        else if (Settings.LoadBalanceHosts == LoadBalanceHosts.OnlyRR || Settings.LoadBalanceHosts == LoadBalanceHosts.PreferRR)
+        {
+            priorityToPoolIndexMap = priorityToPoolIndexMapRR;
+        }
+        else if (Settings.LoadBalanceHosts == LoadBalanceHosts.Any || Settings.LoadBalanceHosts == LoadBalanceHosts.True)
+        {
+            priorityToPoolIndexMap = priorityToPoolIndexMapPrimary
+                .Concat(priorityToPoolIndexMapRR)
+                .GroupBy(p => p.Key)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.SelectMany(x => x.Value).ToList()
+                );
+        }
+        Debug.Assert(priorityToPoolIndexMap != null, nameof(priorityToPoolIndexMap) + " = null");
+        if (!priorityToPoolIndexMap.TryGetValue(priority, out var poolIndices)){
+            priority++;
+            connector = await getConnector(chosenHostPriority, priority, conn, timeout, async, cancellationToken, exceptions)
+                .ConfigureAwait(false);
+            return connector;
         }
 
-        if (poolIndex == -1)
-            return null;
-        UpdateConnectionMap(poolIndex, 1);
+        foreach (var poolIndex in poolIndices)
+        {
+           UpdateConnectionMap(poolIndex, 1);
         var timeoutPerHost = timeout.IsSet ? timeout.CheckAndGetTimeLeft() : TimeSpan.Zero;
         var preferredType = GetTargetSessionAttributes(conn);
         var checkUnpreferred = preferredType is TargetSessionAttributes.PreferPrimary or TargetSessionAttributes.PreferStandby;
@@ -498,10 +584,16 @@ public class ClusterAwareDataSource: NpgsqlDataSource
                         : null);
         if (connector == null)
         {
+            if (!unreachableHostsIndices.Contains(poolIndex)) unreachableHostsIndices.Add(poolIndex);
+            var settingsHost = _pools[poolIndex].Settings.Host;
+            if (settingsHost != null && !unreachableHosts.Contains(settingsHost)) unreachableHosts.Add(settingsHost);
+            var pool = _pools[poolIndex];
+            if (poolToNumConnMapPrimary.ContainsKey(pool))
+                poolToNumConnMapPrimary.Remove(pool);
+            else if (poolToNumConnMapRR.ContainsKey(pool))
+                poolToNumConnMapRR.Remove(pool);
             UpdateConnectionMap(poolIndex, -1);
-            priority++;
-            connector = await getConnector(chosenHostPriority, priority, conn, timeout, async, cancellationToken, exceptions)
-                .ConfigureAwait(false);
+            continue;
         }
 
         if (connector != null)
@@ -511,18 +603,28 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 unreachableHosts.Remove(host);
             }
+
+            return connector;
         }
+        }
+
+        priority++;
+        connector = await getConnector(chosenHostPriority, priority, conn, timeout, async, cancellationToken, exceptions)
+            .ConfigureAwait(false);
         return connector;
     }
 
     async Task<NpgsqlConnector?> getConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async,
-        CancellationToken cancellationToken, List<Exception> exceptions)
+        CancellationToken cancellationToken, List<Exception> exceptions, bool isFinalFallback)
     {
         NpgsqlConnector? connector = null;
-        for (var i = 0; i < _pools.Count; i++)
+        while (true)
         {
             CheckDisposed();
-
+            if (AreAllEligiblePoolsExhausted() && !isFinalFallback)
+            {
+                return null;
+            }
             var poolIndex = conn.Settings.LoadBalanceHosts != LoadBalanceHosts.False ? GetRoundRobinIndex() : -2;
             if (poolIndex == -1)
                 return null;
@@ -568,10 +670,9 @@ public class ClusterAwareDataSource: NpgsqlDataSource
             {
                 break;
             }
-            unreachableHostsIndices.Add(poolIndex);
+            if (!unreachableHostsIndices.Contains(poolIndex)) unreachableHostsIndices.Add(poolIndex);
             var settingsHost = _pools[poolIndex].Settings.Host;
-            if (settingsHost != null) unreachableHosts.Add(settingsHost);
-            // poolToNumConnMap.Remove(poolIndex);
+            if (settingsHost != null && !unreachableHosts.Contains(settingsHost)) unreachableHosts.Add(settingsHost);
             var pool = _pools[poolIndex];
             if (poolToNumConnMapPrimary.ContainsKey(pool))
                 poolToNumConnMapPrimary.Remove(pool);
@@ -589,7 +690,13 @@ public class ClusterAwareDataSource: NpgsqlDataSource
     internal override bool TryGetIdleConnector([NotNullWhen(true)] out NpgsqlConnector? connector)
         => throw new NpgsqlException("Npgsql bug: trying to get an idle connector from " + nameof(ClusterAwareDataSource));
 
+    internal override bool TryGetIdleConnector(NpgsqlConnectionStringBuilder originalConnString, out NpgsqlConnector? connector) => throw new NotImplementedException();
+
     internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken) => throw new NotImplementedException();
+
+    internal override ValueTask<NpgsqlConnector?> OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, bool async, CancellationToken cancellationToken,
+        NpgsqlConnectionStringBuilder settings) =>
+        throw new NotImplementedException();
 
     internal override void Return(NpgsqlConnector connector)
     {
@@ -713,6 +820,25 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         }
     }
 
+    bool AreAllEligiblePoolsExhausted()
+    {
+        return settings.LoadBalanceHosts switch
+        {
+            LoadBalanceHosts.OnlyPrimary or LoadBalanceHosts.PreferPrimary=>
+                poolToNumConnMapPrimary.Count == 0,
+
+            LoadBalanceHosts.OnlyRR or LoadBalanceHosts.PreferRR =>
+                poolToNumConnMapRR.Count == 0,
+
+            LoadBalanceHosts.Any or LoadBalanceHosts.True =>
+                poolToNumConnMapPrimary.Count == 0 &&
+                poolToNumConnMapRR.Count == 0,
+
+            _ => true
+        };
+    }
+
+
     int getHosts(Dictionary<NpgsqlDataSource, int> poolToNumConnMap)
     {
         var PoolIndex = -1;
@@ -770,23 +896,27 @@ public class ClusterAwareDataSource: NpgsqlDataSource
         NpgsqlConnector? connector = null;
         try
         {
-            if (pool.TryGetIdleConnector(out connector))
+            if (pool.TryGetIdleConnector(settings, out connector))
             {
                 if (databaseState == DatabaseState.Unknown)
                 {
-                    databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
-                    Debug.Assert(databaseState != DatabaseState.Unknown);
-                    if (!stateValidator(databaseState, preferredType))
+                    if (connector != null)
                     {
-                        pool.Return(connector);
-                        return null;
+                        databaseState = await connector.QueryDatabaseState(new NpgsqlTimeout(timeoutPerHost), async, cancellationToken)
+                            .ConfigureAwait(false);
+                        Debug.Assert(databaseState != DatabaseState.Unknown);
+                        if (!stateValidator(databaseState, preferredType))
+                        {
+                            pool.Return(connector);
+                            return null;
+                        }
                     }
                 }
                 return connector;
             }
             else
             {
-                connector = await pool.OpenNewConnector(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken).ConfigureAwait(false);
+                connector = await pool.OpenNewConnector(conn, new NpgsqlTimeout(timeoutPerHost), async, cancellationToken, settings).ConfigureAwait(false);
                 if (connector is not null)
                 {
                     if (databaseState == DatabaseState.Unknown)

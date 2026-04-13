@@ -10,51 +10,48 @@ namespace YBNpgsql.Tests;
 
 public class YBTestUtils
 {
-    public void ExecuteShellCommand(string argument, ref string? _outputMessage, ref string? _errorMessage)
-{
-    var path = Environment.GetEnvironmentVariable("YBDB_PATH");
-    var arguments = path + argument;
-    // Set process variable
-    // Provides access to local and remote processes and enables you to start and stop local system processes.
-    Process? _Process = null;
-    try
-    {
-        ProcessStartInfo startInfo = new ProcessStartInfo()
-        {
-            FileName = "/bin/bash",
-            Arguments = " -c \"" + arguments + " \"",
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            RedirectStandardInput = true,
-            RedirectStandardError = true,
-        };
-        _Process = new Process()
-        {
-            StartInfo = startInfo,
-        };
-        _Process.Start();
+    static readonly string YbdbPath = Environment.GetEnvironmentVariable("YBDB_PATH")
+        ?? throw new ArgumentException("YBDB_PATH not initialized");
 
-        // Instructs the Process component to wait indefinitely for the associated process to exit.
-        _errorMessage = _Process.StandardError.ReadToEnd();
-        _Process.WaitForExit();
+    public void ExecuteShellCommand(string argument, string message)
+    {
+        var arguments = YbdbPath + argument;
+        Process? process = null;
+        try
+        {
+            var startInfo = new ProcessStartInfo()
+            {
+                FileName = "/bin/bash",
+                Arguments = " -c \"" + arguments + " \"",
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                RedirectStandardInput = true,
+                RedirectStandardError = true,
+            };
+            process = new Process() { StartInfo = startInfo };
+            Console.WriteLine("Executing command to " + message);
+            process.Start();
 
-        // Instructs the Process component to wait indefinitely for the associated process to exit.
-        _outputMessage = _Process.StandardOutput.ReadToEnd();
-        _Process.WaitForExit();
+            var error = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+            var output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+
+            Console.WriteLine("Output:" + output);
+            if (!string.IsNullOrWhiteSpace(error))
+                Console.WriteLine("Error:" + error);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Exception caught in process: {0}", ex);
+            throw;
+        }
+        finally
+        {
+            process?.Close();
+            process?.Dispose();
+        }
     }
-    catch (Exception _Exception)
-    {
-        // Error
-        Console.WriteLine("Exception caught in process: {0}", _Exception.ToString());
-    }
-    finally
-    {
-        // close process and do cleanup
-        _Process?.Close();
-        _Process?.Dispose();
-        _Process = null!;
-    }
-}
 
     protected static async Task VerifyOn(string server, int ExpectedCount)
     {
