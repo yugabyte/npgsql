@@ -228,38 +228,19 @@ public class YBPoolingWrapperTests : YBTestUtils
     }
     void CreateCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
         var cmd = "/bin/yb-ctl create --rf 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand(cmd, "create cluster");
         System.Threading.Thread.Sleep(5000);
         cmd = "/bin/ysqlsh -c \\\"CREATE USER tester WITH PASSWORD 'abc123'\\\"";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand(cmd, "create user tester");
         cmd = "/bin/ysqlsh -c \\\"GRANT ALL PRIVILEGES ON DATABASE \\\"yugabyte\\\" to tester;\\\"";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand(cmd, "grant privileges to tester");
     }
 
     void DestroyCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
         var cmd = "/bin/yb-ctl destroy";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand(cmd, "destroy cluster");
     }
 }

@@ -55,13 +55,7 @@ public class YBLoadBalancerTests : YBTestUtils
                 var conn1 = CreateConnections(connStringBuilder, numConns);
                 conns.AddRange(conn1);
 
-                string? _Output = null;
-                string? _Error = null;
-                var cmd = "/bin/yb-ctl stop_node 1";
-                ExecuteShellCommand(cmd, ref _Output, ref _Error );
-                Console.WriteLine(_Output);
-                if (!string.IsNullOrWhiteSpace(_Error))
-                    Console.WriteLine("Error:" + _Error);
+                ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
 
                 var conn2 = CreateConnections(connStringBuilder, numConns);
                 conns.AddRange(conn2);
@@ -139,29 +133,14 @@ public class YBLoadBalancerTests : YBTestUtils
 
     void CreateCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        var cmd = "/bin/yb-ctl create --rf 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
+        ExecuteShellCommand("/bin/yb-ctl create --rf 3", "create cluster");
         System.Threading.Thread.Sleep(5000);
     }
 
     void DestroyCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl destroy";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
     }
 
     static List<NpgsqlConnection> CreateConnections(string connString, int numConns)

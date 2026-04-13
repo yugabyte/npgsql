@@ -59,13 +59,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
         await VerifyOn("127.0.0.1", 1);
 
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 1";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine(_Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
 
         var conns = await CreateConnections(connString, new[]{-1, 12, 0});
 
@@ -84,13 +78,7 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
         await VerifyOn("127.0.0.1", 1);
 
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 1";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine(_Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
 
         var conns = await CreateConnections(connString, new[]{-1, 6, 6});
         CloseConnections(conns);
@@ -161,29 +149,15 @@ public class YBFallbackTopolgyTests : YBTestUtils
 
     protected void CreateCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
         var cmd = "/bin/yb-ctl start --rf 3 --placement_info \"aws.us-west.us-west-2a,aws.us-west.us-west-2b,aws.us-west.us-west-2c\"";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand(cmd, "start cluster");
         System.Threading.Thread.Sleep(5000);
     }
 
     protected void DestroyCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl destroy";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
     }
 
 }

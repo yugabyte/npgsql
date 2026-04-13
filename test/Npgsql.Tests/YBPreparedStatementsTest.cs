@@ -11,13 +11,8 @@ public class YBPreparedStatementsTest : YBTestUtils
     [OneTimeSetUp]
     public void SetUp()
     {
-        string? _Output = null;
-        string? _Error = null;
-        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
-        ExecuteShellCommand("/bin/yb-ctl create --rf 3", ref _Output, ref _Error);
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
+        ExecuteShellCommand("/bin/yb-ctl create --rf 3", "create cluster");
         Thread.Sleep(5000);
 
         var connStringBuilder = "host=127.0.0.1;port=5433;database=yugabyte;userid=yugabyte;password=yugabyte";
@@ -31,12 +26,7 @@ public class YBPreparedStatementsTest : YBTestUtils
     [OneTimeTearDown]
     public void TearDown()
     {
-        string? _Output = null;
-        string? _Error = null;
-        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
     }
 
     [Test]

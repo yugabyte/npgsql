@@ -37,18 +37,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop node : 127.0.0.2, 127.0.0.3
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 3", "stop node 3");
 
         try
         {
@@ -69,18 +59,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop node : 127.0.0.2, 127.0.0.3
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 3", "stop node 3");
 
         try
         {
@@ -110,13 +90,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop node : 127.0.0.2
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
 
         try
         {
@@ -158,13 +132,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop node : 127.0.0.2
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
 
         try
         {
@@ -187,36 +155,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         conns = await CreateConnections(connStringBuilder, numConns, new []{0, numConns, 0, 0, 0, 0});
 
         // Stop Node: 127.0.0.1, 127.0.0.2, 127.0.0.3
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 1";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 1", "stop node 1");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 3", "stop node 3");
 
         try
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{-1, -1, -1, numConns / 3, numConns / 3, numConns / 3});
 
             // Start Node 1
-            _Output = null;
-            _Error = null;
-            cmd = "/bin/yb-ctl start_node 1";
-            ExecuteShellCommand(cmd, ref _Output, ref _Error );
-            Console.WriteLine("Output:" + _Output);
-            if (!string.IsNullOrWhiteSpace(_Error))
-                Console.WriteLine("Error:" + _Error);
+            ExecuteShellCommand("/bin/yb-ctl start_node 1", "start node 1");
 
             Thread.Sleep(10000);
             conns.AddRange(await CreateConnections(connStringBuilder, numConns, new []{numConns, -1, -1, numConns / 3, numConns / 3, numConns / 3}));
@@ -237,18 +185,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop node : 127.0.0.2, 127.0.0.3
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 3", "stop node 3");
 
         try
         {
@@ -288,13 +226,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.4
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
 
         try
         {
@@ -315,18 +247,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 5";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 5", "stop node 5");
 
         try
         {
@@ -347,18 +269,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 5";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 5", "stop node 5");
 
         try
         {
@@ -408,13 +320,7 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.4
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
 
         try
         {
@@ -435,18 +341,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.4, 127.0.0.5
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 5";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 5", "stop node 5");
 
         try
         {
@@ -470,34 +366,16 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         conns = await CreateConnections(connStringBuilder, numConns, new []{0, 0, 0, numConns, 0, 0});
 
         // Stop Node: 127.0.0.4, 127.0.0.5, 127.0.0.6
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 5";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 6";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 5", "stop node 5");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 6", "stop node 6");
 
         try
         {
             conns = await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, -1, -1, -1});
 
             // Start RR node: 127.0.0.4
-            cmd = "/bin/yb-ctl start_node 4";
-            ExecuteShellCommand(cmd, ref _Output, ref _Error );
-            Console.WriteLine("Output:" + _Output);
-            if (!string.IsNullOrWhiteSpace(_Error))
-                Console.WriteLine("Error:" + _Error);
+            ExecuteShellCommand("/bin/yb-ctl start_node 4", "start node 4");
             Thread.Sleep(15000);
 
             conns.AddRange(await CreateConnections(connStringBuilder, numConns, new []{numConns / 3, numConns / 3, numConns / 3, numConns, -1, -1}));
@@ -536,18 +414,8 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.2, 127.0.0.4
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
 
         try
         {
@@ -568,28 +436,10 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 5";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 3", "stop node 3");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 5", "stop node 5");
 
         try
         {
@@ -619,28 +469,10 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
         List<NpgsqlConnection> conns = new List<NpgsqlConnection>();
         CreateRRCluster();
         // Stop Node: 127.0.0.2, 127.0.0.3, 127.0.0.4, 127.0.0.5
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl stop_node 2";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 3";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 4";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl stop_node 5";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl stop_node 2", "stop node 2");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 3", "stop node 3");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 4", "stop node 4");
+        ExecuteShellCommand("/bin/yb-ctl stop_node 5", "stop node 5");
 
         try
         {
@@ -691,49 +523,18 @@ public class YBTopologyAwareRRSupportTests : YBTestUtils
 
     void CreateRRCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        ExecuteShellCommand("/bin/yb-ctl destroy", ref _Output, ref _Error);
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        var cmd = "/bin/yb-ctl create --rf 3 --placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 --tserver_flags \"placement_uuid=live,max_stale_read_bound_time_ms=60000000\"";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-admin --master_addresses 127.0.0.1:7100,127.0.0.2:7100,127.0.0.3:7100 modify_placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 3 live";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter2.rack1 --tserver_flags placement_uuid=rr";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter3.rack1 --tserver_flags placement_uuid=rr";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
-        cmd = "/bin/yb-ctl add_node --placement_info cloud1.datacenter4.rack1 --tserver_flags placement_uuid=rr";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
+        ExecuteShellCommand("/bin/yb-ctl create --rf 3 --placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 --tserver_flags \"placement_uuid=live,max_stale_read_bound_time_ms=60000000\"", "create cluster");
+        ExecuteShellCommand("/bin/yb-admin --master_addresses 127.0.0.1:7100,127.0.0.2:7100,127.0.0.3:7100 modify_placement_info cloud1.datacenter1.rack1,cloud1.datacenter2.rack1,cloud1.datacenter3.rack1 3 live", "modify placement info");
+        ExecuteShellCommand("/bin/yb-ctl add_node --placement_info cloud1.datacenter2.rack1 --tserver_flags placement_uuid=rr", "add RR node (datacenter2)");
+        ExecuteShellCommand("/bin/yb-ctl add_node --placement_info cloud1.datacenter3.rack1 --tserver_flags placement_uuid=rr", "add RR node (datacenter3)");
+        ExecuteShellCommand("/bin/yb-ctl add_node --placement_info cloud1.datacenter4.rack1 --tserver_flags placement_uuid=rr", "add RR node (datacenter4)");
         System.Threading.Thread.Sleep(5000);
     }
 
     protected void DestroyCluster()
     {
-        string? _Output = null;
-        string? _Error = null;
-        var cmd = "/bin/yb-ctl destroy";
-        ExecuteShellCommand(cmd, ref _Output, ref _Error );
-        Console.WriteLine("Output:" + _Output);
-        if (!string.IsNullOrWhiteSpace(_Error))
-            Console.WriteLine("Error:" + _Error);
+        ExecuteShellCommand("/bin/yb-ctl destroy", "destroy cluster");
     }
 
     void CloseConnections(List<NpgsqlConnection> conns)
