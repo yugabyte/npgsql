@@ -1,0 +1,28 @@
+services:
+  yugabytedb:
+    image: yugabytedb/yugabyte:latest
+    command: >
+      bin/yugabyted start
+      --background=false
+      --tserver_flags=ysql_max_connections=500
+    healthcheck:
+      test: ["CMD-SHELL", "ysqlsh -h $(hostname -I | awk '{print $1}') -p 5433 -U yugabyte -d yugabyte -c 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: docker/yugabyte/Dockerfile.testrunner
+    depends_on:
+      yugabytedb:
+        condition: service_healthy
+    environment:
+      NPGSQL_TEST_DB: "Host=yugabytedb;Port=5433;Username=npgsql_tests;Password=npgsql_tests;Database=npgsql_tests;Timeout=0;Command Timeout=0;SSL Mode=Disable;Multiplexing=False"
+      CI: "${CI:-true}"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: ["bash", "/workspace/docker/yugabyte/run-tests.sh"]
